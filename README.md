@@ -15,3 +15,11 @@ Administración de Cuentas de Usuarios.
 Configuración de arranque. Servicios al inicio.
 Administración básica de Almacenamiento.
 
+
+Hay temas que no aparecen especificamente en los contenidos minimos,
+pero que deben ser ubicados :
+
+vim
+bash
+historia de unix
+historia de linux
