@@ -5,6 +5,13 @@ Facultad de Informática
 Universidad Nacional del Comahue
 
 
+Uso:
+
+make clean
+
+make
+
+
 Materia : Introducción a la Administración de Sistemas - 64 horas
 
 Objetivos:
