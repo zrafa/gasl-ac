@@ -1,4 +1,9 @@
-Apunte de Cátedra
+Apuntes de Cátedra 
+
+Departamento de Ingeniería de Computadoras
+Facultad de Informática
+Universidad Nacional del Comahue
+
 
 Materia : Introducción a la Administración de Sistemas - 64 horas
 
@@ -14,7 +19,6 @@ Administración de sistemas operativos. Sistema de Archivos.
 Administración de Cuentas de Usuarios.
 Configuración de arranque. Servicios al inicio.
 Administración básica de Almacenamiento.
-
 
 Hay temas que no aparecen especificamente en los contenidos minimos,
 pero que deben ser ubicados :
