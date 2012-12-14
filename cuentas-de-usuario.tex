@@ -24,8 +24,8 @@
 % Titulo
 \makeatletter
 {\color{bl} \centering \huge \sc \textbf{
-Administrado Cuentas de Usuario \\
-% \large \vspace*{-8pt} \color{black} Administrado Cuentas de Usuario
+Administrando Cuentas de Usuario \\
+% \large \vspace*{-8pt} \color{black} Administrando Cuentas de Usuario
 \vspace*{8pt} }\par}
 \makeatother
 
@@ -221,14 +221,9 @@ que sea posible, ya que en el futuro será imposible actualizar los archivos de
 los usuarios. Por ejemplo, si cambia el nombre de un editor a uno mas amigable,
 todos los usuarios tendrán que editar su archivo  \texttt{.profile}.
 El administrador del sistema podría tratar de hacer esto automáticamente con un
-script
-	\footnote{Lenguaje de programación cuyo código no necesita ser
-compilado para ser ejecutado, por lo general conjunto de instrucciones a
-ejecutar por el interprete de comandos (Shell). Se llamar también script a un
-programa o fragmento de código escrito en algún lenguaje de scripts,
-interpretados por ejemplo por Perl (Mundo Unix y en general para todas las demás
-plataformas) Visual Basic Script (Microsoft Windows) JavaScript (Todas las
-plataformas).  Ver también "Expresiones regulares".}, pero
+script \footnote{Lenguaje de programación cuyo código no necesita ser
+compilado para ser ejecutado, por lo general es interpretado por el shell.
+Ver también "Expresiones regulares".}, pero
 	casi con seguridad resultará que se corrompa el archivo de
 alguno.  Siempre que sea posible, es mejor poner lo que sea configuración global
 dentro de archivos globales, como es /etc/profile. De esta manera es posible
