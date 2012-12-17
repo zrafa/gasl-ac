@@ -6,7 +6,7 @@
 	\lhead{}
 	\chead{}
 	\rhead{}
-	\lfoot{\footnotesize Aprendiendo Vim Progresivamente - Departamento de Ingeniería de Computadoras}
+	\lfoot{\footnotesize Visión General del Árbol de Directorios - Departamento de Ingeniería de Computadoras}
 	\cfoot{}
 	\rfoot{\footnotesize \thepage\ }	% "Page 1 of 2"
 	\renewcommand{\headrulewidth}{0.0pt}
@@ -24,9 +24,8 @@
 % Titulo 
 \makeatletter
 {\color{bl} \centering \huge \sc \textbf{
-Aprendiendo Vim Progresivamente \\ 
-\large \vspace*{-8pt} \color{black} Vim el Editor de Seis Billones de Dólares
-\footnote{http://www.vim.org}
+Visión General del Árbol de Directorios \\
+\large \vspace*{-8pt} \color{black} Una introducción al Sistema de Archivos GNU/Linux
 \vspace*{8pt} }\par}
 \makeatother
 
@@ -40,14 +39,8 @@ Aprendiendo Vim Progresivamente \\
 \makeatother
 
 
-\section{Visión General del Árbol de Directorios}
 
-
-\textit{Dos días mas tarde, estaba Pooh sentado en su rama,
-balanceando sus patas, y allí junto a él había cuatro ollas de miel}(A.A.
-Milne)
-
- En este capítulo se describen las partes importantes de un árbol de
+En este documento se describen las partes importantes de un árbol de
 directorios GNU/Linux estándar, basado en el Estándar de la Jerarquía del
 Sistema de Archivos de Linux (Filesystem Hierarchy Standard, FHS). Además, se
 explica en líneas generales la forma normal de dividir el árbol de directorios
@@ -57,8 +50,8 @@ alternativas de realizarla.
 
 \section{ Información preliminar}
 
- Este capítulo está basado en el \textit{Estándar de la Jerarquía del
-Sistema de Archivos de Linux} (FHS) versión 2.1, el cual intenta
+Este documento está basado en el \textbf{\textit{Estándar de la Jerarquía del
+Sistema de Archivos de Linux (FHS) versión 2.1}}, el cual intenta
 establecer un estándar para la organización del árbol de directorios en un
 sistema GNU/Linux. Tal estándar tiene la ventaja de facilitar el trabajo de
 escribir o portar software a este sistema operativo y administrar máquinas bajo
@@ -70,16 +63,20 @@ la tradición UNIX y las tendencias actuales, haciendo así que los sistemas
 GNU/Linux les sean familiares a quienes tengan experiencia con otros sistemas
 Unix, y viceversa.  
 
- Este capítulo no es tan detallado como el FHS. Un administrador de
-sistemas debe leer el FHS completo para entenderlo totalmente.  
+\fcolorbox{black}{grey}{
+\parbox[t]{1.0\linewidth}{ \vspace*{0.4cm}
+{\bf Este documento no es tan detallado como el FHS. Un administrador de
+sistemas debe leer el FHS completo para entenderlo totalmente.  }
+\vspace*{0.4cm} } }
 
- En este capítulo no se explican todos los archivos en detalle. La
+
+Tampoco se explica, en este documento, todos los archivos en detalle. La
 intención no es describir cada uno de ellos, sino dar una visión general del
 sistema desde el punto de vista del sistema de archivos.  Se puede encontrar
 información adicional sobre cada archivo en otras partes de este manual o en las
 páginas de manual de GNU/Linux.  
 
- El árbol de directorios completo está pensado para poder ser dividido en
+El árbol de directorios completo está pensado para poder ser dividido en
 partes más pequeñas, que pueden estar en su propio disco o partición y
 acomodarse así a los límites del tamaño del disco, así como para facilitar la
 realización de  copias de seguridad y otras tareas de la administración de
@@ -112,7 +109,7 @@ y para recuperar archivos perdidos desde las copias de seguridad.
 }
 
 \item{ El sistema de archivos /usr contiene todos los comandos,
-librerías, páginas de manual, y otros archivos que no serán modificados durante
+bibliotecas, páginas de manual, y otros archivos que no serán modificados durante
 el funcionamiento normal del sistema. No deben existir archivos bajo /usr que
 sean específicos para una máquina en particular, ni que deban ser modificados
 durante la utilización normal del sistema. Esto permite que los archivos sean
@@ -529,19 +526,19 @@ Ficheros).
 	\item \textit{\texttt{/usr/lib}}
 	 Archivos de datos de programas y subsistemas que no
 	sufren cambios, incluyendo algunos archivos de configuración globales.
-	El 		nombre lib viene de librería; originariamente las
-	librerías de las 			subrutinas de programación se
+	El nombre lib viene de biblioteca (library); originariamente las
+	biblotecas de las subrutinas de programación se
 	almacenaban en \texttt{/usr/lib}.
 	
 
 	\item \textit{\texttt{/usr/local}}
-	 Es la ubicación para el software instalado localmente y
+	 Es la ubicación para el software construído e instalado localmente, y
 	para algunos otros archivos.  Las distribuciones no deben colocar
 	archivos bajo este directorio. Se 			reserva para ser
 	utilizado únicamente por el administrador local del
 	sistema. De esta manera, aquel se asegura totalmente de que ninguna
 	actualización de su distribución sobreescribirá  el software que él
-	mismo haya instalado localmente.  
+	mismo haya instalado localmente.
 
 
  \end{itemize} 
