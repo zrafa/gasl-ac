@@ -23,7 +23,7 @@ Objetivos:
 ● Saber detectar anomalías en la actividad y aplicar acciones correctivas.
 
 Contenidos mínimos:
-Administración de sistemas operativos. Sistema de Archivos.
+Administración de sistemas operativos. Sistema de Archivos (arbol de directorios?).
 Administración de Cuentas de Usuarios.
 Configuración de arranque. Servicios al inicio.
 Administración básica de Almacenamiento.
