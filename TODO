@@ -1,3 +1,26 @@
-- En cada apunte se debe agregar, preferentemente al final, la bibliografía.
-  Y también la licencia libre que avala la modificación y adaptación del
+- En cada falta agregar, al final, la bibliografía.
+
+- Y también la licencia libre que avala la modificación y adaptación del
   material.
+
+
+- Falta el apunte de Sistema de Archivos y Administracion basica de Almacenamiento
+  (que van de la mano).
+
+- Falta corregir todos los apuntes :
+  * Quitando todo lo viejo (por ejemplo, donde dice "si apaga el equipo asi 
+    porque si se rompe el filesystem").
+  * Actualizando los viejo (por ejemplo, donde dice LILO tal vez 
+    debe decir GRUB, donde dice ext2 tal vez debería decir ext4). 
+
+- Falta el apunte introductorio del shell (bash en este caso).
+
+- Faltan las transparencias para las clases de cada apunte.
+Apuntes de Cátedra 
+
+
+Departamento de Ingeniería de Computadoras
+Facultad de Informática
+Universidad Nacional del Comahue
+
+

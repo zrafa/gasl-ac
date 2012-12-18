@@ -1,4 +1,5 @@
 Apuntes de Cátedra 
+==================
 
 Departamento de Ingeniería de Computadoras
 Facultad de Informática
@@ -13,6 +14,9 @@ make clean
 make
 
 
+Materias
+--------
+
 Materia : Introducción a la Administración de Sistemas - 64 horas
 
 Objetivos:
@@ -23,15 +27,17 @@ Objetivos:
 ● Saber detectar anomalías en la actividad y aplicar acciones correctivas.
 
 Contenidos mínimos:
-Administración de sistemas operativos. Sistema de Archivos (arbol de directorios?).
+Administración de sistemas operativos. 
+Arbol de Directorios. Sistema de Archivos. 
+Administración básica de Almacenamiento.
 Administración de Cuentas de Usuarios.
 Configuración de arranque. Servicios al inicio.
-Administración básica de Almacenamiento.
 
-Hay temas que no aparecen especificamente en los contenidos minimos,
-pero que deben ser ubicados :
+- La materia no tiene muchas horas.
 
-vim
-bash
-historia de unix
-historia de linux
+- Tanto "Sistemas de Archivos" como "Administracion basica de Almacenamientos"
+  es mas o menos lo mismo. Y tal vez debería ser ubicado en la proxima materia?.
+
+- El apunte arbol de directorios seria como una Introducción al Sistema de Archivos.
+
+- Instalacion de Linux?. Deberia estar en taller de hardware y software seguramente?
