@@ -2,16 +2,16 @@
 \documentclass[12pt]{article}
 
 \usepackage{apuntes-estilo}
-
 \usepackage{fancyhdr,lastpage}
 
 
 
-\def\maketitle{%
+\def\maketitle{
+
 % Titulo 
  \makeatletter
  {\color{bl} \centering \huge \sc \textbf{
- Inicio y Apagado \\ 
+ Inicio y Apagado de uns Sistema GNU/Linux \\ 
 %  \large \vspace*{-8pt} \color{black} Vim el Editor de Seis Billones de Dólares
  \vspace*{8pt} }\par}
  \makeatother
@@ -25,7 +25,7 @@
  	\vspace{20pt} }
  \makeatother
 
-  }
+}
 
 % Custom headers and footers
 \fancyhf{} % clear all header and footer fields
@@ -57,18 +57,15 @@ no se sigue el procedimiento adecuado, los archivos se pueden dañar o perder.
 \section{ Una introducción al proceso de inicio y finalización del
 sistema}
 
- Al acto de encender un computador y cargar su sistema operativo 
-
-
+Al acto de encender un computador y cargar su sistema operativo 
 		\footnote{On early computers, it wasn't enough to merely
 		turn on the computer, you had to manually load the operating
 		system as well.  These new-fangled thing-a-ma-jigs do it all by
-		themselves.}
-		
-	se le llama en Inglés \textit{booting}. El nombre viene de
-	la idea del computador iniciándose a sí mismo sin ayuda.  
+		themselves.} 
+se le llama en Inglés \textit{booting}. El nombre viene de
+la idea del computador iniciándose a sí mismo sin ayuda.  
 
- Durante el inicio, o bootstrapping, lo primero que el computador carga en
+Durante el inicio, o bootstrapping, lo primero que el computador carga en
 memoria y ejecuta es un pequeño programa llamado cargador o \textit{bootstrap
 loader}, el cual a su vez carga el sistema operativo en memoria e
 inicia su ejecución. El cargador o bootstrap loader, se encuentra almacenado en
@@ -117,9 +114,7 @@ cómo instalar el sistema operativo para arrancar de un modo u otro.
  Al encender una PC, el BIOS efectúa varias pruebas al hardware para
 asegurarse de que no existan problemas\footnote{El nombre de este chequeo es
 \textit{power on self test}, or \textit{POST} for
-short.}
-		
-, y luego empieza realmente el proceso de inicio del sistema operativo. El BIOS
+short.}, y luego empieza realmente el proceso de inicio del sistema operativo. El BIOS
 selecciona una unidad de disco y lee su primer sector. Típicamente, la unidad de
 disco seleccionada es la unidad de disquetes (y funciona si existe un disquete
 insertado booteable), de no ser así selecciona el primer disco duro, si existe
@@ -170,8 +165,8 @@ esta manera, también es posible que el usuario seleccione con cuál de ellos
 trabajar al momento de iniciar el sistema.  Se puede configurar LILO, para que
 no inicie la carga del kernel predeterminado de manera inmediata y consulte cuál
 kernel o sistema operativo debe iniciarse (esta configuración necesita que se
-mantengan presionadas la teclas de <keycap>alt</keycap>, <keycap>shift</keycap>,
-or <keycap>ctrl</keycap> cuando LILO comienza su ejecución). Otra opción
+mantengan presionadas la teclas de \texttt{alt}, \texttt{shift},
+or \texttt{ctrl} cuando LILO comienza su ejecución). Otra opción
 consiste en configurarlo de manera que siempre consulte desde qué imagen o
 sistema se va a iniciar, y que transcurrido cierto tiempo de no recibir ninguna
 indicación, arranque desde el kernel predeterminado.  
@@ -230,7 +225,7 @@ Console: colour EGA+ 80x25, 8 virtual consoles
 Serial driver version 3.94 with no serial options enabled
 tty00 at 0x03f8 (irq = 4) is a 16450
 tty01 at 0x02f8 (irq = 3) is a 16450
-lp_init: lp1 exists (0), using polling driver
+lp\_init: lp1 exists (0), using polling driver
 Memory: 7332k/8192k available (300k kernel code, 384k reserved, 176k
 data)
 Floppy drive(s): fd0 is 1.44M, fd1 is 1.2M
@@ -272,7 +267,7 @@ montado en modo de lectura/escritura.  }
 	programa \texttt{\textbf{INIT}} siempre será el proceso con ID 1. INIT
 	realiza varias tareas relacionadas con el inicio del sistema. La manera
 	exacta en que las realiza depende en cómo sea configurado. Puede leer el
-	<xref linkend="init"/> para obtener mayor información al respecto. Al
+	apunte sobre init para obtener mayor información al respecto. Al
 	menos, INIT iniciará algunos demonios en segundo plano esenciales.
 	}
 
@@ -334,10 +329,14 @@ espera.
 usuarios, utilice el comando shutdown -h +time mensaje, donde time es el numero
 de minutos en que se posterga la detención del sistema, y el mensaje es una
 explicación breve de el porqué se está apagando el sistema.
-\texttt{\textbf{\# shutdown -h +10}} 'We will install a new 
-disk.  System should
-> be back on-line in three hours.'
+
+\colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} 
+{\tt
+\# shutdown -h +10 'We will install a new 
+disk.  System should be back on-line in three hours.' \\
 \#
+} \vspace*{0.5cm} } } 
+
 El ejemplo advierte a todos los usuarios que el sistema se apagará en diez
 minutos, y que sería mejor que se desconectaran o se arriesgan a perder la
 información con la que están trabajando. La advertencia se muestra en cada
@@ -346,9 +345,8 @@ terminales para el sistema X Window).
 
 
 
-\colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} {\tt  Broadcast message from root (ttyp0) Wed Aug  2 01:03:25 1995...
-
-
+\colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} 
+{\tt  Broadcast message from root (ttyp0) Wed Aug  2 01:03:25 1995... \\
 We will install a new disk.  System should be back on-line in three hours.  The
 system is going DOWN for system halt in 10 minutes !!   } \vspace*{0.5cm} } } 
 
@@ -382,7 +380,6 @@ equipo.
 
  A algunas personas les gusta apagar el equipo tecleando el comando
 \texttt{\textbf{sync}}
-	
 		\footnote{\texttt{\textbf{sync}} vacía el buffer caché}
 		tres veces, dando tiempo a que
 		finalice la entrada y la salida del disco duro y entonces apagar
@@ -407,7 +404,7 @@ entrada/salida a disco finalizara.
 finalizando el sistema, apagando la máquina y entonces encendiendo de vuelta. Un
 método más práctico para tener el mismo efecto consiste en indicarle al comando
 \texttt{\textbf{shutdown}} que reinicie el sistema, en vez de que lo detenga.
-La opción <option>-r</option> del comando \texttt{\textbf{shutdown}} puede
+La opción \texttt{-r} del comando \texttt{\textbf{shutdown}} puede
 realizar la acción anterior, y puede utilizarse inmediatamente, por ejemplo:
 \texttt{\textbf{shutdown -r now}}.  
 
