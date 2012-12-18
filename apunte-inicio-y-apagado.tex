@@ -1,0 +1,474 @@
+
+\documentclass[12pt]{article}
+
+\usepackage{apuntes-estilo}
+\usepackage{fancyhdr,lastpage}
+
+
+
+\def\maketitle{
+
+% Titulo 
+ \makeatletter
+ {\color{bl} \centering \huge \sc \textbf{
+ Inicio y Apagado de uns Sistema GNU/Linux \\ 
+%  \large \vspace*{-8pt} \color{black} Vim el Editor de Seis Billones de Dólares
+ \vspace*{8pt} }\par}
+ \makeatother
+
+
+% Autor
+ \makeatletter
+ {\centering \small 
+ 	Departamento de Ingeniería de Computadoras \\
+ 	Facultad de Informática - Universidad Nacional del Comahue \\
+ 	\vspace{20pt} }
+ \makeatother
+
+}
+
+% Custom headers and footers
+\fancyhf{} % clear all header and footer fields
+\fancypagestyle{plain}{\fancyhf{}}
+  	\pagestyle{fancy}
+ 	\lhead{\footnotesize Inicio y Apagado - Departamento de Ingeniería de Computadoras}
+ 	\rhead{\footnotesize \thepage\ }	% "Page 1 of 2"
+
+\def\ti#1#2{\texttt{#1} & #2 \\ }
+
+
+
+\begin{document}
+
+\thispagestyle{empty}
+\maketitle
+\setlength{\parindent}{0pt}
+
+
+
+\section{Encendido y apagado}
+
+
+ En esta sección se explica lo que sucede en un sistema Linux al momento
+de encender o apagar la computadora, y de cómo debe hacerse apropiadamente. Si
+no se sigue el procedimiento adecuado, los archivos se pueden dañar o perder.
+
+
+\section{ Una introducción al proceso de inicio y finalización del
+sistema}
+
+Al acto de encender un computador y cargar su sistema operativo 
+		\footnote{On early computers, it wasn't enough to merely
+		turn on the computer, you had to manually load the operating
+		system as well.  These new-fangled thing-a-ma-jigs do it all by
+		themselves.} 
+se le llama en Inglés \textit{booting}. El nombre viene de
+la idea del computador iniciándose a sí mismo sin ayuda.  
+
+Durante el inicio, o bootstrapping, lo primero que el computador carga en
+memoria y ejecuta es un pequeño programa llamado cargador o \textit{bootstrap
+loader}, el cual a su vez carga el sistema operativo en memoria e
+inicia su ejecución. El cargador o bootstrap loader, se encuentra almacenado en
+una dirección fija dentro de un disco duro o en un floppy. La razón de que
+existan dos etapas en este proceso se debe a que el sistema operativo es grande
+y complicado, pero la primera pieza de código que el computador carga debe ser
+muy pequeña (unos cuantos cientos de bytes), para evitar que el firmware (su
+almacenamiento) sea innecesariamente complicado.  
+
+ Diferentes tipo de computadoras realizan la primera etapa de inicio
+(bootstrapping) de manera distinta. Las computadoras de tipo PC'S (arquitectura
+x86) cuentan con un programa (BIOS: Basic Input Output System) que lee el
+cargador de arranque almacenado en el primer sector de un disco duro o un floppy
+(sector de arranque o \textit{boot sector}). El cargador, al
+ejecutarse, carga el sistema operativo almacenado en otro lugar del disco (o
+ubicado en otro lugar).  
+
+ El kernel Linux luego de que ha sido cargado en memoria y comienza a
+ejecutarse, inicializa el hardware y los controladores de los dispositivos. Por
+último ejecuta el programa \texttt{\textbf{INIT}}. \texttt{\textbf{INIT}} a su
+vez inicia otros procesos que permite a los usuarios iniciar sesiones (log in) y
+trabajar dentro del sistema. Los detalles de esta parte del inicio del sistema
+serán descritos con mayor detalle en otro capítulo.  
+
+ Al finalizar un sistema Linux (shutdown), se le ordena a cada proceso
+terminar. Esto causa que los archivos sean cerrados y que se realicen otras
+tareas que sirven para mantener el sistema en orden. A continuación se desmontan
+los sistemas de archivos y las áreas de swap. Finalmente, se muestra un mensaje
+en la consola indicando que el equipo puede apagarse. Si no se sigue el
+procedimiento anterior pueden y sucederán cosas terribles. Lo mas problemático
+que puede pasar, es que el buffer caché del sistema de archivos no sea escrito a
+disco (o a su medio de almacenamiento correspondiente), lo que significa que los
+datos contenidos en él se pierdan y que por lo tanto la información contenida en
+el sistema de archivos del disco sea inconsistente y posiblemente inutilizable.
+ 
+
+
+\section{ Una mirada más cercana al proceso de inicio}
+
+ Puede iniciar su sistema Linux desde un disco duro o disquete. La sección
+de instalación de la Guía GNU/Linux: Instalación y Primeros Pasos, se explica
+cómo instalar el sistema operativo para arrancar de un modo u otro.  
+
+
+
+ Al encender una PC, el BIOS efectúa varias pruebas al hardware para
+asegurarse de que no existan problemas\footnote{El nombre de este chequeo es
+\textit{power on self test}, or \textit{POST} for
+short.}, y luego empieza realmente el proceso de inicio del sistema operativo. El BIOS
+selecciona una unidad de disco y lee su primer sector. Típicamente, la unidad de
+disco seleccionada es la unidad de disquetes (y funciona si existe un disquete
+insertado booteable), de no ser así selecciona el primer disco duro, si existe
+un disco en la computadora (de todas maneras el orden de selección de unidad de
+discos es configurable en la mayoría de las PC's). Al primer sector de un disco
+se le llama \textit{sector de arranque}, en inglés boot sector o
+\textit{master boot sector} (MBR o sector de arranque maestro). Si
+el disco contiene varias particiones, cada una de ellas tiene su propio sector
+de arranque (primer sector de cada partición).  
+
+
+ El sector de arranque (boot sector) contiene un pequeño programa lo
+suficientemente pequeño para que quepa en un único sector, cuya responsabilidad
+es leer el sistema operativo desde el disco, cargarlo en memoria y ponerlo en
+ejecución. Cuando se inicia Linux desde un disquete, el sector de arranque
+contiene un código que solamente lee los primeros cientos de bloques
+(dependiendo del tamaño del kernel por supuesto) y los coloca en una ubicación
+predeterminada en la memoria. En un disquete de inicio de Linux no existe un
+sistema de archivos, el kernel está simplemente almacenado en sectores
+consecutivos, lo que simplifica el proceso de arranque. Sin embargo es posible
+también arrancar desde un disquete con un sistema de archivos utilizando LILO,
+el cargador de Linux.  
+
+
+ Al arrancar desde un disco duro, el código contenido en el sector de
+arranque maestro (MBR o Master Boot Record), examina la tabla de particiones del
+disco duro (esta tabla también se almacena en el MBR), identifica la partición
+activa (aquella partición que ha sido designada como de inicio), lee el cargador
+contenido en el sector de arranque (boot sector) a una localización en memoria y
+lo ejecuta.  
+
+ El código almacenado en el sector de arranque de la partición del disco
+duro hace lo mismo que el contenido en el sector de arranque del diskette: lee
+el kernel desde la partición del disco duro, lo coloca en memoria e inicia su
+ejecución. Sin embargo, existen diferencias. No es muy útil mantener una
+partición exclusiva para almacenar la imagen del kernel, por lo tanto el
+cargador no se limita a leer de manera secuencial los sectores del disco, como
+lo hace en el caso de un floppy, sino que en el caso de un disco duro debe
+encontrar en qué lugar del sistema de archivos ha sido almacenado el kernel.
+Existen varias maneras de resolver este problema, pero la más común es
+utilizando LILO (consulte la documentación de LILO si desea conocer mayores
+detalles de cómo LILO realiza esta tarea).  
+
+LILO normalmente lee, coloca en memoria y comienza la ejecución del kernel
+Linux predeterminado. Es posible configurar LILO para que sea capaz de iniciar
+una de varias imágenes del kernel diferentes, o de otros sistemas operativos. De
+esta manera, también es posible que el usuario seleccione con cuál de ellos
+trabajar al momento de iniciar el sistema.  Se puede configurar LILO, para que
+no inicie la carga del kernel predeterminado de manera inmediata y consulte cuál
+kernel o sistema operativo debe iniciarse (esta configuración necesita que se
+mantengan presionadas la teclas de \texttt{alt}, \texttt{shift},
+or \texttt{ctrl} cuando LILO comienza su ejecución). Otra opción
+consiste en configurarlo de manera que siempre consulte desde qué imagen o
+sistema se va a iniciar, y que transcurrido cierto tiempo de no recibir ninguna
+indicación, arranque desde el kernel predeterminado.  
+
+
+
+ Con LILO es posible "pasarle" al kernel información a través de
+argumentos en la línea de comandos (\textit{kernel command line
+argument}), tecleando los argumentos después del nombre del kernel o
+del sistema operativo que se desea utilizar.  
+
+
+ Iniciar el sistema desde un disquete o desde un disco duro tienen
+ventajas diferentes, aunque generalmente iniciar desde el disco duro es mas
+agradable, ya que evita la incomodidad de lidiar con diskettes. También es más
+rápido. Sin embargo, en un principio puede ser complejo para algunos usuarios
+instalar el sistema para que arranque desde un disco duro. Por lo que, a veces
+se instala de manera que inicie desde un disquete y después cuando el sistema
+está instalado de manera adecuada y todo funciona correctamente se instala el
+LILO para arrancar desde el disco duro.  
+
+ Después de que el kernel ha sido leído del disco, cargado en la memoria y
+puesto en ejecución, pasa lo siguiente: \begin{itemize}
+
+	\item{
+
+Se descomprime el kernel, ya que éste se almacena comprimido, al principio de la
+imagen del kernel, se encuentra un pequeño programa que se encarga de esta
+tarea.  }
+
+	\item{
+
+Si la máquina cuenta con una tarjeta super VGA que Linux reconoce y soporta
+modos especiales de texto (tales como 100 columnas por 40 renglones), Linux
+pregunta cuál es el modo que se desea usar. Al compilar de principio el kernel
+se puede determinar de antemano que modo de video usar, de manera que Linux
+nunca pregunte. También se puede determinar mediante la configuración de LILO o
+por el comando rdev.  }
+
+	\item{
+
+Una vez realizado lo anterior, el kernel verifica qué otro hardware existe
+dentro de la máquina (discos duros, unidades de diskettes, tarjetas de red,
+adaptadores, etc...), y configura sus controladores de manera apropiada.
+Conforme lo va haciendo, envía mensajes a la consola acerca de lo que se va
+encontrando. Por ejemplo, al iniciar una computadora puede verse lo siguiente:
+
+  
+   
+
+
+\colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} {\tt 
+LILO boot:
+Loading linux.
+Console: colour EGA+ 80x25, 8 virtual consoles
+Serial driver version 3.94 with no serial options enabled
+tty00 at 0x03f8 (irq = 4) is a 16450
+tty01 at 0x02f8 (irq = 3) is a 16450
+lp\_init: lp1 exists (0), using polling driver
+Memory: 7332k/8192k available (300k kernel code, 384k reserved, 176k
+data)
+Floppy drive(s): fd0 is 1.44M, fd1 is 1.2M
+Loopback device init
+Warning WD8013 board not found at i/o = 280.
+Math coprocessor using irq13 error reporting.
+Partition check:
+  hda: hda1 hda2 hda3
+VFS: Mounted root (ext filesystem).
+Linux version 0.99.pl9-1 (root@haven) 05/01/93 14:12:20
+ } \vspace*{0.5cm} } } 
+
+
+
+
+El idioma y la forma exacta del texto es diferente en cada sistema, en función
+del hardware instalado, la versión de Linux que se está utilizando y como se ha
+establecido la configuración del sistema.  }
+
+	\item{
+A continuación el kernel trata de montar el sistema de archivos raíz (root
+filesystem, "/"). El punto de montaje se puede determinar al momento de compilar
+el kernel o después mediante el uso de LILO o del comando
+\texttt{\textbf{rdev}}. El tipo del sistema de archivos se detecta
+automáticamente. Si la acción de montar el sistema de archivos raíz falla, por
+ejemplo debido a que no recordó incluir el controlador del sistema de archivos
+correspondiente dentro del kernel, el kernel entra en pánico y detiene la
+actividad del sistema operativo (de todas maneras, no puede hacer más).  
+
+ El sistema de archivos raíz se monta en modo de sólo lectura, lo anterior
+se determina al momento de compilar el kernel, lo que permite verificar el
+estado del sistema de archivos (filesystem check) al momento de ser montado. No
+es una buena idea verificar la integridad de un sistema de archivos que es
+montado en modo de lectura/escritura.  }
+
+	\item{ El paso siguiente consiste en iniciar la  ejecución del
+	programa \texttt{\textbf{init}} (almacenado en
+	\texttt{/sbin/init}) en segundo plano (background). El
+	programa \texttt{\textbf{INIT}} siempre será el proceso con ID 1. INIT
+	realiza varias tareas relacionadas con el inicio del sistema. La manera
+	exacta en que las realiza depende en cómo sea configurado. Puede leer el
+	apunte sobre init para obtener mayor información al respecto. Al
+	menos, INIT iniciará algunos demonios en segundo plano esenciales.
+	}
+
+	\item{ Acto seguido, \texttt{\textbf{init}} cambia a modo
+	multiusuario y ejecuta un \texttt{\textbf{getty}} (get tty) para las
+	consolas virtuales y la líneas seriales. \texttt{\textbf{Getty}} es el
+	programa  que permite a las personas iniciar sesiones (log in) a través
+	de las consolas virtuales y terminales conectadas vía puertos seriales.
+	\texttt{\textbf{INIT}} puede también ejecutar otros programas
+	dependiendo del modo en que esté configurado.  }
+
+	\item{
+
+Después de todas las etapas anteriores, el inicio de Linux está completo y el
+sistema se encuentra activo de manera normal.  }
+
+	\end{itemize} 
+
+
+
+\section{ Más acerca de shutdown}
+
+ Es sumamente importante comprender y seguir los pasos correctos al
+momento de finalizar un sistema Linux. Si no realiza este procedimiento, sus
+sistemas de archivos se verán probablemente perjudicados y los archivos pueden
+quedar desordenados. Esto sucede porque Linux tiene un cache de disco que no
+escribe a disco cada vez que se le solicita, sino que solamente lo hace a
+intervalos. Esta manera de proceder mejora de manera significativa el desempeño
+del sistema, pero al mismo tiempo significa que si se apaga el equipo de
+imprevisto puede perder información que debería estar en sus sistemas de
+archivos (y obviamente en sus discos). Esto último sucede porque la cache puede
+contener una gran cantidad de datos que se pierden con el apagado, y lo que está
+en el disco puede no ser un sistema de archivos totalmente funcional (debido a
+que solamente parte de la información ha sido transcrita de la cache al disco
+duro).  
+
+ Una razón adicional para no desconectar directamente el sistema de la
+energía (presionando por ej. el botón de apagado) es que en un ambiente
+multitarea existen diversos procesos que se están ejecutando en segundo plano, y
+desconectar la computadora en este momento puede ser desastroso. Utilizando el
+procedimiento correcto para el apagado del equipo garantiza que todos los
+procesos en segundo plano puedan guardar sus datos.  
+
+ El comando para finalizar correctamente un sistema Linux es
+\texttt{\textbf{shutdown}}. Se utiliza generalmente de una de dos maneras
+diferentes: 
+
+ Si Ud. es el único usuario del sistema, debe finalizar todos los
+programas que estén en ejecución, finalizar todas las sesiones (log out) de
+todas las consolas virtuales, e iniciar una sesión como usuario root (o mantener
+la sesión si ya existe una, pero debe cambiar de directorio de trabajo al
+directorio HOME de root, para evitar problemas al desmontarse los sistemas de
+archivos). Finalmente ejecute el comando \texttt{\textbf{shutdown -h now}}. Si
+desea postergar durante algún lapso el comando shutdown, reemplace
+\texttt{now} con un signo + (mas) y un numero que indica minutos de
+espera.  
+
+ Alternativamente, si el sistema está siendo utilizado por muchos
+usuarios, utilice el comando shutdown -h +time mensaje, donde time es el numero
+de minutos en que se posterga la detención del sistema, y el mensaje es una
+explicación breve de el porqué se está apagando el sistema.
+
+\colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} 
+{\tt
+\# shutdown -h +10 'We will install a new 
+disk.  System should be back on-line in three hours.' \\
+\#
+} \vspace*{0.5cm} } } 
+
+El ejemplo advierte a todos los usuarios que el sistema se apagará en diez
+minutos, y que sería mejor que se desconectaran o se arriesgan a perder la
+información con la que están trabajando. La advertencia se muestra en cada
+terminal donde existe un usuario conectado, incluyendo las xterm (emuladores de
+terminales para el sistema X Window).
+
+
+
+\colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} 
+{\tt  Broadcast message from root (ttyp0) Wed Aug  2 01:03:25 1995... \\
+We will install a new disk.  System should be back on-line in three hours.  The
+system is going DOWN for system halt in 10 minutes !!   } \vspace*{0.5cm} } } 
+
+
+
+
+El mensaje de advertencia (warning)
+se repite automáticamente varias veces antes de pagar la máquina con
+intervalos cada vez más frecuentes.
+
+ Después del tiempo de postergación, cuando el proceso de apagado real
+empieza, se desmontan todos los sistemas de archivos (excepto el sistema de
+archivos raíz /), se finalizan (kill) los procesos de los usuarios (si existen
+aún usuarios dentro del sistema), los demonios y finalmente se desmonta el
+sistema de archivos raíz. Cuando todo este proceso finaliza,
+\texttt{\textbf{INIT}} muestra un mensaje indicando que se puede apagar la
+máquina. Es entonces y sólo entonces que es posible bajar el switch (o
+interruptor de suministro eléctrico).
+
+ Algunas veces, aunque es raro en un buen sistema, es imposible concluir
+el sistema de forma adecuada. Por ejemplo, si ocurre un error fatal con el
+kernel, puede ser imposible ejecutar cualquier comando nuevo, haciendo la
+finalización normal del sistema inviable. Todo lo que se puede hacer en este
+caso es esperar que ningún daño severo ocurra y entonces desconectar la máquina.
+Si los problemas son menos serios (digamos, alguien quebró su teclado con un
+hacha!), y el kernel y el programa \texttt{\textbf{update}} se encuentran en
+ejecución normal, es aconsejable aguardar algunos minutos para que
+\texttt{\textbf{update}} tenga la chance de actualizar los discos con la
+información contenida en el buffer caché, y solamente después desconectar el
+equipo.  
+
+ A algunas personas les gusta apagar el equipo tecleando el comando
+\texttt{\textbf{sync}}
+		\footnote{\texttt{\textbf{sync}} vacía el buffer caché}
+		tres veces, dando tiempo a que
+		finalice la entrada y la salida del disco duro y entonces apagar
+		el equipo. Si no hay programas en ejecución, este método es
+		similar a utilizar el comando \texttt{\textbf{shutdown}}. Sin
+		embargo, este procedimiento no desmonta los sistemas de archivos
+		y puede acarrear problemas con la marca de "limpio" que algunos
+		sistemas de archivos utilizan (\textit{filesystem clean
+		flag}), como por ejemplo ext2. El método del triple sync
+		\textit{no es recomendable}.  
+
+ Por pura curiosidad: la razón del triple \texttt{\textbf{sync}} viene de
+los días en que UNIX era joven, cuando los comandos fueron tipeados
+separadamente, y eso daba usualmente tiempo suficiente para que la
+entrada/salida a disco finalizara.  
+
+
+
+\section{ Reinicio (Rebooting)}
+
+ Rebooting significa iniciar el sistema nuevamente. Se puede realizar
+finalizando el sistema, apagando la máquina y entonces encendiendo de vuelta. Un
+método más práctico para tener el mismo efecto consiste en indicarle al comando
+\texttt{\textbf{shutdown}} que reinicie el sistema, en vez de que lo detenga.
+La opción \texttt{-r} del comando \texttt{\textbf{shutdown}} puede
+realizar la acción anterior, y puede utilizarse inmediatamente, por ejemplo:
+\texttt{\textbf{shutdown -r now}}.  
+
+ La mayoría de los sistemas Linux ejecutan el comando \texttt{\textbf{shutdown -r
+now}} cuando se oprime la combinación de teclas ctrl-alt-del (y
+reinician el equipo). La manera de operar de ctrl-alt-del se puede configurar y
+es una buena idea postergar la acción durante algún tiempo antes de reiniciar
+una máquina multiusuario. Los sistemas en los que cualquier persona puede
+acceder físicamente es conveniente configurar ctrl-alt-del para que no haga
+nada.
+
+En algunos Linux también logramos el mismo efecto con el comando reboot.
+
+
+
+
+
+\section{ Modo usuario individual (single user mode)}
+
+ El comando \texttt{\textbf{shutdown}} también se puede utilizar para
+cambiar el nivel de ejecución del sistema al nivel de modo de usuario individual
+(single user), en el cual nadie puede iniciar una sesión de usuario, pero root
+puede utilizar la consola. Es útil para efectuar tareas de administración del
+sistema que no se pueden realizar cuando el sistema se ejecuta normalmente.
+
+
+
+
+\section{ Disquetes de arranque para emergencias}
+
+
+ No siempre es posible iniciar el sistema desde el disco duro. Por
+ejemplo, un error en la configuración de LILO, puede ocasionar que sea imposible
+iniciar el sistema. En esas situaciones, es necesario tener una manera
+alternativa de iniciar el sistema que funcione siempre (si es que no es el
+hardware la causa del problema de inicialización). Para las computadoras de tipo
+PC, esta alternativa es iniciar el sistema desde la unidad de disquete.  
+
+ La mayoría de las distribuciones de Linux permiten la creación de
+\textit{un disco de arranque de emergencia} (emergency boot
+floppy) al momento de efectuar la instalación del sistema. Es conveniente
+aprovechar esta opción. Sin embargo, se debe tener en cuenta que algunos de
+estos disquetes de arranque solo contienen el kernel y presuponen que empleará
+los programas que vienen en los discos de instalación para resolver el problema.
+
+
+ Algunas veces eso puede no ser suficiente, por ejemplo si necesita
+recuperar archivos desde copias de seguridad realizadas con programas que no
+vienen en los discos de instalación.  
+
+ En estos casos es necesario crear uno o varios disquetes con un sistema
+de archivo raíz personalizado (y que contenga todas las utilidades necesarias
+para casos de emergencia). El HOWTO Bootdisk de Graham Chapman contiene
+instrucciones de como hacerlos. Es importante también, recordar que los
+disquetes de arranque generados para casos de emergencias deben estar siempre
+actualizados.  
+
+ No se puede utilizar la unidad de discos flexibles para para montar el
+disquete con el sistema de archivos raíz (root filesystem root /) si esa misma
+unidad es la que utiliza para iniciar el sistema. Esto es un problema cuando
+sólo contamos con una sola unidad de disquete. Sin embargo, si se tiene
+suficiente memoria, es posible configurar el diskette de arranque para que se
+cargue en un disco virtual en memoria (ramdisk). Cuando el disquete de arranque
+ha sido cargado en el disco virtual, la unidad de diskette es liberada y puede
+ser utilizada para montar otros disquetes.  
+
+\end{document}
