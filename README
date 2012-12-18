@@ -6,12 +6,31 @@ Facultad de Informática
 Universidad Nacional del Comahue
 
 
+En este git mantenemos los apuntes de catedra de las
+materias de la Tecnicatura de Software Libre y Administración de Sistemas.
+
+Los apuntes son el material bibliográfico que los alumnos recibirían
+para leer y estudiar.
+Tambien mantenemos en este git las transparencias de clase, que
+complementan cada apunte.
+
+Los apuntes provienen de documentos libres, por lo que mantenemos
+sus licencias al modificar y distribuir esos documentos originales.
+
 Uso:
 ----
 
-make clean
+# make clean
+# make
 
-make
+Al finalizar obtendremos el siguiente listado actual
+de apuntes de catedra :
+
+	apunte-introd-a-la-admin-y-estruc-de-linux.pdf
+	apunte-vim.pdf
+	apunte-arbol-de-directorios.pdf
+	apunte-cuentas-de-usuario.pdf
+	apunte-inicio-y-apagado.pdf
 
 
 Materias
