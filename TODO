@@ -12,6 +12,8 @@
     porque si se rompe el filesystem").
   * Actualizando los viejo (por ejemplo, donde dice LILO tal vez 
     debe decir GRUB, donde dice ext2 tal vez debería decir ext4). 
+  * En el apunte del arbol de directorios hay que corregir los links
+    al FHS
 
 - Falta el apunte introductorio del shell (bash en este caso).
 
