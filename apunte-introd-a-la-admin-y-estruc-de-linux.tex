@@ -423,7 +423,9 @@ instancia original continúa atenta a otros posibles intentos. La nueva instanci
 trabaja de manera similar a \texttt{\textbf{getty}}.  
 
 
-\subsubsection{ Sistemas de archivos de red (NFS)}  Una de las cosas
+\subsubsection{ Sistemas de archivos de red (NFS)}  
+
+Una de las cosas
 más útiles que se pueden hacer con los servicios de red es compartir archivos a
 través de un \textit{sistema de archivos de red}. El más utilizado
 normalmente para compartir archivos se llama \textit{Network File
@@ -431,25 +433,24 @@ System}, o \textit{NFS}, desarrollado por Sun Microsystems (actualmente Oracle).
 
  Con un sistema de archivos de red, cualquier operación sobre un archivo
 realizada por un programa en una máquina es enviada a través de la red a otra
-máquina. Se \textit{engaña} al programa, haciéndole creer que todos los archivos en el
-ordenador remoto se encuentran de hecho en el ordenador en el que el programa se
+máquina. Se \textit{engaña} al programa, haciéndole creer que todos los archivos en la
+computadora remota se encuentran de hecho en la computadora en el que el programa se
 está ejecutando. Con esta manera de trabajar, compartir información es
 extremadamente simple, ya que no se requieren modificaciones en el programa.
 
 
  Otra manera muy popular de compartir archivos es a través de Samba
 (http://www.samba.org). Este protocolo
-(llamado SMB) permite compartir archivos con máquinas Windows a través del
-Entorno de Red. También permite compartir impresoras.  
-
+(llamado SMB) permite compartir archivos con máquinas con sistema oeprativo
+Windows(c) a través del Entorno de Red. También permite compartir impresoras.  
 
 
 \subsubsection{ Correo}
 
  El correo electrónico es el método más popularmente utilizado para
-comunicarse a través del ordenador. Una carta electrónica se almacena en un
+comunicarse a través de la computadora. Una carta electrónica (email) se almacena en un
 archivo con un formato especial, y se utilizan programas de correo especiales
-para enviar y leer las cartas.  
+para enviar y leer las cartas (emails).  
 
  Cada usuario tiene un \textit{buzón de correo entrante} (un
 archivo con formato especial), en donde se almacena todo el correo nuevo. Cuando
@@ -461,20 +462,19 @@ donde se traslada al buzón de correo como corresponda.
  El sistema de correo se compone de muchos programas. El transporte del
 correo a buzones locales o remotos es realizado por un programa: \textit{el
 agente de transporte de correo} o \textit{MTA}.
-(\texttt{\textbf{Sendmail}} y \texttt{\textbf{Smail}} son dos ejemplos de
+(\texttt{\textbf{Sendmail}}, \texttt{\textbf{Postfix}} y \texttt{\textbf{Exim}} son ejemplos de
 esto), mientras que existe un sin número de programas muy variados que los
-usuarios utilizan para leer y escribir correos (\textit{Estos son conocidos
+usuarios utilizan para leer y escribir correos. \textit{Estos son conocidos
 como agentes de usuario de correo }o \textit{MUA},
-\texttt{\textbf{Pine}} y \texttt{\textbf{Elm}} son ejemplos de esto). Los
+(\texttt{\textbf{mailx}} y \texttt{\textbf{Thunderbird}} son ejemplos de esto). Los
 archivos de buzones de correo están usualmente ubicados en
 \texttt{/var/spool/mail}.  
 
 
 
+\subsubsection{Impresión}
 
-\subsubsection{ Impresión}
-
- Solo una persona puede utilizar la impresora en un momento dado, pero
+ Sólo una persona puede utilizar la impresora en un momento, pero
 sería antieconómico no compartir impresoras entre los usuarios. La impresora es
 por lo tanto administrada por software que implementa una cola de impresión:
 todos los trabajos de impresión son colocados dentro de la cola, y una vez que
@@ -493,7 +493,6 @@ permite enviar a imprimir una versión de un trabajo y no tener que esperar a qu
 ésta sea impresa antes de poder hacer una versión nueva completamente revisada.
 
 
-
 \fcolorbox{black}{grey}{
 \parbox[t]{1.0\linewidth}{ \vspace*{0.4cm}
 El servicio de impresión mas utilizado en los sistemas GNU/Linux
@@ -504,9 +503,11 @@ desarrollado por Apple(c) para sistemas UNIX \textbf{\texttt{http://www.cups.org
 
 \subsubsection{ La distribución del sistema de archivos}
 
- El sistema de archivos está dividido en muchas partes; normalmente en las
-líneas de un sistema de archivos raíz con \texttt{/bin},
-\texttt{/lib}, \texttt{/etc}, \texttt{/dev},
+
+
+ El sistema de archivos está dividido en muchas partes, las cuáles pueden residir
+en lugares físicos diversos; normalmente en un sistema de archivos raíz podremos 
+encontrar el directorio \texttt{/bin}, \texttt{/lib}, \texttt{/etc}, \texttt{/dev},
 y otros pocos directorios; un sistema de archivos \texttt{/usr} con programas y datos que
 no tendrán cambios; un sistema de archivos \texttt{/var} con datos que pueden cambiar
 (como los archivos de log); y un sistema de archivos \texttt{/home}
@@ -516,12 +517,12 @@ división puede llegar a ser diferente; a pesar de esto, y aunque la división e
 aconsejable, es también posible distribuir todos los archivos en un solo sistema
 de archivos.  
 
- En el 
-% <xref linkend="dir-tree-overview"/> 
-se describe la distribución del sistema de archivos con
-algo de detalle; el documento \textit{Estándar de la Jerarquía del Sistema de Archivos
-de Linux} cubre este tema más en profundidad.
-\footnote{http://www.pathname.com/fhs/}
+ En el apunte de cátedra referente al árbol de directorios se detallaran más 
+aspectos acerca de la distribución del sistema de archivos. Si desea más información,
+también puede consultar el documento \textit{Estándar de la Jerarquía del Sistema de Archivos
+de Linux} 
+\footnote{http://www.linuxfoundation.org/collaborate/workgroups/lsb/fhs}
+que cubre este tema en profundidad, o bien la página del manual en línea hier (7).
 
 \section{Licencia}
 This is a derived version of "Guía Para Administradores de Sistemas GNU/Linux" that 
