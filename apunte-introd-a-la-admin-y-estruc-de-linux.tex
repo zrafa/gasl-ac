@@ -59,7 +59,7 @@ sistema. Está destinado a personas con pocos conocimientos en la
 administración del sistema (aquellos que se preguntan \textit{¿Qué es esto?}), pero que ya dominan
 al menos los conceptos básicos sobre la utilización normal del mismo. Este
 manual tampoco explica cómo instalar GNU/Linux; dicho tema está desarrollado en
-el documento \textit{Instalación y Primeros Pasos}. En futuras secciones encontrará información
+en el apunte de cátedra de la materia "Taller de hardware y software". En futuras secciones encontrará información
 adicional sobre los manuales existentes para sistemas GNU/Linux.  
 
 La administración de sistemas es el conjunto de tareas necesarias para
@@ -106,7 +106,7 @@ es importante, para los administradores, el resto de la documentación
 para sistemas GNU/Linux. Después de todo, un administrador de sistemas es sólo
 un usuario con privilegios y obligaciones especiales. Un recurso muy útil son
 las páginas de manual (también llamadas páginas man), las cuales deben ser
-consultadas siempre que un comando no le sea familiar.  
+consultadas \textbf{siempre} que un comando no le sea familiar.  
 
 Si bien estos documentos están centrados en GNU/Linux, un principio general de la
 misma es el de procurar que también se puedan utilizar con otros sistemas
@@ -134,6 +134,7 @@ aumentará, naturalmente, la comprensión del funcionamiento del sistema, y se
 podrá lograr que la utilización y la administración del sistema sea más
 productiva (y agradable).
 
+%mkfs actualmente no se usa en este texto, habría que cambiarlo
 Un punto particular que debe aclararse es que no se han desarrollado en
 profundidad muchos temas que se encuentran bien documentados en otros manuales
 de libre distribución. Esto es aplicable especialmente a documentación de
@@ -149,8 +150,8 @@ es parte del conjunto completo de documentación de GNU/Linux.
 \section{Visión general de un sistema GNU/Linux}
 
 En esta sección se proporciona una visión
-general de un sistema GNU/Linux.  En primer lugar se describen los principales
-servicios que ofrece el sistema operativo.  A continuación, se explican con una
+general de un sistema GNU/Linux. En primer lugar se describen los principales
+servicios que ofrece el sistema operativo. A continuación, se explican con una
 considerable falta de detalle los programas que implementan dichos servicios. El
 propósito de este capítulo es hacer posible la comprensión del sistema en su
 conjunto, por lo cual cada parte en concreto se encuentra descrita en
@@ -159,10 +160,10 @@ profundidad en capítulos posteriores.
 
 \subsection{Las diferentes partes de un sistema operativo}
 
- Un sistema operativo tipo UNIX consiste en un
+Un sistema operativo tipo UNIX consiste en un
 \textit{núcleo} (o Kernel) y algunos programas de sistema. Existen
 también diversos \textit{programas de aplicación} con los que
-podemos trabajar.  El núcleo es el corazón del sistema operativo: Mantiene el
+podemos trabajar.  El núcleo es el corazón del sistema operativo: mantiene el
 control de los archivos sobre el disco, inicia los programas y los ejecuta de
 forma concurrente, asigna memoria y otros recursos a los distintos procesos,
 recibe y envía paquetes desde y hacia la red, etc. El núcleo hace muy poco por
@@ -172,48 +173,44 @@ construir los demás servicios.
 operativo en sí, aunque no lo es. Un sistema operativo proporciona muchos más
 servicios que el núcleo	por sí mismo.}
 Además, evita que se pueda acceder al hardware
-directamente, forzando a todos a utilizar las herramientas provistas. Esta
+directamente, forzando a todos a utilizar las herramientas provistas para ese fin. Esta
 manera de trabajar del núcleo otorga cierta protección a los usuarios entre sí.
-Las herramientas del núcleo se utilizan a través de las llamadas al sistema. Se
-puede encontrar información adicional sobre este tema consultando la sección 2
-de este manual.
+Las herramientas del núcleo se utilizan a través de las \textit{llamadas al sistema}. 
 
  Los programas de sistema utilizan las herramientas provistas por el
 núcleo para implementar varios servicios requeridos en un sistema operativo. Los
 programas de sistema (y todos los demás programas), se ejecutan 'por encima del
-núcleo', en lo que se denomina modo usuario. La diferencia entre los programas
+núcleo', en lo que se denomina \textit{modo usuario}. La diferencia entre los programas
 de aplicación y los de sistema es su finalidad: las aplicaciones tienen el
 propósito de realizar tareas útiles a los usuarios (o de jugar, si se tratara de
 un juego), mientras que los programas de sistema son necesarios para que el
 sistema funcione. Un procesador de textos es una aplicación;
-\texttt{\textbf{mount}} es un programa de sistema. La diferencia a menudo es
+\texttt{\textbf{mount}}
+\footnote{
+Todos los archivos accesible en un sistema UNIX están organizados en un gran 
+árbol, la jerarquía de archivos cuya raíz es /. Estos sistemas de archivos 
+pueden residir en varios dispositivos. El comando mount sirve para unir un 
+sistema de archivos ubicado en algún dispositivo al árol de directorios principal. 
+}
+es un programa de sistema. La diferencia a menudo es
 confusa, y de cualquier manera, es solo importante para los categorizadores
 compulsivos.  
 
  Un sistema operativo también puede contener compiladores y sus
-correspondientes librerías (GCC y la librería de C en particular para
+correspondientes bibliotecas (GCC y la biblioteca de C en particular para
 GNU/Linux), aunque no todos los compiladores de todos los lenguajes de
 programación son necesariamente parte del sistema operativo. También puede haber
 documentación, y en algunas ocasiones juegos. Tradicionalmente, el sistema
-operativo está definido por el contenido de los discos o cintas de instalación;
+operativo está definido por el contenido de los medios de instalación;
 con GNU/Linux esta definición no puede aplicarse, debido a que se encuentra
 repartido sobre distintos sitios FTP del mundo.  
-
-
 
 \subsection{Partes importantes del núcleo}
 
 El núcleo de un sistema GNU/Linux consta de varias partes importantes:
 gestión de procesos, gestión de memoria,  controladores para dispositivos de
 hardware, controladores para sistemas de archivos, gestión de la red, y otras
-partes varias. La 
-% <xref linkend="kerneloverview"/> 
-muestra algunas de éstas partes.
-
-%<figure id="kerneloverview" float="1"> 
-Partes más importantes del núcleo
-de GNU/Linux
-%<graphic fileref="figuras/overview-kernel.png"/> </figure>
+partes varias. 
 
  Probablemente las partes más importantes del núcleo (nada funcionaría sin
 ellas) son la gestión de memoria y la gestión de procesos. El gestor de memoria
@@ -231,13 +228,13 @@ clases generales de controladores que soportan operaciones similares; cada
 miembro de la clase tiene la misma interfaz de cara al resto del núcleo pero
 difiere de los demás miembros en la forma de implementar las operaciones. Por
 ejemplo, todos los controladores de disco son parecidos para el resto del
-núcleo, P.ej., todos tienen operaciones como \textit{iniciar la unidad}, 
+núcleo, Por ej., todos tienen operaciones como \textit{iniciar la unidad}, 
 \textit{leer el sector n}, y \textit{escribir en el sector n}.
 
  Algunos servicios de software provistos por el núcleo tienen propiedades
 similares, y pueden de esta manera englobarse dentro de clases. Por ejemplo, los
 diferentes protocolos de red fueron englobados dentro de una interfaz de
-programación, la librería de socket BSD. Otro ejemplo es la capa del
+programación, la biblioteca de socket BSD. Otro ejemplo es la capa del
 \textit{sistema de archivos virtual} (VFS) que abstrae las
 operaciones de los sistemas de archivos de sus implementaciones. Cada tipo de
 sistema de archivos provee una implementación de cada operación. Cuando alguna
@@ -245,14 +242,11 @@ entidad intenta utilizar un sistema de archivos, la petición se realiza a trav�
 del VFS, el cual la encamina al controlador del sistema de archivos correcto.
 
 
-
-
 \subsection{Servicios principales en un sistema UNIX}
 
  En esta sección se describen algunos de los servicios más importantes en
-UNIX, pero sin mucho detalle. Se describirán más profundamente en capítulos
-posteriores.  
-
+UNIX, pero sin mucho detalle. Se describirán más profundamente en apuntes 
+o materias posteriores. 
 
 \subsubsection{\texttt{\textbf{init}}}
 
