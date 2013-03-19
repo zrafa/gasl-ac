@@ -269,11 +269,11 @@ niveles adicionales para, por ejemplo, ejecutar X-Windows en la consola.
 
 
  GNU/Linux permite tener hasta 10 \textit{niveles de ejecución (runlevels)} distintos, 0-9,
-pero normalmente solo algunos de estos niveles están definidos por defecto. El
+pero normalmente solo algunos de estos niveles están definidos de manera predeterminada. El
 nivel de ejecución 0 se define como \textit{sistema detenido (system halt)}. El nivel
 de ejecución 1 se define como \textit{modo de usuario individual (single user mode)}.
 El nivel de ejecución 6 se define como \textit{reinicio del sistema (system reboot)}.
-Los niveles de ejecución restantes dependen de como la distribución particular
+Los niveles de ejecución restantes dependen de cómo la distribución particular
 de GNU/Linux los haya definido, y varían significativamente entre
 distribuciones. Observando el contenido del archivo
 \texttt{/etc/inittab} podemos hacernos una idea de los niveles de
@@ -294,8 +294,7 @@ configurado para hacer.
 
 
 
-
-\subsubsection{ Inicio de sesiones desde terminales}
+\subsubsection{Inicio de sesiones desde terminales}
 
  El inicio de sesiones desde terminales (a través de líneas serie) y la
 consola (cuando no se está ejecutando X-Windows) es suministrado por el programa
@@ -312,8 +311,7 @@ El núcleo no tiene noción sobre los inicios de sesiones, esto es gestionado
 totalmente por los \textit{programas del sistema}.  
 
 
-
-\subsubsection{ Syslog}
+\subsubsection{Syslog}
 
  El núcleo y muchos \textit{programas de sistema} producen
 mensajes de error, de advertencia y de otros tipos. La mayoría de las veces, es
@@ -325,9 +323,7 @@ grado de importancia.  Por ejemplo, los mensajes del núcleo son frecuentemente
 dirigidos a un archivo separado de los demás, debido a que son más importantes,
 y necesitan ser leídos regularmente para detectar problemas.  
 
-
-
-\subsubsection{ Ejecución periódica de comandos: \texttt{\textbf{cron}} y
+\subsubsection{Ejecución periódica de comandos: \texttt{\textbf{cron}} y
 \texttt{\textbf{at}}}
 
  Los administradores de sistemas y los usuarios, a menudo necesitan
@@ -352,8 +348,6 @@ especificada, pero esta ejecución no vuelve a repetirse.
  Se puede encontrar información adicional sobre cron(1), crontab(5), at(1)
 y atd(8) en las páginas de manual.  
 
-
-
 \subsubsection{ Interfaz gráfica de usuario (GUI)}
 
  UNIX y GNU/Linux no incorporan la interfaz gráfica de usuario dentro del
@@ -369,66 +363,59 @@ Sistema X-Windows (X para abreviar). X tampoco implementa por sí mismo una
 interfaz de usuario, sino solo un sistema de ventanas. Es decir, las
 herramientas base con las cuales se puede construir una interfaz gráfica de
 usuario. Algunos administradores de ventanas populares son: fvwm, icewm,
-blackbox y windowmaker. Existen también dos populares administradores de
+blackbox y metacity. Existen también dos populares administradores de
 escritorios: KDE y Gnome.  
-
-
 
 
 \subsubsection{ Redes}
 
- Una red se construye al conectar dos o más ordenadores para que puedan
+ Una red se construye al conectar dos o más computadoras para que puedan
 comunicarse entre sí. Los métodos actuales de conexión y comunicación son
 ligeramente complicados, pero el resultado final es muy útil.  
 
- Los sistemas operativos UNIX tienen muchas características de red. La
-mayoría de los servicios básicos (sistemas de archivos, impresión, copias de
-seguridad, etc) pueden utilizarse a través de la red. Aprovechar estas
-características puede ayudar a que la administración del sistema sea más fácil
-debido a que permiten tener una administración centralizada, a la vez que
-disfrutamos de los beneficios de la micro informática y la informática
-distribuida, tales como costes más bajos y mejor tolerancia a fallos.  
+ Los sistemas operativos UNIX tienen un diseño orientado hacia el uso 
+de red. La mayoría de los servicios básicos (sistemas de archivos, impresión, 
+copias de seguridad, etc) pueden utilizarse a través de la red. Aprovechar estas
+características puede ayudar a que la administración del sistema sea más fácil. 
+Por ejemplo permite tener una administración centralizada de impresoras, recolección 
+de logs, sistemas de copia de respaldo, evitar la duplicación 
+de archivos mediante sistemas de archivos en red (véase NFS), etc.
 
- De cualquier modo, este libro sólo aborda superficialmente la teoría de
-redes; Se puede encontrar información adicional sobre este tema en La Guía De
-Administración De Redes con  Linux (\textit{Linux Network Administrators' Guide}
-%/citetitle>
-	http://www.tldp.org/LDP/nag2/index.html
-%	http://www.tldp.org/LDP/nag2/index.html</ulink>), 
+ Este apunte de cátedra sólo aborda superficialmente la teoría de
+redes. Información adicional sobre esteos tema será desarrollada en la materia 
+"Redes", dedicada a tal fin. Adicionalmente puede consultar "La Guía De Administración 
+De Redes con Linux" (\textit{Linux Network Administrators' Guide} 
+\footnote{	http://www.tldp.org/LDP/nag2/index.html}
 incluyendo una descripción básica de como
 operan las redes.  
-
-
 
 \subsubsection{ Inicio de sesiones a través de la red}
 
  Los inicios de sesión a través de la red funcionan de un modo un poco
-diferente al inicio de sesiones normales. Existe una línea serie física separada
-para cada terminal a través de la cual es posible iniciar sesión. Por cada
-persona iniciando una sesión a través de la red existe una conexión de red
+diferente al inicio de sesiones normales. En cuyo caso existe una línea serie 
+física separada para cada terminal a través de la cual es posible iniciar sesión. 
+Por cada persona iniciando una sesión a través de la red existe una conexión de red
 virtual, y puede haber cualquier número (no hay límite).  
 \footnote{Al menos puede haber muchas. Dado que el ancho de banda es un
 recurso escaso, existe aún en la práctica algún límite al
 número de inicios de sesión concurrentes a través de una conexión
 de red. }
 
-Por lo tanto, no es
-posible ejecutar \texttt{\textbf{getty}} por separado por cada conexión virtual posible. Existen
+Por lo tanto, no es posible ejecutar \texttt{\textbf{getty}} por separado 
+por cada conexión virtual posible. Existen
 también varias maneras diferentes de iniciar una sesión a través de la red, las
-principales en redes TCP/IP son \texttt{\textbf{telnet}} y \texttt{\textbf{rlogin}}.
-\footnote{Hoy en día muchos administradores de sistemas Linux consideran
-que \texttt{\textbf{telnet}} y \texttt{\textbf{rlogin }} son inseguros y
-prefieren \texttt{\textbf{ssh }}, el \textit{intérprete de comandos
-seguro} que 			encripta el tráfico en la red, haciendo
-así bastante menos probable que usuarios malintencionados puedan
-\textit{espiar} la 				conexión y obtener datos
-sensibles como nombres de usuario y 				passwords. Está
-altamente recomendado usar \texttt{\textbf{ssh}} 			en lugar
-de \texttt{\textbf{telnet}} o \texttt{\textbf{rlogin}}.  }
+principales en redes TCP/IP son \texttt{\textbf{telnet}} y \texttt{\textbf{ssh}}.
+\footnote{El programa \texttt{\textbf{telnet}} implementa toda la comunicación basado en
+texto plano (sin cifrar), exponiendo así nombre de usuarios, contraseñas y otro tipo de 
+información sensible, a potenciales intrusos que se encuentren observando el tráfico en la red. 
+En su lugar, y siempre que sea posible, es recomendable utilizar el programa \texttt{\textbf{ssh }}, 
+\textit{intérprete de comandos seguro} que cifra el tráfico en la red, haciendo
+así bastante menos probable el robo de información}
 
 
  Los inicios de sesión a través de la red tienen, en vez de una cantidad
-enorme de \texttt{\textbf{getty's}}, un servicio individual por tipo de inicio de sesión (\texttt{\textbf{telnet}} y \texttt{\textbf{rlogin}}
+enorme de \texttt{\textbf{getty's}}, un servicio individual por tipo de 
+inicio de sesión (\texttt{\textbf{telnet}} y \texttt{\textbf{ssh}}
 tienen servicios separados) que \textit{escucha} todos los intentos de inicio de
 sesión entrantes. Cuando el servicio advierte un intento de inicio de sesión,
 inicia una nueva instancia de si mismo para atender la petición individual; la
@@ -436,14 +423,11 @@ instancia original continúa atenta a otros posibles intentos. La nueva instanci
 trabaja de manera similar a \texttt{\textbf{getty}}.  
 
 
-
-
 \subsubsection{ Sistemas de archivos de red (NFS)}  Una de las cosas
 más útiles que se pueden hacer con los servicios de red es compartir archivos a
 través de un \textit{sistema de archivos de red}. El más utilizado
 normalmente para compartir archivos se llama \textit{Network File
-System}, o \textit{NFS}, desarrollado por Sun
-Microsystems.  
+System}, o \textit{NFS}, desarrollado por Sun Microsystems (actualmente Oracle).  
 
  Con un sistema de archivos de red, cualquier operación sobre un archivo
 realizada por un programa en una máquina es enviada a través de la red a otra
