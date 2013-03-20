@@ -1,0 +1,101 @@
+%%% LaTeX Template: Article/Thesis/etc. with colored headings and special fonts
+%%%
+%%% Source: http://www.howtotex.com/
+
+\documentclass[12pt]{article}
+
+
+\usepackage{apuntes-estilo}
+\usepackage{fancyhdr,lastpage}
+
+
+
+\def\maketitle{
+
+% Titulo 
+ \makeatletter
+ {\color{bl} \centering \huge \sc \textbf{
+Trabajo práctico N 1 \\
+\large \vspace*{-8pt} \color{black} Editor de Textos Vim
+ \vspace*{8pt} }\par}
+ \makeatother
+
+
+% Autor
+ \makeatletter
+ {\centering \small 
+	Introducción a la administración de Sistemas \\
+ 	Departamento de Ingeniería de Computadoras \\
+ 	Facultad de Informática - Universidad Nacional del Comahue \\
+ 	\vspace{20pt} }
+ \makeatother
+
+}
+
+% Custom headers and footers
+\fancyhf{} % clear all header and footer fields
+\fancypagestyle{plain}{\fancyhf{}}
+  	\pagestyle{fancy}
+ 	\lhead{\footnotesize TP N 1 - Introducción a la administración de sistemas }
+ 	\rhead{\footnotesize \thepage\ }	% "Page 1 of 2"
+
+\def\ti#1#2{\texttt{#1} & #2 \\ }
+
+
+
+\begin{document}
+
+\thispagestyle{empty}
+\maketitle
+\setlength{\parindent}{0pt}
+
+\paragraph{Los siguientes ejercicios se realizan en su totalidad desde una terminal
+en un sistema GNU/Linux}. 
+
+\section*{Repaso}
+\begin{enumerate}
+\item ¿Qué comando utiliza para saber en cuál directorio se encuentra usted trabajando?
+\item ¿Cómo saber cuáles son las opciones sportadas por un comando sin recurrir a Internet?
+\item Qué comandos utiliza para: 
+	\begin{enumerate}
+	\item Listar todos los procesos en ejecución
+	\item Listar el contenido del directorio actual con los detalles de cada archivo. 
+	\item Cambiar el directorio de trabajo a otro
+	\item Observar la jerarquía de procesos en ejecución (mencione al menos dos formas de hacerlo)
+	\item Eliminar un archivo
+	\item Eliminar un directorio 
+	\item Observar el contenido de un archivo de texto
+	\item Observar el contenido de un archivo de texto largo, paginando la salida en 
+	la terminal (mencione al menos dos maneras de hacerlo). 
+	\end{enumerate}
+\end{enumerate}
+
+\section*{Vim}
+\begin{enumerate}
+\item Ejecute la siguiente secuencia:
+	\begin{itemize}
+	\item * \textit{\textbf{vim ej1.txt}}
+        \item Pasar a modo inserción presionando "i"
+        \item Escribir tres lineas a elección. 
+        \item Volver al modo normal presionando ''ESC''
+        \item :wq
+	\item Observer el contenido del archivo ej1.txt con el comando \textbf{\textit{cat}}. 
+	\end{itemize}
+\item Ejecute la siguiente secuencia:
+	\begin{itemize}
+        \item \textbf{\textit{vim ej1.txt}}
+        \item Moverse con los cursores a la linea del medio
+        \item Ejecutar dd
+        \item :wq
+	\item Observer el contenido del archivo ej1.txt con el comando \textbf{\textit{cat}}. 
+        \item Explicar que sucedió. 
+	\end{itemize}
+\item Instale el plugin de Vim HJKL. 
+ \footnote{http://www.vim.org/scripts/script.php?script\_id=3409}
+Abra una terminal, ejecute vim y posteriormente el comando :HJKL en \textit{modo normal}. 
+Juegue hasta sentirse cómodo con las teclas hjkl. 
+\item Ejecute \textbf{\textit{vimtutor}}. Complete las lecciones ofrecidas por el tutor. 
+\end{enumerate}
+
+
+\end{document}

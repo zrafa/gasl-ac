@@ -49,16 +49,8 @@
 \setlength{\parindent}{0pt}
 
 
-
-
-Este tutorial
-\footnote{Este documento es una traducción y adaptación del documento
-original "Learn Vim Progressively" - distribuido con licencia
-Attribution-ShareAlike 3.0 Unported (CC BY-SA 3.0) - 
-http://creativecommons.org/licenses/by-sa/3.0/}
-fue pensado como una mini guía, para aprender a utilizar el editor Vim 
-en el menor tiempo posible. La idea
-es la siguiente : Primero, se debe aprender lo mínimo para sobrevivir,
+Este tutorial fue pensado como una guía mínima, para aprender a utilizar el editor Vim 
+en el menor tiempo posible. La idea es la siguiente : primero, se debe aprender lo mínimo para sobrevivir,
 y luego, de a poco, aprender nuevos comandos útiles.
 
 Aprender Vim es difícil, pero increíblemente eficiente cuando se lo utiliza.
@@ -90,10 +82,10 @@ secuencial para el aprendizaje de Vim. Los cuatro pasos que debe seguir son :
 	\item Sobrevivir
 	\item Sentirse cómodo
 	\item Sentirse mejor, con confianza, y mas rápido
-	\item Utilizar los superpoderes de Vim
+	\item Utilizar los súper poderes de Vim
 \end{enumerate}
 
-\textit{Y cuando esté finalizando este camino será un Vim superstar!.}
+\textit{Y cuando esté finalizando este camino será un ¡Vim superstar!.}
 
 
 \section{Nivel 1 - Sobrevivir}
@@ -115,33 +107,32 @@ con Vim : cualquier intento de mover el cursor o de escribir, como lo haría con
 editor, no funcionará.
 
 Si intenta moverse por la
-pantalla comprobaremos además que las teclas del cursor no hacen nada, y que el
-ratón tampoco responde.
-¿Qué ocurre? 
+pantalla comprobaremos además, que las teclas del cursor no hacen nada, y que el
+ratón tampoco responde. ¿Qué ocurre? 
 
 \textbf{Lo que ocurre es que Vim tiene diferentes modos de funcionamiento.
-Y, de manera predeterminada, inicia en Modo Normal}.
+Y, de manera predeterminada, inicia en \textit{Modo Normal}}.
 
 
 \subsection{Modos Fundamentales de Vim}
 
 Los dos modos fundamentales son los llamados modos normal y de inserción. 
 El \textbf{Modo Normal} es aquel
-en el que Vim se encuentra recién iniciado y en el que se supone que debemos
+en el que Vim se encuentra al iniciar y en el que se supone que debemos
 dejarlo cuando no estemos haciendo otra cosa (por eso se llama normal). En él
 cualquier pulsación de teclas que realicemos se interpretará como comando. Por
 el contrario en el \textbf{Modo de Inserción} Vim se comporta como cualquier
-otro editor de texto, es decir: lo que vayamos tecleando se irá mostrando en
+otro editor de texto, es decir: las teclas que presionamos se irán mostrando en
 pantalla en el lugar donde estaba el cursor, siendo interpretado como texto que
 hay que introducir en el documento que estamos editando.
 
 Debemos hacer notar que Vim llama modo normal a aquel en el que menos se
 parece a otros editores de texto. Tal vez por ello a veces a este modo se le
-llama también Modo de Comando, aunque el nombre de modo normal es bastante
+llama también \textit{Modo de Comando}, aunque el nombre de modo normal es bastante
 indicativo de la filosofía de Vim. La idea es que siempre que no estemos
 haciendo otra cosa activemos el modo normal: mientras revisamos el texto
 escrito, mientras reflexionamos sobre qué añadir, mientras contestamos al
-teléfono, si hacemos una pausa para sorber una taza de café. . . 
+teléfono, si hacemos una pausa para tomar un mate...
 se supone que habremos activado el modo normal.
 
 Para ingresar al Modo Inserción, el cual es muy parecido al funcionamiento
@@ -287,7 +278,7 @@ de haberlo aprendido.
 \section{Nivel 3 - Mejor. Mas Fuerte. Mas Rápido.}
 
 
-Felicitaciones por llegar hasta aquí!, ahora empieza la parte interesante.
+¡Felicitaciones por llegar hasta aquí!, ahora empieza la parte interesante.
 En el 3er Nivel veremos únicamente comandos compatibles con el viejo editor vi.
 
 
@@ -307,7 +298,7 @@ En el 3er Nivel veremos únicamente comandos compatibles con el viejo editor vi.
 
 
 \begin{itemize}
-	\item Inicie Vim y tipee : \\ \\
+	\item Inicie Vim y escriba : \\ \\
 \begin{tabular}{ l l }
 	\texttt{2dd} & borrará 2 líneas \\
 	\texttt{3p} & pegará el texto 3 veces \\
@@ -402,7 +393,7 @@ También puede ejecutar cosas como "ye", copiar desde la posición actual hasta 
 Y también puede ejecutar cosas como "y2/foo", lo cual copia hasta la segunda ocurrencia de la palabra "foo".
 
 
-\section{Nivel 4 - Superpoderes de Vim}
+\section{Nivel 4 - Súper poderes de Vim}
 
 Y lo que es cierto para y (copiar), es también válido para d (borrar), v (selección visual), gU (mayúscula), gu (minúscula), etc
 
@@ -480,7 +471,7 @@ líneas de código. Típicamente:  \texttt{0<C-v><C-d>I-- [ESC]}
 \subsection{Completar: \texttt{<C-n> y <C-p>}}
 
 
-En Modo Inserción, sólo tipee el inicio de una palabra,
+En Modo Inserción, sólo escriba el inicio de una palabra,
 y entonces presione \texttt{<C-p>}, Vim completará la palabra mágicamente con
 una sugerencia encontrada en el documento actual.
 
@@ -493,12 +484,12 @@ una sugerencia encontrada en el documento actual.
 \end{itemize}
 
 qa registra sus acciones en el registro a. Entonces @a ejecutará nuevamente
-la macro guardada dentro del registro a, como si la hubiese tipeado.
+la macro guardada dentro del registro a, como si la hubiese escrito.
 
-Ejemplo: en una linea que contiene sólo números "1", tipee lo siguiente:
+Ejemplo: en una linea que contiene sólo números "1", escriba lo siguiente:
 
 \begin{itemize}
-	\item Ejemplo. En una linea que contiene sólo números "1", tipee lo siguiente: \\ \\
+	\item Ejemplo. En una linea que contiene sólo números "1", escriba lo siguiente: \\ \\
 \begin{tabular}{ l l }
 	\texttt{qaYp<C-a>q} & recuerde que \texttt{<C-a> es Ctrl+a} \\
 \end{tabular}
@@ -520,7 +511,7 @@ Ejemplo: en una linea que contiene sólo números "1", tipee lo siguiente:
 \end{tabular}
 \end{itemize}
 
-Ahora tipee 100@@ y eso creará una lista incremental de números hasta el 103.
+Ahora escriba 100@@ y eso creará una lista incremental de números hasta el 103.
 
 
 
@@ -569,9 +560,9 @@ Además de aprender los comandos de esta sección se recomienda leer la ayuda co
 	\item Estos son los comandos mas útiles para dividir la pantalla: \\ \\
 \begin{tabular}{ l l }
 	\texttt{:split} & crea una división (:vsplit crea una división vertical) \\
-	\texttt{<C-w><dir>} & donde dir es cualquiera de las teclas de movimiento hjkl o FALTAALGO para cambiar la division \\
-	\texttt{<C-w>\_ (o <C-w>|)} & maximiza el tamaño de la division (o la division vertical) \\
-	\texttt{<C-w>+ (o <C-w>-)} & Expande (o achica) la division \\
+	\texttt{<C-w><dir>} & donde dir es cualquiera de las teclas de movimiento hjkl o los cursores de movimiento para cambiar la división \\
+	\texttt{<C-w>\_ (o <C-w>|)} & maximiza el tamaño de la división (o la división vertical) \\
+	\texttt{<C-w>+ (o <C-w>-)} & Expande (o achica) la división \\
 \end{tabular}
 \end{itemize}
 
@@ -586,6 +577,12 @@ provee buenas herramientas y excelente documentación. Ejecute vimtutor hasta qu
 
 Ahí aprenderá acerca de !, directorios, registros, plugins y muchas otras cosas. Estudie Vim como si estuviese aprendiendo a tocar el piano y todo irá bien.
 
-
+\section{Licencia}
+Este documento es una traducción y adaptación del documento
+original "Learn Vim Progressively"
+\footnote{http://yannesposito.com/Scratch/en/blog/Learn-Vim-Progressively/}
+ - distribuido con licencia
+Attribution-ShareAlike 3.0 Unported (CC BY-SA 3.0) - 
+http://creativecommons.org/licenses/by-sa/3.0/
 
 \end{document}
