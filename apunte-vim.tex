@@ -36,7 +36,7 @@
 \fancypagestyle{plain}{\fancyhf{}}
   	\pagestyle{fancy}
  	\lhead{\footnotesize Aprendiendo Vim Progresivamente - Departamento de Ingeniería de Computadoras}
- 	\rhead{\footnotesize \thepage\ }	% "Page 1 of 2"
+ 	\rhead{\footnotesize \thepage\ }	% ``Page 1 of 2''
 
 \def\ti#1#2{\texttt{#1} & #2 \\ }
 
@@ -96,7 +96,7 @@ Pasos:
 \begin{enumerate}
 	\item Instalar Vim
 	\item Ejecutar Vim
-	\item NO HAGA NADA!. Sólo lea.
+	\item ¡NO HAGA NADA!. Sólo lea.
 \end{enumerate}
 
 Luego de instalar el editor Vim inicie su ejecución. Puede hacerlo
@@ -136,7 +136,7 @@ teléfono, si hacemos una pausa para tomar un mate...
 se supone que habremos activado el modo normal.
 
 Para ingresar al Modo Inserción, el cual es muy parecido al funcionamiento
-de cualquier otro editor, simplemente debe presionar la letra "i".
+de cualquier otro editor, simplemente debe presionar la letra ``i''.
 Ahora debería sentirse un poco mejor, ya que en Modo Inserción puede
 escribir de manera similar a un editor típico.
 
@@ -205,7 +205,7 @@ Una última palabra acerca de las notaciones :
 
 \begin{itemize}
 	\item En vez de escribir Ctrl-, escribiremos en este documento \texttt{<C- >}.
-	\item Los comandos que comienzan con ":" finalizan con \texttt{<ENTER>}. Por ejemplo,
+	\item Los comandos que comienzan con ``:'' finalizan con \texttt{<ENTER>}. Por ejemplo,
 cuando lea :q usted debe escribir :q y presionar \texttt{<ENTER>}
 \end{itemize}
 
@@ -310,7 +310,7 @@ En el 3er Nivel veremos únicamente comandos compatibles con el viejo editor vi.
 	\item Repetimos el ultimo comando recién ejecutado: \\ \\
 \begin{tabular}{ l l }
 	\texttt{.} & repite el último comando, por lo que escribirá nuevamente 100 “desu “ \\
-	\texttt{3.} & escribirá 3 “desu” (y no 300, que inteligente no?) \\
+	\texttt{3.} & escribirá 3 “desu” (y no 300, que inteligente ¿no?) \\
 \end{tabular}
 \end{itemize}
 
@@ -343,7 +343,7 @@ sección.
 
 
 
-	De manera predeterminada, para Vim, las palabras están compuestas de letras y del caracter "\_". 
+	De manera predeterminada, para Vim, las palabras están compuestas de letras y del caracter ``\_''. 
 Digamos que una PALABRA es un grupo de letras separadas por un caracter blanco. 
 
 \begin{itemize}
@@ -389,8 +389,8 @@ La mayoría de los comandos puede ser utilizado usando el formato general siguie
 
 
 
-También puede ejecutar cosas como "ye", copiar desde la posición actual hasta el final de la palabra.
-Y también puede ejecutar cosas como "y2/foo", lo cual copia hasta la segunda ocurrencia de la palabra "foo".
+También puede ejecutar cosas como ``ye'', copiar desde la posición actual hasta el final de la palabra.
+Y también puede ejecutar cosas como ``y2/foo'', lo cual copia hasta la segunda ocurrencia de la palabra ``foor''.
 
 
 \section{Nivel 4 - Súper poderes de Vim}
@@ -399,7 +399,7 @@ Y lo que es cierto para y (copiar), es también válido para d (borrar), v (sele
 
 
 Si utiliza todos los comandos anteriores trabajará cómodamente con Vim.
-Y además, ahora tiene la preparación necesaria para aprender las características "matadoras".
+Y además, ahora tiene la preparación necesaria para aprender las características ``matadoras''.
 Algunos de los siguientes comandos son la razón por la cual comencé a utilizar Vim.
 
 
@@ -411,11 +411,11 @@ Algunos de los siguientes comandos son la razón por la cual comencé a utilizar
 	\texttt{\^} & ir al primer caracter en la linea \\
 	\texttt{\$} & saltar al fin de la linea \\
 	\texttt{g\_} & saltar al ultimo caracter en la linea \\
-	\texttt{fa} & saltar a la próxima ocurrencia de la letra a en la linea. "," (o ";") encontrará la próxima ocurrencia o la previa \\
+	\texttt{fa} & saltar a la próxima ocurrencia de la letra a en la linea. ``,''  (o ``;'') encontrará la próxima ocurrencia o la previa \\
 
-	\texttt{t,} & saltar al caracter anterior a "," \\
+	\texttt{t,} & saltar al caracter anterior a ``,'' \\
 	\texttt{3fa} & encontrar la 3er ocurrencia de una a en la linea \\
-	\texttt{F y T} & actúan de la misma manera que "f" y "t" pero en reversa \\
+	\texttt{F y T} & actúan de la misma manera que ``f''  y ``t'' pero en reversa \\
 \end{tabular}
 \end{itemize}
 
@@ -435,14 +435,14 @@ Donde action puede ser cualquier acción, por ejemplo, d (delete), y (copiar), v
 
 
 \begin{itemize}
-	\item Suponga que el cursor esta en la primer "o" que aparece en :  (map (+) ("foo")): \\ \\
+	\item Suponga que el cursor esta en la primer ``o'' que aparece en :  (map (+) (``foo'')): \\ \\
 \begin{tabular}{ l l }
 	\texttt{vi"} & seleccionará foo. \\
 	\texttt{va"} & seleccionará "foo" \\
-	\texttt{vi)} & seleccionará "foo" \\
-	\texttt{va)} & seleccionará ("foo") \\
-	\texttt{v2i)} & seleccionará map (+) ("foo") \\
-	\texttt{v2a)} & seleccionará (map (+) ("foo")) \\
+	\texttt{vi)} & seleccionará ``foo'' \\
+	\texttt{va)} & seleccionará (``foo'') \\
+	\texttt{v2i)} & seleccionará map (+) (``foo'') \\
+	\texttt{v2a)} & seleccionará (map (+) (``foo'')) \\
 \end{tabular}
 \end{itemize}
 
@@ -486,10 +486,10 @@ una sugerencia encontrada en el documento actual.
 qa registra sus acciones en el registro a. Entonces @a ejecutará nuevamente
 la macro guardada dentro del registro a, como si la hubiese escrito.
 
-Ejemplo: en una linea que contiene sólo números "1", escriba lo siguiente:
+Ejemplo: en una linea que contiene sólo números ``1'', escriba lo siguiente:
 
 \begin{itemize}
-	\item Ejemplo. En una linea que contiene sólo números "1", escriba lo siguiente: \\ \\
+	\item Ejemplo. En una linea que contiene sólo números ``1'', escriba lo siguiente: \\ \\
 \begin{tabular}{ l l }
 	\texttt{qaYp<C-a>q} & recuerde que \texttt{<C-a> es Ctrl+a} \\
 \end{tabular}
@@ -579,7 +579,7 @@ Ahí aprenderá acerca de !, directorios, registros, plugins y muchas otras cosa
 
 \section{Licencia}
 Este documento es una traducción y adaptación del documento
-original "Learn Vim Progressively"
+original ``Learn Vim Progressively''
 \footnote{http://yannesposito.com/Scratch/en/blog/Learn-Vim-Progressively/}
  - distribuido con licencia
 Attribution-ShareAlike 3.0 Unported (CC BY-SA 3.0) - 
