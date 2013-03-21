@@ -61,13 +61,13 @@ sí básicamente en la sintaxis de sus comandos y en la interacción con el usua
 
 \definecolor{tcA}{rgb}{1,0.972549,0.717647}
 \begin{center}
-\begin{tabular}{lll}
+\begin{tabular}{|l|l|l|}\hline
 \rowcolor{tcA}
-\textbf{Tipo de shell} & \textbf{Shell estándar} & \textbf{Implementación libre}\\
-AT\&T Bourne shell & sh & ash, bash, bash2\\
-Berkeley "C" shell & csh & tcsh\\
-AT\&T Korn shell & ksh & pdksh, zsh\\
-Otros interpretes  & -- & esh, gush, nwsh
+\textbf{Tipo de shell} & \textbf{Shell estándar} & \textbf{Implementación libre}\\\hline
+AT\&T Bourne shell & sh & ash, bash, bash2\\\hline
+Berkeley "C" shell & csh & tcsh\\\hline
+AT\&T Korn shell & ksh & pdksh, zsh\\\hline
+Otros interpretes  & -- & esh, gush, nwsh\\\hline
 \end{tabular}
 \end{center}
 
@@ -83,7 +83,7 @@ Estos argumentos representarán opciones o argumentos de entrada para el program
 \fcolorbox{black}{grey}{
 \parbox[t]{1.0\linewidth}{ \vspace*{0.4cm}
 {\bf Ejemplo:} \\
-En este caso el programa \texttt{cat} recive un argumento \texttt{archivo.txt}
+En este caso el programa \texttt{cat} recibe un argumento \texttt{archivo.txt}
 sobre el cuál realizar la acción del programa.  \\
 \texttt{
 \$ cat archivo.txt \\
@@ -93,7 +93,7 @@ otra linea de prueba\\
 
 A continuación el primer argumento constituye una opción que modifica la forma normal 
 de operar del comando \texttt{cat}, el segundo argumento es el archivo de entrada sobre
-el cual realizar la acción. La opción \texttt{-n} le indca a \texttt{cat} que debe 
+el cual realizar la acción. La opción \texttt{-n} le indica a \texttt{cat} que debe 
 imprimir el número de línea además del contenido del archivo. (\texttt{man cat}) \\
 \texttt{
 \$ cat -n archivo.txt \\
@@ -105,7 +105,7 @@ imprimir el número de línea además del contenido del archivo. (\texttt{man ca
 En ocasiones, cuando la línea del comando se torna demasiado extensa, es conveniente dividirla
 en dos o mas líneas. Para ello e separa cada línea con el carácter barra invertida (\textbackslash), 
 el cuál le indica al intérprete que no hemos finalizado nuestro comando y que lo continuaremos 
-en la próxima lína. Así al presionar ``\texttt{ENTER}'' luego de una barra invertida, el comando 
+en la próxima línea. Así al presionar ``\texttt{ENTER}'' luego de una barra invertida, el comando 
 no será ejecutado inmediatamente, sino que el intérprete quedará esperando el resto de la invocación. 
 
 También es posible ejecutar más de un comando en la misma línea separándolos con punto y coma (;). 
@@ -129,6 +129,7 @@ La tabla muestra la lista de variables más comunes:
 
 \begin{center}
 \begin{tabular}{|l|l|}\hline
+\rowcolor{tcA}
 Variable & Descripción \\\hline
 DISPLAY & Donde aparecen la salida de X-Windows (sistema gráfico)\\\hline
 HOME & Nombre del directorio personal del usuario\\\hline
@@ -143,13 +144,13 @@ PAGER & Paginador utilizado de manera predeterminada\\\hline
 \end{tabular}
 \end{center}
 
-El nombde y la forma de definir una variable de entorno cambia con el interprete de comandos.
+El nombre y la forma de definir una variable de entorno cambia con el interprete de comandos.
 Por ejemplo en el shell \texttt{bash} se definen ejecutando el siguiente comando: \texttt{export \textless NOMBRE\_DE\_VARIABLE\textgreater=\textless valor\_de\_la\_variable\textgreater}.
 
-Para conocer el valor de las variables de entorno ejecute el comando \texttt{env} o bien imprimia su valor
+Para conocer el valor de las variables de entorno ejecute el comando \texttt{env} o bien imprima su valor
 a través del comando \texttt{echo \$\textless NOMBRE\_DE\_VARIABLE\textgreater}
 
-\section{Redireccionamientos}
+\section{Redirección}
 
 Una vez hemos aprendido a utilizar algunos de los comandos del sistema, es muy probable que en 
 algunos casos nos interese utilizarlos de manera simultánea para agilizar las 
@@ -223,7 +224,7 @@ referenciar con el carácter ``\textasciitilde''. Si queremos ver lo que hay en 
 directorio donde estamos situados, podemos listar los contenidos utilizando el 
 comando \texttt{ls}. Debemos tener en cuenta que por defecto el comando no nos muestra los 
 archivos que empiezan por un punto (archivos ocultos). Con la opción \texttt{-a} nos mostraría 
-absolutamente todos los archivos y directorios, incluídos los ocultos. En todos los directorios existe una entrada 
+absolutamente todos los archivos y directorios, incluidos los ocultos. En todos los directorios existe una entrada 
 ``.'' y otra "..". El punto es la referencia al directorio actual, mientras 
 que los dos puntos seguidos hacen referencia al directorio inmediatamente superior 
 (en el árbol de jerarquías) al actual. Naturalmente, cuando estamos situados en 
