@@ -7,7 +7,7 @@
 
 \usepackage{apuntes-estilo}
 \usepackage{fancyhdr,lastpage}
-
+\usepackage{color,colortbl}
 
 \def\maketitle{
 
@@ -47,7 +47,107 @@
 \maketitle
 \setlength{\parindent}{0pt}
 
+\section{Intérprete de comandos: Shell}
 
+El intérprete de comandos es el programa que recibe lo que se escribe en la terminal y lo convierte en instrucciones para el sistema operativo.
+
+En otras palabras el objetivo de cualquier intérprete de comandos es ejecutar los programas que el usuario escribe en el \texttt{prompt} del mismo. 
+El \texttt{prompt} es una indicación que muestra el intérprete para anunciar que espera una orden del usuario. Cuando el usuario escribe una orden, 
+el intérprete ejecuta dicha orden. En dicha orden, puede haber programas internos o externos: Los programas internos son aquellos que vienen 
+incorporados en el propio intérprete, mientras que los externos son programas separados (ej: aplicaciones de /bin/ls,/usr/bin/top,...).\cite{curlin}
+
+En el mundo Linux/Unix existen tres grandes familias de Shells como se muestra en la tabla a continuación. Estas se diferencian entre 
+sí básicamente en la sintaxis de sus comandos y en la interacción con el usuario.
+
+\definecolor{tcA}{rgb}{1,0.972549,0.717647}
+\begin{center}
+\begin{tabular}{lll}
+\rowcolor{tcA}
+\textbf{Tipo de shell} & \textbf{Shell estándar} & \textbf{Implementación libre}\\
+AT\&T Bourne shell & sh & ash, bash, bash2\\
+Berkeley "C" shell & csh & tcsh\\
+AT\&T Korn shell & ksh & pdksh, zsh\\
+Otros interpretes  & -- & esh, gush, nwsh
+\end{tabular}
+\end{center}
+
+\subsection{Sintaxis de los comandos}
+
+Los comandos tienen la siguiente sintaxis:
+
+\texttt{\# programa arg1 arg2 ... argn}
+
+Se observa que, en la ``línea de comandos'', se introduce el programa seguido de uno o varios argumentos. 
+Estos argumentos representarán opciones o argumentos de entrada para el programa invocado por el shell. 
+
+\fcolorbox{black}{grey}{
+\parbox[t]{1.0\linewidth}{ \vspace*{0.4cm}
+{\bf Ejemplo:} \\
+En este caso el programa \texttt{cat} recive un argumento \texttt{archivo.txt}
+sobre el cuál realizar la acción del programa.  \\
+\texttt{
+\$ cat archivo.txt \\
+archivo de texto de prueba\\
+otra linea de prueba\\
+}
+
+A continuación el primer argumento constituye una opción que modifica la forma normal 
+de operar del comando \texttt{cat}, el segundo argumento es el archivo de entrada sobre
+el cual realizar la acción. La opción \texttt{-n} le indca a \texttt{cat} que debe 
+imprimir el número de línea además del contenido del archivo. (\texttt{man cat}) \\
+\texttt{
+\$ cat -n archivo.txt \\
+     1	archivo de texto de prueba\\
+     2	otra linea de prueba\\
+}
+\vspace*{0.4cm} } }
+
+En ocasiones, cuando la línea del comando se torna demasiado extensa, es conveniente dividirla
+en dos o mas líneas. Para ello e separa cada línea con el carácter barra invertida (\textbackslash), 
+el cuál le indica al intérprete que no hemos finalizado nuestro comando y que lo continuaremos 
+en la próxima lína. Así al presionar ``\texttt{ENTER}'' luego de una barra invertida, el comando 
+no será ejecutado inmediatamente, sino que el intérprete quedará esperando el resto de la invocación. 
+
+También es posible ejecutar más de un comando en la misma línea separándolos con punto y coma (;). 
+
+\fcolorbox{black}{grey}{
+\parbox[t]{1.0\linewidth}{ \vspace*{0.4cm}
+{\bf Ejemplo:}\\ 
+\texttt{\# date ; echo esto es una prueba \textbackslash \\
+con barra invertida \\
+mié mar 20 20:30:57 ART 2013 \\
+esto es una prueba con barra invertida \\
+\#}
+\vspace*{0.4cm} } }
+
+\subsection{Variables de entorno}
+
+Una variable de entorno es un nombre asociado a una cadena de caracteres. Dependiendo de la variable, su utilidad puede ser distinta. 
+Algunas son útiles para no tener que escribir muchas opciones al ejecutar un programa, otras las utiliza el propio shell (PATH, PS1,...). 
+
+La tabla muestra la lista de variables más comunes:
+
+\begin{center}
+\begin{tabular}{|l|l|}\hline
+Variable & Descripción \\\hline
+DISPLAY & Donde aparecen la salida de X-Windows (sistema gráfico)\\\hline
+HOME & Nombre del directorio personal del usuario\\\hline
+HOSTNAME & Nombre de la máquina\\\hline
+PATH & Lista de directorios de búsqueda de programas\\\hline
+PS1 & Formato del \texttt{prompt}\\\hline
+SHELL & Intérprete de comandos predeterminado\\\hline
+TERM & Tipo de terminal\\\hline
+EDITOR & Editor invocado de manera predeterminada\\\hline
+USER & Nombre del usuario\\\hline
+PAGER & Paginador utilizado de manera predeterminada\\\hline
+\end{tabular}
+\end{center}
+
+El nombde y la forma de definir una variable de entorno cambia con el interprete de comandos.
+Por ejemplo en el shell \texttt{bash} se definen ejecutando el siguiente comando: \texttt{export \textless NOMBRE\_DE\_VARIABLE\textgreater=\textless valor\_de\_la\_variable\textgreater}.
+
+Para conocer el valor de las variables de entorno ejecute el comando \texttt{env} o bien imprimia su valor
+a través del comando \texttt{echo \$\textless NOMBRE\_DE\_VARIABLE\textgreater}
 
 \section{Redireccionamientos}
 
@@ -114,6 +214,41 @@ siguiente modo: 2\textgreater\&1.
 Es importante tener en cuenta que el orden de los redireccionamiento es 
 significativo: siempre se ejecutan de izquierda a derecha.
 
+\section{Moviéndonos por la estructura de directorios}
+
+Para movernos por la estructura de directorios debemos utilizar los comandos para 
+listar contenidos y cambiar de carpeta. Cuando entramos en el sistema, es usual 
+que el programa \texttt{login} nos sitúe en nuestro directorio home, que generalmente se suele 
+referenciar con el carácter ``\textasciitilde''. Si queremos ver lo que hay en el 
+directorio donde estamos situados, podemos listar los contenidos utilizando el 
+comando \texttt{ls}. Debemos tener en cuenta que por defecto el comando no nos muestra los 
+archivos que empiezan por un punto (archivos ocultos). Con la opción \texttt{-a} nos mostraría 
+absolutamente todos los archivos y directorios, incluídos los ocultos. En todos los directorios existe una entrada 
+``.'' y otra "..". El punto es la referencia al directorio actual, mientras 
+que los dos puntos seguidos hacen referencia al directorio inmediatamente superior 
+(en el árbol de jerarquías) al actual. Naturalmente, cuando estamos situados en 
+la raíz del sistema de ficheros, la entrada ".." no existirá porque nos encontramos 
+en el nivel superior.
+
+Para cambiar de directorio podemos utilizar el comando \texttt{cd}. Si no le pasamos ningún argumento, 
+de manera predeterminada nos situará en nuestro directorio home. Generalmente, se le suele indicar 
+dónde queremos ir, pasándolo de forma absoluta o relativa. De forma relativa significa que partiremos 
+especificando el directorio desde el directorio donde estamos situados en el momento de ejecutar el comando. 
+Mientras que, de forma absoluta siempre partimos de la raíz.
+
+\fcolorbox{black}{grey}{
+\parbox[t]{1.0\linewidth}{ \vspace*{0.4cm}
+{\bf Ejemplo}. Si estamos en el
+directorio \texttt{/usr/bin/} y queremos ir al \texttt{/root/}, para indicarlo de manera relativa deberíamos 
+introducir el siguiente comando: \texttt{cd ../../root} (los dos primeros puntos indican \texttt{/usr/} y los siguientes, 
+la raíz / del sistema, a partir de la cual ya podemos acceder a \texttt{/root/}). 
+Para hacer lo mismo de manera absoluta utilizaríamos el comando: \texttt{cd /root}. 
+\vspace*{0.4cm} } }
+
+Para saber en qué directorio estamos, podemos utilizar el comando \texttt{pwd}.
+
+
+
 \section{Licencia}
 
 Este material es una obra derivada de los siguientes textos:
@@ -126,5 +261,13 @@ Este material es una obra derivada de los siguientes textos:
 términos de la GNU Free Documentation License, Version 1.2 o cualquiera posterior publicada por la
 Free Software Foundation, sin secciones invariantes ni textos de cubierta delantera o trasera. Se dispone
 de una copia de la licencia en el apartado ``GNU Free Documentation License'' de este documento.
+
+\begin{thebibliography}{1}
+\bibitem[CurLinux]{curlin} ``Curso de Linux''.1999 Gómez, Ahijado, Flores.\\ 
+http://www.ibiblio.org/pub/Linux/docs/LuCaS/Tutoriales/CURSOLINUX/\\curso\_linux/curso\_linux.html
+
+
+
+\end{thebibliography}
 
 \end{document}
