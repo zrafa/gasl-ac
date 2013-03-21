@@ -50,6 +50,7 @@
 
 
 Este tutorial fue pensado como una guía mínima, para aprender a utilizar el editor Vim 
+\footnote{http://www.vim.org}
 en el menor tiempo posible. La idea es la siguiente : primero, se debe aprender lo mínimo para sobrevivir,
 y luego, de a poco, aprender nuevos comandos útiles.
 
@@ -275,11 +276,11 @@ que luego del siguiente nivel Vim le devolverá con creces el trabajo
 de haberlo aprendido.
 
 
-\section{Nivel 3 - Mejor. Mas Fuerte. Mas Rápido.}
+\section{Nivel 3 - Mejor. Más Fuerte. Más Rápido.}
 
 
 ¡Felicitaciones por llegar hasta aquí!, ahora empieza la parte interesante.
-En el 3er Nivel veremos únicamente comandos compatibles con el viejo editor vi.
+En el Nivel 3 veremos únicamente comandos compatibles con el viejo editor vi.
 
 
 \subsection{Mejor}
@@ -307,7 +308,7 @@ En el 3er Nivel veremos únicamente comandos compatibles con el viejo editor vi.
 \end{itemize}
 “desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu desu “
 \begin{itemize}
-	\item Repetimos el ultimo comando recién ejecutado: \\ \\
+	\item Repetimos el último comando recién ejecutado: \\ \\
 \begin{tabular}{ l l }
 	\texttt{.} & repite el último comando, por lo que escribirá nuevamente 100 “desu “ \\
 	\texttt{3.} & escribirá 3 “desu” (y no 300, que inteligente ¿no?) \\
@@ -316,7 +317,7 @@ En el 3er Nivel veremos únicamente comandos compatibles con el viejo editor vi.
 
 
 
-\subsection{Mas fuerte}
+\subsection{Más fuerte}
 
 Conocer como moverse eficientemente con Vim es muy importante. No saltee esta
 sección.
@@ -324,8 +325,8 @@ sección.
 \begin{itemize}
 	\item Saltos entre líneas:  \\ \\
 \begin{tabular}{ l l }
-	\texttt{NG} & saltar a la linea N \\
-	\texttt{gg} & lo mismo que 1G - saltar al inicio del archivo \\
+	\texttt{NG} & saltar a la linea N (equivalente a \texttt{:N}\\
+	\texttt{gg} & lo mismo que \texttt{1G} o \texttt{:0} - saltar al inicio del archivo \\
 	\texttt{G} & saltar a la ultima línea \\
 \end{tabular}
 \end{itemize}
@@ -338,6 +339,7 @@ sección.
 \begin{tabular}{ l l }
 	\texttt{w} & ir al inicio de la siguiente palabra \\
 	\texttt{e} & saltar al final de la palabra actual \\
+	\texttt{b} & saltar al comienzo de la palabra actual \\
 \end{tabular}
 \end{itemize}
 
@@ -354,23 +356,24 @@ Digamos que una PALABRA es un grupo de letras separadas por un caracter blanco.
 \end{tabular}
 \end{itemize}
 
-
-
-
+\begin{center}
+ \includegraphics{./img/wordWORD.jpg}
+ % redireccionamiento.gif: 502x248 pixel, 72dpi, 17.71x8.75 cm, bb=0 0 502 248
+\end{center}
 
 	
 \begin{itemize}
 	\item Ahora debe aprender a realizar movimientos muy eficientes: \\ \\
 \begin{tabular}{ l l }
-	\texttt{\%} & saltar a la correspondencia de \texttt{(, {, [ } }  \\
+	\texttt{\%} & saltar a la correspondencia de \texttt{(, \{, [ }  \\
         \texttt{* (o \#)} & ir a la próxima (o previa) ocurrencia de la palabra bajo el cursor \\
 \end{tabular}
 \end{itemize}
 
 
-Para recordar : Los últimos 3 comandos son oro puro.
+Para recordar : los últimos 3 comandos son oro puro.
 
-\subsection{Mas Rápido}
+\subsection{Más Rápido}
 
 La razón de la importancia de los movimiento en vi tiene una razón :
 La mayoría de los comandos puede ser utilizado usando el formato general siguiente :
@@ -387,20 +390,15 @@ La mayoría de los comandos puede ser utilizado usando el formato general siguie
 \end{tabular}
 \end{itemize}
 
-
-
 También puede ejecutar cosas como ``ye'', copiar desde la posición actual hasta el final de la palabra.
-Y también puede ejecutar cosas como ``y2/foo'', lo cual copia hasta la segunda ocurrencia de la palabra ``foor''.
+Y también puede ejecutar cosas como ``y2/foo'', lo cual copia hasta la segunda ocurrencia de la palabra ``foo''.
 
+Además, lo que es cierto para \texttt{y} (copiar -en inglés yank-), es también cierto para \texttt{d} (borrar -en inglés delete-), gU (mayúsculas), gu (minúsuclas), etc.
 
 \section{Nivel 4 - Súper poderes de Vim}
 
-Y lo que es cierto para y (copiar), es también válido para d (borrar), v (selección visual), gU (mayúscula), gu (minúscula), etc
-
-
 Si utiliza todos los comandos anteriores trabajará cómodamente con Vim.
-Y además, ahora tiene la preparación necesaria para aprender las características ``matadoras''.
-Algunos de los siguientes comandos son la razón por la cual comencé a utilizar Vim.
+Y además, ahora tiene la preparación necesaria para aprender las características ``matadoras''.  Algunos de los siguientes comandos son la razón por la cual comencé a utilizar Vim.
 
 
 
@@ -419,6 +417,11 @@ Algunos de los siguientes comandos son la razón por la cual comencé a utilizar
 \end{tabular}
 \end{itemize}
 
+\begin{center}
+ \includegraphics{./img/movecurrline.jpg}
+ % redireccionamiento.gif: 502x248 pixel, 72dpi, 17.71x8.75 cm, bb=0 0 502 248
+\end{center}
+
 
 
 Un tip útil es: \texttt{dt"}  el cual borra todo hasta el caracter ".
@@ -435,7 +438,7 @@ Donde action puede ser cualquier acción, por ejemplo, d (delete), y (copiar), v
 
 
 \begin{itemize}
-	\item Suponga que el cursor esta en la primer ``o'' que aparece en :  (map (+) (``foo'')): \\ \\
+	\item Suponga que el cursor esta en la primer ``o'' que aparece en  (map (+) (``foo'')) \\ \\
 \begin{tabular}{ l l }
 	\texttt{vi"} & seleccionará foo. \\
 	\texttt{va"} & seleccionará "foo" \\
@@ -447,10 +450,13 @@ Donde action puede ser cualquier acción, por ejemplo, d (delete), y (copiar), v
 \end{itemize}
 
 
+\begin{center}
+ \includegraphics{./img/vivisual.jpg}
+ % redireccionamiento.gif: 502x248 pixel, 72dpi, 17.71x8.75 cm, bb=0 0 502 248
+\end{center}
 
 
 \subsection{Selección de bloques rectangulares: \texttt{<C-v>}}
-
 
 Los bloques rectangulares son muy útiles para comentar muchas
 líneas de código. Típicamente:  \texttt{0<C-v><C-d>I-- [ESC]}
