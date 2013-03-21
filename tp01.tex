@@ -94,7 +94,15 @@ en un sistema GNU/Linux}.
  \footnote{http://www.vim.org/scripts/script.php?script\_id=3409}
 Abra una terminal, ejecute \texttt{vim} y posteriormente el comando \texttt{:HJKL} en \textit{modo normal}. 
 Juegue hasta sentirse cómodo con las teclas hjkl. 
-\item Ejecute \texttt{vimtutor}. Complete las lecciones ofrecidas por el tutor. 
+\item Ejecute la siguiente secuencia:
+	\begin{itemize}
+	\item \texttt{vimtutor}. 
+	\item Guarde el contenido de vimtutor en una rchivo en su home, ejecutando en modo normal: \texttt{:w tutor.\textless hostname\textgreater} (debe reemplazar \textless hostname\textgreater por el nombre de la máquina que está utilizando).
+	\item Cierre el tutor, en modo normal:\texttt{:q}
+	\item Abra el archivo que acaba de guardar: \texttt{vi tutor.\textless hostname\textgreater}.  
+	\item Agregue su nombre y apellido al comienzo del archivo.
+	\item Complete las lecciones ofrecidas por el tutor. 
+	\end{itemize}
 \end{enumerate}
 
 
