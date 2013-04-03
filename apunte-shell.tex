@@ -8,6 +8,7 @@
 \usepackage{apuntes-estilo}
 \usepackage{fancyhdr,lastpage}
 \usepackage{color,colortbl}
+\usepackage{verbatim}
 
 \def\maketitle{
 
@@ -34,7 +35,7 @@
 \fancyhf{} % clear all header and footer fields
 \fancypagestyle{plain}{\fancyhf{}}
   	\pagestyle{fancy}
- 	\lhead{\footnotesize Aprendiendo Vim Progresivamente - Departamento de Ingeniería de Computadoras}
+ 	\lhead{\footnotesize El Intérprete de comandos (shell) - Departamento de Ingeniería de Computadoras}
  	\rhead{\footnotesize \thepage\ }	% ''Page 1 of 2''
 
 \def\ti#1#2{\texttt{#1} & #2 \\ }
@@ -65,7 +66,7 @@ sí básicamente en la sintaxis de sus comandos y en la interacción con el usua
 \rowcolor{tcA}
 \textbf{Tipo de shell} & \textbf{Shell estándar} & \textbf{Implementación libre}\\\hline
 AT\&T Bourne shell & sh & ash, bash, bash2\\\hline
-Berkeley "C" shell & csh & tcsh\\\hline
+Berkeley ``C'' shell & csh & tcsh\\\hline
 AT\&T Korn shell & ksh & pdksh, zsh\\\hline
 Otros interpretes  & -- & esh, gush, nwsh\\\hline
 \end{tabular}
@@ -154,6 +155,66 @@ Por ejemplo en el shell \texttt{bash} se definen ejecutando el siguiente comando
 Para conocer el valor de las variables de entorno ejecute el comando \texttt{env} o bien imprima su valor
 a través del comando \texttt{echo \$\textless NOMBRE\_DE\_VARIABLE\textgreater}
 
+
+\fcolorbox{black}{grey}{
+\parbox[t]{1.0\linewidth}{ \vspace*{0.4cm}
+{\bf Ejemplo:}
+Si la variable de entorno \texttt{LANG} se encuentra definida con el valor \texttt{es\_AR.UTF-8}, algunos programas, como por ejemplo \texttt{man}, interpretarán que el lenguaje en que el usuario actual está trabajando es español, y modificará su comportamiento de acuerdo a ello. En el caso del programa \texttt{man}, de estar disponibles, mostrará las páginas del manual requeridas en idioma español. Mientras que, si definimos la variable de entorno \texttt{LANG=en\_US.UTF-8}, man mostrará las páginas del manual en inglés.
+\vspace*{0.4cm} } }
+
+\subsection{Comodines}
+Los comodines son caracteres que cuentan con un significado especial para el shell (subconjunto de un conjunto 
+amplio de metacaracteres con significado especial). 
+Explicaremos brevemente el uso de algunos comodines (wildcards en inglés). 
+Al igual que en los juegos de cartas, los comodines en el shell indican opción, o patrón de coincidencia. 
+Aprendamos acerca de su uso a través de una serie de ejemplos: 
+
+\textbf{El comodín ``*''}:
+Concuerda con cualquier cadena de cero o mas caracteres en archivos. 
+\begin{itemize}
+\item \texttt{ls *} indica al comando \texttt{ls} aplicar su función a \textit{todos} los archivos y 
+directorios en el directorio actual, excluyendo los archivos y directorios ocultos. Nótese la diferencia
+con \texttt{ls} sin argumentos, que solo listara el contenido del directorio actual. 
+\item El comando \texttt{ls *.pdf} aplicará la función a \textit{todos} los archivos que finalicen en ``.pdf''. 
+\item El comando \texttt{cat capítulo*.txt} aplicará su función, a todos los archivos tales que comiencen con 
+``capítulo'' y finalicen con ``.txt''. Por ejemplo: capítulo01.txt, capítulo123.txt, capítuloHola.txt, etc. coincidirán con el 
+patrón, mientras que capítulo02, hola.txt no lo harán.  
+\end{itemize} 
+
+\textbf{El comodín ``?''}:
+Concuerda con cualquier caracter individual en archivos. 
+\begin{itemize}
+\item El comando \texttt{ls capítulo?.txt} aplicará su función de listado a archivos que posean un caracter
+cualquiera entre ``capítulo'' y ``.txt''. Así por ejemplo capítulo1.txt coincide con este patrón mientras que 
+capítulo123.txt no lo hará. 
+\end{itemize} 
+
+\textbf{El comodín ``[ccc]''}:
+Concuerda con cualquier caracter individual de ``ccc'' en archivos; son legales los intervalos como 
+0-9 o a-z. 
+\begin{itemize}
+\item \texttt{ls capítulo[0-9].txt} aplicará su función de listado a cualquier archivo que coincida 
+con ese patrón. Por ejemplo capítulo9.txt coincidirá, mientras que capítuloa.txt no lo hará. 
+\end{itemize} 
+
+\fcolorbox{black}{grey}{
+\parbox[t]{1.0\linewidth}{ \vspace*{0.4cm}
+{\bf Observación 1:}
+El shell expande los comodines \textbf{antes} de ejecutar el comando en cuestión, por 
+lo que el comando recibirá la lista de argumentos ya expandidos.
+\vspace*{0.4cm} } }
+
+\fcolorbox{black}{grey}{
+\parbox[t]{1.0\linewidth}{ \vspace*{0.4cm}
+{\bf Observación 2:}
+¿Qué sucede si uno de estos comodines forma parte del nombre de archivo? Por ejemplo si nuestro 
+archivo se llama ``capítulo[1-2].txt''. En este caso es necesario ``escapar'' el metacaracter 
+anteponiendo una contra barra ``\textbackslash'' al mismo. Por ejemplo: \texttt{cat 
+capítulo\textbackslash[1-2\textbackslash].txt} mostraría el contenido del archivo, de otro modo 
+intentaría mostrar el contenido de archivos con nombre capítulo1.txt y captítulo2.txt.
+\vspace*{0.4cm} } }
+
+
 \section{Redirección}
 
 Una vez hemos aprendido a utilizar algunos de los comandos del sistema, es muy probable que en 
@@ -219,6 +280,118 @@ siguiente modo: 2\textgreater\&1.
 Es importante tener en cuenta que el orden de los redireccionamiento es 
 significativo: siempre se ejecutan de izquierda a derecha.
 
+\section{Filtros: grep}
+Existen una familia de comandos cuya función es aplicar filtros a la entrada que 
+reciben: grep, egrep, sed, fgrep, son algunos de ellos. En este apunte desarrollaremos brevemente el 
+comando \texttt{grep} y \texttt{egrep} que son de gran utilidad. Ambos muestran 
+líneas que concuerdan con un patrón. 
+
+Los siguientes ejemplos utilizan el archivo \texttt{lista.txt} como argumento, cuyo 
+contenido es: 
+
+\texttt{Arup:India:medico clinico \\
+Francisco:Italia:enfermero \\
+Jean:Francia:medico cardiologo \\
+Rajesh:India:Administrador de sistemas \\
+Patricio:Argentina:abogado\\
+Isabel:Argentina:abogada\\
+Mia:Francia:enfermera\\
+Jack:Estados Unidos:abogado\\
+Joseph:estados unidos:administrativo\\
+Andrea:argentina:medica ginecologa
+}
+
+Ejemplos con \texttt{grep}:
+\texttt{
+\begin{itemize}
+\item  \$ grep medico lista.txt \\
+Arup:India:medico clinico \\
+Jean:Francia:medico cardiologo \\ 
+\item \$ grep medica lista.txt \\
+Andrea:argentina:medica ginecologa \\
+\item \$ grep medic lista.txt \\
+Arup:India:medico clinico \\
+Jean:Francia:medico cardiologo \\
+Andrea:argentina:medica ginecologa 
+\item \$ grep argentina lista.txt \\
+Andrea:argentina:medica ginecologa 
+\item \$ grep \textbf{-i} argentina lista.txt  \\
+Patricio:Argentina:abogado \\
+Isabel:Argentina:abogada \\
+Andrea:argentina:medica ginecologa
+\item \$ grep \textbf{-c} argentina lista.txt \\
+1 
+\item \$ grep \textbf{-ci} argentina lista.txt \\
+3
+\item \$ grep -vi argentina lista.txt \\
+Arup:India:medico clinico \\
+Francisco:Italia:enfermero \\
+Jean:Francia:medico cardiologo\\ 
+Rajesh:India:Administrador de sistemas \\
+Mia:Francia:enfermera\\
+Jack:Estados Unidos:abogado\\
+Joseph:estados unidos:administrativo
+\end{itemize}
+}
+
+Ejemplos con \texttt{egrep}:
+\texttt{
+\begin{itemize}
+\item  \$ egrep 'argentina|India' lista.txt \\
+Arup:India:medico clinico \\
+Rajesh:India:Administrador de sistemas \\
+Andrea:argentina:medica ginecologa
+\item \$ egrep -i 'argentina|India' lista.txt \\
+Arup:India:medico clinico \\
+Rajesh:India:Administrador de sistemas \\
+Patricio:Argentina:abogado \\
+Isabel:Argentina:abogada \\
+Andrea:argentina:medica ginecologa
+\item \$ egrep -ci 'argentina|India' lista.txt \\
+5
+\end{itemize}
+}
+
+\subsection*{Filtros y redirección}
+Ahora que conocemos el uso básico de filtros y redirección, utilicemos ambos 
+conocimientos en conjunto. Alimentemos los filtros con salidas de otros comandos
+utilizando la redirección. Veamos algunos ejemplos: 
+
+\textit{Identificando al proceso init del sistema:  }
+
+\begin{verbatim}
+$ ps -ef |grep init 
+root     1     0  0 19:21 ?        00:00:01 init [2]  
+pepe  6202     1  0 19:31 ?        00:00:00 kdeinit4: kdeinit4 Running...
+pepe  6203  6202  0 19:31 ?        00:00:00 kdeinit4: klauncher [kdeinit] --fd=8
+pepe  6205     1  0 19:31 ?        00:00:00 kdeinit4: kded4 [kdeinit]  
+pepe  9904  9748  0 22:46 pts/2    00:00:00 grep init
+\end{verbatim}
+
+\textit{¿Cuántos intérpretes \texttt{bash} se encuentran en ejecución?:}
+\begin{verbatim}
+$ ps -ef |grep -v grep| grep -c bash 
+7
+\end{verbatim}
+Pregunta: ¿por qué aparece \texttt{grep -v grep} en el comando anterior?
+
+\textit{¿Ha iniciado sesión el usuario pepe?:}
+\begin{verbatim}
+$ who |grep pepe
+\end{verbatim}
+
+\textit{Mostrar los procesos de los usuarios maria y antonio:}
+\begin{verbatim}
+$ ps -ef | egrep '^maria |^antonio '
+\end{verbatim}
+
+Nota: en la expresión anterior los metacaracteres `` \^ '' y `` \textbar '' son 
+interpretados por el comando grep y no por el shell. Esto se debe a que 
+todo lo encerrado entre `` ' '' (comillas simples) es interpretado 
+literalmente por el shell.
+
+
+
 \section{Moviéndonos por la estructura de directorios}
 
 Para movernos por la estructura de directorios debemos utilizar los comandos para 
@@ -229,10 +402,10 @@ directorio donde estamos situados, podemos listar los contenidos utilizando el
 comando \texttt{ls}. Debemos tener en cuenta que por defecto el comando no nos muestra los 
 archivos que empiezan por un punto (archivos ocultos). Con la opción \texttt{-a} nos mostraría 
 absolutamente todos los archivos y directorios, incluidos los ocultos. En todos los directorios existe una entrada 
-``.'' y otra "..". El punto es la referencia al directorio actual, mientras 
+``.'' y otra ``..''. El punto es la referencia al directorio actual, mientras 
 que los dos puntos seguidos hacen referencia al directorio inmediatamente superior 
 (en el árbol de jerarquías) al actual. Naturalmente, cuando estamos situados en 
-la raíz del sistema de ficheros, la entrada ".." no existirá porque nos encontramos 
+la raíz del sistema de ficheros, la entrada ``..'' no existirá porque nos encontramos 
 en el nivel superior.
 
 Para cambiar de directorio podemos utilizar el comando \texttt{cd}. Si no le pasamos ningún argumento, 
@@ -252,6 +425,68 @@ Para hacer lo mismo de manera absoluta utilizaríamos el comando: \texttt{cd /ro
 
 Para saber en qué directorio estamos, podemos utilizar el comando \texttt{pwd}.
 
+\section{Obteniendo ayuda en linea}
+Como se explicó en la sección sobre sintaxis, los comandos suelen aceptar opciones y argumentos, 
+que permiten modificar su comportamiento predeterminado e indicar entradas sobre las que 
+realizar la tarea. Sin embargo sería imposible para un administrador recordar todas las opciones, 
+o incluso la forma de sus argumentos. 
+
+Del mismo modo, esta información es necesaria para los archivos de configuración del sistema, sería
+difícil recordar cuál es el orden de los campos de la base de datos de usuarios locales(\texttt{/etc/passwd}),
+etc. Por ello, el propio sistema incorpora un mecanismo de manuales, accesibles en linea de comandos, 
+con el que podemos consultar casi todos estos aspectos de los programas, utilidades, comandos y 
+configuraciones existentes. 
+
+El comando a través del cual accedemos a estos manuales es \texttt{man}, que nos muestra en la terminal 
+el manual del programa que se le indica como argumento. Esta 
+documentación se pagina (o muestra en secuencia de páginas) por medio del programa \texttt{less} o 
+\texttt{more} (comportamiento que puede modificarse a través de la variable de entorno PAGER), con el 
+que podemos desplazarnos hacia delante y hacia atrás con las teclas de ``AvPág'' y ``RePág'', buscar 
+una palabra con el carácter ``/'' seguido de la palabra (``n'' nos sirve para buscar las siguientes 
+ocurrencias y ``N'' para las anteriores), ``q'' para salir, etc. 
+
+Los manuales del sistema están divididos en diferentes secciones según su naturaleza:
+\begin{enumerate}
+\item   Programas ejecutables y scripts del intérprete de órdenes
+\item   Llamadas del sistema (funciones servidas por el núcleo)
+\item   Llamadas de la biblioteca (funciones contenidas en las  bibliotecas
+           del sistema)
+\item   Ficheros especiales (se encuentran generalmente en /dev)
+\item   Formato de ficheros y convenios p.ej. /etc/passwd
+\item   Juegos
+\item   Paquetes de macros y convenios p.ej. man(7), groff(7).
+\item   Órdenes  de  administración  del  sistema (generalmente solo son para
+           root)
+\item   Rutinas del núcleo (no es estándar).
+\end{enumerate}
+	 
+
+Si hay más de un manual disponible para una misma palabra, podemos especificar
+a cuál nos referimos utilizando el número correspondiente de la sección deseada 
+antes de la palabra. Como los otros comandos, man tiene opciones documentadas 
+en su propio manual (\texttt{man man}), a partir de las cuales podemos realizar 
+búsquedas automáticas, crear un fichero del manual en formato imprimible, etc. 
+Una de estas opciones, de gran utilidad, nos permite identificar manuales que 
+mencionan una palabra, la opción \texttt{-k}. Así, si no recordamos con exactitud
+el nombre de un comando, podemos invocar \texttt{man -k} y una palabra clave que 
+sabemos a la cual el manual 
+hará referencia (el comando \texttt{apropos} realiza una tarea similar). 
+
+\fcolorbox{black}{grey}{
+\parbox[t]{1.0\linewidth}{ \vspace*{0.4cm}
+{\bf Ejemplo:}
+\texttt{man passwd} muestra la información del comando passwd que permite cambiar 
+la contraseña de un usuario del sistema, mientras que, \texttt{man 5 passwd} muestra
+el manual acerca del formato del archivo \texttt{/etc/passwd} que contiene la base 
+de datos de usuarios locales. 
+\vspace*{0.4cm} } }
+	
+
+Si el manual no nos proporciona toda la información que necesitamos, podemos 
+usar el comando \texttt{info}, que provee información adicional al manual. Por otra parte
+si sólo queremos tener una breve referencia de lo que hace un determinado programa, 
+biblioteca, etc., podemos utilizar el comando \texttt{whatis} ó la opción \texttt{--help o -h}
+soportada por la gran mayoría de los comandos.
 
 
 \section{Licencia}
@@ -270,9 +505,6 @@ de una copia de la licencia en el apartado ``GNU Free Documentation License'' de
 \begin{thebibliography}{1}
 \bibitem[CurLinux]{curlin} ``Curso de Linux''.1999 Gómez, Ahijado, Flores.\\ 
 http://www.ibiblio.org/pub/Linux/docs/LuCaS/Tutoriales/CURSOLINUX/\\curso\_linux/curso\_linux.html
-
-
-
 \end{thebibliography}
 
 \end{document}
