@@ -49,13 +49,13 @@ Trabajo práctico N 2 \\
 \maketitle
 \setlength{\parindent}{0pt}
 
-\paragraph{Los siguientes ejercicios se realizan en su totalidad desde una terminal en un sistema GNU/Linux. Utilice la redirección y el editor \texttt{vi} para guardar las salidas y editar los resultaods de este práctico. En el archivo de resolución indique su nombre y apellido, y el número de ejercicio a resolver}. 
+\paragraph{Los siguientes ejercicios se realizan en su totalidad desde una terminal en un sistema GNU/Linux. Utilice la redirección y el editor \texttt{vi} para guardar las salidas y editar los resultados de este práctico. En el archivo de resolución indique su nombre y apellido, y el número de ejercicio a resolver, junto a la salida incluyendo el comando que ejecuta. }
 
 \section*{Procesos}
 Ayuda: \texttt{ps}
 \begin{enumerate}
-\item Obtenga la lista de \textit{todos} los programas en ejecución, incluyendo al menos la siguiente información: dueño del proceso, identificador de proceso (PID), identificador del padre (PPID), comando que inició el proceso. 
-\item De la lista anterior identifique cuál es el primer proceso del sitema.
+\item Obtenga la lista de \textit{todos} los programas en ejecución, incluyendo al menos la siguiente información: dueño del proceso, identificador de proceso (PID), identificador del padre (PPID), comando que inició el proceso. Guarde esta salida en un archivo llamado tp02.txt 
+\item De la lista anterior identifique cuál es el primer proceso del sistema.
 \item De la lista identificada obtenida en el primer inciso, liste exclusivamente aquellos que son hijos directos del primer proceso del sistema. ¿Cómo obtuvo el listado? (Recuerde ``n1,n2y'' en modo normal copia las líneas n1 a n2).
 \end{enumerate}
 
@@ -64,8 +64,10 @@ Ayuda: \texttt{ps}
 \section*{Entorno del shell}
 Ayuda: \texttt{env}
 \begin{enumerate}
-\item 
-\item
+\item De la lista de variables de entorno de su shell, obtenga el valor de la variable \texttt{LANG} tal que se muestre en la salida: \texttt{LANG=<valor>}. 
+
+\item Obtenga \textbf{solamente el valor} de la variable LANG ejecutando:\texttt{echo \$LANG}. ¿Qué función cumple esta variable, por ejemplo cuando ejecutamos el comando man? 
+\item Cambie el valor de la variable \texttt{PS1} ejecutando:\texttt{PS1=``Ejecutando comando: ''}. Ejecute algunos comandos al azar. ¿Qué observa?. Redefina la variable ejecutando \texttt{PS1=``\textbackslash u@\textbackslash H:\textbackslash w \textbackslash \$ ''}. Busque y lea dentro de \texttt{man bash} la sección \texttt{INDICADORES} para entender cómo funciona esta última asignación.
 \end{enumerate}
 
 
