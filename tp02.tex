@@ -1,0 +1,72 @@
+%%% LaTeX Template: Article/Thesis/etc. with colored headings and special fonts
+%%%
+%%% Source: http://www.howtotex.com/
+
+\documentclass[12pt]{article}
+
+
+\usepackage{apuntes-estilo}
+\usepackage{fancyhdr,lastpage}
+
+
+
+\def\maketitle{
+
+% Titulo 
+ \makeatletter
+ {\color{bl} \centering \huge \sc \textbf{
+Trabajo práctico N 2 \\
+\large \vspace*{-8pt} \color{black} Reconocimiento del sistema
+ \vspace*{8pt} }\par}
+ \makeatother
+
+
+% Autor
+ \makeatletter
+ {\centering \small 
+	Introducción a la administración de Sistemas \\
+ 	Departamento de Ingeniería de Computadoras \\
+ 	Facultad de Informática - Universidad Nacional del Comahue \\
+ 	\vspace{20pt} }
+ \makeatother
+
+}
+
+% Custom headers and footers
+\fancyhf{} % clear all header and footer fields
+\fancypagestyle{plain}{\fancyhf{}}
+  	\pagestyle{fancy}
+ 	\lhead{\footnotesize TP N 1 - Introducción a la administración de sistemas }
+ 	\rhead{\footnotesize \thepage\ }	% "Page 1 of 2"
+
+\def\ti#1#2{\texttt{#1} & #2 \\ }
+
+
+
+\begin{document}
+
+\thispagestyle{empty}
+\maketitle
+\setlength{\parindent}{0pt}
+
+\paragraph{Los siguientes ejercicios se realizan en su totalidad desde una terminal en un sistema GNU/Linux. Utilice la redirección y el editor \texttt{vi} para guardar las salidas y editar los resultaods de este práctico. En el archivo de resolución indique su nombre y apellido, y el número de ejercicio a resolver}. 
+
+\section*{Procesos}
+Ayuda: \texttt{ps}
+\begin{enumerate}
+\item Obtenga la lista de \textit{todos} los programas en ejecución, incluyendo al menos la siguiente información: dueño del proceso, identificador de proceso (PID), identificador del padre (PPID), comando que inició el proceso. 
+\item De la lista anterior identifique cuál es el primer proceso del sitema.
+\item De la lista identificada obtenida en el primer inciso, liste exclusivamente aquellos que son hijos directos del primer proceso del sistema. ¿Cómo obtuvo el listado? (Recuerde ``n1,n2y'' en modo normal copia las líneas n1 a n2).
+\end{enumerate}
+
+\section*{Directorios y sistemas de archivos}
+
+\section*{Entorno del shell}
+Ayuda: \texttt{env}
+\begin{enumerate}
+\item 
+\item
+\end{enumerate}
+
+
+\end{document}
