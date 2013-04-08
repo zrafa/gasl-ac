@@ -6,6 +6,7 @@ all:
 	pdflatex apunte-inicio-y-apagado.tex
 	pdflatex apunte-shell.tex
 	pdflatex tp01.tex
+	pdflatex tp02.tex
 
 clean:
 	rm *pdf *aux *log
