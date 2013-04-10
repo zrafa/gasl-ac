@@ -7,6 +7,7 @@
 
 \usepackage{apuntes-estilo}
 \usepackage{fancyhdr,lastpage}
+\usepackage{verbatim}
 
 
 
@@ -36,7 +37,7 @@ Trabajo práctico N 2 \\
 \fancyhf{} % clear all header and footer fields
 \fancypagestyle{plain}{\fancyhf{}}
   	\pagestyle{fancy}
- 	\lhead{\footnotesize TP N 1 - Introducción a la administración de sistemas }
+ 	\lhead{\footnotesize TP N 2 - Introducción a la administración de sistemas }
  	\rhead{\footnotesize \thepage\ }	% "Page 1 of 2"
 
 \def\ti#1#2{\texttt{#1} & #2 \\ }
@@ -54,12 +55,10 @@ Trabajo práctico N 2 \\
 \section*{Procesos}
 Ayuda: \texttt{ps}
 \begin{enumerate}
-\item Obtenga la lista de \textit{todos} los programas en ejecución, incluyendo al menos la siguiente información: dueño del proceso, identificador de proceso (PID), identificador del padre (PPID), comando que inició el proceso. Guarde esta salida en un archivo llamado tp02.txt 
+\item Obtenga la lista de \textit{todos} los programas en ejecución, incluyendo al menos la siguiente información: dueño del proceso, identificador de proceso (PID), identificador del padre (PPID), comando que inició el proceso. Guarde esta salida en un archivo llamado \texttt{tp02.txt}.
 \item De la lista anterior identifique cuál es el primer proceso del sistema.
-\item De la lista identificada obtenida en el primer inciso, liste exclusivamente aquellos que son hijos directos del primer proceso del sistema. ¿Cómo obtuvo el listado? (Recuerde ``n1,n2y'' en modo normal copia las líneas n1 a n2).
+\item De la lista del primer inciso, obtenga exclusivamente aquellos que son hijos directos del primer proceso del sistema. ¿Cómo obtuvo el listado? (Recuerde ``n1,n2y'' en modo normal copia las líneas n1 a n2).
 \end{enumerate}
-
-\section*{Directorios y sistemas de archivos}
 
 \section*{Entorno del shell}
 Ayuda: \texttt{env}
@@ -68,7 +67,70 @@ Ayuda: \texttt{env}
 
 \item Obtenga \textbf{solamente el valor} de la variable LANG ejecutando:\texttt{echo \$LANG}. ¿Qué función cumple esta variable, por ejemplo cuando ejecutamos el comando man? 
 \item Cambie el valor de la variable \texttt{PS1} ejecutando:\texttt{PS1=``Ejecutando comando: ''}. Ejecute algunos comandos al azar. ¿Qué observa?. Redefina la variable ejecutando \texttt{PS1=``\textbackslash u@\textbackslash H:\textbackslash w \textbackslash \$ ''}. Busque y lea dentro de \texttt{man bash} la sección \texttt{INDICADORES} para entender cómo funciona esta última asignación.
+\item Ejecute la siguiente secuencia:
+	\begin{itemize}
+	\item \$ echo \$HOME
+	\item \$ cd 
+	\item \$ pwd
+	\item \$ HOME=/tmp
+	\item \$ cd 
+	\item \$ pwd
+	\item \$ ¿Qué observa? ¿Qué función cumple la variable \$HOME?
+	\end{itemize}
 \end{enumerate}
+
+\section*{Comodines}
+\begin{enumerate}
+\item Cree un directorio llamado test e ingrese al mismo. Los incisos siguientes deberán realizarce dentro de dicho directorio. 
+\item En un shell bash ejecute los siguientes comandos:
+	\begin{itemize}
+	\item Cree un archivo llamado \texttt{creador.sh} con el siguiente texto:
+	\begin{verbatim}
+	#!/bin/bash
+	for ((i=0;i<4;i++));do 
+	  for ((j=0;j<10;j++));do 
+		if [ $i -lt 2 ];then 
+		  echo "Archivo $i$j" > Cap$i$j.txt
+		elif [ $i -lt 3 ] ;then 
+		  echo "Otro archivo $i$j" > cap$i$j.txt
+		else
+		  echo "Esto no es un PDF $i$j" > Cap$j.pdf
+		fi
+	  done 
+	done
+	\end{verbatim}
+	\item Agregue permisos de ejecución al archivo: \texttt{chmod 700 creador.sh} (observe los permisos con el comando \texttt{ls -l})
+	\item Liste el contenido del directorio test.
+	\item Ejecute el \texttt{script} recién creado: \texttt{./creador.sh}
+	\item Liste  el contenido del directorio test. ¿Cuál es la función del \texttt{script creador.sh}? 
+ 	\end{itemize}
+\item Utilice comodines tal que el comando \texttt{ls} liste todos los archivos finalizados en ``.txt''.
+\item Utilice comodines tal que el comando \texttt{ls} liste todos los archivos que comienzan con cap y finalizan en ``.txt''
+\item Utilice comodines tal que el comando \texttt{cat} muestre el contenido de los archivos Cap10.txt a Cap19.tx
+\item Utilice comodines tal que el comando \texttt{cat} muestre el contenido de los archivos cuyo nombre contenga cualquiera de los siguientes números: 03, 04, 05, 23, 24 y 25 
+\item Utilice comodines tal que el comando \texttt{rm} elimine todos los archivos del directorio test \textbf{a excepción} de \texttt{creador.sh}
+\end{enumerate}
+
+\section*{Redirección y filtros}
+\begin{enumerate}
+\item Ejecute el comando \texttt{who}. ¿Qué información obtiene?
+\item El comando \texttt{wc} (del inglés ``word count'') permite con la opción \texttt{-l}  (vea \texttt{man wc}) contar 
+líneas en un archivo. Utilice este comando y \texttt{\textbar} para obtener el número de usuarios que iniciaron 
+sesión en el sistema. 
+\item Ingrese al directorio test creado en la sección ``Comodines'' y vuelva a ejecutar el script \texttt{creador.sh}
+\item Utilizando el comando \texttt{cat} muestre el contenido de los archivos finalizados en txt o pdf. 
+\item Idem anterior pero esta vez redireccione la salida a un archivo llamado capitulos.txt
+\item Utilizando el comando \texttt{grep} obtenga del archivo capitulos.txt las líneas que contengan el dígito 3. 
+\item Utilizando el comando \texttt{grep} obtenga directamente de la salida de \texttt{cat} (esto es sin usar un archivo 
+intermedio) las líneas que contengan la palabra archivo (ya sea en minúsculas o mayúsculas). Ayuda: en inglés 
+si algo es sensible a la diferencia entre mayúsculas y minúsuclas se dice ``case sesitive'', por otro lado 
+si no lo es se dice ``case insensitive'' \texttt{man grep}.  
+\item Utilizando el comando \texttt{grep} obtenga la lista de procesos que corresponden solamente al usuario \texttt{root}
+
+
+
+\end{enumerate}
+
 
 
 \end{document}
