@@ -25,7 +25,7 @@ Trabajo práctico N 2 \\
 % Autor
  \makeatletter
  {\centering \small 
-	Introducción a la administración de Sistemas \\
+	Introducción a la Administración de Sistemas \\
  	Departamento de Ingeniería de Computadoras \\
  	Facultad de Informática - Universidad Nacional del Comahue \\
  	\vspace{20pt} }
@@ -37,7 +37,7 @@ Trabajo práctico N 2 \\
 \fancyhf{} % clear all header and footer fields
 \fancypagestyle{plain}{\fancyhf{}}
   	\pagestyle{fancy}
- 	\lhead{\footnotesize TP N 2 - Introducción a la administración de sistemas }
+ 	\lhead{\footnotesize TP N 2 - Introducción a la Administración de Sistemas }
  	\rhead{\footnotesize \thepage\ }	% "Page 1 of 2"
 
 \def\ti#1#2{\texttt{#1} & #2 \\ }
@@ -50,24 +50,31 @@ Trabajo práctico N 2 \\
 \maketitle
 \setlength{\parindent}{0pt}
 
-\paragraph{Los siguientes ejercicios se realizan en su totalidad desde una terminal en un sistema GNU/Linux. Utilice la redirección y el editor \texttt{vi} para guardar las salidas y editar los resultados de este práctico. En el archivo de resolución indique su nombre y apellido, y el número de ejercicio a resolver, junto a la salida incluyendo el comando que ejecuta. }
+\paragraph{Los siguientes ejercicios se realizan en su totalidad en el equipo asignado al grupo. } 
+
 
 \section*{Procesos}
-Ayuda: \texttt{ps}
+Ayuda: \texttt{ps ; man ps}
 \begin{enumerate}
-\item Obtenga la lista de \textit{todos} los programas en ejecución, incluyendo al menos la siguiente información: dueño del proceso, identificador de proceso (PID), identificador del padre (PPID), comando que inició el proceso. Guarde esta salida en un archivo llamado \texttt{tp02.txt}.
-\item De la lista anterior identifique cuál es el primer proceso del sistema.
+\item Obtenga la lista de \textit{todos} los programas en ejecución, incluyendo al menos la siguiente información:
+dueño del proceso, identificador de proceso (PID), identificador del padre (PPID),
+comando que inició el proceso. Guarde esta salida en un archivo llamado \texttt{tp02.txt}.
+\item De la lista anterior identifique cuál es el primer proceso del sistema. \\ \\
+\textbf{Usando el editor vi :} 
 \item De la lista del primer inciso, obtenga exclusivamente aquellos que son hijos directos del primer proceso del sistema. ¿Cómo obtuvo el listado? (Recuerde ``n1,n2y'' en modo normal copia las líneas n1 a n2).
 \end{enumerate}
 
 \section*{Entorno del shell}
 Ayuda: \texttt{env}
 \begin{enumerate}
-\item De la lista de variables de entorno de su shell, obtenga el valor de la variable \texttt{LANG} tal que se muestre en la salida: \texttt{LANG=<valor>}. 
+\item De la lista de variables de entorno de su shell, obtenga únicamente el valor de la variable \texttt{LANG} y redirija la salida a un archivo llamado \texttt{tp02-2.txt}. ¿Qué valor tiene la variable?.
 
 \item Obtenga \textbf{solamente el valor} de la variable LANG ejecutando:\texttt{echo \$LANG}. ¿Qué función cumple esta variable, por ejemplo cuando ejecutamos el comando man? 
-\item Cambie el valor de la variable \texttt{PS1} ejecutando:\texttt{PS1=``Ejecutando comando: ''}. Ejecute algunos comandos al azar. ¿Qué observa?. Redefina la variable ejecutando \texttt{PS1=``\textbackslash u@\textbackslash H:\textbackslash w \textbackslash \$ ''}. Busque y lea dentro de \texttt{man bash} la sección \texttt{INDICADORES} para entender cómo funciona esta última asignación.
-\item Ejecute la siguiente secuencia:
+\item Cambiar el valor de la variable \texttt{PS1} ejecutando:\texttt{PS1=``Ingrese el comando a ejecutar: ''}.
+Ejecutar algunos comandos al azar. ¿Qué observa?. Redefinir la variable ejecutando
+\texttt{PS1=``\textbackslash u@\textbackslash H:\textbackslash w \textbackslash \$ ''}.
+En la página de manual de \texttt{bash} busque y lea la sección \texttt{INDICADORES} para entender cómo funciona esta última asignación.
+\item Ejecutar la siguiente secuencia:
 	\begin{itemize}
 	\item \$ echo \$HOME
 	\item \$ cd 
@@ -81,31 +88,35 @@ Ayuda: \texttt{env}
 
 \section*{Comodines}
 \begin{enumerate}
-\item Cree un directorio llamado test e ingrese al mismo. Los incisos siguientes deberán realizarce dentro de dicho directorio. 
+\item Crear un directorio llamado \texttt{test/} e ingresar al mismo.
+Los incisos siguientes deberán realizarce dentro de dicho directorio. 
 \item En un shell bash ejecute los siguientes comandos:
 	\begin{itemize}
-	\item Cree un archivo llamado \texttt{creador.sh} con el siguiente texto:
+	\item Crear un archivo llamado \texttt{creador.sh} con el siguiente texto:
 	\begin{verbatim}
 	#!/bin/bash
+
 	for ((i=0;i<4;i++));do 
 	  for ((j=0;j<10;j++));do 
-		if [ $i -lt 2 ];then 
-		  echo "Archivo $i$j" > Cap$i$j.txt
-		elif [ $i -lt 3 ] ;then 
-		  echo "Otro archivo $i$j" > cap$i$j.txt
-		else
-		  echo "Esto no es un PDF $i$j" > Cap$j.pdf
-		fi
+
+                if [ $i -lt 2 ];then 
+                    echo "Archivo $i$j" > Cap$i$j.txt
+                elif [ $i -lt 3 ] ;then 
+                    echo "Otro archivo $i$j" > cap$i$j.txt
+                else
+                    echo "Esto no es un PDF $i$j" > Cap$j.pdf
+                fi
+
 	  done 
 	done
 	\end{verbatim}
-	\item Agregue permisos de ejecución al archivo: \texttt{chmod 700 creador.sh} (observe los permisos con el comando \texttt{ls -l})
+	\item Asigne permisos de ejecución al archivo: \texttt{chmod u+x creador.sh} (observe los permisos con el comando \texttt{ls -l})
 	\item Liste el contenido del directorio test.
 	\item Ejecute el \texttt{script} recién creado: \texttt{./creador.sh}
 	\item Liste  el contenido del directorio test. ¿Cuál es la función del \texttt{script creador.sh}? 
  	\end{itemize}
 \item Utilice comodines tal que el comando \texttt{ls} liste todos los archivos finalizados en ``.txt''.
-\item Utilice comodines tal que el comando \texttt{ls} liste todos los archivos que comienzan con cap y finalizan en ``.txt''
+\item Utilice comodines tal que el comando \texttt{ls} liste todos los archivos que comienzan con ``cap'' y finalizan en ``.txt''
 \item Utilice comodines tal que el comando \texttt{cat} muestre el contenido de los archivos Cap10.txt a Cap19.tx
 \item Utilice comodines tal que el comando \texttt{cat} muestre el contenido de los archivos cuyo nombre contenga cualquiera de los siguientes números: 03, 04, 05, 23, 24 y 25 
 \item Utilice comodines tal que el comando \texttt{rm} elimine todos los archivos del directorio test \textbf{a excepción} de \texttt{creador.sh}
@@ -115,7 +126,7 @@ Ayuda: \texttt{env}
 \begin{enumerate}
 \item Ejecute el comando \texttt{who}. ¿Qué información obtiene?
 \item El comando \texttt{wc} (del inglés ``word count'') permite con la opción \texttt{-l}  (vea \texttt{man wc}) contar 
-líneas en un archivo. Utilice este comando y \texttt{\textbar} para obtener el número de usuarios que iniciaron 
+líneas en un archivo. Utilice este comando y \texttt{\textbar} para obtenga el número de usuarios que iniciaron 
 sesión en el sistema. 
 \item Ingrese al directorio test creado en la sección ``Comodines'' y vuelva a ejecutar el script \texttt{creador.sh}
 \item Utilizando el comando \texttt{cat} muestre el contenido de los archivos finalizados en txt o pdf. 
