@@ -48,22 +48,20 @@ Visión General del Árbol de Directorios \\
 \maketitle
 \setlength{\parindent}{0pt}
 
-
-
 En este documento se describen las partes importantes de un árbol de
 directorios GNU/Linux estándar, basado en el Estándar de la Jerarquía del
-Sistema de Archivos de Linux (Filesystem Hierarchy Standard, FHS) \texttt{http://www.pathname.com/fhs/}
- Además, se
-explica en líneas generales la forma normal de dividir el árbol de directorios
-en  sistemas de archivos separados con diferentes propósitos y se enuncian los
-motivos para esta particular división. También se describirán otras formas
+Sistema de Archivos de Linux (Filesystem Hierarchy Standard, FHS).
+\footnote{https://wiki.linuxfoundation.org/en/FHS} 
+
+Además, se explica en líneas generales la forma normal de dividir el árbol de directorios
+en sistemas de archivos separados con diferentes propósitos y se enuncian los
+motivos para esta división particular. También se describirán otras formas
 alternativas de realizarla.  
 
-\section{ Información preliminar}
-
+\section{ Introducción}
 Este documento está basado en el \textbf{\textit{Estándar de la Jerarquía del
-Sistema de Archivos de Linux (FHS) versión 2.1}}, el cual intenta
-establecer un estándar para la organización del árbol de directorios en un
+Sistema de Archivos de Linux (FHS) versión 2.3}}, el cual 
+establece un posible estándar para la organización del árbol de directorios en un
 sistema GNU/Linux. Tal estándar tiene la ventaja de facilitar el trabajo de
 escribir o portar software a este sistema operativo y administrar máquinas bajo
 el mismo, puesto que todas las cosas se encontrarán en lugares estandarizados.
@@ -79,7 +77,6 @@ Unix, y viceversa.
 {\bf Este documento no es tan detallado como el FHS. Un administrador de
 sistemas debe leer el FHS completo para entenderlo totalmente.  }
 \vspace*{0.4cm} } }
-
 
 Tampoco se explica, en este documento, todos los archivos en detalle. La
 intención no es describir cada uno de ellos, sino dar una visión general del
@@ -97,7 +94,8 @@ sistemas. Las partes principales son los sistemas de archivos raíz
 diferente. El árbol de directorios se ha diseñado para funcionar bien en una red
 de máquinas GNU/Linux, las cuales pueden compartir algunas partes del sistema de
 archivos sobre un dispositivo de solo-lectura (CD-ROM por ejemplo), o sobre la
-red a través de NFS.  
+red a través de NFS\footnote{Network File System, permite compartir archivo a través
+de la red}.  
 
 
 %<figure id="fstree" float="1"> Partes de un árbol de directorios Unix.
@@ -114,7 +112,10 @@ describen a continuación.
 cada máquina (generalmente se encuentra almacenado en el disco local, aunque
 puede estar también en un disco RAM o en una unidad de red) y contiene los
 archivos que son necesarios para arrancar el sistema y dejarlo en un estado en
-el que se puedan montar los demás sistemas de archivos. El contenido del sistema
+el que se puedan montar\footnote{Acción de integrar un sistema de archivos 
+alojado en un determinado dispositivo dentro del árbol de directorios de un 
+sistema operativo.} los demás sistemas 
+de archivos. El contenido del sistema
 de archivos raíz es por lo tanto suficiente para el nivel de ejecución de
 usuario individual. También contiene herramientas para reparar un sistema dañado
 y para recuperar archivos perdidos desde las copias de seguridad.
@@ -125,8 +126,8 @@ bibliotecas, páginas de manual, y otros archivos que no serán modificados dura
 el funcionamiento normal del sistema. No deben existir archivos bajo /usr que
 sean específicos para una máquina en particular, ni que deban ser modificados
 durante la utilización normal del sistema. Esto permite que los archivos sean
-compartidos a través de la red, lo cual puede ser efectivo en cuanto a costes,
-puesto que se obtiene un ahorro de espacio en disco (/usr puede ocupar
+compartidos a través de la red, lo cual puede ser efectivo en cuanto a costos,
+puesto que se ahorra espacio en disco (/usr puede ocupar
 fácilmente miles de megabytes) y puede facilitar la administración, ya que sólo
 el /usr maestro necesita ser modificado cuando actualizamos una aplicación, y no
 en cada máquina por separado. Aún cuando el sistema de archivos resida en el
@@ -135,18 +136,18 @@ riesgo de que se corrompa durante un fallo.  }
 
 \item{  \textbf{El sistema de archivos \texttt{/var/}}  contiene
 archivos que sí cambian durante el funcionamiento normal del sistema, tales como
-directorios spool ( para correo, noticias (news), impresoras, etc), archivos de
-log, páginas de manual formateadas y archivos temporales.  Tradicionalmente,
+directorios spool ( para correo, noticias (news), impresoras, etc.), archivos de
+log, páginas de manual formateadas y archivos temporales. Tradicionalmente,
 todo en \texttt{/var} es algo que debería estar en
 \texttt{/usr}, pero que haría imposible montar dicho
 sistema de archivos como solo lectura. }
 
 \item{ \textbf{El sistema de archivos \texttt{/home/}}  contiene los directorios
-específicos de los usuarios, P.Ej., todos los datos reales del sistema. Separar
+específicos de los usuarios, estos son los datos reales del sistema. Separar
 los directorios home a su propio árbol de directorios o sistema de archivos hace
 más fácil la tarea de realizar copias de seguridad; los demás sistemas de
-archivos no necesitan que se les haga copias de seguridad, o al menos no tan
-frecuentemente, puesto que  rara vez cambian. Un gran directorio /home puede ser
+archivos no necesitan que se les haga copias de seguridad con mucha frecuencia, 
+ya que rara vez cambian. Un gran directorio /home puede ser
 dividido en varios sistemas de archivos, lo cual requiere agregar niveles de
 nombres extra, como por ejemplo, /home/estudiantes y /home/staff.
 }
@@ -154,47 +155,52 @@ nombres extra, como por ejemplo, /home/estudiantes y /home/staff.
 
 Si bien las diferentes partes del árbol de directorios se han
 llamado hasta ahora sistemas de archivos, no se requiere necesariamente que se
-encuentren en particiones separadas. Se pueden mantener fácilmente en una única
+encuentren en particiones separadas. Se pueden mantener en una única
 partición si se trata de un sistema pequeño de un solo usuario, y este sólo
 desea mantener las cosas de manera simple. El árbol de directorios puede también
 ser dividido en  diferentes particiones dependiendo del tamaño de los discos, y
-de como el espacio se destine a los distintos propósitos. Lo importante, no
-obstante, es que todos los nombres estándar funcionen; Aún cuando,
+de cómo el espacio se destine a los distintos propósitos. Lo importante, no
+obstante, es que todos los nombres estándar funcionen; aún cuando,
 digamos,\texttt{/var} y \texttt{/usr} se encuentren de
 hecho en la misma partición, los nombres \texttt{/usr/lib/libc.a} y
 \texttt{/var/log/messages} deben funcionar. Incluso si, por ejemplo,
 moviéramos los archivos que se encuentren en \texttt{/var} dentro de
 \texttt{/usr/var}, y hagamos a \texttt{/var} un enlace
-simbólico a \texttt{/usr/var}.
+simbólico\footnote{Un enlace simbólico, en sistemas unix o linux, indica 
+un acceso a un directorio o archivo que se encuentra en un lugar distinto
+dentro de la estructura de directorios. Una modificación realizada 
+utilizando este enlace se reflejará en el original; pero, por el contrario, 
+si se elimina el enlace, no se eliminará el auténtico.} a \texttt{/usr/var}.
 
  La estructura del sistema de archivos en UNIX agrupa a los archivos de
 acuerdo a su propósito. Por lo tanto, todos los comandos están en un mismo
 lugar, todos los archivos de datos en otro, la documentación en un tercer lugar,
 etc.  Otra alternativa podría ser la de agrupar los archivos de acuerdo al
-programa al que pertenezcan, P.Ej., todos los archivos de Emacs podrían
-colocarse en un mismo directorio, todos los de Tex en otro, etc. El problema con
-esta última aproximación es que dificulta compartir archivos (el directorio del
+programa al que pertenezcan, P.Ej., todos los archivos de Vim podrían
+colocarse en un mismo directorio, todos los de Firefox en otro, etc. El problema con
+esta última organización es que dificulta compartir archivos (el directorio del
 programa frecuentemente contiene archivos no cambiantes y compartibles, y
-cambiantes y no compartibles), y algunas veces incluso encontrar archivos (por
-ejemplo, las páginas de manual se encuentran ubicadas en una gran cantidad de
+cambiantes y no compartibles), y algunas veces incluso encontrar archivos (considere 
+por ejemplo, las páginas de manual se encuentran ubicadas en una gran cantidad de
 lugares, y hacer que los programas que leen tales páginas de manual las
-encuentren sería una pesadilla de mantenimiento).  
-
-
+encuentren sería una pesadilla de mantenimiento, piense en las variables de entorno
+PATH y MANPATH).  
 
 
 \section{ El sistema de archivos raíz}
 
  El sistema de archivos raíz debería ser pequeño, ya que residen archivos
 muy críticos. Si el sistema de archivos es pequeño y rara vez es modificado,
-tiene más posibilidades de no sufrir daños. Un sistema de archivos raíz dañado,
+tiene menos posibilidades de sufrir daños. Un sistema de archivos raíz dañado,
 generalmente significa que el sistema no podrá arrancar a no ser que se tomen
-medidas especiales (por ej., tal vez pueda arrancar desde un disquete de
+medidas especiales (P.Ej., tal vez pueda arrancar desde un CD-ROM o pendrive de
 emergencia), por lo que no se desea correr el riesgo.  
 
- El directorio raíz no contiene generalmente archivos, exceptuando quizás
+ El directorio\footnote{Nótese que se está hablando del directorio y no del 
+sistema de archivos en su totalidad como en el párrafo anterior.} raíz no 
+contiene generalmente archivos, exceptuando quizás
 la imagen del núcleo estándar, normalmente llamada
-\texttt{/vmlinuz}.  Todos los demás archivos se encuentran en
+\texttt{/vmlinuz}. Todos los demás archivos se encuentran en
 subdirectorios bajo el sistema de archivos raíz:
 
 \begin{itemize} 
@@ -206,41 +212,34 @@ subdirectorios bajo el sistema de archivos raíz:
 
 	\item \textbf{\texttt{/sbin}}
 	 Igual que \texttt{/bin}, pero aquí los
-	comandos 	no están destinados a los usuarios normales,aunque
+	comandos no están destinados a los usuarios normales, aunque
 	pueden utilizarse en caso de que sea necesario y el sistema lo permita.
-	\texttt{/sbin} no se encuentra en las rutas de acceso por
-	defecto de los usuarios normales. Sí se encuentra definido en la ruta
-	por 		defecto para el usuario root.
+	\texttt{/sbin} no se encuentra en las rutas de acceso (PATH) de manera 
+	predeterminada de los usuarios normales. Por el contrario, sí se 
+	encuentra definido en la ruta predeterminada para el usuario root.
 	
-
-
 	\item \textbf{\texttt{/etc}}
-	 Archivos de configuración específicos de la máquina.
-	
-
+	 Archivos de configuración específicos de la máquina (P.Ej., la base
+	de datos de usuarios locales \texttt{/etc/passwd}.
 	
 	\item \textbf{\texttt{/root}}
-	 El directorio local para el usuario root.  normalmente
+	 El directorio local o \texttt{home} para el usuario root.  Normalmente
 	los demás usuarios del sistema no pueden acceder a él.
 	
-
-
 	\item \textbf{\texttt{/lib}}
-	 Librerías compartidas necesarias para los programas que
+	 Bibliotecas compartidas necesarias para los programas que
 	se encuentran en el sistema de archivos raíz.
 	
-
-
 	\item \textbf{\texttt{/lib/modules}}
 	 Módulos cargables del núcleo, especialmente
 	aquellos que se necesitan para arrancar el sistema tras recuperarse
-	de algún incidente (e.g., controladores de red y sistemas de
+	de algún incidente (P.Ej., controladores de red y sistemas de
 	archivos).
 
-
 	\item \textbf{\texttt{/dev}}
-	 Archivos de dispositivos.
-
+	 Archivos de dispositivos (P.Ej., /dev/sda puede representar al primer
+	disco local del sistema, estos nombres pueden variar de una distribución
+	a otra).
 
 	\item \textbf{\texttt{/tmp}}
 	 Archivos temporales. Los programas que se ejecuten
@@ -250,37 +249,29 @@ subdirectorios bajo el sistema de archivos raíz:
 	partición o disco con más espacio. Frecuentemente /tmp es un enlace
 	simbólico para /var/tmp.  
 
-
 	
 	\item \textbf{\texttt{/boot}}
-	 Archivos utilizados por el cargador de arranque, por
-	ejemplo, GRUB o LILO. Las imágenes del núcleo se guardan con
+	 Archivos utilizados por el gestor de arranque, por
+	ejemplo, GRUB o LILO. Las imágenes del núcleo o kernel se guardan con
 	frecuencia en este directorio, en vez de en el directorio raíz. Si
-	existen 		muchas imágenes del núcleo,el directorio puede
-	llegar a crecer mucho, por 		lo que es mejor mantener este
-	directorio en un sistema de archivos 			separado. Otra
-	razón puede ser la de asegurarse de que las imágenes del núcleo se
-	encuentren dentro de los primeros 1024 cilindros de un disco IDE.
-	
-
+	existen	muchas imágenes del núcleo, el directorio puede
+	llegar a crecer mucho, por lo que es mejor mantener este
+	directorio en un sistema de archivos separado. 
 	
 	\item \textbf{\texttt{/mnt}}
 	 Punto de montaje temporal para los sistemas de archivos
-	montados por el administrador del sistema. Se supone que los programas
+	montados manualmente por el administrador del sistema. Se supone que los programas
 	no deben montar en \texttt{/mnt} automáticamente. Es posible
 	que \texttt{/mnt} se encuentre dividido en subdirectorios
-	(por ej., 			\texttt{/mnt/dos} puede ser
-	el punto de montaje para la unidad de disquete con sistema de archivos
-	MS-DOS, y \texttt{/mnt/extra} puede llegar a ser lo mismo
-	con un sistema de archivos ext2).  
-
+	(P.Ej.,\texttt{/mnt/usb0} puede ser
+	el punto de montaje para los pendrive con sistema de archivos
+	FAT, y \texttt{/mnt/cdrom} puede llegar a serlo para CD-ROM con sistemas
+	de archivo ISO9669).  
 	
 	\item \textbf{\texttt{/proc}
 	\texttt{/usr} \texttt{/var}
-	\texttt{/home} }  Puntos de
+	\texttt{/home} } Son Puntos de
 	montaje para otros sistemas de archivos.
-	
-
  \end{itemize}  
 
 
@@ -417,7 +408,7 @@ la página de manual del
 	\texttt{/etc/csh.cshrc}}  Archivos
 	que se ejecutan en el momento de iniciar los intérpretes de comandos C o
 	Bourne. Permite al administrador del sistema establecer parámetros
-	globales por defecto para todos los usuarios. Se puede encontrar
+	globales de manera predeterminada para todos los usuarios. Se puede encontrar
 	información adicional 	en las páginas de manual para los respectivos
 	intérpretes de comandos.  
 
@@ -439,7 +430,7 @@ la página de manual del
 	\item \textbf{\texttt{/etc/shells}}
 	 Listado de intérpretes de comandos admitidos.  El
 	comando \texttt{\textbf{chsh}} permite a los usuarios cambiar su
-	intérprete de comandos por defecto a otro que se encuentre listado en
+	intérprete de comandos de manera predeterminada a otro que se encuentre listado en
 	este archivo. \texttt{\textbf{Ftpd}}, el proceso servidor que
 	proporciona 	servicios FTP en una máquina, comprueba que los
 	intérpretes de comandos 		de los usuarios estén listados
