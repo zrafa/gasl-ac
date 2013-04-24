@@ -48,15 +48,14 @@ Visión General del Árbol de Directorios \\
 \maketitle
 \setlength{\parindent}{0pt}
 
-En este documento se describen las partes importantes de un árbol de
+En este documento se describen algunas partes importantes de un árbol de
 directorios GNU/Linux estándar, basado en el Estándar de la Jerarquía del
 Sistema de Archivos de Linux (Filesystem Hierarchy Standard, FHS).
 \footnote{https://wiki.linuxfoundation.org/en/FHS} 
 
 Además, se explica en líneas generales la forma normal de dividir el árbol de directorios
 en sistemas de archivos separados con diferentes propósitos y se enuncian los
-motivos para esta división particular. También se describirán otras formas
-alternativas de realizarla.  
+motivos para esta división particular. 
 
 \section{ Introducción}
 Este documento está basado en el \textbf{\textit{Estándar de la Jerarquía del
@@ -166,7 +165,7 @@ hecho en la misma partición, los nombres \texttt{/usr/lib/libc.a} y
 \texttt{/var/log/messages} deben funcionar. Incluso si, por ejemplo,
 moviéramos los archivos que se encuentren en \texttt{/var} dentro de
 \texttt{/usr/var}, y hagamos a \texttt{/var} un enlace
-simbólico\footnote{Un enlace simbólico, en sistemas unix o linux, indica 
+simbólico\footnote{Un enlace simbólico, en sistemas unix o Linux, indica 
 un acceso a un directorio o archivo que se encuentra en un lugar distinto
 dentro de la estructura de directorios. Una modificación realizada 
 utilizando este enlace se reflejará en el original; pero, por el contrario, 
@@ -270,7 +269,7 @@ subdirectorios bajo el sistema de archivos raíz:
 	
 	\item \textbf{\texttt{/proc}
 	\texttt{/usr} \texttt{/var}
-	\texttt{/home} } Son Puntos de
+	\texttt{/home} } Son puntos de
 	montaje para otros sistemas de archivos.
  \end{itemize}  
 
@@ -280,204 +279,148 @@ subdirectorios bajo el sistema de archivos raíz:
 \section{ El directorio /etc}
 
  El directorio \texttt{/etc} contiene gran cantidad de
-archivos. Algunos de ellos se describen aquí, mas abajo. Para otros archivos, se
-debe determinar a que programa pertenecen y leer la página de manual
-correspondiente.  Muchos archivos de configuración de red se encuentran también
-en \texttt{/etc}, y se encuentran descritos en La Guía para
-Administradores de Redes en Linux.  
+archivos de configuración del sistema. Algunos de ellos se describen aquí. 
+Para otros archivos, se
+debe determinar a qué programa pertenecen y leer la página de manual
+correspondiente.  
 
 \begin{itemize} 
 
 \item \textbf{\texttt{/etc/rc} o
 \texttt{/etc/rc.d} o \texttt{/etc/rc?.d}}
- Scripts o directorios de scripts que se ejecutan durante el
-arranque del sistema o  al cambiar el nivel de ejecución. Se puede
-encontrar información adicional en la documentación dedicada a Init.
-
+Scripts\footnote{Programas escritos en el lenguaje de programación definido por 
+un shell, por ejemplo, Bash} o 
+directorios de scripts que se ejecutan durante el
+arranque del sistema o al cambiar el nivel de ejecución. Se puede
+encontrar información adicional en la documentación dedicada a Init (\texttt{man init} y 
+\texttt{man inittab}).
 
 \item \textbf{\texttt{/etc/passwd}}
- La base de datos de los usuarios, que incluye campos como el
-nombre de usuario, nombre real, directorio home, password encriptada y otra
+ Es la base de datos de los usuarios locales, que incluye campos como el
+nombre de usuario, nombre real, identificador de usuario (UID), directorio home, y otra
 información acerca de cada usuario.  El formato de este archivo se encuentra
-documentado en la página de manual del comando \texttt{\textbf{passwd}}. 
-	 Sin embargo, hoy día es muy común encontrar las contraseñas encriptadas
-	 en \texttt{/etc/shadow}. Esto significa que en tal caso,
-	 los 	 	 datos de los usuarios excepto la password encriptada se
-	 encontrarían 	 		 almacenados en
-	 \texttt{passwd}.  
+documentado en la página del manual \texttt{\textbf{passwd}} dentro
+de la sección cinco\footnote{\texttt{man passwd} hará referencia a la sección uno
+del manual, mostrando el manual para el comando utilizado para cambiar una contraseña} 
+(\texttt{man 5 passwd}). 
 
-	\item \textbf{\texttt{/etc/fdprm}}
-	 Tabla de parámetros para los discos flexibles.  Describe
-	cómo son los diferentes formatos de estos discos.  Este archivo es
-	utilizado por el programa \texttt{\textbf{setfdprm}}.  Se puede
-	encontrar información adicional en la página de manual de
-	\texttt{\textbf{setfdprm}}.  
+\item  \textbf{\texttt{/etc/shadow}}
+ En este archivo se encuentra la información de las contraseñas de usuarios locales, junto 
+a información relativa a dichas contraseñas, como por ejemplo fecha del último cambio
+de contraseña (\texttt{man shadow}). No debe poder ser leído por nadie a excepción 
+del usuario root. De esta manera se dificulta el proceso de descifrado de las contraseñas 
+de los usuarios (si fuera accesible por cualquier usuario un ataque por fuerza bruta podría
+revelar una o más contraseñas de usuarios).
 
-	\item \textbf{\texttt{/etc/fstab}}
-	 Lista los sistemas de archivos montados automáticamente
-	en 		el arranque del sistema por el comando \texttt{\textbf{mount
-	-a}} (en \texttt{/etc/rc} o archivo de inicio
-	equivalente). En 			Linux, este archivo también
-	contiene información acerca de áreas de swap 		utilizadas
-	automáticamente por swapon -a. Se puede encontrar información
-	adicional en 
-%<xref linkend="mount-and-umount"/>, 
-la página de manual del
-	comando \texttt{\textbf{mount}}.  
+\item \textbf{\texttt{/etc/group}}
+ Este archivo es similar a \texttt{/etc/passwd} , pero describe grupos locales
+de usuarios. Se puede encontrar información adicional en la página de manual 
+\texttt{\textbf{group}} (\texttt{man shadow}).  
 
+\item \textbf{\texttt{/etc/fstab}}
+   Lista los sistemas de archivos montados automáticamente
+durante el arranque del sistema por el comando \texttt{\textbf{mount
+-a}} (en \texttt{/etc/rc} o archivo de inicio
+equivalente). En Linux, este archivo también
+contiene información acerca de áreas de swap utilizadas
+automáticamente por \texttt{\textbf{swapon -a}} (\texttt{man fstab}).  
+
+\item \textbf{\texttt{/etc/mtab}}
+Contiene un listado de los sistemas de archivos
+actualmente montados. Se establece Inicialmente por los scripts del
+arranque del sistema, y se actualiza automáticamente por el comando
+\texttt{\textbf{mount}}. Se utiliza cuando se necesita un listado de
+los sistemas de archivos que estén actualmente montados (por ejemplo por
+el comando \texttt{df}).  
+
+\item \textbf{\texttt{/etc/inittab}}
+Archivo de configuración para el proceso init \texttt{man inittab}).
 	
-	\item \textbf{\texttt{/etc/group}}
-	 Este archivo es similar a
-	\texttt{/etc/passwd} , pero describe grupos en vez de
-	usuarios. Se puede encontrar información 		adicional en la
-	página de manual del comando \texttt{\textbf{group}}.
+\item \textbf{\texttt{/etc/issue}}
+ Archivo de texto que utiliza \texttt{\textbf{getty}} como
+salida antes de que el sistema pida el nombre de usuario. Usualmente
+contiene una descripción corta o mensaje de bienvenida al sistema.  El
+contenido es establecido por el administrador del sistema. También suele
+utilizarce en la configuración de otros programas que permiten inicios 
+de sessión como el servidor Open-SSH (vea \texttt{man sshd\_config}, 
+opción ``Banner''). 
 	
+\item \textbf{\texttt{/etc/motd}}
+ Contiene el mensaje del día, que se emite
+automáticamente tras iniciar una sesión con éxito. El
+contenido es definido por el administrador del
+sistema. Con frecuencia se utiliza para dar información a todos
+los usuarios, como por ejemplo, mensajes de advertencias acerca de la
+hora en que está planeada una parada técnica del servidor.
 
-
-	\item \textbf{\texttt{/etc/inittab}}
-	 Archivo de configuración para init.
-	
-
-
-	\item \textbf{\texttt{/etc/issue}}
-	 Archivos que utiliza \texttt{\textbf{getty}} como
-	salida antes de que el sistema pida el nombre de usuario. Usualmente
-	contiene una descripción corta o mensaje de bienvenida al sistema.  El
-	contenido es establecido por el administrador del sistema.
-	
-
-
-	\item \textbf{\texttt{/etc/magic}}
-	 El archivo de configuración para el programa
-	\texttt{\textbf{file}}. Contiene las descripciones de varios formatos
-	de archivos que utiliza file para determinar el tipo de archivo. Se
-	puede encontrar información adicional en las páginas de manual
-	para \texttt{magic} y \texttt{\textbf{file}}.
-	
-
-
-	\item \textbf{\texttt{/etc/motd}}
-	 Contiene el mensaje del día, que se emite
-	automáticamente  		tras iniciar una sesión con éxito. El
-	contenido 	es definido por el 		administrador del
-	sistema. Con frecuencia se utiliza para dar información a 	todos
-	los usuarios, como por ejemplo, mensajes de advertencias acerca de la
-	hora en que está planeada una parada técnica del servidor.
-	
-
-
-	\item \textbf{\texttt{/etc/mtab}}
-	 Contiene un listado de los sistemas de archivos
-	actualmente montados. Se establece Inicialmente por los scripts del
-	arranque del sistema, y se actualiza automáticamente por el comando
-	\texttt{\textbf{mount}}. Se utiliza cuando se necesita un listado de
-	los sistemas de archivos que estén actualmente montados (por ejemplo por
-	el comando df).  
-
-
-	\item \textbf{\texttt{/etc/shadow}}
-	 Archivo de contraseñas ocultas en sistemas donde se
-	encuentre instalado el software de contraseñas ocultas.  Al utilizar
-	contraseñas ocultas la password encriptada de cada usuario es eliminada
-	de \texttt{/etc/passwd} y colocada en el archivo
-	\texttt{/etc/shadow}; este último no 		puede
-	ser leído por nadie a excepción del usuario root. De esta manera se
-	dificulta el proceso de descifrado de las contraseñas de los usuarios.
-	Si 		la distribución GNU/Linux que estemos utilizando nos
-	permite elegir 			utilizar o no contraseñas ocultas
-	(muchas lo hacen), está altamente 			recomendado
-	hacerlo.  
-
-
-	\item \textbf{\texttt{/etc/login.defs}}
-	 Archivo de configuración para el comando login.  El
-	archivo \texttt{login.defs} se describe en el capítulo 5.
+\item \textbf{\texttt{/etc/magic}}
+El archivo de configuración para el programa
+\texttt{\textbf{file}}. Contiene las descripciones de varios formatos
+de archivos que utiliza file para determinar el tipo de archivo. Se
+puede encontrar información adicional en las páginas de manual
+para \texttt{magic} y \texttt{\textbf{file}}.
 	
 
 	
-	\item \textbf{\texttt{/etc/printcap}}
-	 Similar a \texttt{/etc/termcap}, con la
-	excepción de que está destinado a la configuración de colas de
-	impresión. La sintaxis también es diferente.  printcap se describe en el
-	capitulo 5.   
-	
-
-	
-	\item \textbf{\texttt{/etc/profile},
-	\texttt{/etc/csh.login},
-	\texttt{/etc/csh.cshrc}}  Archivos
-	que se ejecutan en el momento de iniciar los intérpretes de comandos C o
-	Bourne. Permite al administrador del sistema establecer parámetros
-	globales de manera predeterminada para todos los usuarios. Se puede encontrar
-	información adicional 	en las páginas de manual para los respectivos
-	intérpretes de comandos.  
+\item \textbf{\texttt{/etc/profile},
+\texttt{/etc/csh.login},
+\texttt{/etc/csh.cshrc}}  Archivos
+que se ejecutan en el momento de iniciar los intérpretes de comandos C o
+Bourne. Permite al administrador del sistema establecer parámetros
+globales de manera predeterminada para todos los usuarios. Se puede encontrar
+información adicional en las páginas de manual para los respectivos
+intérpretes de comandos.  
 
 
+\item \textbf{\texttt{/etc/securetty}}
+ Identifica las terminales seguras, esto es, las
+terminales por las cuales el usuario root tiene permitido iniciar una
+sesión. Típicamente sólo las consolas virtuales se encuentran listadas
+en este archivo, con lo que se hace imposible (o al menos mas difícil)
+obtener privilegios de superusuario accediendo a través de un módem o la
+red. No se debe permitir iniciar una sesión como usuario root desde la
+red. Es preferible iniciar una sesión con un usuario sin privilegios y
+utilizar después \texttt{\textbf{su}} o \texttt{\textbf{sudo}} para
+obtener privilegios de superusuario.  
 
-	\item \textbf{\texttt{/etc/securetty}}
-	 Identifica las terminales seguras, esto es, las
-	terminales por las cuales el usuario root tiene permitido iniciar una
-	sesión. Típicamente sólo las consolas virtuales se encuentran listadas
-	en este archivo, con lo que se hace imposible (o al menos mas difícil)
-	obtener privilegios de superusuario accediendo a través de un módem o la
-	red. No se debe permitir iniciar una sesión como usuario root desde la
-	red. Es preferible iniciar una sesión con un usuario sin privilegios y
-	utilizar después \texttt{\textbf{su}} o \texttt{\textbf{sudo}} para
-	obtener privilegios de superusuario.  
+\item \textbf{\texttt{/etc/shells}}
+ Listado de intérpretes de comandos admitidos.  El
+comando \texttt{\textbf{chsh}} permite a los usuarios cambiar su
+intérprete de comandos predeterminado a otro que se encuentre listado en
+este archivo. Relacionado a este archivo, \texttt{\textbf{ftpd}}, el 
+proceso servidor que brinda servicios de transferencias de archivos (FTP), 
+comprueba que los intérpretes de comandos de los usuarios estén listados
+en \texttt{/etc/shells}, caso contrario el servicio es denegado.  
 
-
-
-	\item \textbf{\texttt{/etc/shells}}
-	 Listado de intérpretes de comandos admitidos.  El
-	comando \texttt{\textbf{chsh}} permite a los usuarios cambiar su
-	intérprete de comandos de manera predeterminada a otro que se encuentre listado en
-	este archivo. \texttt{\textbf{Ftpd}}, el proceso servidor que
-	proporciona 	servicios FTP en una máquina, comprueba que los
-	intérpretes de comandos 		de los usuarios estén listados
-	en \texttt{/etc/shells} y no 		permite que
-	nadie inicie una sesión si el intérprete de comandos no se encuentra en
-	dicho listado.  
-
-	
-	\item \textbf{\texttt{/etc/termcap}}
-	 La base de datos de capacidades del terminal. Describe
-	las \textit{secuencias de escape} por medio de 		las
-	cuales se pueden controlar diversos tipos de terminales. Los programas
-	se escriben para que, en lugar de generar directamente una secuencia de
-	escape que solo funcione en un tipo de terminal, busquen la secuencia
-	correcta para hacer lo que necesiten en
-	\texttt{/etc/termcap}. 		Como resultado, la
-	mayoría de los programas trabajan con la mayoría de los
-	tipos de terminales existentes. Se puede encontrar información adicional
-	en 	las páginas de manual de termcap, curs\_termcap, y de terminfo.
-	
-
- \end{itemize} 
+\end{itemize} 
     
-
 
 
 \section{ El directorio /dev}
 
 El directorio \texttt{/dev} contiene los archivos de
-dispositivos especiales para todos los dispositivos hardware. Los archivos de
-dispositivos se nombran utilizando convenciones especiales; y se describen
-con mayor detalle 
-en el 
-%<xref linkend="device-list"/>
-. Los archivos de dispositivos se crean durante
-la instalación del sistema. Y, si deben ser creados manualmente, también pueden ser creados con el script
-\texttt{\textbf{/dev/MAKEDEV}}. \texttt{\textbf{/dev/MAKEDEV.local}} es un
-script que puede ser escrito por el administrador del sistema, para crear archivos de
-dispositivos locales o enlaces (es decir, aquellos que no son parte del
-\texttt{\textbf{MAKEDEV}} estándar, como los archivos de dispositivos para algún
-controlador de dispositivo no estándar).  
+dispositivos especiales para muchos dispositivos de hardware. Los archivos de
+dispositivos se nombran utilizando convenciones especiales.  Algunos de estos
+archivos se crean durante la instalación del sistema, otros son creados 
+dinámicamente por el sistema udev (\texttt{man udev}) y, en casos extraordinarios,
+pueden ser creados manualmente por el administrador de sistemas.
 
+El sistema udev (y su correspondiente demonio \texttt{udevd}) crean archivos de
+dispositivos basados en eventos que recibe del kernel, a medida que se agregan 
+o remueven dispositivos del sistema. 
 
-
+\fcolorbox{black}{grey}{
+\parbox[t]{1.0\linewidth}{ \vspace*{0.4cm}
+{\bf Algunos ejemplos de archivos de dispositivo:}
+\begin{itemize}
+\item \texttt{/dev/sda} primer disco SCSI del sistema. Mientras que \texttt{/dev/sda1} 
+es el archivo que representa a la primer partición del disco. 
+\item \texttt{/dev/tty?} (de 0 a 63) son los archivos que representan a las terminales 
+del sistema. 
+\end{itemize}
+\vspace*{0.4cm} } }
 
 \section{ El sistema de archivos /usr}
-
 El sistema de archivos \texttt{/usr} es con frecuencia grande,
 debido a que todos los programas están instalados allí. Normalmente, todos los
 archivos en \texttt{/usr} provienen de la distribución Linux que
@@ -556,6 +499,18 @@ Ficheros).
     computadoras. 
 
 	\begin{itemize}  
+	\item 
+	\textbf{\texttt{/var/log}} 
+
+	  Archivos de log (en español bitácora) de diferentes
+	 programas, especialmente de \texttt{\textbf{login}}
+	 (\texttt{/var/log/wtmp}, el cual registra todos los inicios
+	 y cierres de sesión en el sistema) y de \texttt{\textbf{syslog}}
+	 (\texttt{/var/log/messages}, en donde se almacenan todos
+	 los mensajes del núcleo y de los programas del sistema). Los Archivos
+	 dentro del directorio \texttt{/var/log} pueden crecer
+	 indefinidamente, por lo que se requiere una limpieza a intervalos
+	 regulares.   
 
 	\item 
         
@@ -606,7 +561,6 @@ Ficheros).
 	\texttt{/var/lock}.  
 
 	\item 
-        
 	\textbf{\texttt{/var/lock}} 
         
 	 Archivos de bloqueo. Muchos programas siguen una
@@ -616,26 +570,13 @@ Ficheros).
 	bloqueo y no intentarán acceder al dispositivo o archivo.
 	  
 
-	\item 
-
-	\textbf{\texttt{/var/log}} 
-
-	  Archivos de log (en español bitácora) de diferentes
-	 programas, especialmente de \texttt{\textbf{login}}
-	 (\texttt{/var/log/wtmp}, el cual registra todos los inicios
-	 y cierres de sesión en el sistema) y de \texttt{\textbf{syslog}}
-	 (\texttt{/var/log/messages}, en donde se almacenan todos
-	 los mensajes del núcleo y de los programas del sistema). Los Archivos
-	 dentro del directorio \texttt{/var/log} pueden crecer
-	 indefinidamente, por lo que se requiere una limpieza a intervalos
-	 regulares.   
 
 	\item 
         
 	\textbf{\texttt{/var/mail}} 
         
 	 Esta es la ubicación definida por el FHS (Estándar de la
-	jerarquía del sistema de ficheros) para almacenar los archivos de buzón
+	jerarquía del sistema de archivos) para almacenar los archivos de buzón
 	de correos de los usuarios. Dependiendo de en qué 		grado su
 	distribución cumpla con el FHS, estos archivos pueden 	llegar a
 	estar ubicados en \texttt{/var/spool/mail}.
@@ -654,7 +595,6 @@ Ficheros).
 	\item 
         
 	\textbf{\texttt{/var/spool}} 
-        
 	 Contiene directorios para las noticias, el correo, colas
 	de impresión, y otros programas que necesiten trabajar con colas.
 	Cada spool diferente tiene su propio directorio debajo de
@@ -667,7 +607,6 @@ Ficheros).
 	\item 
         
 	\textbf{\texttt{/var/tmp}} 
-        
 	 Archivos temporales grandes o que necesitan existir por
 	un tiempo más amplio de lo permitido en \texttt{/tmp}.  (De
 	todas formas, el administrador del sistema puede no permitir muchos
@@ -688,105 +627,48 @@ página de manual de proc.
 	\begin{itemize} 
 	
 	\item
-
 	\textbf{\texttt{/proc/1}}
-
-	 Un directorio con información acerca del proceso número
-	1. 	Cada proceso tiene un directorio debajo de /proc cuyo nombre es
-	el número de identificación del proceso (PID).  
+	 Un directorio con información acerca del proceso con identificador
+	número uno, init. Cada proceso tiene un directorio debajo de /proc 
+        cuyo nombre es el número de identificación del proceso (PID).  
 	
 	
 	\item
-	
 	\textbf{\texttt{/proc/cpuinfo}}
-	
 	 Información acerca del procesador: su tipo, marca,
-	modelo, 	rendimiento, etc.  
+	modelo,	rendimiento, etc.  
 	
+	\item \textbf{\texttt{/proc/meminfo}}
+	 Información acerca de la memoria
+	física y su utilización. 
 	
 	\item
-	
 	\textbf{\texttt{/proc/devices}}
-	
 	 Lista de controladores de dispositivos configurados
 	dentro 	del núcleo que está en ejecución.
-	
-	
-	\item \textbf{\texttt{/proc/dma}}
-	 Muestra los canales DMA que están siendo utilizados.
-	
 	
 	\item
 	\textbf{\texttt{/proc/filesystems}}
 	 Lista los sistemas de archivos que están soportados por
 	el kernel.  
 	
-	\item
-	\textbf{\texttt{/proc/interrupts}}
-	 Muestra la interrupciones que están siendo utilizadas, y
-	cuantas de cada tipo ha habido.  
-	
-	\item \textbf{\texttt{/proc/ioports}}
-	 Información de los puertos de E/S que se estén
-	utilizando 	en cada momento.  
-	
-	\item \textbf{\texttt{/proc/kcore}}
-	 Es una imagen de la memoria física del sistema. Este
-	archivo tiene exactamente el mismo tamaño que la memoria física, pero no
-	existe en memoria como el resto de los archivos bajo /proc, sino que se
-	genera en el momento en que un programa accede a este. (Recuerde: a
-	menos que copie este archivo en otro lugar, nada bajo
-	\texttt{/proc} usa espacio en disco).
-	
-	
-	\item
-	
-	\textbf{\texttt{/proc/kmsg}}
-	
-	 Salida de los mensajes emitidos por el kernel. Estos
-	también son redirigidos hacia \texttt{\textbf{syslog}}.
-		
-	
-
-	\item 
-
-	\textbf{\texttt{/proc/ksyms}}
-	 Tabla de símbolos para el
-	kernel.
 	
 	\item \textbf{\texttt{/proc/loadavg}}
 	 El nivel medio de carga del sistema; tres indicadores
 	significativos sobre la carga de trabajo del sistema en cada
-	momento.
+	momento. Dichos valores son utilizados por varios comandos, como por 
+	ejemplo \texttt{uptime} y \texttt{top}. 
 	
-	\item \textbf{\texttt{/proc/meminfo}}
-	 Información acerca de la utilización de la memoria
-	física y 	del archivo de
-	intercambio.
 	
 	\item
-	
 	\textbf{\texttt{/proc/modules}}
-	
 	 Indica los módulos del núcleo que han sido cargados
-	hasta el 	momento.
+	hasta el momento.
 	
 
 	\item \textbf{\texttt{/proc/net}}         
-    
 	 Información acerca del estado de los protocolos de
 	red.
-	
-	\item
-	
-	\textbf{\texttt{/proc/self}}
-	
-	 Un enlace simbólico al directorio de proceso del
-	programa que esté observando a \texttt{/proc}. Cuando dos
-	procesos observan a \texttt{/proc}, obtienen diferentes
-	enlaces. Esto es principalmente una conveniencia para que sea fácil para
-	los programas acceder a su directorio de
-	procesos.
 	
 	\item \textbf{\texttt{/proc/stat}}
 	 Varias estadísticas acerca del sistema, tales como el
@@ -809,12 +691,9 @@ página de manual de proc.
     solamente leen los archivos anteriores y les dan un formato distinto para
     que la información sea fácil de entender. Por ejemplo, el comando
     \texttt{\textbf{free}}, lee el archivo \texttt{/proc/meminfo}
-    y convierte las cantidades dadas en bytes a kilobytes (además de agregar un
-    poco más de información extra). 
-
-
-
-
+    y convierte las cantidades dadas en bytes a kilobytes (además de agregar 
+    información extra). 
+\include{licGASL}
 
 \end{document}
 
