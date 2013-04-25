@@ -7,6 +7,7 @@ all:
 	pdflatex apunte-shell.tex
 	pdflatex tp01.tex
 	pdflatex tp02.tex
+	pdflatex tp03.tex
 
 clean:
 	rm *pdf *aux *log

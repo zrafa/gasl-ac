@@ -54,82 +54,112 @@ Trabajo práctico N 3 \\
 Utilice la redirección y el editor \texttt{vi} para guardar las salidas y editar los resultados 
 en un archivo llamado trabajo-practico-3.txt . En el archivo de resolución indique su nombre y apellido, y el número de ejercicio a resolver, junto a la salida incluyendo el comando que ejecuta. }
 
-Ejercicio 1.
-Sobre el directorio /etc
-- ¿Qué tipo de archivos hay en ese directorio?
+\section{Ejercicio 1.}
 
-El archivo /etc/passwd contiene el listado de usuarios del sistema.
+\begin{enumerate}
+\item Sobre el directorio /etc
+\begin{itemize}
+\item - ¿Qué tipo de archivos hay en ese directorio?
+\end{itemize}
+
+\item El archivo /etc/passwd contiene el listado de usuarios del sistema.
 Cada linea de texto en ese archivo define los detalles de un unico usuario.
 
-- Utilice cat para visualizar el contenido de /etc/passwd, en la pantalla.
-- Utilice cat y redirija la salida al archivo en donde coloca los resultados del practico.
-- ¿Cuántos usuarios hay definidos en el sistema?
+\begin{itemize}
+\item - Utilice cat para visualizar el contenido de /etc/passwd, en la pantalla.
+\item - Utilice cat y redirija la salida al archivo en donde coloca los resultados del practico.
+\item - ¿Cuántos usuarios hay definidos en el sistema?
 Ayuda: Utilice el comando cat redirigiendo la salida a wc (word count) para contar cuantas lineas
 existen en el archivo.
+\end{itemize}
 
 
-El archivo /etc/shadow contiene las passwords de los usuarios de manera encriptada.
-- ¿Que permisos tiene ese archivo? Utilice el comando ls y redirija la salida a trabajo-practico-3.txt
-- ¿Quien puede leer y modificar ese archivo?
-- ¿Puede un usuario comun modificar /etc/shadow? ¿Explique porqué?
+\item El archivo /etc/shadow contiene las passwords de los usuarios de manera encriptada.
+\begin{itemize}
+\item - ¿Que permisos tiene ese archivo? Utilice el comando ls y redirija la salida a trabajo-practico-3.txt
+\item - ¿Quien puede leer y modificar ese archivo?
+\item - ¿Puede un usuario comun modificar /etc/shadow? ¿Explique porqué?
+\end{itemize}
 
 
-El archivo /etc/debian_version contiene en texto plano el nombre de la
+\item El archivo /etc/debian\_version contiene en texto plano el nombre de la
 versión de Debian Linux instalada.
-- ¿Qué versión de Debian utiliza en la práctica?
+\begin{itemize}
+\item - ¿Qué versión de Debian utiliza en la práctica?
+\end{itemize}
+\end{enumerate}
 
 
-Ejercicio 2.
+\section{Ejercicio 2.}
 Sobre el directorio /usr/bin
-- ¿Qué tipo de archivos hay en ese directorio?
-- ¿Cuáles son los permisos del directorio /usr/bin?
-- ¿Quien puede modificar el contenido de ese directorio?
-- ¿Por qué el directorio debe tener esos permisos, y no otros?
+
+\begin{itemize}
+\item - ¿Qué tipo de archivos hay en ese directorio?
+\item - ¿Cuáles son los permisos del directorio /usr/bin?
+\item - ¿Quien puede modificar el contenido de ese directorio?
+\item - ¿Por qué el directorio debe tener esos permisos, y no otros?
+\end{itemize}
 
 
-Ejercicio 3.
+\section{Ejercicio 3.}
 El comando du se puede utilizar para ver el espacio utilizado por archivos y directorios.
 Si ejecuta du -h /etc el sistema muestra de manera legible (el argumento -h significa "legible para las personas")
-cuanto espacio se utiliza en el directorio /etc (se suman los tamaños de todos los archivos y directorios que estén dentro de /etc).
+el espacio utilizado en el directorio /etc (suma los tamaños de todos los archivos y directorios que estén dentro de /etc).
 
-- ¿Cuanto espacio utiliza el directorio /usr?
-- ¿Porqué el directorio /usr ocupa mas espacio que /etc?
-- ¿Cuanto espacio utiliza el directorio raiz / ?
+\begin{itemize}
+\item - ¿Cuanto espacio utiliza el directorio /usr?
+\item - ¿Porqué el directorio /usr ocupa mas espacio que /etc?
+\item - ¿Cuanto espacio utiliza el directorio raiz / ?
+\end{itemize}
 
 
-Ejercicio 4.
-El comando hostname se utiliza para conocer el nombre del sistema (o para definirlo).
-- ¿Qué nombre tiene su sistema?
+\section{Ejercicio 4.}
+\begin{enumerate}
+\item El comando hostname se utiliza para conocer el nombre del sistema (o para definirlo).
+\begin{itemize}
+\item - ¿Qué nombre tiene su sistema?
+\end{itemize}
+\end{enumerate}
 
-El programa hostname viene empaquetado en un paquete de nombre homónimo.
+\begin{enumerate}
+\item El programa hostname viene empaquetado en un paquete de nombre homónimo.
 El comando dpkg -L hostname  lista los archivos que el paquete hostname instaló en el sistema.
-- Indique que son cada uno de los archivos listados (por ejemplo: si son binarios ejecutables, archivos de configuracion, archivos de log, etc).
+\begin{itemize}
+\item - Indique que son cada uno de los archivos listados (por ejemplo: si son binarios ejecutables, archivos de configuracion, archivos de log, etc).
+\end{itemize}
+\end{enumerate}
 
 
 
-Ejercicio 5.
+\section{Ejercicio 5.}
 El archivo /proc/meminfo contiene información de la memoria utilizada en kilobytes.
 
-- Utilice cat para ver la información.
-- ¿Cuanta memoria total en MegaBytes tiene el sistema?
-- ¿Cuanta memoria se está utilizando del total? (en MegaBytes).
+\begin{itemize}
+\item - Utilice cat para ver la información.
+\item - ¿Cuanta memoria total en MegaBytes tiene el sistema?
+\item - ¿Cuanta memoria se está utilizando del total? (en MegaBytes).
+\end{itemize}
 
 
-Ejercicio 6.
+\section{Ejercicio 6.}
 En el directorio /proc existen directorios con nombres "numéricos", que corresponden con el PID de los procesos del sistema.
 Estos directorios contienen información de los procesos (de los programas en ejecución).
-- Liste los directorios en /proc, en el cual, su nombre, comience con un número.
-- Cuente con wc -l el listado anterior. ¿Cuántos procesos tiene en ejecucion el sistema?.
-- Ejecute ps -ef , y ps -ef | wc -l . ¿Qué reporta ps -ef?
-- ¿Coincide la cantidad de procesos reportados con ps -ef con el obtenido en el primer inciso de este ejercicio?
+\begin{itemize}
+\item - Liste los directorios en /proc, en el cual, su nombre, comience con un número.
+\item - Cuente con wc -l el listado anterior. ¿Cuántos procesos tiene en ejecucion el sistema?.
+\item - Ejecute ps -ef , y ps -ef | wc -l . ¿Qué reporta ps -ef?
+\item - ¿Coincide la cantidad de procesos reportados con ps -ef con el obtenido en el primer inciso de este ejercicio?
+\end{itemize}
 
 
-Ejercicio 7.
+\section{Ejercicio 7.}
 El comando find /var lista todos los archivos y directorios que exiten debajo de /var.
-- ¿Cuantos archivos y directorios contiene el /var de su sistema?
-- ¿Cuanto espacio utiliza en disco todo el /var?
-- ¿Cuál es el directorio en donde el sistema guarda los mensajes de log?
-- Mencione 5 archivos de log de su sistema.
+\begin{itemize}
+\item - ¿Cuantos archivos y directorios contiene el /var de su sistema?
+\item - ¿Cuanto espacio utiliza en disco todo el /var?
+\item - ¿Cuál es el directorio en donde el sistema guarda los mensajes de log?
+\item - Mencione 5 archivos de log de su sistema.
+\end{itemize}
 
 
 
