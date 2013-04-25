@@ -137,7 +137,7 @@ El archivo /proc/meminfo contiene información de la memoria utilizada en kiloby
 \begin{itemize}
 \item - Utilice cat para ver la información.
 \item - ¿Cuanta memoria total en MegaBytes tiene el sistema?
-\item - ¿Cuanta memoria se está utilizando del total? (en MegaBytes).
+\item - ¿Cuanta memoria se está utilizando del total? (en MegaBytes). Ayuda: utilice el dato MemFree
 \end{itemize}
 
 
@@ -145,7 +145,7 @@ El archivo /proc/meminfo contiene información de la memoria utilizada en kiloby
 En el directorio /proc existen directorios con nombres "numéricos", que corresponden con el PID de los procesos del sistema.
 Estos directorios contienen información de los procesos (de los programas en ejecución).
 \begin{itemize}
-\item - Liste los directorios en /proc, en el cual, su nombre, comience con un número.
+\item - Liste los directorios en /proc, en el cual, su nombre, comience con un número (liste solo los nombres de los directorios, no su contenido). Ayuda : opción -d de ls.
 \item - Cuente con wc -l el listado anterior. ¿Cuántos procesos tiene en ejecucion el sistema?.
 \item - Ejecute ps -ef , y ps -ef | wc -l . ¿Qué reporta ps -ef?
 \item - ¿Coincide la cantidad de procesos reportados con ps -ef con el obtenido en el primer inciso de este ejercicio?
@@ -155,8 +155,8 @@ Estos directorios contienen información de los procesos (de los programas en ej
 \section{Ejercicio 7.}
 El comando find /var lista todos los archivos y directorios que exiten debajo de /var.
 \begin{itemize}
-\item - ¿Cuantos archivos y directorios contiene el /var de su sistema?
-\item - ¿Cuanto espacio utiliza en disco todo el /var?
+\item - ¿Cuantos archivos y directorios contiene el /var de su sistema?. Ayuda : wc
+\item - ¿Cuanto espacio utiliza en disco todo el /var?. Ayuda: du
 \item - ¿Cuál es el directorio en donde el sistema guarda los mensajes de log?
 \item - Mencione 5 archivos de log de su sistema.
 \end{itemize}
@@ -165,96 +165,6 @@ El comando find /var lista todos los archivos y directorios que exiten debajo de
 
 
 
-
-
-\section*{Procesos}
-Ayuda: \texttt{ps ; man ps}
-\begin{enumerate}
-\item Obtenga la lista de \textit{todos} los programas en ejecución, incluyendo al menos la siguiente información:
-dueño del proceso, identificador de proceso (PID), identificador del padre (PPID),
-comando que inició el proceso. Guarde esta salida en un archivo llamado \texttt{tp02.txt}.
-\item De la lista anterior identifique cuál es el primer proceso del sistema. \\ \\
-\textbf{Usando el editor vi :} 
-\item De la lista del primer inciso, obtenga exclusivamente aquellos que son hijos directos del primer proceso del sistema. ¿Cómo obtuvo el listado? (Recuerde ``n1,n2y'' en modo normal copia las líneas n1 a n2).
-\end{enumerate}
-
-\section*{Entorno del shell}
-Ayuda: \texttt{env}
-\begin{enumerate}
-\item De la lista de variables de entorno de su shell, obtenga únicamente el valor de la variable \texttt{LANG} y redirija la salida a un archivo llamado \texttt{tp02-2.txt}. ¿Qué valor tiene la variable?.
-
-\item Obtenga \textbf{solamente el valor} de la variable LANG ejecutando:\texttt{echo \$LANG}. ¿Qué función cumple esta variable, por ejemplo cuando ejecutamos el comando man? 
-\item Cambiar el valor de la variable \texttt{PS1} ejecutando:\texttt{PS1=``Ingrese el comando a ejecutar: ''}.
-Ejecutar algunos comandos al azar. ¿Qué observa?. Redefinir la variable ejecutando
-\texttt{PS1=``\textbackslash u@\textbackslash H:\textbackslash w \textbackslash \$ ''}.
-En la página de manual de \texttt{bash} busque y lea la sección \texttt{INDICADORES} para entender cómo funciona esta última asignación.
-\item Ejecutar la siguiente secuencia:
-	\begin{itemize}
-	\item \$ echo \$HOME
-	\item \$ cd 
-	\item \$ pwd
-	\item \$ HOME=/tmp
-	\item \$ cd 
-	\item \$ pwd
-	\item \$ ¿Qué observa? ¿Qué función cumple la variable \$HOME?
-	\end{itemize}
-\end{enumerate}
-
-\section*{Comodines}
-\begin{enumerate}
-\item Crear un directorio llamado \texttt{test/} e ingresar al mismo.
-Los incisos siguientes deberán realizarce dentro de dicho directorio. 
-\item En un shell bash ejecute los siguientes comandos:
-	\begin{itemize}
-	\item Crear un archivo llamado \texttt{creador.sh} con el siguiente texto:
-	\begin{verbatim}
-	#!/bin/bash
-
-	for ((i=0;i<4;i++));do 
-	  for ((j=0;j<10;j++));do 
-
-                if [ $i -lt 2 ];then 
-                    echo "Archivo $i$j" > Cap$i$j.txt
-                elif [ $i -lt 3 ] ;then 
-                    echo "Otro archivo $i$j" > cap$i$j.txt
-                else
-                    echo "Esto no es un PDF $i$j" > Cap$j.pdf
-                fi
-
-	  done 
-	done
-	\end{verbatim}
-	\item Asigne permisos de ejecución al archivo: \texttt{chmod u+x creador.sh} (observe los permisos con el comando \texttt{ls -l})
-	\item Liste el contenido del directorio test.
-	\item Ejecute el \texttt{script} recién creado: \texttt{./creador.sh}
-	\item Liste  el contenido del directorio test. ¿Cuál es la función del \texttt{script creador.sh}? 
- 	\end{itemize}
-\item Utilice comodines tal que el comando \texttt{ls} liste todos los archivos finalizados en ``.txt''.
-\item Utilice comodines tal que el comando \texttt{ls} liste todos los archivos que comienzan con ``cap'' y finalizan en ``.txt''
-\item Utilice comodines tal que el comando \texttt{cat} muestre el contenido de los archivos Cap10.txt a Cap19.tx
-\item Utilice comodines tal que el comando \texttt{cat} muestre el contenido de los archivos cuyo nombre contenga cualquiera de los siguientes números: 03, 04, 05, 23, 24 y 25 
-\item Utilice comodines tal que el comando \texttt{rm} elimine todos los archivos del directorio test \textbf{a excepción} de \texttt{creador.sh}
-\end{enumerate}
-
-\section*{Redirección y filtros}
-\begin{enumerate}
-\item Ejecute el comando \texttt{who}. ¿Qué información obtiene?
-\item El comando \texttt{wc} (del inglés ``word count'') permite con la opción \texttt{-l}  (vea \texttt{man wc}) contar 
-líneas en un archivo. Utilice este comando y \texttt{\textbar} para obtenga el número de usuarios que iniciaron 
-sesión en el sistema. 
-\item Ingrese al directorio test creado en la sección ``Comodines'' y vuelva a ejecutar el script \texttt{creador.sh}
-\item Utilizando el comando \texttt{cat} muestre el contenido de los archivos finalizados en txt o pdf. 
-\item Idem anterior pero esta vez redireccione la salida a un archivo llamado capitulos.txt
-\item Utilizando el comando \texttt{grep} obtenga del archivo capitulos.txt las líneas que contengan el dígito 3. 
-\item Utilizando el comando \texttt{grep} obtenga directamente de la salida de \texttt{cat} (esto es sin usar un archivo 
-intermedio) las líneas que contengan la palabra archivo (ya sea en minúsculas o mayúsculas). Ayuda: en inglés 
-si algo es sensible a la diferencia entre mayúsculas y minúsuclas se dice ``case sesitive'', por otro lado 
-si no lo es se dice ``case insensitive'' \texttt{man grep}.  
-\item Utilizando el comando \texttt{grep} obtenga la lista de procesos que corresponden solamente al usuario \texttt{root}
-
-
-
-\end{enumerate}
 
 
 
