@@ -83,6 +83,38 @@ sistema desde el punto de vista del sistema de archivos.  Se puede encontrar
 información adicional sobre cada archivo en otras partes de este manual o en las
 páginas de manual de GNU/Linux.  
 
+\subsection*{Conceptos básicos sobre archivos}
+Un archivo es una secuencia de bytes (un byte es un pequeño trozo de 
+información, normalmente compuesto por ocho bits. Para nuestros propósitos
+durante este texto, un byte es equivalente a un caracter). El sistema no impone 
+estructura alguna a los archivos, ni asigna significado a su contenido; el 
+significado de los bytes depende únicamente de los programas que 
+interpretan el archivo. Además, como veremos más adelante, esto es cierto no sólo 
+para archivos en disco sino también para dispositivos periféricos. 
+
+Ahora bien, más allá de la interpretación particular de un conjunto arbitrario de bytes, es 
+de interés en relación a este apunte, explicar brevemente cuál es el significado de
+la frase ``sistema de archivos''. En particular nos interesan los sistemas de 
+archivos de dispositivos de almacenamiento masivo, como discos rígidos o de estado sólido, 
+memorias flash, CD-ROM, etc. 
+
+En pocos términos, un sistema de archivos es un modo particular de organizar y dar 
+sentido a la información guardada en un medio físico (disco, pendrive, etc). Sin un sistema 
+de archivos, el contenido de, digamos, un disco, no es mas que una secuencia de bits sin 
+sentido. El sistema de archivo da sentido a esos bits para que el usuario pueda manipularlos  
+(indirectamente a través del sistema operativo y sus programas), por ejemplo creando nuevos archivos. 
+
+Existen gran variedad de sistemas de archivos, cada sistema operativo suele definir su 
+propia manera de organizar la información. En general, las instalaciones GNU/Linux  
+utiliza los sistemas de archivos llamados ext2, ext3 y ext4. Sin embargo, GNU/Linux también 
+provee soporte para ``entender'' o acceder a otros sistemas de archivos. Por ejemplo: NTFS
+de Microsoft Windows, xfs, SOC bfs, freevxfs, etc. También se provee soporte para sistemas
+de archivos en red o NFS (Network File System), que permite acceder a sistemas de archivos
+en máquinas remotas a tarvés de la comunicación de red. Lo cual provee una forma de 
+compartir sistemas de archivos.  Esta fuera del alcance de este curso ahondar en las 
+características de cada uno de estos sistema de archivos. 
+
+\subsection*{El árbol de directorios}
 El árbol de directorios completo está pensado para poder ser dividido en
 partes más pequeñas, que pueden estar en su propio disco o partición y
 acomodarse así a los límites del tamaño del disco, así como para facilitar la
@@ -95,13 +127,6 @@ de máquinas GNU/Linux, las cuales pueden compartir algunas partes del sistema d
 archivos sobre un dispositivo de solo-lectura (CD-ROM por ejemplo), o sobre la
 red a través de NFS\footnote{Network File System, permite compartir archivo a través
 de la red}.  
-
-
-%<figure id="fstree" float="1"> Partes de un árbol de directorios Unix.
-%Las líneas discontinuas indican los límites de la partición.  } 
-%kk<graphic
-%fileref="figuras/fstree.png"/> </figure>
-
 
  Los roles de las diferentes secciones del árbol de directorios se
 describen a continuación.  
