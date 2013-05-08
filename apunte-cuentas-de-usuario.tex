@@ -54,161 +54,160 @@ Administrando Cuentas de Usuario \\
 %\textit{Similitudes entre administradores de sistema y
 %narcotraficantes: ambos miden cosas en Kilos y tienen usuarios} (Viejo y
 %cansador chiste de computación)
+\section{Introducción}
+La creación y borrado de usuarios es una tarea de rutina bastante 
+común dentro de la administración de sistemas. Por este motivo, 
+es necesario familiarizarse con varios aspectos relativos a las
+cuentas de los usuarios, por lo que en este apunte se detallan 
+las tareas de creación, modificación y borrado de usuarios dentro 
+de un sistema GNU/Linux.
 
-Es necesario familiarizarse con varios aspectos relativos a las
-cuentas de los usuarios, por lo que en este capítulo se detallan 
--al menos- las tareas de creación, modificación y borrado.
-Estos temas se encuentran explicados
-mencionando los programas y archivos generales a todos los sistemas Linux.
-Pero, debido a la diversidad de distribuciones existentes,
-diferentes sistemas proveen algunas otras herramientas extras para la gestión de cuentas de usuario (consulte la documentación
-específica a su distribución Linux para obtener mayor información con 
-respecto a este tema).
+Del mismo modo las cuentas de usuario y su mantenimiento, son un 
+factor clave en la administración de la seguridad del sistema.
 
-		
-\section{ ¿Qué es una cuenta?}
+Por otra parte, debido a la diversidad de distribuciones existentes,
+las herramientas disponibles para la gestión de cuentas de usuario pueden 
+variar de unas a otras (consulte la documentación
+específica a su distribución GNU/Linux para obtener mayor información). Sin 
+embargo, los cambios que estas herramientas implementan  en última instancia, 
+son, en general, los mismos en todas las distribuciones.  
 
-Concretamente es un nombre de usuario -mas una contraseña, salvo
-excepciones- y todos los archivos (de configuración y aquellos personales) que
-impliquen el ingreso y permanencia en el sistema  de un usuario .
+\subsection{ ¿Qué es una cuenta?}
+Concretamente es un nombre de usuario mas una contraseña, salvo
+excepciones, y todos los archivos (de configuración y aquellos personales) que
+impliquen el ingreso y permanencia de un usuario en el sistema.
+
 Cuando una computadora la usa mucha gente es usualmente necesario hacer
 diferencias en estos usuarios. Por ejemplo, para que sus archivos privados
 permanezcan privados. Esto es importante aun si el sistema es usado por una
-sola persona a la vez, como sucede con la mayoría de las computadoras PC.
-		\footnote{
- Puede ser un poco embarazoso si mi hermana pudiera leer mis cartas de amor
-		.} Así, a cada
-		usuario se le da un nombre de usuario único, y ese nombre es
-		usado para ingresar al sistema. Un usuario es mas
-		que sólo un nombre, como sea?. Una \textit{cuenta}
-		es todos los archivos, recursos, e información que pertenece a
-		un usuario. El término insinúa como en bancos y en sistemas
-		comerciales, cada cuenta usualmente tiene algo de dinero
-		asignado, y ese dinero se gasta a diferentes velocidades
-		dependiendo de cuantos usuario exijan el sistema. Por ejemplo,
-		el espacio de disco puede tener un precio por mega por día, y
-		tiempo de procesamiento puede tener un precio por
-		segundo.
+sola persona a la vez\footnote{Recuerde que los sistemas GNU/Linux son 
+en esencia de tiempo compartido, esto es, múltiples usuarios pueden ejecutar
+procesos concurrentemente en un dado momento, sin interferir unos con otros.},
+como sucede con la mayoría de las computadoras personales.
+\footnote{Podría ser un poco embarazoso si mi madre o mi hermana pudiera leer 
+mis cartas de amor.} 
 
-
-
-
-
+Es así que, a cada usuario se le da un nombre de usuario 
+\textbf{único}, y ese nombre es
+usado para ingresar al sistema. Además del nombre, el sistema le asigna 
+un identificador numérico único o \texttt{uid} (del inglés user identification). 
+Luego una \textit{cuenta} es todos los archivos, recursos, e información 
+que pertenece a un usuario. El término insinúa algo similar a 
+a lo que ocurre en bancos y en sistemas comerciales, en donde cada cuenta 
+usualmente tiene algo de dinero asignado, y ese dinero se gasta a 
+diferentes velocidades dependiendo de cuantos usuario exijan el sistema.
+Dentro de un sistema operativo, una cuenta, por ejemplo  puede tener una 
+cantidad de espacio de disco que puede tener un precio por mega por día, y
+tiempo de procesamiento que puede tener un precio por segundo, por citar algunos
+ejemplos. 
 
 \section{ Crear una cuenta de usuario}
-
 El núcleo de Linux en sí trata a los usuario como meros números. Cada
-usuario es identificado por un único numero entero, el  \textit{uid
-(identificación de usuario)} esto debido a que un numero es mas fácil
-y rápido de procesarlo que un nombre para un sistema. Una base de datos o tabla
-asociada a dichos UIds y GIds, por fuera del núcleo asigna un nombre textual, un
-único \textit{nombre de usuario} para cada id. La base de datos
-que también contiene información adicional. 
+usuario es identificado por un único numero entero, el \textit{uid
+(identificación de usuario)}. Esto es debido a que, para un sistema, un número es mas fácil
+y rápido de procesar que un nombre. Una base de datos o tabla
+asociada a dichos \texttt{uid}, por fuera del núcleo, asigna un nombre alfanumérico 
+único a cada \texttt{uid}. Dicha base de datos también contiene información adicional, 
+como su nombre completo, el intérprete de comandos predeterminado, etcétera. 
 
-Para crear un usuario, necesita agregar información sobre el usuario a la
-base de datos (ver arriba) y crear un directorio "inicio" (directorio principal
-del usuario) para él. También puede ser necesario educar al usuario, y
-configurar un ambiente conveniente para él.
+Para crear un usuario, se necesita agregar información sobre el mismo a la
+base de datos y crear un directorio ``inicio'' (directorio principal
+del usuario, en inglés ``home'') para él. También puede ser necesario educar al 
+usuario, y configurar un ambiente conveniente para él.
 
-La mayoría de las distribuciones de Linux cuentan con programas para crear
+La mayoría de las distribuciones de GNU/Linux cuentan con programas para crear
 cuentas. Existen varios programas disponibles en los repositorios,
-o en Internet
-	\footnote{En Internet puede comenzar buscando en:
-	http://sourceforge.com y http://freshmeat.com}. Tal vez,
-los comandos mas utilizados sean \texttt{\textbf{adduser}} y
-\texttt{\textbf{useradd}}. También existen herramientas gráficas, por ejemplo,
-en KDE se encuentra \texttt{\textbf{Kuser}}.
-Cualquiera sea 
-el programa, resulta muy poco el trabajo manual por hacer. Aun
-cuando los detalles son muchos e intrincados, estos programas hace parecer todo
-trivial. En la sección \textit{Crear un usuario a mano} se describe
-todos los detalles relacionados.
+o en Internet \footnote{En Internet puede comenzar buscando en:
+http://sourceforge.com y http://freshmeat.com}.  
+Los comandos mas utilizados son \texttt{\textbf{adduser}} y
+\texttt{\textbf{useradd}}. También existen herramientas gráficas, usualmente 
+cada entorno de escritorio gráfico (como ser GNOME, KDE, etcétera) proveen  
+implementaciones propias. Más allá de la herramienta particular que se utilice,  
+el trabajo manual requerido para crear una nueva cuenta es sencillo. En la sección
+\textit{Crear un usuario a mano} se describe todos los detalles relacionados.
 
 
+\subsection{ \texttt{/etc/passwd} y \texttt{/etc/shadow}}
+
+La base de datos básica de usuarios en un sistema Unix, o GNU/Linux en particular, 
+es un archivo de texto  \texttt{/etc/passwd} (llamado el \textit{archivo de
+contraseñas}\footnote{Este nombre se mantiene por compatibilidad, aún cuando 
+en los sistemas modernos dicho archivo ya no contenga las contraseñas efectivamente.}), 
+que lista todos los nombres de usuarios válidos y su información asociada. 
+
+Este archivo es consultado por el sistema en cada intento de ingreso al mismo (login).
+El archivo tiene una línea por usuario, y es dividido en siete campos delimitados por 
+dos puntos ``:'' en el siguiente orden:
 
 
+	\begin{enumerate}
+	\item{Nombre de usuario: alfanumérico y sensible a mayúsculas y minúsculas.}
+	\item{Contraseña, de modo cifrado: es opcional. Usualmente en este campo encontraremos 
+	una ``x'', lo que indica el uso del archivo \texttt{/etc/shadow} como base de datos de 
+	contraseñas}
+	\item{Número de identificación de usuario (uid).} 
+	\item{Número de identificación de grupo: se refiere al grupo primario del usuario. Puede 
+	pertenecer a más grupos, lo cual se especifica en el archivo \texttt{/etc/group}}.
+	\item{Nombre completo u otra información descriptiva de la cuenta.}
+	\item{Directorio inicio (directorio principal del usuario, en inglés ``home'')}
+	\item{Intérprete de comandos (programa a ejecutar al ingresar al sistema).}
+	\end{enumerate}
 
-\subsection{ \texttt{/etc/passwd} y otros archivos información \texttt{/etc/shadow}}
+El formato esta explicado con mas detalles en la página de manual correspondiente: 
+\texttt{man 5 passwd} (sección 5 ``Formato de ficheros y convenios'').
 
-La base de datos básica de usuarios en un sistema Unix es un archivo de
-texto  \texttt{/etc/passwd} (llamado el \textit{archivo de
-contraseñas}), que lista todos los nombres de usuarios validos y su
-información asociada. El archivo tiene una línea por usuario, y es dividido en
-siete colon-delimited campos.
+\textit{Acerca del uso del segundo campo y el archivo \texttt{/etc/shadow}}: 
 
-
-	\begin{itemize}
-	
-	\item{nombre de usuario}
-	\item{contraseña, de modo encriptado}
-	\item{Identificación (Id) de numero de usuario} 
-	\item{Identificación (Id) de numero de grupo} 
-	\item{Nombre completo u otra información descriptiva de la cuenta}
-	\item{Directorio Inicio (directorio principal del usuario)}
-	\item{Interprete de comandos (programa a ejecutar al ingresar al sistema)}
-
-	\end{itemize}
-
-El formato esta explicado con mas detalles en la pagina de manual del comando
-\texttt{passwd}.
-
-Cualquier usuario del sistema puede leer el archivo de contraseñas, para
-por ejemplo conocer el nombre de otro usuario del mismo. Esto significa que la
-contraseña (el segundo campo) esta también disponible para todos. El archivo de
-contraseñas encripta las contraseñas, así que en teoría no hay problema, pero
-dicho encriptado puede ser quebrado, sobre todo si dicha contraseña es
-"débil"
-
-	\footnote{ Estadísticamente, según el estudio de
-los métodos para romper claves encriptadas, se ha establecido que aumenta
-significativamente la seguridad una suma de características: tener mas de 6
+Cualquier usuario del sistema debe poder leer el archivo de \texttt{/etc/passwd}\footnote{
+Observe los permisos asignados a este archivo.} ya que, 
+entre otras, muchos programas ejecutados por el usuario requieren de este acceso 
+para obtener información y funcionar correctamente. Esto significa que: si almacenamos 
+la contraseña en el segundo campo, esta también estará disponible para todos. En principio, 
+esto no parece ser un problema porque dichas contraseñas se encuentran cifradas.  
+Sin embargo, dicho cifrado puede ser quebrado, sobre todo si la contraseña es ``débil'' (por ejemplo, 
+una palabra de diccionario).  \footnote{Estadísticamente, según el estudio de
+los métodos para romper claves cifradas, se ha establecido que aumenta
+significativamente la seguridad una suma de características: tener más de seis
 caracteres, combinar letras mayúsculas y minúsculas, a la vez que intercalar
-también números.}.  Por lo tanto no es buena idea tener las contraseñas en el archivo
-de contraseñas.
+también números.}. 
 
-Muchos sistemas GNU/Linux tienen contraseñas
-\textit{"sombra"}.Esto es una  alternativa en la manera de
-almacenar las contraseñas: las claves encriptadas se guardan en un archivo
-separado \texttt{/etc/shadow} que solo puede ser leído por el
-administrador del sistema. Así el archivo \texttt{/etc/passwd} solo
-contiene un marcador especial en ese segundo campo. Cualquier programa que
-necesite verificar un usuario o uid, pueden también acceder al archivo
-shadow/sombra.  Significa también que programas normales que solo usan otros
-campos del archivo de contraseñas, no pueden acceder a las contraseñas.
-Paralelamente también existe \texttt{/etc/gshadow} para cierta
-información según grupos	\footnote{
- Si, esto significa que en el archivo de contraseña contiene toda la
-información sobre un usuario \textit{\bf excepto} su contraseña. Una maravilla del
-desarrollo.}
+De lo anterior podemos concluir que tener las contraseñas almacenadas en 
+en una base de datos (archivo en este caso) separada, 
+no accesible por cualquier usuario, es una buena medida de seguridad. Es por este motivo 
+que existe el archivo \texttt{/etc/shadow} en la gran mayoría, sino todas, los sistemas
+GNU/Linux modernos.  
 
-	
-	
+El archivo \texttt{/etc/shadow} es una alternativa en la manera de
+almacenar las contraseñas: las claves cifradas se guardan en un archivo
+en dicho archivo que solo puede ser leído y modificado por el administrador del 
+sistema\footnote{Verifique los permisos en su instalación. En algunos casos se crea 
+un grupo especial ``shadow'' al que se le permite leer dicho archivo.}. Así el 
+archivo \texttt{/etc/passwd} solo contendrá un marcador especial en ese segundo campo. 
+El formato de \texttt{/etc/shadow} está explicado con mas detalles en la página de 
+manual correspondiente: \texttt{man 5 shadow} (sección 5 ``Formato de ficheros y convenios'').
 
 
-\subsection{  Elegir números de identificación de usuario y grupo}
+\subsection{Elegir números de identificación de usuario y grupo}
+En general dentro de muchos sistemas, no es importante cuáles es el número de 
+identificación de usuario y grupo (uid y gid) más allá de los límites del sistema. 
+Si bien suele reservarse el rango cero a cien 
+para usuarios de sistema (por ejemplo: sys y daemon), esto es solo una convención, 
+a excepción del uid cero que corresponde a root en cualquier caso.  
 
-En la mayoría de los sistemas, no importa cuales son los números de
-usuario y grupo, pero si usa un sistema de archivos de red 
-	\footnote{NFS: Network file System}, necesitará que
-sean los mismo números de identificación de usuario (uid) y grupo (gid) en todos
+Sin embargo, cuando se utilizan sistemas sistemas de archivos de red, como 
+por ejemplo NFS (Network file System), el número de identificación deber traspasar
+los límites del sistema. Es decir, se necesitará que
+los números de identificación de usuario (uid) y grupo (gid) sean los mismos en todos
 los sistemas. Esto es porque el sistema de archivos de red también identifica al
-usuarios (nombre de usuario) con su ++respectivo++ numero de identificación de
-usuario (uid).  Si esta usando un sistema de archivos de red NFS
-\footnote{NFS: Network file System}, tiene que inventar un mecanismo para sincronizar la información de cada
-cuenta. Una alternativa es el sistema NIS
-	\footnote{NIS:
-	Network Information Service}(ver Guía de Administración de
-Redes con Linux, Capítulo 13) Como sea, trate de evitar re-usar
-números de identificación de usuario (UIds) y nombres de usuario exactamente
-iguales entre si entre sistemas, porque el nuevo dueño de ese numero de
-identificación de usuario o nombre de usuario puede tener (o tendrá seguro?)
-acceso a los archivos o correos-e del anterior dueño.
+usuarios (nombre de usuario) con su respectivo uid.  
 
-
-
-
-
-
+Por lo anterior, si se desea usar un sistema de archivos de red NFS
+\footnote{NFS: Network file System}, es necesario implementar un mecanismo 
+para sincronizar la información de cada cuenta. Una alternativa es el sistema NIS
+(del inglés ``Network Information Service''). La descripción de este servicio 
+esta fuera del alcance de este curso. Sea cual sea la solución elegida, esta deberá 
+garantizar la unicidad de nombres y uids entre los sistemas que comparten 
+archivos a través de NFS u otros servicios del estilo. 
 
 
 \subsection{Ambiente inicial: \texttt{/etc/skel}}
