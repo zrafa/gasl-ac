@@ -146,7 +146,7 @@ dos puntos ``:'' en el siguiente orden:
 	una ``x'', lo que indica el uso del archivo \texttt{/etc/shadow} como base de datos de 
 	contraseñas}
 	\item{Número de identificación de usuario (uid).} 
-	\item{Número de identificación de grupo: se refiere al grupo primario del usuario. Puede 
+	\item{Número de identificación de grupo (gid): se refiere al grupo primario del usuario. Puede 
 	pertenecer a más grupos, lo cual se especifica en el archivo \texttt{/etc/group}}.
 	\item{Nombre completo u otra información descriptiva de la cuenta.}
 	\item{Directorio inicio (directorio principal del usuario, en inglés ``home'')}
@@ -158,9 +158,8 @@ El formato esta explicado con mas detalles en la página de manual correspondien
 
 \textit{Acerca del uso del segundo campo y el archivo \texttt{/etc/shadow}}: 
 
-Cualquier usuario del sistema debe poder leer el archivo de \texttt{/etc/passwd}\footnote{
-Observe los permisos asignados a este archivo.} ya que, 
-entre otras, muchos programas ejecutados por el usuario requieren de este acceso 
+Cualquier usuario del sistema debe poder leer el archivo de \texttt{/etc/passwd}
+ya que, entre otras, muchos programas ejecutados por el usuario requieren de este acceso 
 para obtener información y funcionar correctamente. Esto significa que: si almacenamos 
 la contraseña en el segundo campo, esta también estará disponible para todos. En principio, 
 esto no parece ser un problema porque dichas contraseñas se encuentran cifradas.  
@@ -191,176 +190,191 @@ manual correspondiente: \texttt{man 5 shadow} (sección 5 ``Formato de ficheros 
 En general dentro de muchos sistemas, no es importante cuáles es el número de 
 identificación de usuario y grupo (uid y gid) más allá de los límites del sistema. 
 Si bien suele reservarse el rango cero a cien 
-para usuarios de sistema (por ejemplo: sys y daemon), esto es solo una convención, 
+para usuarios de sistema y aplicaciones (por ejemplo: sys y daemon, es decir usuarios 
+que no se corresponden con personas reales), esto es solo una convención, 
 a excepción del uid cero que corresponde a root en cualquier caso.  
 
-Sin embargo, cuando se utilizan sistemas sistemas de archivos de red, como 
-por ejemplo NFS (Network file System), el número de identificación deber traspasar
-los límites del sistema. Es decir, se necesitará que
-los números de identificación de usuario (uid) y grupo (gid) sean los mismos en todos
+Sin embargo cuando, por ejemplo, se utilizan sistemas sistemas de archivos de red, como 
+NFS (Network file System), el número de identificación deber traspasar
+los límites del sistema. Es decir, se necesita que la asociación entre un nombre de 
+usuario y los números de identificación de usuario (uid) y grupo (gid) sean los mismos en todos
 los sistemas. Esto es porque el sistema de archivos de red también identifica al
 usuarios (nombre de usuario) con su respectivo uid.  
 
-Por lo anterior, si se desea usar un sistema de archivos de red NFS
-\footnote{NFS: Network file System}, es necesario implementar un mecanismo 
-para sincronizar la información de cada cuenta. Una alternativa es el sistema NIS
-(del inglés ``Network Information Service''). La descripción de este servicio 
+Por lo anterior, si se desea usar un sistema de archivos de red NFS,
+será necesario implementar un mecanismo 
+para sincronizar la información de cada cuenta. Una alternativa para esto 
+es el sistema NIS (del inglés ``Network Information Service'') o LDAP (del inglés Lightweight 
+Directory Access Protocol) . La descripción de estos servicios 
 esta fuera del alcance de este curso. Sea cual sea la solución elegida, esta deberá 
 garantizar la unicidad de nombres y uids entre los sistemas que comparten 
-archivos a través de NFS u otros servicios del estilo. 
+archivos a través de NFS u otros servicios del estilo, caso contrario se expone
+el sistema, y en particular el contenido de los sistemas de archivos NFS, a 
+problemas de seguridad y confusión de los usuarios. 
 
+\fcolorbox{black}{grey}{
+\parbox[t]{1.0\linewidth}{ \vspace*{0.4cm}
+{\bf Ejemplo:} Supongamos que en la computadora A, el uid 300 corresponde al usuario jose, 
+y que en la computadora B, dicho uid corresponde al usuario andrea. Si la computadora A
+exporta el sistema de archivos \texttt{/export/compartidosA} por NFS a la computadora B. Sucederá
+que, cuando andrea inicie sesión en B, y revise el contenido del directorio \texttt{/export/compartidosA}
+(puede que en B, el directorio se encuentre montado en otro lugar dentro de la jerarquía de 
+directorios, por simplicidad mantenemos el mismo nombre de origen), todos los archivos 
+pertenecientes a jose en A, pertenecerán a andrea en B. Esto es un grave problema 
+de seguridad.
+\vspace*{0.4cm} } }
 
 \subsection{Ambiente inicial: \texttt{/etc/skel}}
- 	\footnote{ Apocope de la palabra inglesa
- 	skeleton, que en castellano significa esqueleto, asiendo referencia al función
- de estructura.}
 
-Cuando el directorio Inicio para un nuevo usuario es creado es
-inicializado por medio del directorio \texttt{/etc/skel}. El
-administrado del sistema puede crear archivos dentro de
-\texttt{/etc/skel} que proveerán un amable entorno predeterminado
-para los usuarios. Por ejemplo, el puede crear un
-\texttt{/etc/skel/.profile} que configura  las variable de entorno
-de algún editor mas amigable para los usuarios nuevos.
+Cuando se crea un directorio Inicio para un nuevo usuario, este es
+inicializado por medio del directorio \texttt{/etc/skel}. 
+\footnote{Apócope de la palabra inglesa ``skeleton'', que en castellano 
+significa esqueleto, asiendo referencia al función de estructura.} El
+administrador del sistema puede crear archivos dentro de
+\texttt{/etc/skel} que proveerán un entorno predeterminado
+para los usuarios. Por ejemplo, podría crear un archivo 
+\texttt{/etc/skel/.profile} que configura las variable de entorno
+de algún editor mas amigable para los usuarios nuevos, ó el lenguaje 
+de preferencia, etc. 
 
 
-Como sea, usualmente lo mejor es conservar dicho directorio lo mas pequeño
-que sea posible, ya que en el futuro será imposible actualizar los archivos de
-los usuarios. Por ejemplo, si cambia el nombre de un editor a uno mas amigable,
+En general es una buena política conservar dicho directorio lo mas pequeño
+posible, ya que, en el futuro será imposible actualizar los archivos de
+los usuarios. Por ejemplo, si cambia el nombre de un editor de texto a uno mas amigable,
 todos los usuarios tendrán que editar su archivo  \texttt{.profile}.
 El administrador del sistema podría tratar de hacer esto automáticamente con un
 script \footnote{Lenguaje de programación cuyo código no necesita ser
-compilado para ser ejecutado, por lo general es interpretado por el shell.
-Ver también "Expresiones regulares".}, pero
-	casi con seguridad resultará que se corrompa el archivo de
-alguno.  Siempre que sea posible, es mejor poner lo que sea configuración global
-dentro de archivos globales, como es /etc/profile. De esta manera es posible
+compilado para ser ejecutado, por lo general es interpretado por el shell.}, pero
+puede que las modificaciones personales de los usuarios realizadas a estos 
+archivos, conflictúen con el script, resultando quizá en una corrupción de 
+los archivos del usuario. Siempre que sea posible, es mejor poner aquello que 
+corresponda a configuración global (es decir válida para todos los usuarios del sistema)
+dentro de archivos globales, como por ejemplo /etc/profile. De esta manera es posible
 actualizarlo sin corromper la configuración de ningún usuario.  
 
 
 
+\subsection{Crear un usuario manualmente}
 
-
-
-\subsection{Crear un usuario a mano}
-
-Para crear una nueva cuenta a mano, sigue estos pasos:
+Para crear una nueva cuenta manualmente, se necesita seguir los siguientes pasos:
 
 \begin{itemize}
 	
-	\item{ Editar \texttt{/etc/passwd} con
-	\texttt{\textbf{vipw}} y agregar una nueva linea por cada nueva cuenta.
-	Teniendo cuidado con la sintaxis.  \textit{\bf No lo edite directamente
-	con un editor!}. Utilice el comando \texttt{\textbf{vipw}}, el cual bloquea el
-	archivo, así otros comandos no tratarán de actualizarlo al mismo tiempo.
-	Debería hacer que el campo de la contraseña sea `\texttt{*}',
-	de esta forma es imposible ingresar al sistema.}
+	\item  Editar \texttt{/etc/passwd} con el comando 
+	\texttt{\textbf{vipw}} y agregar una nueva línea por cada nueva cuenta.
+	Teniendo cuidado con la sintaxis (respetar los siete campos en el orden 
+	descripto anteriormente).  \textit{\bf ¡No lo edite directamente
+	con cualquier editor!}. Utilice el comando \texttt{\textbf{vipw}}, el cual bloquea el
+	archivo, así otros comandos no podrán actualizarlo al mismo tiempo.
 
-	\item{ Similarmente, edite \texttt{/etc/group} con
+	\item En caso de utilizar el archivo \texttt{/etc/shadow}, para almacenar
+	la contraseña cifrada, edite el mismo con el comando \texttt{vipw -s}. En este
+	caso la línea correspondiente en \texttt{/etc/passwd}, deberá contener el caracter
+	``x'' en el segundo campo. Agregue una nueva línea por cada nueva cuenta. Inicialmente
+	el campo correspondiente a la contraseña deberá contener el caracter ``!''. Luego 
+	se actualizará con el cifrado correspondiente, al utilizar el comando \texttt{passwd} para 
+	configurar una contraseña inicial.  
+
+	\item Similarmente, edite \texttt{/etc/group} con
 	\texttt{\textbf{vigr}}, si necesita crear también un
-	grupo.} \item{ Cree el directorio Inicio del
-	usuario con el comando \texttt{\textbf{mkdir}}.}
-	\item{ Copie los archivos de \texttt{/etc/skel} al
-	nuevo directorio creado 
-	\footnote{cp /etc/skel/* /ruta
-(donde ruta será por convención /home/"nombre de usuario"}}
-	\item{ Corrija
+	grupo especial para el usuario, o bien agregarlo a otros grupos
+	diferentes del gid primario especificado en el archivo \texttt{/etc/passwd}.  
+        
+	\item Cree el directorio Inicio (``home'') del
+	usuario con el comando \texttt{\textbf{mkdir}}.
+
+	\item Copie los archivos de \texttt{/etc/skel} al nuevo directorio creado.
+
+	\item Corrija
 	la pertenencia del dueño y permisos con los comandos
-	\texttt{\textbf{chown}} y \texttt{\textbf{chmod}} (Ver paginas de
+	\texttt{\textbf{chown}} y \texttt{\textbf{chmod}} (Ver páginas de
 	manual de los respectivos comandos). La opción \texttt{-R} es
-	muy útil. Los permisos correctos varían un poco de un sitio a otro, pero
-	generalmente los siguientes comandos harán lo correcto:
-
-
-\begin{verbatim}
-cd /home/nuevo-nombre-de-usuario
-chown -R nombre-de-usuario.group .  
-chmod -R go=u,go-w .  
-chmod go= .
-\end{verbatim}
-
-
-	}
-	
-	\item{ Asigne una contraseña con el comando
-	\texttt{\textbf{passwd}}}
+	muy útil para aplicar los cambios sobre todos los archivos del directorio
+	y subdirectorios en un sólo paso (recursivo). 
+ 
+	\item Por último asigne una contraseña con el comando
+	\texttt{\textbf{passwd}}.
 
 \end{itemize} 
+
+\fcolorbox{black}{grey}{
+\parbox[t]{1.0\linewidth}{ \vspace*{0.4cm}
+{\bf Ejemplo:}  
+
+\texttt{cd /home/<nuevo-nombre-de-usuario>} 
+
+\texttt{chown -R <nombre-de-usuario>.<nombre-grupo-primario> .  } 
+
+\texttt{chmod -R go=u,go-w .}
+
+La secuencia anterior realiza lo siguientes pasos:
+\begin{enumerate}
+	\item Ingresar al directorio de inicio del nuevo usuario. 
+	\item Asignar la pertenencia al usuario correcto.
+	\item Asignar permisos al grupo y al resto tal que: sean iguales 
+	a los permisos asignados al propietario (\texttt{go=u}), a excepción del permiso 
+	de escritura que se remueve (\texttt{go-w}). Si quisiéramos negar
+	todos los permisos al grupo y resto de los usuarios 
+	podríamos hacerlo usando ``\texttt{chmod go= .}'' en lugar de la sentencia 
+	más arriba. 
+\end{enumerate}
+\vspace*{0.4cm} } }
+
+
 	
-	Después de asignar la contraseña del usuario en el ultimo paso, la
-	cuenta funcionara. No debería configurar esto hasta que todo lo demás
-	este hecho, de otra manera el usuario puede inadvertidamente ingresar al
-	sistema mientras copias los archivos de configuración de su entorno de
-	trabajo.
-
-A veces es necesario crear cuentas "falsas"
-		
-		\footnote{¿Usuarios Surrealistas?} que no son
-		usadas por personas. Por ejemplo, para configurar un servidor
-		FTP
-		\footnote{FTP: File
-		transfer Protocol.} anónimo (así cualquiera podrá acceder a los archivos por
-		él, sin tener que conseguir una cuenta de usuario en el sistema
-		primero) podría crear una cuenta llamada "ftp". En esos casos,
-		usualmente no es necesario asignar una contraseña (el ultimo
-		paso de arriba).  Verdaderamente, es mejor no hacerlo, para que
-		nadie puede usar la cuenta, a menos que primero sea root/cuenta
-		administrador, y así convertirse en cualquier usuario.
+A veces es necesario crear cuentas que no corresponden 
+a personas físicas. Muchas de ellas, de hecho son creadas durante la 
+instalación del sistema, o bien de una nueva aplicación. Por ejemplo esto 
+sucede al instalar los motores de base de datos postgres o mysql. También 
+podría ser útil crear este tipo de cuentas manualmente, por ejemplo para 
+proveer un servicio de transferencia de archivos FTP (File Transfer Protocol) 
+anónimo. Las cuestiones de seguridad relativas a esta implementación están fuera
+del alcance de este curso. Algo importante acerca de este tipo de cuentas, es
+que normalmente no se les permite el ingreso al sistema a través del programa 
+login (por ejemplo en tty locales o a través del servicio de ssh), ya que se 
+supone son utilizadas por aplicaciones internamente y no por usuarios en forma 
+directa. Es por ello que estas cuentas suelen tener el caracter ``!'' o ``*'' en 
+el segundo campo del archivo  \texttt{/etc/shadow} (correspondiente a la contraseña 
+cifrada para usuarios físicos). Una política de seguridad adicional, en los 
+casos que corresponda, consiste en no asignar un shell predeterminado, y en su lugar
+utilizar \texttt{/bin/false} en el campo correspondiente en \texttt{/etc/passwd}.  
 
 
-
-
-
-
-
- \section{ Cambiar las propiedades del usuario}
+\section{Cambiar las propiedades del usuario}
+Con el correr del tiempo puede que se necesiten actualizar algunas de las 
+propiedades de las cuentas. Por ejemplo, el usuario puede desear un shell 
+predeterminado distinto al que posee actualmente. Los siguientes comandos 
+permiten cambiar dichas propiedades: 
 
 \begin{itemize}
-	\item Hay algunos comandos para cambiar varias propiedades de cualquier cuenta: \\ \\
-\begin{tabular}{ l l }
-	\texttt{chfn} & cambia el campo del nombre completo \\
-	\texttt{chsh} & cambia el campo del interprete de comandos \\
-	\texttt{passwd} & cambia la contraseña \\
-\end{tabular}
+\item 	\texttt{chfn}:  cambia el campo del nombre completo.
+\item 	\texttt{chsh}:  cambia el campo del interprete de comandos (shell).
+\item 	\texttt{passwd}: cambia la contraseña. 
+\item 	\texttt{usermod}: Los tres comandos anteriores pueden ser utilizados 
+por cualquier usuario y afectarán a su propia cuenta. El comando \texttt{usermod}
+está pensado para ser ejecutado por el administrador del sistema (root), y 
+permite modificar prácticamente todas las propiedades de la cuenta de cualquier 
+usuario. Véase la página del manual correspondiente para más información
+(\texttt{man usermod})
 \end{itemize}
 
 
-Normalmente los usuarios solo pueden cambiar las propiedades de sus propias
-cuentas. A veces es necesario deshabilitar estas posibilidades (por medio del
-comando \texttt{\textbf{chmod}})  para los usuarios normales, por ejemplo en un
-ambiente con muchos usuarios novatos.
-
 Otras tareas pueden ser necesarias hacerlas manualmente. Por ejemplo,
-cambiar el nombre de usuario, editando el archivo
-\texttt{/etc/passwd} directamente (recuerda hacerlo con el
-\texttt{\textbf{vigr}}). También para agregar o quitar a uno o varios usuarios
-de uno o mas grupos, editando \texttt{/etc/group} (con
+para agregar o quitar a uno o varios usuarios
+de uno o más grupos, editando \texttt{/etc/group} (con
 \texttt{\textbf{vigr}}). Este tipo de tareas tienden a ser mas raras, de todas
 maneras, siempre hay que ir con cuidado: si cambia un nombre de usuario, dicho
 usuario dejara de acceder a su cuenta de correo a menos que también le genere un
 alias a su dirección de correo.
 	
-		\footnote{Los usuarios pueden cambiar su
-		nombre por haberse casado, por ejemplo, y quieran tener su cuenta de usuario
-		actualizada para reflejar su nuevo nombre.}
-		
-
-
-
-
-
-
-
-
-
 \section{Borrando usuarios}
 
-Para borrar un usuario, primero borre los archivos que le pertenezcan,
+Para borrar un usuario, primero borre los archivos que le pertenezcan:
 casilla de correo, alias de correo, trabajos de impresión, trabajos pendientes a
 través de los demonios \texttt{\textbf{cron}} y \texttt{\textbf{at}}, y
-cualquier otra referencia al usuario.  Entonces quite las correspondientes
-lineas relevantes de los archivos \texttt{/etc/passwd} y
-\texttt{/etc/group}	 (recuerde borrar al usuario de todos los grupos
+cualquier otra referencia al usuario.  Entonces quite las 
+líneas relevantes de los archivos \texttt{/etc/passwd},  \texttt{/etc/shadow} y
+\texttt{/etc/group} (recuerde borrar al usuario de todos los grupos
 a los cuales pertenecía).  Puede ser buena idea deshabilitar la cuenta antes de
 empezar a borrar cosas para prevenir que el usuario use la cuenta mientras esta
 siendo eliminado.
@@ -368,87 +382,76 @@ siendo eliminado.
 Recuerde que los usuarios pueden tener archivos fuera de su directorio
 Inicio.  Para encontrarlos use el comando:
 
- find / -user username 
+ \texttt{find / -user <nombre-de-usuario>} 
 
-Como sea, note que el comando find puede tomar \textit{\bf mucho tiempo} si
+El comando find puede tomar \textit{\bf mucho tiempo} si
 tiene discos muy grandes o si monta un disco de red.
 
-
 Algunas distribuciones tiene comandos especiales para realizar esta tarea. Por 
-ejemplo
-\texttt{\textbf{deluser}} o \texttt{\textbf{userdel}}. Igualmente, es fácil
-hacerlo a manualmente, y de todas maneras puede que el comando no lo haga todo.
-
-
-
+ejemplo \texttt{\textbf{deluser}} o \texttt{\textbf{userdel}}. Sin embargo, puede 
+que dichos comandos no eliminen todo lo relativo al usuario, por lo que una 
+revisión manual en muchos casos es conveniente.  
 
 
 
 \section{ Deshabilitar un usuario temporalmente}
 
 A veces es necesario deshabilitar una cuenta temporalmente, sin borrarla.
-Por ejemplo, un usuario pudo dejar de pagar sus cuentas, o el administrador de
-sistema puede sospechar que un cracker
-	\footnote{En este caso traducible a invitado inesperado y
-	malicioso} tiene la contraseña de esa
-cuenta.
+Por ejemplo, un usuario pudo dejar de pagar el servicio, o el administrador de
+sistema puede sospechar que un cracker	\footnote{En este caso traducible a 
+invitado inesperado y malicioso} tiene la contraseña de esa cuenta.
 
-La mejor manera de deshabilitar una cuenta es cambiar su intérprete de
-comandos por otro programa que solo envía mensajes a la pantalla. De esta manera,
-cualquiera sea la forma que intente entrar al sistema con esa cuenta fracasará,
-y sabrá porqué. El mensaje puede decir que el usuario se contacte con el
-administrador de sistema para que cualquier problema sea tratado con/por
-él. Es posible también cambiar el nombre de usuario o contraseña
-del mismo por otro, en tal caso el usuario no sabrá que pasa. Usuarios confusos
-significa mas trabajo.  \footnote{Pero ellos pueden llegar a ser
-\textit{muy} divertidos, si eres un BOFH.}
+Existen varias formas de lograr esto, la más común tal vez es agregar un caracter 
+``!'' delante de la contraseña en el archivo \texttt{/etc/shadow}, de hecho esto 
+es lo que hace el comando \texttt{usermod -L <nombre-de-usuario>} (la opción -U
+de dicho comando realiza la operación inversa). Otra manera de deshabilitar una 
+cuenta es cambiar su intérprete de comandos por otro programa, por ejemplo por 
+\texttt{/bin/false} u otro  que solo envíe mensajes a la pantalla, por 
+ejemplo uno que indique contactar con el administrador del sistema. De esta manera, 
+cualquiera sea la forma que intente entrar al sistema con esa cuenta fracasará, 
+y sabrá porqué. 
 
-	
-	
+Una manera simple de crear un programa especial para reemplazar el shell, 
+es escribir un ``script'' como el siguiente: 
 
- Una manera simple de para crear un programa especial es escribir una
-"cola de script": 
+Crear un archivo \texttt{/usr/local/lib/no-login/security}, y darle permisos de 
+ejecución \texttt{chmod 755 /usr/local/lib/no-login/security}. Editar
+el archivo y agregar el siguiente contenido: 
 
- 
-\texttt{\#!/usr/bin/tail +2 }
-Esta cuenta ha sido cerrada por razones de seguridad.
-Por favor llame al 555-1234 y espere que lleguen los hombres de negro.
-
-
+\begin{verbatim} 
+#!/bin/bash 
+echo Esta cuenta ha sido cerrada por razones de seguridad.
+echo Por favor llame al 0800-333-afuera
+\end{verbatim}
 
 Los primeros dos caracteres ('\texttt{\#!}') le dicen al núcleo que el
 resto de la línea es un comando que necesita ejecutarse por medio de un
-interprete. El comando \texttt{\textbf{tail}} en este caso manda una salida en
-pantalla de todo excepto de la primera línea de la salida estándar.
-
-El usuario billg
-	\footnote{ billg: referencia a
-	Bill Gate, uno de los cofundadores de la empresa Microsoft.} es sospechado
-	de infringir la seguridad, el
-administrador del sistema puede hacer algo como esto: 
-
-
+intérprete. Luego de ejecutarse las dos líneas a continuación, 
+se cerrará la conexión al usuario. 
 
 \colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} 
-{\tt  
+{
+Por ejemplo si el usuario billg es sospechado
+de infringir la seguridad, el administrador del sistema 
+puede hacer algo como esto: 
+
+\tt  
 \# chsh -s /usr/local/lib/no-login/security billg \\
-\# su - tester \\
+\# su - billg \\
  \\
     Esta cuenta ha sido cerrada por razones de seguridad. \\
-    Por favor llame a 555-1234 y espere hasta que lleguen los Hombre de Negro  \\
- \\
+    Por favor llame a 0800-333-afuera \\
 \#  
 } \vspace*{0.5cm} } } 
-
-
 
 El propósito del comando \textbf{su} es verificar que el cambio
 funciona, por supuesto.  
 
-"Tail script" debe mantenerse en un directorio separado, así sus nombres
+Es recomendable que este tipo de scripts se mantengan en un directorio
+separado, así sus nombres
 no interfieren con los comandos de los usuarios normales.
 
 
-
+\include{licGASL}
 
 \end{document}
