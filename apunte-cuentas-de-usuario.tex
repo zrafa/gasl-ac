@@ -301,9 +301,9 @@ Para crear una nueva cuenta manualmente, se necesita seguir los siguientes pasos
 \parbox[t]{1.0\linewidth}{ \vspace*{0.4cm}
 {\bf Ejemplo:}  
 
-\texttt{cd /home/<nuevo-nombre-de-usuario>} 
+\texttt{cd /home/jgonzalez} 
 
-\texttt{chown -R <nombre-de-usuario>.<nombre-grupo-primario> .  } 
+\texttt{chown -R jgonzalez.security .  } 
 
 \texttt{chmod -R go=u,go-w .}
 
@@ -311,12 +311,14 @@ La secuencia anterior realiza lo siguientes pasos:
 \begin{enumerate}
 	\item Ingresar al directorio de inicio del nuevo usuario. 
 	\item Asignar la pertenencia al usuario correcto.
-	\item Asignar permisos al grupo y al resto tal que: sean iguales 
-	a los permisos asignados al propietario (\texttt{go=u}), a excepción del permiso 
+	\item Asignar permisos al grupo security y al resto tal que: sean 
+	iguales 
+	a los permisos asignados al propietario jgonzalez (\texttt{go=u}),
+        a excepción del permiso 
 	de escritura que se remueve (\texttt{go-w}). Si quisiéramos negar
 	todos los permisos al grupo y resto de los usuarios 
-	podríamos hacerlo usando ``\texttt{chmod go= .}'' en lugar de la sentencia 
-	más arriba. 
+	podríamos hacerlo usando ``\texttt{chmod go= .}'' en lugar de la 
+	sentencia más arriba. 
 \end{enumerate}
 \vspace*{0.4cm} } }
 
