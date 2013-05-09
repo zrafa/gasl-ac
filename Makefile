@@ -8,6 +8,7 @@ all:
 	pdflatex tp01.tex
 	pdflatex tp02.tex
 	pdflatex tp03.tex
+	pdflatex tp04.tex
 
 clean:
 	rm *pdf *aux *log

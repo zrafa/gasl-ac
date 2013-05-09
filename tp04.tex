@@ -1,0 +1,278 @@
+%%% LaTeX Template: Article/Thesis/etc. with colored headings and special fonts
+%%%
+%%% Source: http://www.howtotex.com/
+
+\documentclass[12pt]{article}
+
+
+\usepackage{apuntes-estilo}
+\usepackage{fancyhdr,lastpage}
+\usepackage{verbatim}
+
+
+
+\def\maketitle{
+
+% Titulo 
+ \makeatletter
+ {\color{bl} \centering \huge \sc \textbf{
+Trabajo práctico N 4 \\
+\large \vspace*{-8pt} \color{black} Arbol de Directorios
+ \vspace*{8pt} }\par}
+ \makeatother
+
+
+% Autor
+ \makeatletter
+ {\centering \small 
+	Introducción a la Administración de Sistemas \\
+ 	Departamento de Ingeniería de Computadoras \\
+ 	Facultad de Informática - Universidad Nacional del Comahue \\
+ 	\vspace{20pt} }
+ \makeatother
+
+}
+
+% Custom headers and footers
+\fancyhf{} % clear all header and footer fields
+\fancypagestyle{plain}{\fancyhf{}}
+  	\pagestyle{fancy}
+ 	\lhead{\footnotesize TP N 4 - Administrando Cuentas de Usuario}
+ 	\rhead{\footnotesize \thepage\ }	% "Page 1 of 2"
+
+\def\ti#1#2{\texttt{#1} & #2 \\ }
+
+
+
+\begin{document}
+
+\thispagestyle{empty}
+\maketitle
+\setlength{\parindent}{0pt}
+
+\paragraph{Los siguientes ejercicios se realizan en su totalidad en el equipo asignado al grupo.
+Utilice la redirección y el editor \texttt{vi} para guardar las salidas y editar los resultados 
+en un archivo llamado trabajo-practico-4.txt . En el archivo de resolución indique su nombre y apellido, y el número de ejercicio a resolver, junto a la salida incluyendo el comando que ejecuta. }
+
+\section{Ejercicio 1.}
+
+
+El comando  adduser se utiliza para crear nuevas cuentas de usuario de manera interactiva.
+Su utilizacion es sencilla. Solo es necesario, como mínimo, especificar el nombre de usuario. Ejemplo : adduser jgonzalez
+El sistema luego, le pedirá, de manera interactiva, información extra de la nueva cuenta a crear (el nombre completo real, la clave inicial, etc).
+
+Utilizando el comando adduser agregue al sistema estos cinco usuarios nuevos :
+
+Nombre de usuario : director
+Nombre real : Juan Jose Gonzalez
+Clave inicial : director01
+
+Nombre de usuario : secretaria
+Nombre real : Susana Gimenez
+Clave inicial : secretaria02
+
+Nombre de usuario : contaduria
+Nombre real : Contador Esteban Gonzalez
+Clave inicial : contador03
+
+Nombre de usuario : legales
+Nombre real : Abogado Mirko Garcia 
+Clave inicial : legales04
+
+Nombre de usuario : buffet
+Nombre real : Mirta Legrant de Gonzalez
+Clave inicial : buffet01
+
+
+\section{Ejercicio 2.}
+\begin{itemize}
+\item - Utilice \texttt{cat} para visualizar el contenido de \texttt{/etc/passwd}, en la pantalla.
+\item - Utilice \texttt{cat} y redirija la salida al archivo en donde coloca los resultados del practico.
+\item - ¿Cuántos usuarios hay definidos en el sistema?
+Ayuda: Utilice el comando \texttt{cat} redirigiendo la salida a \texttt{wc} (word count) para contar cuantas lineas
+existen en el archivo.
+\end{itemize}
+
+
+\section{Ejercicio 3.}
+Otra manera muy útil de verificar usuarios es a través de sesiones de login al sistema.
+
+Verifique los cinco usuarios creados realizando conexiones secure shell (ssh) al equipo asignado al grupo.
+Utilice el nombre de usuario y su clave inicial para corroborar que puede ingresar al sistema.
+
+¿Cuál es el directorio HOME de cada usuario?
+
+
+
+\section{Ejercicio 4.}
+Realice una conexion al sistema con el usuario director.
+Y responda :
+
+¿Cuál es el directorio HOME del usuario director? ¿Que variable del ambiente del usuario reporta esa información?
+¿Con qué comando verifica todas las variables del ambiente del usuario director?
+
+Intente crear un nuevo usuario utilizando el usuario director.
+¿Es posible crear un nuevo usuario con director? Justifique porqué.
+
+
+
+\section{Ejercicio 4.}
+El comando addgroup funciona de manera similar a adduser, pero se utiliza para crear nuevos grupos de usuario.
+Ejemplo de uso : addgroup empleados (crea en el sistema un grupo llamado "empleados").
+
+
+Utilice addgroup para crear tres grupos nuevos en el sistema:
+
+\begin{itemize}
+\itme directorio
+\itme empleados
+\itme todos
+\end{itemize}
+
+Además, puede utilizar el comando usermod para agregar usuarios a grupos, o modificar algunas opciones del usuario.
+Por ejemplo, para agregar el usuario "director" al grupo "todos", puede ejecutar "usermod -G todos -a director"
+
+Modifique los grupos utilizando usermod para agregar usuarios a los grupos. 
+El grupo directorio deberia estar compuesto por los usuario director, legales, contaduria.
+El grupo empleados deberia estar compuesto por secretaria, contaduria, legales, buffet.
+El grupo todos debería estar compuesto por director, legales, contaduria.
+
+Utilice el comando vigr para editar los grupos con vi. Agregue manualmente, al grupo "todos" a los usuarios buffet y secretaria.
+
+
+Quitar con el comando deluser a los usuarios buffet y legales.
+Observe el archivo /etc/passwd para verificar que los usuarios han sido creados.
+
+
+Listar los usuarios del sistema con cat. 
+Utilice los comando cat y "wc" para obtener la cantidad de usuarios del sistema.
+Utilice los comando cat y "sort" para generar el mismo listado, pero en orden alfabetico.
+
+Repaso sistema de archivos.
+
+Listar los directorios /bin y /usr/bin por pantalla. ¿Qué tipo de archivos existen en esos directorios? (Ejemplo: Binarios, ejecutables, de texto plano, de configuracion, variables, temporarios, de documentacion. Un directorio puede tener mas de un tipo mencionado, por ejemplo "de texto y de configuracion").
+Listar los directorios /etc por pantalla. Visualizar con cat de algun archivo a eleccion. ¿Qué tipo de archivos existen en esos directorios?
+Listar el directorio /home. ¿Que tipo de información se guarda en ese directorio?
+Listar el directorio /tmp. ¿Para qué sirve ese directorio?
+Ejecutar find /var, y utilizar en conjunción con wc para conocer la cantidad de archivos que existe en el directorio /var.
+
+
+
+Qué tipo de archivos se guarda en 
+Utilice el usuario 
+Utilice el comando cat para verifiel archivo passwd pque han sido eliminados.
+Verifi
+
+\begin{enumerate}
+\item Sobre el directorio \texttt{/etc}
+\begin{itemize}
+\item - ¿Qué tipo de archivos hay en ese directorio?
+\end{itemize}
+
+\item El archivo \texttt{/etc/passwd} contiene el listado de usuarios del sistema.
+Cada linea de texto en ese archivo define los detalles de un único usuario.
+
+\begin{itemize}
+\item - Utilice \texttt{cat} para visualizar el contenido de \texttt{/etc/passwd}, en la pantalla.
+\item - Utilice \texttt{cat} y redirija la salida al archivo en donde coloca los resultados del practico.
+\item - ¿Cuántos usuarios hay definidos en el sistema?
+Ayuda: Utilice el comando \texttt{cat} redirigiendo la salida a \texttt{wc} (word count) para contar cuantas lineas
+existen en el archivo.
+\end{itemize}
+
+
+\item El archivo \texttt{/etc/shadow} contiene las passwords de los usuarios de manera encriptada.
+\begin{itemize}
+\item - ¿Que permisos tiene ese archivo? Utilice el comando ls y redirija la salida a trabajo-practico-3.txt
+\item - ¿Quien puede leer y modificar ese archivo?
+\item - ¿Puede un usuario común modificar \texttt{/etc/shadow}? ¿Explique porqué?
+\end{itemize}
+
+
+\item El archivo \texttt{/etc/debian\_version} contiene en texto plano el nombre de la
+versión de Debian Linux instalada.
+\begin{itemize}
+\item - ¿Qué versión de Debian utiliza en la práctica?
+\end{itemize}
+\end{enumerate}
+
+
+\section{Ejercicio 2.}
+Sobre el directorio \texttt{/usr/bin}
+
+\begin{itemize}
+\item - ¿Qué tipo de archivos hay en ese directorio?
+\item - ¿Cuáles son los permisos del directorio \texttt{/usr/bin}?
+\item - ¿Quien puede modificar el contenido de ese directorio?
+\item - ¿Por qué el directorio debe tener esos permisos, y no otros?
+\end{itemize}
+
+
+\section{Ejercicio 3.}
+El comando \texttt{du} se puede utilizar para ver el espacio utilizado por archivos y directorios.
+Si ejecuta \texttt{du -h /etc} el sistema muestra de manera legible (el argumento \texttt{-h} significa "legible para las personas")
+el espacio utilizado en el directorio \texttt{/etc} (suma los tamaños de todos los archivos y directorios que estén dentro de \texttt{/etc}).
+
+\begin{itemize}
+\item - ¿Cuanto espacio utiliza el directorio \texttt{/usr}?
+\item - ¿Porqué el directorio \texttt{/usr} ocupa mas espacio que \texttt{/etc}?
+\item - ¿Cuanto espacio utiliza el directorio raíz \texttt{/} ?
+\end{itemize}
+
+
+\section{Ejercicio 4.}
+\begin{enumerate}
+\item El comando \texttt{hostname} se utiliza para conocer el nombre del sistema (o para definirlo).
+\begin{itemize}
+\item - ¿Qué nombre tiene su sistema?
+\end{itemize}
+\end{enumerate}
+
+\begin{enumerate}
+\item El programa \texttt{hostname} viene empaquetado en un paquete de nombre homónimo.
+El comando \texttt{dpkg -L hostname}  lista los archivos que el paquete \texttt{hostname} instaló en el sistema.
+\begin{itemize}
+\item - Indique que son cada uno de los archivos listados (por ejemplo: si son binarios ejecutables, archivos de configuración, archivos de log, etc).
+\end{itemize}
+\end{enumerate}
+
+
+
+\section{Ejercicio 5.}
+El archivo \texttt{/proc/meminfo} contiene información de la memoria utilizada en kilobytes.
+
+\begin{itemize}
+\item - Utilice cat para ver la información.
+\item - ¿Cuanta memoria total en MegaBytes tiene el sistema?
+\item - ¿Cuanta memoria se está utilizando del total? (en MegaBytes). Ayuda: utilice el dato MemFree
+\end{itemize}
+
+
+\section{Ejercicio 6.}
+En el directorio \texttt{/proc} existen directorios con nombres "numéricos", que corresponden con el PID de los procesos del sistema.
+Estos directorios contienen información de los procesos (de los programas en ejecución).
+\begin{itemize}
+\item - Liste los directorios en \texttt{/proc}, en el cual, su nombre, comience con un número (liste solo los nombres de los directorios, no su contenido). Ayuda : opción \texttt{-d} de \texttt{ls}.
+\item - Cuente con \texttt{wc -l} el listado anterior. ¿Cuántos procesos tiene en ejecución el sistema?.
+\item - Ejecute \texttt{ps -ef} , y \texttt{ps -ef | wc -l} . ¿Qué reporta \texttt{ps -ef}?
+\item - ¿Coincide la cantidad de procesos reportados con \texttt{ps -ef} con el obtenido en el primer inciso de este ejercicio?
+\end{itemize}
+
+
+\section{Ejercicio 7.}
+El comando \texttt{find /var} lista todos los archivos y directorios que existen debajo de \texttt{/var}.
+\begin{itemize}
+\item - ¿Cuantos archivos y directorios contiene el \texttt{/var} de su sistema?. Ayuda : \texttt{wc}.
+\item - ¿Cuanto espacio utiliza en disco todo el \texttt{/var}?. Ayuda: \texttt{du}.
+\item - ¿Cuál es el directorio en donde el sistema guarda los mensajes de log?
+\item - Mencione 5 archivos de log de su sistema.
+\end{itemize}
+
+
+
+
+
+
+
+
+\end{document}
