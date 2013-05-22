@@ -3,6 +3,7 @@
 
 \usepackage{apuntes-estilo}
 \usepackage{fancyhdr,lastpage}
+\usepackage{color,colortbl}
 
 
 
@@ -309,13 +310,72 @@ nada.
 En algunos Linux también logramos el mismo efecto con el comando reboot.
 
 \section {Niveles de ejecución}
+
+Luego de que de que el proceso \texttt{init} es ejecutado por el kernel, comienza 
+la ejecución de servicios y procesos que resultarán finalmente en un sistema 
+completamente funcional. Este proceso también involucra una serie de etapas bien 
+definidas. Por ejemplo para que un servicio de página web 
+este disponible para su uso, es necesario que previamente 
+se haya configurado la red. Lo mismo sucede durante el apagado, antes de 
+eliminar el servicio de red, es conveniente que las aplicaciones que 
+utilizan dicho servicio finalicen. Estas etapas definen lo que se conoce como 
+\textit{\textbf{niveles de ejecución}}
+
+Un nivel de ejecución es una configuración de software del sistema que permite 
+existir sólo a un grupo de procesos seleccionado. Los procesos levantados por 
+\texttt{init} para cada uno de estos niveles de ejecución se definen en el archivo 
+\texttt{/etc/inittab}. Para más detalle lea la página del manual en línea 
+correspondiente a inittab (\texttt{man inittab}).
+ 
+Un nivel de ejecución es un estado de \texttt{init} y de la totalidad del 
+sistema, y define qué servicios están operando. Los niveles de ejecución 
+son identificados por números (observe la tabla a continuación). 
+
+\definecolor{tcA}{rgb}{1,0.92549,0.678431}
+\begin{center}
+\begin{tabular}{|c|c|}\hline
+% use packages: color,colortbl
+\rowcolor{tcA}
+\textbf{Número de nivel} & \textbf{Función del nivel}\\\hline
+0 & Parar el sistema\\\hline
+1 & Modo de usuario individual (para tareas especiales de administración).\\\hline
+2-5 & Operación normal (definidas para los usuarios).\\\hline
+6 & Reiniciar el sistema.\\\hline
+\end{tabular}
+\end{center}
+
+No existe aún un consenso de cómo utilizar los niveles de ejecución definidos 
+para usuarios (2 a 5). Algunos administradores  
+de sistemas utilizan estos niveles de ejecución para definir cuales subsistemas están trabajando, 
+por ejemplo, podría definirse que el nivel de ejecución cinco este asociado al entorno gráfico, 
+de modo que cuando se pide al sistema iniciar la transición hacia el nivel cinco, el sistema 
+iniciará los servicios requeridos para iniciar el entorno gráfico (X, gdm, gnome, etc.). Esta 
+estrategia evita tener que realizar estas tareas manualmente cada vez que, por ejemplo 
+se reinicia la computadora.  
+
+Los comandos \texttt{runlevel} o \texttt{who -r}, entre otros, nos permiten 
+identificar en qué nivel de ejecución se encuentra actualmente el sistema. 
+De este modo un administrador de sistemas puede saber cuáles son los servicios
+que debieran estar operativos. 
+
+Los detalles sobre el modo particular en que cada distribución GNU/Linux, 
+asocia y ejecuta los servicios en cada nivel de ejecución, está fuera 
+del alcance de este curso. Sólo mencionaremos que, en la actualidad 
+la mayoría de las distribuciones utiliza lo que se conoce como
+\textit{\textbf{System V init scripts}} que básicamente consiste en 
+un conjunto de scripts asociados a cada nivel de ejecución, que se ejecutan 
+en un orden particular cada vez que el sistema inicia una transición 
+hacia ese nivel de ejecución (por ejemplo al invocar el comando shutdown 
+o al encender la computadora). También existen otros esquemas como 
+\textit{\textbf{Upstart}} utilizado y desarrollado por Ubuntu. 
+
 \subsection{ Modo usuario individual (single user mode)}
 
  El comando \texttt{\textbf{shutdown}} también se puede utilizar para
-cambiar el nivel de ejecución del sistema al nivel de modo de usuario individual
+cambiar el nivel de ejecución del sistema. En particular nos interesa el 
+cambio al nivel de modo de usuario individual
 (single user), en el cual nadie puede iniciar una sesión de usuario, pero root
 puede utilizar la consola. Es útil para efectuar tareas de administración del
 sistema que no se pueden realizar cuando el sistema se ejecuta normalmente.
-
 
 \end{document}
