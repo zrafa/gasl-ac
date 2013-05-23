@@ -71,37 +71,57 @@ nivel de ejecución predeterminado del sistema. Copie en su resolución la líne
 correspondiente a dicha configuración. 
 \item Obtenga el nivel de ejecución actual. ¿Se encuentra el sistema en el nivel 
 de ejecución predeterminado?. ¿Qué comando utilizó? 
-\item Utiliznado el comando \texttt{telinit} cambie el nivel de ejecución al de usuario 
+\item Utilizando el comando \texttt{telinit} cambie el nivel de ejecución al de usuario 
 individual. 
 	\begin{itemize}
 	\item ¿Cón qué argumentos ejecutó el comando telinit?
 	\item ¿Qué sucedió y por qué cree que sucedió?
 	\item ¿Se encuentra la máquina apagada? (intente un ping). 
-	\item ¿Qué pasos deben llevarse a cabo para volver al estado de multiusuario?
+	\item ¿Qué pasos deben llevarse a cabo para volver al estado de multiusuario? (solicite asistencia a la cátedra para resolver este punto).
 	\end{itemize}
 \item Utilizando el comando \texttt{shutdown} cambie a nivel de ejecución seis, pero 
 con un tiempo de postergación de diez segundos, y tal que se envíe el mensaje 
-``I'll be back'' en todas las terminales del sistema. ¿Qué comando ejecutó? ¿Qué sucedió?
-\item Reinicie la computadora en la que se encuentra trabajando \textbf{localmente} durante el 
-reinicio observe con atención todos los mensajes y trate de identificar:
+``Estaremos de vuelta en unos instantes'' en todas las terminales del sistema. ¿Qué comando ejecutó? ¿Qué sucedió?
+\item Vea el siguiente video : http://youtu.be/JzzsFVMEU6I  ; y trate de identificar : 
 \begin{itemize}
-\item A qué software involucrado en el proceso de arranque pertenece cada una de las salidas que ve. 
-\item Gestores de arranque.
-\item En qué momento comienza la carga del kernel Linux. 
-\item Momento en el que el proceso init comienza a ejecutar.
-\item Observe algunos de los servicios iniciados por init. 
+\item ¿En qué momento está en ejecución el gestor de arranque? ¿Cual es el gestor de arranque?
+\item ¿En qué momento comienza la carga del kernel Linux? 
+\item ¿En qué momento comienza la ejecución del proceso \textbf{init}?
+\item Observe algunos de los servicios iniciados por init.
 \end{itemize}
 \end{enumerate}
 
-\section*{Ejercicio 3}
-Sobre el directorio \texttt{/bin}
+\section*{Ejercicio 3 - Sistema de Archivos}
+Sobre los directorios \texttt{/bin/} y \texttt{/usr/bin/}
 
 \begin{itemize}
-\item - ¿Qué tipo de archivos hay en ese directorio?
+\item - ¿Qué tipo de archivos hay en esos directorios?
+\item - ¿Qué diferencia existe entre los dos directorios?
 \item - ¿Cuáles son los permisos del directorio \texttt{/usr/bin}?
 \item - ¿Quien puede modificar el contenido de ese directorio?
 \item - ¿Por qué el directorio debe tener esos permisos, y no otros?
 \end{itemize}
+
+
+\section*{Ejercicio 4 - Procesos}
+Ayuda: \texttt{ps ; man ps}
+\begin{enumerate}
+\item Obtenga la lista de \textit{todos} los programas en ejecución, incluyendo al menos la siguiente información:
+dueño del proceso, identificador de proceso (PID), identificador del padre (PPID),
+comando que inició el proceso. Guarde esta salida en un archivo llamado \texttt{tp02.txt}.
+\item De la lista anterior, ¿Cuál es el primer proceso del sistema? ¿Cual es su PID?
+\item ¿Cuántos procesos hay en ejecucion? Ayuda : \texttt{sort}
+\end{enumerate}
+
+\section*{Ejercicio 5 - Entorno del shell}
+Ayuda: \texttt{env}
+\begin{enumerate}
+\item Obtenga la lista de variables de entorno del usuario.
+\item ¿Cuántas variables hay definidas? Ayuda : \texttt{sort}
+\item Obtenga únicamente el valor de las variables HOME. ¿Qué comando utilizó para obtener la respuesta?
+\item Obtenga únicamente el valor de las variables PATH. ¿Qué comando utilizó para obtener la respuesta?
+\end{enumerate}
+
 
 
 \section*{Ejercicio 4}
