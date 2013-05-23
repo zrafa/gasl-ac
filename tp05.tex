@@ -16,8 +16,8 @@
 % Titulo 
  \makeatletter
  {\color{bl} \centering \huge \sc \textbf{
-Trabajo práctico N 3 \\
-\large \vspace*{-8pt} \color{black} Arbol de Directorios
+Trabajo práctico N 5 \\
+\large \vspace*{-8pt} \color{black} Inicio y apagado, repaso. 
  \vspace*{8pt} }\par}
  \makeatother
 
@@ -37,7 +37,7 @@ Trabajo práctico N 3 \\
 \fancyhf{} % clear all header and footer fields
 \fancypagestyle{plain}{\fancyhf{}}
   	\pagestyle{fancy}
- 	\lhead{\footnotesize TP N 3 - Arbol de Directorios }
+ 	\lhead{\footnotesize TP N 5 - Inicio y apagado, repaso. }
  	\rhead{\footnotesize \thepage\ }	% "Page 1 of 2"
 
 \def\ti#1#2{\texttt{#1} & #2 \\ }
@@ -52,45 +52,19 @@ Trabajo práctico N 3 \\
 
 \paragraph{Los siguientes ejercicios se realizan en su totalidad en el equipo asignado al grupo.
 Utilice la redirección y el editor \texttt{vi} para guardar las salidas y editar los resultados 
-en un archivo llamado trabajo-practico-3.txt . En el archivo de resolución indique su nombre y apellido, y el número de ejercicio a resolver, junto a la salida incluyendo el comando que ejecuta. }
+en un archivo llamado trabajo-practico-5.txt . En el archivo de resolución indique su nombre y apellido, 
+y el número de ejercicio a resolver, junto a la salida incluyendo el comando que ejecuta. }
 
-\section{Ejercicio 1.}
+\section{Ejercicio 1}
 
 \begin{enumerate}
-\item Sobre el directorio \texttt{/etc}
-\begin{itemize}
-\item - ¿Qué tipo de archivos hay en ese directorio?
-\end{itemize}
-
-\item El archivo \texttt{/etc/passwd} contiene el listado de usuarios del sistema.
-Cada linea de texto en ese archivo define los detalles de un único usuario.
-
-\begin{itemize}
-\item - Utilice \texttt{cat} para visualizar el contenido de \texttt{/etc/passwd}, en la pantalla.
-\item - Utilice \texttt{cat} y redirija la salida al archivo en donde coloca los resultados del practico.
-\item - ¿Cuántos usuarios hay definidos en el sistema?
-Ayuda: Utilice el comando \texttt{cat} redirigiendo la salida a \texttt{wc} (word count) para contar cuantas lineas
-existen en el archivo.
-\end{itemize}
-
-
-\item El archivo \texttt{/etc/shadow} contiene las passwords de los usuarios de manera encriptada.
-\begin{itemize}
-\item - ¿Que permisos tiene ese archivo? Utilice el comando ls y redirija la salida a trabajo-practico-3.txt
-\item - ¿Quien puede leer y modificar ese archivo?
-\item - ¿Puede un usuario común modificar \texttt{/etc/shadow}? ¿Explique porqué?
-\end{itemize}
-
-
-\item El archivo \texttt{/etc/debian\_version} contiene en texto plano el nombre de la
-versión de Debian Linux instalada.
-\begin{itemize}
-\item - ¿Qué versión de Debian utiliza en la práctica?
-\end{itemize}
+\item El gestor de arranque utilizado por las máquinas del laboratorio se llama GRUB. Investigue 
+dónde se encuentran los archivos de configuración del mismo dentro del sistema. 
+\item Explique con sus palabras cuál es la función de dicho software.
 \end{enumerate}
 
 
-\section{Ejercicio 2.}
+\section{Ejercicio 2}
 Sobre el directorio \texttt{/usr/bin}
 
 \begin{itemize}
