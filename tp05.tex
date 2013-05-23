@@ -102,6 +102,11 @@ Sobre los directorios \texttt{/bin/} y \texttt{/usr/bin/}
 \item - ¿Por qué el directorio debe tener esos permisos, y no otros?
 \end{itemize}
 
+\item - ¿Qué tipo de archivos hay en el directorio \texttt{/etc/}?
+
+\item - ¿Qué tipo de archivos hay en el directorio \texttt{/tmp/}?
+
+\item - ¿Qué tipo de archivos hay en el directorio \texttt{/var/}?
 
 \section*{Ejercicio 4 - Procesos}
 Ayuda: \texttt{ps ; man ps}
@@ -110,16 +115,35 @@ Ayuda: \texttt{ps ; man ps}
 dueño del proceso, identificador de proceso (PID), identificador del padre (PPID),
 comando que inició el proceso. Guarde esta salida en un archivo llamado \texttt{tp02.txt}.
 \item De la lista anterior, ¿Cuál es el primer proceso del sistema? ¿Cual es su PID?
-\item ¿Cuántos procesos hay en ejecucion? Ayuda : \texttt{sort}
+\item ¿Cuántos procesos hay en ejecucion? Ayuda : \texttt{wc}
 \end{enumerate}
 
 \section*{Ejercicio 5 - Entorno del shell}
 Ayuda: \texttt{env}
 \begin{enumerate}
 \item Obtenga la lista de variables de entorno del usuario.
-\item ¿Cuántas variables hay definidas? Ayuda : \texttt{sort}
+\item ¿Cuántas variables hay definidas? Ayuda : \texttt{wc}
 \item Obtenga únicamente el valor de las variables HOME. ¿Qué comando utilizó para obtener la respuesta?
 \item Obtenga únicamente el valor de las variables PATH. ¿Qué comando utilizó para obtener la respuesta?
+\end{enumerate}
+
+
+\section*{Ejercicio 6 - Sesión de trabajo}
+
+\item ¿Qué comando utiliza para saber en qué directorio se encuentra trabajando?
+\item ¿Cómo saber cuáles son las opciones soportadas por un comando sin recurrir a Internet?
+
+\item Realice las siguientes acciones (especifique en el archivo de resolucion del trabajo práctico todos los comandos que utiliza) : 
+	\begin{enumerate}
+	\item Listar el contenido del directorio actual con los detalles de cada archivo. 
+	\item Crear un directorio llamado \texttt{backups} en su directorio HOME.
+	\item Crear un directorio llamado \texttt{vacio} en su directorio HOME.
+	\item Copiar todos los archivos de su directorio al directorio creado \texttt{backups/}.
+	\item Copiar el archivo \texttt{/etc/passwd} al directorio \texttt{vacio/}.
+	\item Eliminar un archivo en su directorio HOME.
+	\item Eliminar el directorio \texttt{vacio/}
+	\item Observar el contenido del archivo \texttt{/etc/services}, paginando la salida en la terminal (mencione al menos dos maneras de hacerlo). ¿Qué dice la última línea de ese archivo?
+	\end{enumerate}
 \end{enumerate}
 
 
