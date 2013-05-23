@@ -175,36 +175,19 @@ el espacio utilizado en el directorio \texttt{/etc} (suma los tamaños de todos 
 
 
 
+\section*{Ejercicio 9 - Usuarios y Grupos}
 
-\section*{Ejercicio 6}
-El archivo \texttt{/proc/meminfo} contiene información de la memoria utilizada en kilobytes.
+Utilizando el comando \texttt{adduser} agregue dos usuarios nuevo al sistema.
 
-\begin{itemize}
-\item - Utilice cat para ver la información.
-\item - ¿Cuanta memoria total en MegaBytes tiene el sistema?
-\item - ¿Cuanta memoria se está utilizando del total? (en MegaBytes). Ayuda: utilice el dato MemFree
+\item - Utilice \texttt{cat} para visualizar el contenido de \texttt{/etc/passwd}, redirija la salida al archivo de resolución del práctico.
+\item - ¿Cuántos usuarios hay definidos en el sistema?. Ayuda: \texttt{wc}
+\item - Obtenga, del archivo \texttt{/etc/passwd}, solo informacion del usuario root. Ayuda: \texttt{grep} ¿Qué comando utilizó?
 \end{itemize}
 
-\section*{Ejercicio 7.}
-El comando \texttt{find /var} lista todos los archivos y directorios que existen debajo de \texttt{/var}.
-\begin{itemize}
-\item - ¿Cuantos archivos y directorios contiene el \texttt{/var} de su sistema?. Ayuda : \texttt{wc}.
-\item - ¿Cuanto espacio utiliza en disco todo el \texttt{/var}?. Ayuda: \texttt{du}.
-\item - ¿Cuál es el directorio en donde el sistema guarda los mensajes de log?
-\item - Mencione 5 archivos de log de su sistema.
-\end{itemize}
+Utilizando el comando \texttt{addgroup} agregue al sistema el grupo \texttt{socios}.
+Edite con \texttt{vigr} el archivo \texttt{/etc/groups} y agregue los usuarios creados en el primer inciso al grupo \texttt{socios}.
 
 
 
-
-
-\section*{Ejercicio 8}
-El comando \texttt{find /var} lista todos los archivos y directorios que existen debajo de \texttt{/var}.
-\begin{itemize}
-\item - ¿Cuantos archivos y directorios contiene el \texttt{/var} de su sistema?. Ayuda : \texttt{wc}.
-\item - ¿Cuanto espacio utiliza en disco todo el \texttt{/var}?. Ayuda: \texttt{du}.
-\item - ¿Cuál es el directorio en donde el sistema guarda los mensajes de log?
-\item - Mencione 5 archivos de log de su sistema.
-\end{itemize}
 
 \end{document}
