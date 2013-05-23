@@ -108,7 +108,16 @@ Sobre los directorios \texttt{/bin/} y \texttt{/usr/bin/}
 
 \item - ¿Qué tipo de archivos hay en el directorio \texttt{/var/}?
 
-\section*{Ejercicio 4 - Procesos}
+\section*{Ejercicio 4 - Sistema de Archivos - 2da. Parte}
+\begin{enumerate}
+\item El programa \texttt{ssh} viene empaquetado en un paquete llamado \texttt{openssh-client}.
+El comando \texttt{dpkg -L openssh-client} lista los archivos que el paquete instaló en el sistema.
+\begin{itemize}
+\item - Indique con sus palabra que tipo de archivos el paquete ha instalado en el sistema (por ejemplo: si son binarios ejecutables, archivos de configuración, archivos de log, etc) y en qué ubicaciones (directorios).
+\end{itemize}
+\end{enumerate}
+
+\section*{Ejercicio 5 - Procesos}
 Ayuda: \texttt{ps ; man ps}
 \begin{enumerate}
 \item Obtenga la lista de \textit{todos} los programas en ejecución, incluyendo al menos la siguiente información:
@@ -118,7 +127,7 @@ comando que inició el proceso. Guarde esta salida en un archivo llamado \texttt
 \item ¿Cuántos procesos hay en ejecucion? Ayuda : \texttt{wc}
 \end{enumerate}
 
-\section*{Ejercicio 5 - Entorno del shell}
+\section*{Ejercicio 6 - Entorno del shell}
 Ayuda: \texttt{env}
 \begin{enumerate}
 \item Obtenga la lista de variables de entorno del usuario.
@@ -128,7 +137,7 @@ Ayuda: \texttt{env}
 \end{enumerate}
 
 
-\section*{Ejercicio 6 - Sesión de trabajo}
+\section*{Ejercicio 7 - Una Sesión de Trabajo}
 
 \item ¿Qué comando utiliza para saber en qué directorio se encuentra trabajando?
 \item ¿Cómo saber cuáles son las opciones soportadas por un comando sin recurrir a Internet?
@@ -143,38 +152,27 @@ Ayuda: \texttt{env}
 	\item Eliminar un archivo en su directorio HOME.
 	\item Eliminar el directorio \texttt{vacio/}
 	\item Observar el contenido del archivo \texttt{/etc/services}, paginando la salida en la terminal (mencione al menos dos maneras de hacerlo). ¿Qué dice la última línea de ese archivo?
+\item El comando \texttt{hostname} se utiliza para conocer el nombre del sistema (o para definirlo).
+\begin{itemize}
+\item - ¿Qué nombre tiene su sistema?
+\end{itemize}
 	\end{enumerate}
-\end{enumerate}
+ 
 
 
 
-\section*{Ejercicio 4}
+\section*{Ejercicio 8 - Una Sesión de Trabajo - 2da. Parte}
 El comando \texttt{du} se puede utilizar para ver el espacio utilizado por archivos y directorios.
-Si ejecuta \texttt{du -h /etc} el sistema muestra de manera legible (el argumento \texttt{-h} significa "legible para las personas")
+Si ejecuta \texttt{du -sh /etc} el sistema muestra de manera legible (el argumento \texttt{-h} significa "legible para las personas")
 el espacio utilizado en el directorio \texttt{/etc} (suma los tamaños de todos los archivos y directorios que estén dentro de \texttt{/etc}).
 
 \begin{itemize}
+\item - ¿Cuanto espacio utiliza el directorio \texttt{/etc}?
 \item - ¿Cuanto espacio utiliza el directorio \texttt{/usr}?
 \item - ¿Porqué el directorio \texttt{/usr} ocupa mas espacio que \texttt{/etc}?
 \item - ¿Cuanto espacio utiliza el directorio raíz \texttt{/} ?
 \end{itemize}
 
-
-\section*{Ejercicio 5}
-\begin{enumerate}
-\item El comando \texttt{hostname} se utiliza para conocer el nombre del sistema (o para definirlo).
-\begin{itemize}
-\item - ¿Qué nombre tiene su sistema?
-\end{itemize}
-\end{enumerate}
-
-\begin{enumerate}
-\item El programa \texttt{hostname} viene empaquetado en un paquete de nombre homónimo.
-El comando \texttt{dpkg -L hostname}  lista los archivos que el paquete \texttt{hostname} instaló en el sistema.
-\begin{itemize}
-\item - Indique que son cada uno de los archivos listados (por ejemplo: si son binarios ejecutables, archivos de configuración, archivos de log, etc).
-\end{itemize}
-\end{enumerate}
 
 
 
@@ -187,16 +185,17 @@ El archivo \texttt{/proc/meminfo} contiene información de la memoria utilizada 
 \item - ¿Cuanta memoria se está utilizando del total? (en MegaBytes). Ayuda: utilice el dato MemFree
 \end{itemize}
 
-
-\section*{Ejercicio 7}
-En el directorio \texttt{/proc} existen directorios con nombres "numéricos", que corresponden con el PID de los procesos del sistema.
-Estos directorios contienen información de los procesos (de los programas en ejecución).
+\section*{Ejercicio 7.}
+El comando \texttt{find /var} lista todos los archivos y directorios que existen debajo de \texttt{/var}.
 \begin{itemize}
-\item - Liste los directorios en \texttt{/proc}, en el cual, su nombre, comience con un número (liste solo los nombres de los directorios, no su contenido). Ayuda : opción \texttt{-d} de \texttt{ls}.
-\item - Cuente con \texttt{wc -l} el listado anterior. ¿Cuántos procesos tiene en ejecución el sistema?.
-\item - Ejecute \texttt{ps -ef} , y \texttt{ps -ef | wc -l} . ¿Qué reporta \texttt{ps -ef}?
-\item - ¿Coincide la cantidad de procesos reportados con \texttt{ps -ef} con el obtenido en el primer inciso de este ejercicio?
+\item - ¿Cuantos archivos y directorios contiene el \texttt{/var} de su sistema?. Ayuda : \texttt{wc}.
+\item - ¿Cuanto espacio utiliza en disco todo el \texttt{/var}?. Ayuda: \texttt{du}.
+\item - ¿Cuál es el directorio en donde el sistema guarda los mensajes de log?
+\item - Mencione 5 archivos de log de su sistema.
 \end{itemize}
+
+
+
 
 
 \section*{Ejercicio 8}
