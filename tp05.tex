@@ -55,7 +55,7 @@ Utilice la redirección y el editor \texttt{vi} para guardar las salidas y edita
 en un archivo llamado trabajo-practico-5.txt . En el archivo de resolución indique su nombre y apellido, 
 y el número de ejercicio a resolver, junto a la salida incluyendo el comando que ejecuta. }
 
-\section{Ejercicio 1}
+\section*{Ejercicio 1}
 
 \begin{enumerate}
 \item El gestor de arranque utilizado por las máquinas del laboratorio se llama GRUB. Investigue 
@@ -63,9 +63,38 @@ dónde se encuentran los archivos de configuración del mismo dentro del sistema
 \item Explique con sus palabras cuál es la función de dicho software.
 \end{enumerate}
 
+\section*{Ejercicio 2}
+\begin{enumerate}
+\item El archivo \texttt{/etc/inittab} contiene la configuración del proceso 
+\texttt{init}. Utilizando el manual de dicho archivo, determine cuál es el 
+nivel de ejecución predeterminado del sistema. Copie en su resolución la línea 
+correspondiente a dicha configuración. 
+\item Obtenga el nivel de ejecución actual. ¿Se encuentra el sistema en el nivel 
+de ejecución predeterminado?. ¿Qué comando utilizó? 
+\item Utiliznado el comando \texttt{telinit} cambie el nivel de ejecución al de usuario 
+individual. 
+	\begin{itemize}
+	\item ¿Cón qué argumentos ejecutó el comando telinit?
+	\item ¿Qué sucedió y por qué cree que sucedió?
+	\item ¿Se encuentra la máquina apagada? (intente un ping). 
+	\item ¿Qué pasos deben llevarse a cabo para volver al estado de multiusuario?
+	\end{itemize}
+\item Utilizando el comando \texttt{shutdown} cambie a nivel de ejecución seis, pero 
+con un tiempo de postergación de diez segundos, y tal que se envíe el mensaje 
+``I'll be back'' en todas las terminales del sistema. ¿Qué comando ejecutó? ¿Qué sucedió?
+\item Reinicie la computadora en la que se encuentra trabajando \textbf{localmente} durante el 
+reinicio observe con atención todos los mensajes y trate de identificar:
+\begin{itemize}
+\item A qué software involucrado en el proceso de arranque pertenece cada una de las salidas que ve. 
+\item Gestores de arranque.
+\item En qué momento comienza la carga del kernel Linux. 
+\item Momento en el que el proceso init comienza a ejecutar.
+\item Observe algunos de los servicios iniciados por init. 
+\end{itemize}
+\end{enumerate}
 
-\section{Ejercicio 2}
-Sobre el directorio \texttt{/usr/bin}
+\section*{Ejercicio 3}
+Sobre el directorio \texttt{/bin}
 
 \begin{itemize}
 \item - ¿Qué tipo de archivos hay en ese directorio?
@@ -75,7 +104,7 @@ Sobre el directorio \texttt{/usr/bin}
 \end{itemize}
 
 
-\section{Ejercicio 3.}
+\section*{Ejercicio 4}
 El comando \texttt{du} se puede utilizar para ver el espacio utilizado por archivos y directorios.
 Si ejecuta \texttt{du -h /etc} el sistema muestra de manera legible (el argumento \texttt{-h} significa "legible para las personas")
 el espacio utilizado en el directorio \texttt{/etc} (suma los tamaños de todos los archivos y directorios que estén dentro de \texttt{/etc}).
@@ -87,7 +116,7 @@ el espacio utilizado en el directorio \texttt{/etc} (suma los tamaños de todos 
 \end{itemize}
 
 
-\section{Ejercicio 4.}
+\section*{Ejercicio 5}
 \begin{enumerate}
 \item El comando \texttt{hostname} se utiliza para conocer el nombre del sistema (o para definirlo).
 \begin{itemize}
@@ -105,7 +134,7 @@ El comando \texttt{dpkg -L hostname}  lista los archivos que el paquete \texttt{
 
 
 
-\section{Ejercicio 5.}
+\section*{Ejercicio 6}
 El archivo \texttt{/proc/meminfo} contiene información de la memoria utilizada en kilobytes.
 
 \begin{itemize}
@@ -115,7 +144,7 @@ El archivo \texttt{/proc/meminfo} contiene información de la memoria utilizada 
 \end{itemize}
 
 
-\section{Ejercicio 6.}
+\section*{Ejercicio 7}
 En el directorio \texttt{/proc} existen directorios con nombres "numéricos", que corresponden con el PID de los procesos del sistema.
 Estos directorios contienen información de los procesos (de los programas en ejecución).
 \begin{itemize}
@@ -126,7 +155,7 @@ Estos directorios contienen información de los procesos (de los programas en ej
 \end{itemize}
 
 
-\section{Ejercicio 7.}
+\section*{Ejercicio 8}
 El comando \texttt{find /var} lista todos los archivos y directorios que existen debajo de \texttt{/var}.
 \begin{itemize}
 \item - ¿Cuantos archivos y directorios contiene el \texttt{/var} de su sistema?. Ayuda : \texttt{wc}.
@@ -134,12 +163,5 @@ El comando \texttt{find /var} lista todos los archivos y directorios que existen
 \item - ¿Cuál es el directorio en donde el sistema guarda los mensajes de log?
 \item - Mencione 5 archivos de log de su sistema.
 \end{itemize}
-
-
-
-
-
-
-
 
 \end{document}
