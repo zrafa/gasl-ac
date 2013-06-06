@@ -80,15 +80,46 @@ manera eficiente puede tomar dos o más semanas en vez de sólo tres días.
 EL OTRO, CUENTO, JORGE LUIS BORGES, ARGENTINO
 EL OTRO, CUENTO, JORGE LUIS BORGES, ARGENTINO
 
-
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Ejercicio 4
-
-Agregue 5 usuarios: alumno1, alumno2,  alumno3,  alumno4,  alumno5, tal que 
-el shell utilizado por ellos sea /bin/sh, que tengan una descripción representativa, 
-que se cree su home, y cuyo grupo primario sea adm. 
-
-Agregue alumno1 y alumno2, al grupo sys. 
+Cree los grupos de usuarios: fai, tuassl, tudw
+Agregue 5 usuarios: alumno1, alumno2,  alumno3,  alumno4,  alumno5, tal que:
+	*el shell predeterminado  sea /bin/sh
+	*que tengan una descripción representativa
+	*que se cree su home
+	*cuyo grupo primario sea fai. 
+	*alumno1 a alumno3 pertenecen además al grupo tuassl
+	*alumno4 y alumno5 pertenecen además al grupo tudw
  
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Ejercicio 5
 
+Obtenga la lista de todos los procesos en ejecución del sistema. Elija al menos 
+4 procesos que ejemplifiquen la jerarquía de procesos, donde se vea la relación 
+padre-hijo. 
+
+¿Cuántos procesos hay en ejecución en este momento? ¿cómo obtuvo ese número?
+
+¿Es un sistema de tiempo compartido (multitarea/multiusuario)? ¿Por qué? 
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Ejercicio 6 
+
+¿Qué información contiene la página del manual: hier? 
+
+¿Qué información obtiene el comando tty? ¿Para qué le puede ser útil esta información?
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Ejercicio 7 
+
+a) Obtenga el valor de la variable de entorno SHLVL
+b) Ejecute el comando bash en el mismo shell donde obtuvo la variable. 
+c) Obtenga nuevamente el valor de la variable SHLVL
+d) Repita b y c, ¿Qué parece indicar esta variable? 
+
+e) Obtenga el valor de la variable PATH 
+f) Ejecute el comando ls 
+g) Ejecute el comando: export PATH=""
+h) Ejecute el comando ls
+i) ¿Por qué dejó de funcionar ls? ¿Afecta a otros comandos?
+j) ¿Qué haría para recuperar el funcionamiento de ls?  
 
