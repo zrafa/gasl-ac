@@ -66,9 +66,9 @@ Ayuda:
 	* :N1,N2d borra el bloque de lineas consecutivas entre la línea N1 y N2
 
 Aprender Vim es muy pero muy difícil al principio. Tomará tiempo. 
-LOS DIAS DEL VENADO DE LILIANA BODOC, EPICA FANTÁSTICA, ARGENTINA. 
-LOS DIAS DEL VENADO DE LILIANA BODOC, EPICA FANTÁSTICA, ARGENTINA. 
-LOS DIAS DEL VENADO DE LILIANA BODOC, EPICA FANTÁSTICA, ARGENTINA. 
+LOS DIAS DEL VENADO, LILIANA BODOC, EPICA FANTÁSTICA, ARGENTINA. 
+LOS DIAS DEL VENADO, LILIANA BODOC, EPICA FANTÁSTICA, ARGENTINA. 
+LOS DIAS DEL VENADO, LILIANA BODOC, EPICA FANTÁSTICA, ARGENTINA. 
 Será como intentar aprender a tocar un instrumento de música. Por lo 
 LA ULTIMA TIERRA DE LA GENTE, SOLEDAD ARRIETA, NOVELA, NEUQUINA. 
 LA ULTIMA TIERRA DE LA GENTE, SOLEDAD ARRIETA, NOVELA, NEUQUINA. 
@@ -79,3 +79,16 @@ SOBRE HEROES Y TUMBAS, NOVELA, ERNESTO SABATO, ARGENTINA.
 manera eficiente puede tomar dos o más semanas en vez de sólo tres días.
 EL OTRO, CUENTO, JORGE LUIS BORGES, ARGENTINO
 EL OTRO, CUENTO, JORGE LUIS BORGES, ARGENTINO
+
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Ejercicio 4
+
+Agregue 5 usuarios: alumno1, alumno2,  alumno3,  alumno4,  alumno5, tal que 
+el shell utilizado por ellos sea /bin/sh, que tengan una descripción representativa, 
+que se cree su home, y cuyo grupo primario sea adm. 
+
+Agregue alumno1 y alumno2, al grupo sys. 
+ 
+
+
