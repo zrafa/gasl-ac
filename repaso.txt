@@ -1,0 +1,69 @@
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Ejercicio 1
+
+
+Corrija las líneas eliminado o agregando los caracteres según corresponda. 
+Ayuda: 
+	* 0 para volver al comienzo de línea. 
+	* r de replace.
+	* x para eliminar caracteres.
+	* a para agregar texto a continuación del caracter actual. 
+	* i para insertar texto en la posición actual. 
+
+Unnna comptador pueddde sxxer lllllamada "intlgnte" si lloggra engannñar
+a unaaa pesona hacindole creerrr que es unnnn humano. -Alan Turing
+
+EEl commmando lllsss sirve# para list0arr archhhiivv000s y direct0riosss. 
+
+El shell11 d??efine u lenguajjjjee de pr0gramación 3n 3l qu3 podem0s cmbinar
+secuenciassss de commaaaandos para 4ut0m4t1z4r una tarrrrrea.@@@#@$ 
+                                                                   
+Laaaa eestructur4### d3 d1rector1os en lossss sstems UNIX es homgggéne4
+4 la vista d3l ussssuario,,, sinn emb4rgo difrents sub-árboles puedennnn
+rrrrresidir en lugares fr1ísic0s d1st1nt0s.  
+
+Ell adm1n1strad0r UNIX ut1l1za el 1ntérprete de c0mand0s c0m0 pr1nc1pal, y 
+casiiii exclusivvvvvo m0d0, de$#% coTm%%unicación con e%$l sist3m4 0p3r34t1vo. 
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Ejercicio 2  
+
+Ayuda: 
+	* dw borrar palabra (dNw borra N palabras consecutivas)
+	* d$ para borrar desde la posición actual hasta el fin de línea. 
+	* w para moverse al comienzo de la siguiente palabra.
+	* b para moverse al principio de la palabra actual. 
+	* e para moverse al final de la palabra actual. 
+	
+
+Elimine todas las palabras que no correspondan al texto, aquellas que 
+se encuentran completamente en mayúsculas.
+
+Vim es un MADARIAGA editor de texto de ENRIQUETA gran utilidad paraAAAAAAAAAAAAAAAAAAAAAA 
+los FELINI administradores DUDAS de sistemas ya MISTERIOSO 
+que MONT está disponible LINIERS en cualquier DECUR plataformaBBBBBBBBBBBBBBBBBBBBBBBBB
+UNIX. Esto significa ASIMOV que podrá usar Vim en BODOC cualquier 
+VENADO sistema de tipo NINE UNIX. Además, resulta ORSAI recomendable
+su utilización, YO ROBOT  porque ARRIETA requiere SELKNAM de muy pocosCCCCCCCCCCCCCCCCCCCC
+recursos SABATO para su SOBRE HEROES Y TUMBAS funcionamiento, 
+lo que permite utilizar Vim EL OTRO en maquinas remotas o BORGES DDDDDDDDDDDD
+cuando no LAS LARVAS pueda ejecutar ABELARDO CASTILLO otros programas 
+debido a problemas MUCHA con el SUERTE hardware CON o el EL  sistema EXAMEN.
+
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Ejercicio 3
+
+Borrado de líneas. Elimine las líneas completas que no corresponen al 
+texto. 
+	
+Ayuda: 
+	* yy copia una linea completa (Nyy copia N lineas consecutivas)
+	* dd borra una línea completa (Ndd borra N líneas consecutivas)
+	* :N1,N2y copia el bloque de lineas consecutivas entre la línea N1 y N2
+	* :N1,N2d borra el bloque de lineas consecutivas entre la línea N1 y N2
+
+Aprender Vim es muy pero muy difícil al principio. Tomará tiempo. 
+Será como intentar aprender a tocar un instrumento de música. Por lo 
+tanto, no sueñe con ser más eficiente con Vim, en menos de tres días, 
+que con cualquier otro editor que ya conozca. Es más, conocer Vim de 
+manera eficiente puede tomar dos o más semanas en vez de sólo tres días.
