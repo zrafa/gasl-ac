@@ -1,3 +1,6 @@
+Ayuda general vim/vi:
+	* En modo normal: ':set number[ENTER]' muestra el número de línea
+	* En modo normal: ':N[ENTER]' nos lleva a la línea N
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Ejercicio 1
 
@@ -53,7 +56,7 @@ debido a problemas MUCHA con el SUERTE hardware CON o el EL  sistema EXAMEN.
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 Ejercicio 3
 
-Borrado de líneas. Elimine las líneas completas que no corresponen al 
+Borrado de líneas. Elimine las líneas completas que no corresponden al 
 texto. 
 	
 Ayuda: 
@@ -63,7 +66,16 @@ Ayuda:
 	* :N1,N2d borra el bloque de lineas consecutivas entre la línea N1 y N2
 
 Aprender Vim es muy pero muy difícil al principio. Tomará tiempo. 
+LOS DIAS DEL VENADO DE LILIANA BODOC, EPICA FANTÁSTICA, ARGENTINA. 
+LOS DIAS DEL VENADO DE LILIANA BODOC, EPICA FANTÁSTICA, ARGENTINA. 
+LOS DIAS DEL VENADO DE LILIANA BODOC, EPICA FANTÁSTICA, ARGENTINA. 
 Será como intentar aprender a tocar un instrumento de música. Por lo 
+LA ULTIMA TIERRA DE LA GENTE, SOLEDAD ARRIETA, NOVELA, NEUQUINA. 
+LA ULTIMA TIERRA DE LA GENTE, SOLEDAD ARRIETA, NOVELA, NEUQUINA. 
 tanto, no sueñe con ser más eficiente con Vim, en menos de tres días, 
 que con cualquier otro editor que ya conozca. Es más, conocer Vim de 
+SOBRE HEROES Y TUMBAS, NOVELA, ERNESTO SABATO, ARGENTINA.
+SOBRE HEROES Y TUMBAS, NOVELA, ERNESTO SABATO, ARGENTINA.
 manera eficiente puede tomar dos o más semanas en vez de sólo tres días.
+EL OTRO, CUENTO, JORGE LUIS BORGES, ARGENTINO
+EL OTRO, CUENTO, JORGE LUIS BORGES, ARGENTINO
