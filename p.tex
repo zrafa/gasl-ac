@@ -1,0 +1,188 @@
+%%% LaTeX Template: Article/Thesis/etc. with colored headings and special fonts
+%%%
+%%% Source: http://www.howtotex.com/
+
+\documentclass[12pt]{article}
+
+
+\usepackage{apuntes-estilo}
+\usepackage{fancyhdr,lastpage}
+\usepackage{verbatim}
+
+
+
+\def\maketitle{
+
+% Titulo 
+ \makeatletter
+ {\color{bl} \centering \huge \sc \textbf{
+Trabajo práctico N 5 \\
+\large \vspace*{-8pt} \color{black} Inicio y Apagado. Repaso. 
+ \vspace*{8pt} }\par}
+ \makeatother
+
+
+% Autor
+ \makeatletter
+ {\centering \small 
+	Introducción a la Administración de Sistemas \\
+ 	Departamento de Ingeniería de Computadoras \\
+ 	Facultad de Informática - Universidad Nacional del Comahue \\
+ 	\vspace{20pt} }
+ \makeatother
+
+}
+
+% Custom headers and footers
+\fancyhf{} % clear all header and footer fields
+\fancypagestyle{plain}{\fancyhf{}}
+  	\pagestyle{fancy}
+ 	\lhead{\footnotesize TP N 5 - Inicio y Apagado. Repaso. }
+ 	\rhead{\footnotesize \thepage\ }	% "Page 1 of 2"
+
+\def\ti#1#2{\texttt{#1} & #2 \\ }
+
+
+
+\begin{document}
+
+\thispagestyle{empty}
+\maketitle
+\setlength{\parindent}{0pt}
+
+\paragraph{Los siguientes ejercicios se realizan en su totalidad en el equipo asignado al grupo.
+Utilice la redirección y el editor \texttt{vi} para guardar las salidas y editar los resultados 
+en un archivo llamado trabajo-practico-5.txt . En el archivo de resolución indique su nombre y apellido, 
+y el número de ejercicio a resolver, junto a la salida incluyendo el comando que ejecuta. }
+
+\section*{Ejercicio 1}
+
+\begin{enumerate}
+\item El gestor de arranque utilizado por las máquinas del laboratorio se llama GRUB. Investigue 
+dónde se encuentran los archivos de configuración del mismo dentro del sistema. 
+\item Explique con sus palabras cuál es la función de dicho software.
+\end{enumerate}
+
+\section*{Ejercicio 2}
+\begin{enumerate}
+\item El archivo \texttt{/etc/inittab} contiene la configuración del proceso 
+\texttt{init}. Utilizando el manual de dicho archivo, determine cuál es el 
+nivel de ejecución predeterminado del sistema. Copie en su resolución la línea 
+correspondiente a dicha configuración. 
+\item Obtenga el nivel de ejecución actual. ¿Se encuentra el sistema en el nivel 
+de ejecución predeterminado?. ¿Qué comando utilizó? 
+\item Utilizando el comando \texttt{telinit} cambie el nivel de ejecución al de usuario 
+individual. 
+	\begin{itemize}
+	\item ¿Cón qué argumentos ejecutó el comando telinit?
+	\item ¿Qué sucedió y por qué cree que sucedió?
+	\item ¿Se encuentra la máquina apagada? (intente un ping). 
+	\item ¿Qué pasos deben llevarse a cabo para volver al estado de multiusuario? (solicite asistencia a la cátedra para resolver este punto).
+	\end{itemize}
+\item Utilizando el comando \texttt{shutdown} cambie a nivel de ejecución seis, pero 
+con un tiempo de postergación de diez segundos, y tal que se envíe el mensaje 
+``Estaremos de vuelta en unos instantes'' en todas las terminales del sistema. ¿Qué comando ejecutó? ¿Qué sucedió?
+\item Vea el siguiente video : http://youtu.be/JzzsFVMEU6I  ; y trate de identificar : 
+\begin{itemize}
+\item ¿En qué momento está en ejecución el gestor de arranque? ¿Cual es el gestor de arranque?
+\item ¿En qué momento comienza la carga del kernel Linux? 
+\item ¿En qué momento comienza la ejecución del proceso \textbf{init}?
+\item Observe algunos de los servicios iniciados por init.
+\end{itemize}
+\end{enumerate}
+
+\section*{Ejercicio 3 - Sistema de Archivos}
+Sobre los directorios \texttt{/bin/} y \texttt{/usr/bin/}
+
+\begin{enumerate}
+\item - ¿Qué tipo de archivos hay en esos directorios?
+\item - ¿Qué diferencia existe entre los dos directorios?
+\item - ¿Cuáles son los permisos del directorio \texttt{/usr/bin}?
+\item - ¿Quien puede modificar el contenido de ese directorio?
+\item - ¿Por qué el directorio debe tener esos permisos, y no otros?
+\item - ¿Qué tipo de archivos hay en el directorio \texttt{/etc/}?
+
+\item - ¿Qué tipo de archivos hay en el directorio \texttt{/tmp/}?
+
+\item - ¿Qué tipo de archivos hay en el directorio \texttt{/var/}?
+\end{enumerate}
+
+\section*{Ejercicio 4 - Sistema de Archivos - 2da. Parte}
+El programa \texttt{ssh} viene empaquetado en un paquete llamado \texttt{openssh-client}.
+El comando \texttt{dpkg -L openssh-client} lista los archivos que el paquete instaló en el sistema.
+
+Indique con sus palabra que tipo de archivos el paquete ha instalado en el sistema (por ejemplo: si son binarios ejecutables, archivos de configuración, archivos de log, etc) y en qué ubicaciones (directorios).
+
+\section*{Ejercicio 5 - Procesos}
+Ayuda: \texttt{ps ; man ps}
+\begin{enumerate}
+\item Obtenga la lista de \textit{todos} los programas en ejecución, incluyendo al menos la siguiente información:
+dueño del proceso, identificador de proceso (PID), identificador del padre (PPID),
+comando que inició el proceso.
+\item De la lista anterior, ¿Cuál es el primer proceso del sistema? ¿Cual es su PID?
+\item ¿Cuántos procesos hay en ejecucion? Ayuda : \texttt{wc}
+\end{enumerate}
+
+\section*{Ejercicio 6 - Entorno del shell}
+Ayuda: \texttt{env}
+\begin{enumerate}
+\item Obtenga la lista de variables de entorno del usuario.
+\item ¿Cuántas variables hay definidas? Ayuda : \texttt{wc}
+\item Obtenga únicamente el valor de las variables HOME. ¿Qué comando utilizó para obtener la respuesta?
+\item Obtenga únicamente el valor de las variables PATH. ¿Qué comando utilizó para obtener la respuesta?
+\end{enumerate}
+
+
+\section*{Ejercicio 7 - Una Sesión de Trabajo}
+
+Realice las siguientes acciones (especifique en el archivo de resolucion del trabajo práctico todos los comandos que utiliza) : 
+
+	\begin{enumerate}
+\item ¿Qué comando utiliza para saber en qué directorio se encuentra trabajando?
+\item ¿Cómo saber cuáles son las opciones soportadas por un comando sin recurrir a Internet?
+	\item Listar el contenido del directorio actual con los detalles de cada archivo. 
+	\item Crear un directorio llamado \texttt{backups} en su directorio HOME.
+	\item Crear un directorio llamado \texttt{vacio} en su directorio HOME.
+	\item Copiar todos los archivos de su directorio HOME al directorio creado \texttt{backups/}.
+	\item Copiar el archivo \texttt{/etc/passwd} al directorio \texttt{vacio/}.
+	\item Eliminar un archivo en su directorio HOME.
+	\item Eliminar el directorio \texttt{vacio/}
+	\item Observar el contenido del archivo \texttt{/etc/services}, paginando la salida en la terminal (mencione al menos dos maneras de hacerlo). ¿Qué dice la última línea de ese archivo?
+\item El comando \texttt{hostname} se utiliza para conocer el nombre del sistema (o para definirlo).
+\begin{itemize}
+\item - ¿Qué nombre tiene su sistema?
+\end{itemize}
+	\end{enumerate}
+ 
+
+
+
+\section*{Ejercicio 8 - Una Sesión de Trabajo - 2da. Parte}
+El comando \texttt{du} se puede utilizar para ver el espacio utilizado por archivos y directorios.
+Si ejecuta \texttt{du -sh /etc} el sistema muestra de manera legible (el argumento \texttt{-h} significa "legible para las personas")
+el espacio utilizado en el directorio \texttt{/etc} (suma los tamaños de todos los archivos y directorios que estén dentro de \texttt{/etc}).
+
+\begin{itemize}
+\item - ¿Cuanto espacio utiliza el directorio \texttt{/etc}?
+\item - ¿Cuanto espacio utiliza el directorio \texttt{/usr}?
+\item - ¿Porqué el directorio \texttt{/usr} ocupa mas espacio que \texttt{/etc}?
+\item - ¿Cuanto espacio utiliza el directorio raíz \texttt{/} ?
+\end{itemize}
+
+
+
+\section*{Ejercicio 9 - Usuarios y Grupos}
+
+	\begin{enumerate}
+\item - Utilizando el comando \texttt{adduser} agregue dos usuarios nuevo al sistema.
+\item - Utilice \texttt{cat} para visualizar el contenido de \texttt{/etc/passwd}, redirija la salida al archivo de resolución del práctico.
+\item - ¿Cuántos usuarios hay definidos en el sistema?.
+\item - Obtenga, del archivo \texttt{/etc/passwd}, solo informacion del usuario root. Ayuda: \texttt{grep}
+\item - Utilizando el comando \texttt{addgroup} agregue al sistema el grupo \texttt{socios}.
+\item - Edite con \texttt{vigr} el archivo \texttt{/etc/groups} y agregue los usuarios creados en el primer inciso al grupo \texttt{socios}.
+	\end{enumerate}
+
+
+
+
+\end{document}
