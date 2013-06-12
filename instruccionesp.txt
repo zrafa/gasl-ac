@@ -1,0 +1,22 @@
+
+
+Conectarse a la maquina 10.0.2.201 - 10.0.2.218
+
+Listar los archivos de su directorio HOME. 
+Existen 5 archivos. Cada archivo es un ejercicio del parcial.
+
+Editar con vi cada ejercicio y contestar las preguntas del parcial
+en el mismo archivo.
+
+Es importante prestar atencion a la edición.
+Si por algun motivo borran algun archivo o su contenido, consultar
+con la cátedra y se les copia un nuevo archivo del ejercicio que tuvo 
+problemas.
+
+
+Al FINALIZAR el examen comunicarse con la catedra, y en conjunto
+se acuerdan cuales son los archivos del parcial que son para entregar
+(los archivos se subirán a PEDCO antes de retirarse del examen).
+
+Quien finalice antes de las 2 horas debe permanecer hasta terminado
+el horario del examen. Sin excepcion.
