@@ -1,0 +1,47 @@
+
+Ejercicio 2 - Sistema de Archivos
+---------------------------------
+
+Nota: En cada respuesta indique que comando utilizó para obtener la respuesta.
+
+
+
+
+Sobre los directorios /bin/ y /sbin/
+
+¿Qué tipo de archivos hay en esos directorios?
+¿Qué diferencia existe entre los dos directorios?
+¿Cuáles son los permisos del directorio /bin/?
+¿Quién puede modificar el contenido de ese directorio?
+¿Por qué el directorio debe tener esos permisos, y no otros?
+
+
+
+¿Qué tipo de archivos hay en el directorio /etc/?
+
+
+
+¿Para qué se utiliza el directorio /tmp/?
+
+
+
+¿Qué se guarda en el directorio /var/log/?
+
+
+
+
+
+Sistema de Archivos - 2da. Parte
+--------------------------------
+
+El programa "traceroute" viene empaquetado en un paquete homónimo.
+El comando "dpkg -L traceroute" lista los archivos que el paquete instaló 
+en el sistema.
+
+Indique con sus palabra que tipo de archivos el paquete ha instalado en 
+el sistema (por ejemplo: si son binarios ejecutables, archivos de
+configuración, archivos de log, etc) y en qué ubicaciones (directorios).
+
+
+
+
