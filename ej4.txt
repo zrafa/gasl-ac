@@ -10,25 +10,21 @@ Nota: En cada ejercicio indique qué comandos utilizó para obtener la respuesta
 
 ¿En qué directorio se encuentra trabajando?
 
-\item Obtenga la lista de variables de entorno del usuario.
-\item ¿Cuántas variables hay definidas? Ayuda : \texttt{wc}
+Obtenga la lista de variables de entorno del usuario.
+¿Cuántas variables hay definidas? Ayuda : wc
 ¿Cuál es su directorio HOME?
 ¿Cuál es el valor de la variable PATH? ¿Para qué se utiliza?
-
 
 Listar el contenido del directorio actual con los detalles de cada archivo. 
 Crear un directorio llamado "configuracion" en su directorio HOME.
 
-	\item Crear un directorio llamado \texttt{vacio} en su directorio HOME.
-	\item Copiar todos los archivos de su directorio HOME al directorio creado \texttt{backups/}.
-	\item Copiar el archivo \texttt{/etc/passwd} al directorio \texttt{vacio/}.
-	\item Eliminar un archivo en su directorio HOME.
-	\item Eliminar el directorio \texttt{vacio/}
-	\item Observar el contenido del archivo \texttt{/etc/services}, paginando la salida en la terminal (mencione al menos dos maneras de hacerlo). ¿Qué dice la última línea de ese archivo?
-\item El comando \texttt{hostname} se utiliza para conocer el nombre del sistema (o para definirlo).
-\begin{itemize}
-\item - ¿Qué nombre tiene su sistema?
-\end{itemize}
-	\end{enumerate}
+	Crear un directorio llamado vacio en su directorio HOME.
+	Copiar todos los archivos de su directorio HOME al directorio creado backups/
+	Copiar el archivo /etc/passwd al directorio vacio/
+	Eliminar un archivo en su directorio HOME.
+	Eliminar el directorio vacio/
+	Observar el contenido del archivo /etc/services, paginando la salida en la terminal (mencione al menos dos maneras de hacerlo). ¿Qué dice la última línea de ese archivo?
+El comando hostname se utiliza para conocer el nombre del sistema (o para definirlo).
+¿Qué nombre tiene su sistema?
  
 
