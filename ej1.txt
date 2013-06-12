@@ -1,0 +1,34 @@
+
+Ejercicio 1 - Inicio y Apagado
+------------------------------
+
+
+Ordene los componentes de software mencionados aquí debajo,
+utilizando el orden de ejecucion de cada uno de ellos
+cuando una PC con sistema Linux arranca e inicia.
+
+
+- Programa getty (el cual soliciat un nombre de usuario).
+
+- Linux kernel.
+
+- Cargador de Arranque GRUB.
+
+- Proceso Init.
+
+- Programa login (el cual inicia una sesión en el sistema).
+
+- BIOS bootstrap.
+
+
+
+¿Para qué se utiliza comunmente, en un sistema GNU/Linux, el nivel de ejecución 6?
+
+
+¿Para qué se utiliza el modo de usuario individual?
+
+
+¿Para qué se utiliza el comando shutdown y poweroff?
+
+
+
