@@ -31,8 +31,7 @@ Internet?
 
 
 Obtenga la lista de variables de entorno del usuario.
-¿Cuántas variables hay definidas? Ayuda : wc
-
+¿Cuántas variables hay definidas? 
 
 
 Crear un directorio llamado "configuracion" en su directorio HOME.

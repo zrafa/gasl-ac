@@ -14,7 +14,7 @@ Legajo:
 Ejercicio 3 - Procesos
 ----------------------
 
-Nota: En cada respuesta indique que comando utilizó para obtener la respuesta.
+Nota: En cada respuesta indique qué comando utilizó para obtener la respuesta.
 
 
 
@@ -29,7 +29,7 @@ De la lista anterior, ¿Cuál es el primer proceso del sistema? ¿Cual es su PID
 
 
 
-¿Cuántos procesos hay en ejecucion? Ayuda : wc
+¿Cuántos procesos hay en ejecución? 
 
 
 

@@ -31,7 +31,7 @@ redirija la salida a este archivo de resolución del ejercicio.
 
 
 
-Obtenga, del archivo /etc/passwd, solo informacion del usuario root.
+Obtenga, del archivo /etc/passwd, solo información del usuario root.
 
 
 

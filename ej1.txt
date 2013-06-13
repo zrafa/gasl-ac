@@ -15,11 +15,11 @@ Ejercicio 1 - Inicio y Apagado
 
 
 Ordene los componentes de software mencionados aquí debajo,
-utilizando el orden de ejecucion de cada uno de ellos
+utilizando el orden de ejecución de cada uno de ellos
 cuando una PC con sistema Linux arranca e inicia.
 
 
-- Programa getty (el cual soliciat un nombre de usuario).
+- Programa getty (el cual solicita un nombre de usuario).
 
 - Linux kernel.
 
@@ -33,7 +33,7 @@ cuando una PC con sistema Linux arranca e inicia.
 
 
 
-¿Para qué se utiliza comunmente, en un sistema GNU/Linux, el nivel de ejecución 6?
+¿Para qué se utiliza comúnmente, en un sistema GNU/Linux, el nivel de ejecución 6?
 
 
 ¿Para qué se utiliza el modo de usuario individual?

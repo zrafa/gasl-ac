@@ -13,7 +13,7 @@ Legajo:
 Ejercicio 2 - Sistema de Archivos
 ---------------------------------
 
-Nota: En cada respuesta indique que comando utilizó para obtener la respuesta.
+Nota: En cada respuesta indique qué comando utilizó para obtener la respuesta.
 
 
 
@@ -49,7 +49,7 @@ El programa "traceroute" viene empaquetado en un paquete homónimo.
 El comando "dpkg -L traceroute" lista los archivos que el paquete instaló 
 en el sistema.
 
-Indique con sus palabra que tipo de archivos el paquete ha instalado en 
+Indique con sus palabra qué tipo de archivos el paquete ha instalado en 
 el sistema (por ejemplo: si son binarios ejecutables, archivos de
 configuración, archivos de log, etc) y en qué ubicaciones (directorios).
 
