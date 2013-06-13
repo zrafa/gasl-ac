@@ -18,18 +18,23 @@ Existen 5 archivos. Cada archivo es un ejercicio del parcial.
 Editar con vi cada ejercicio y contestar las preguntas del parcial
 en el mismo archivo.
 
-Es importante prestar atencion a la edición.
-Si por algun motivo borran algun archivo o su contenido, consultar
+Es importante prestar atención a la edición.
++-----------------------------------------------------------+
+! ANTES DE REDIRECCIONAR (> ó >>) LA SALIDA DE UN COMANDO   !
+! A UN ARCHIVO, CIERRE EL MISMO. NO INTENTE REDIRIGIR 	    !
+! SALIDAS HACIA UN ARCHIVO ABIERTO.	  		    !
++-----------------------------------------------------------+
+Si por algún motivo borran algún archivo o su contenido, consultar
 con la cátedra y se les copia un nuevo archivo del ejercicio que tuvo 
 problemas.
 
 
-Al FINALIZAR el examen comunicarse con la catedra, y en conjunto
+Al FINALIZAR el examen comunicarse con la cátedra, y en conjunto
 se acuerdan cuales son los archivos del parcial que son para entregar
 (los archivos se subirán a PEDCO antes de retirarse del examen).
 
 Quien finalice antes de las 2 horas debe permanecer hasta terminado
-el horario del examen. Sin excepcion.
+el horario del examen. Sin excepción.
 
 
 Una vez entregado el parcial, la cátedra debe eliminar los usuarios
