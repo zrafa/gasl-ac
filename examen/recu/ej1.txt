@@ -12,34 +12,36 @@ Legajo:
 
 Ejercicio 1 - Inicio y Apagado
 ------------------------------
+Proceso de arranque:
+-------------------
+Responda verdadero o falso, justifique su respuesta. 
+
+* El programa getty se encarga de pedir la contraseña al usuario. 
+
+* El BIOS realiza verificaciones preliminares sobre el hardware y procede
+a cargar el proceso Init. 
+
+* El el kernel Linux Inicia el gestor de arranque, como por ejemplo GRUB.
+
+* El gestor de arranque, por ejemplo Grub, carga el kernel Linux y 
+transfiere el control al mismo. 
+
+* El programa login se encarga de pedir la contraseña al usuario. 
 
 
-Ordene los componentes de software mencionados aquí debajo,
-utilizando el orden de ejecución de cada uno de ellos
-cuando una PC con sistema Linux arranca e inicia.
-
-
-- Programa getty (el cual solicita un nombre de usuario).
-
-- Linux kernel.
-
-- Cargador de Arranque GRUB.
-
-- Proceso Init.
-
-- Programa login (el cual inicia una sesión en el sistema).
-
-- BIOS bootstrap.
+Niveles de ejecución: 
+---------------------
+Indique el comando que utilizaría si quisiera apagar el sistema dentro 
+de tres minutos, indicando a todos los usuarios el evento con el mensaje
+"Tareas de mantenimiento en 3 minutos". ¿Pueden los usuarios normales (no root)
+ejecutar este comando? 
 
 
 
-¿Para qué se utiliza comúnmente, en un sistema GNU/Linux, el nivel de ejecución 6?
+Explique con sus palabras la diferencia entre utilizar el nivel de ejecución
+(runlevel) 6 y apagar y encender la máquina desconectando el cable de 
+alimentación eléctrica. 
+
 
 
 ¿Para qué se utiliza el modo de usuario individual?
-
-
-¿Para qué se utiliza el comando shutdown y poweroff?
-
-
-
