@@ -12,6 +12,7 @@ Legajo:
 
 Ejercicio 1 - Inicio y Apagado
 ------------------------------
+
 Proceso de arranque:
 -------------------
 Responda verdadero o falso, justifique su respuesta. 

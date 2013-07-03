@@ -8,48 +8,51 @@ Nombre:
 Apellido:
 Legajo:
 
-
+****************************************************************************
+* En cada respuesta indique qué comando utilizó para obtener la respuesta. *
+****************************************************************************
 
 Ejercicio 2 - Sistema de Archivos
 ---------------------------------
 
-Nota: En cada respuesta indique qué comando utilizó para obtener la respuesta.
-
-
-
-
-Sobre los directorios /bin/ y /sbin/
+Sobre los directorios /sbin/ y /usr/bin/
+----------------------------------------
 
 ¿Qué tipo de archivos hay en esos directorios?
+
 ¿Qué diferencia existe entre los dos directorios?
-¿Cuáles son los permisos del directorio /bin/?
+
+¿Cuáles son los permisos de ambos directorios?
+
 ¿Quién puede modificar el contenido de ese directorio?
+
 ¿Por qué el directorio debe tener esos permisos, y no otros?
 
+Otros directorios
+-----------------
+¿En qué directorio se encuentran los archivos de dispositivos 
+del sistema? (por ejemplo el dispositivo que representa a un disco
+rígido). 
 
 
-¿Qué tipo de archivos hay en el directorio /etc/?
+¿En qué directorio se encuentran guardadas las páginas de
+los manuales en línea (man)? 
 
 
-
-¿Para qué se utiliza el directorio /tmp/?
-
-
-
-¿Qué se guarda en el directorio /var/log/?
+¿Para qué sirve el contenido de /boot? ¿Qué cree que puede suceder si 
+accidentalmente borra el contenido de dicho directorio?
 
 
+Análisis del contenido de un paquete
+------------------------------------
 
+El "rsyslog" es el software que se encarga de registrar diveros
+mensajes acerca del estado del sistema y del kernel Linux. Observe
+con el comando "dpkg -L rsyslog" todos los archivos instalador por 
+dicho software. _Redirija_ la salida hacia un archivo llamado 
+paquete_rsyslog. 
 
-
-Sistema de Archivos - 2da. Parte
---------------------------------
-
-El programa "traceroute" viene empaquetado en un paquete homónimo.
-El comando "dpkg -L traceroute" lista los archivos que el paquete instaló 
-en el sistema.
-
-Indique con sus palabra qué tipo de archivos el paquete ha instalado en 
+Indique _con sus palabras_ qué tipo de archivos ha instalado el paquete en 
 el sistema (por ejemplo: si son binarios ejecutables, archivos de
 configuración, archivos de log, etc) y en qué ubicaciones (directorios).
 
