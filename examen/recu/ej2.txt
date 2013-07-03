@@ -46,7 +46,7 @@ accidentalmente borra el contenido de dicho directorio?
 Análisis del contenido de un paquete
 ------------------------------------
 
-El "rsyslog" es el software que se encarga de registrar diveros
+El "rsyslog" es el software que se encarga de registrar diversos
 mensajes acerca del estado del sistema y del kernel Linux. Observe
 con el comando "dpkg -L rsyslog" todos los archivos instalador por 
 dicho software. _Redirija_ la salida hacia un archivo llamado 
