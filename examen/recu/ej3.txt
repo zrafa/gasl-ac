@@ -1,0 +1,47 @@
+Parcial de Introducción a la Administración de Sistemas
+Segundo cuatrimestre, 1er año, 2013
+Facultad de Informática
+
+13 de Junio de 2013
+
+Nombre:
+Apellido:
+Legajo:
+
+
+
+
+Ejercicio 3 - Procesos
+----------------------
+
+Nota: En cada respuesta indique qué comando utilizó para obtener la respuesta.
+
+
+
+Obtenga la lista de "todos" los programas en ejecución, incluyendo al menos 
+la siguiente información:
+dueño del proceso, identificador de proceso (PID), identificador del 
+padre (PPID), comando que inició el proceso.
+
+
+
+De la lista anterior, ¿Cuál es el primer proceso del sistema? ¿Cual es su PID?
+
+
+
+¿Cuántos procesos hay en ejecución? 
+
+
+
+Utilizando el comando "tty" puede conocer la terminal que Ud. está utilizando.
+Con la información de la terminal, y utilizando el listado de
+todos los programas conteste :
+
+¿Cuál es el identificador de proceso (PID) del intérprete de comandos
+que está utilizando?. ¿Cuál es proceso padre? (indique el PPID y el nombre
+del programa/proceso)
+
+
+
+
+

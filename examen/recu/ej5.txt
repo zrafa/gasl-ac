@@ -1,0 +1,46 @@
+Parcial de Introducción a la Administración de Sistemas
+Segundo cuatrimestre, 1er año, 2013
+Facultad de Informática
+
+13 de Junio de 2013
+
+Nombre:
+Apellido:
+Legajo:
+
+
+
+
+Ejercicio 5 - Administración de Usuarios y Grupos
+-------------------------------------------------
+
+Nota: En cada respuesta indique que comando utilizó para obtener la respuesta.
+
+
+Utilizando el comando adduser agregue los siguientes
+dos usuarios nuevo al sistema : "parcial1" y "parcial2".
+
+
+
+Utilice cat para visualizar el contenido de /etc/passwd,
+redirija la salida a este archivo de resolución del ejercicio.
+
+
+
+¿Cuántos usuarios hay definidos en el sistema?.
+
+
+
+Obtenga, del archivo /etc/passwd, solo información del usuario root.
+
+
+
+Utilizando el comando addgroup agregue al sistema el grupo "examenes".
+
+
+
+Edite con vigr el archivo /etc/groups y agregue los usuarios "parcial1" y
+"parcial2" creados en el primer inciso al grupo "examenes".
+
+
+
