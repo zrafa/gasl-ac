@@ -33,13 +33,17 @@ De la lista anterior, ¿Cuál es el primer proceso del sistema? ¿Cual es su PID
 
 
 
-Utilizando el comando "tty" puede conocer la terminal que Ud. está utilizando.
-Con la información de la terminal, y utilizando el listado de
-todos los programas conteste :
+Ejecute el siguiente comando en el shell :
 
-¿Cuál es el identificador de proceso (PID) del intérprete de comandos
-que está utilizando?. ¿Cuál es proceso padre? (indique el PPID y el nombre
-del programa/proceso)
+sleep 6000 &
+
+¿Cuál es el identificador de proceso (PID) del comando sleep que acaba de ejecutar?
+¿Cuál es proceso padre? (indique el PPID y el nombre del programa/proceso)
+
+
+Finalice el programa sleep que acaba de ejecutar. Indique que comando utilizó.
+
+
 
 
 
