@@ -12,13 +12,16 @@ Legajo:
 * En cada respuesta indique qué comando utilizó para obtener la respuesta. *
 ****************************************************************************
 
+
 Ejercicio 4 - Una Sesión de Trabajo
 -----------------------------------
+
 
 EL programa "du" informa de la cantidad de espacio utilizada por los archivos
 en el disco: 
 	* Obtenga al menos 3 opciones que el programa acepta y coloque la descripción 
 	de cada una.
+
 
 ¿En qué directorio se encuentra trabajando?
 

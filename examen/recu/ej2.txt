@@ -15,9 +15,9 @@ Legajo:
 Ejercicio 2 - Sistema de Archivos
 ---------------------------------
 
+
 Sobre los directorios /sbin/ y /usr/bin/
 ----------------------------------------
-
 
 ¿Qué tipo de archivos hay en esos directorios?
 
@@ -29,8 +29,11 @@ Sobre los directorios /sbin/ y /usr/bin/
 
 ¿Por qué el directorio debe tener esos permisos, y no otros?
 
+
+
 Otros directorios
 -----------------
+
 ¿En qué directorio se encuentran los archivos de dispositivos 
 del sistema? (por ejemplo el dispositivo que representa a un disco
 rígido). 

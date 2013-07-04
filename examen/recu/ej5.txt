@@ -12,8 +12,10 @@ Legajo:
 * En cada respuesta indique qué comando utilizó para obtener la respuesta. *
 ****************************************************************************
 
+
 Ejercicio 5 - Administración de Usuarios y Grupos
 -------------------------------------------------
+
 
 Utilizando el comando adduser agregue los siguientes
 dos usuarios nuevo al sistema : "dbadmin", "syadmin" y "storageadmin".
@@ -22,6 +24,7 @@ dos usuarios nuevo al sistema : "dbadmin", "syadmin" y "storageadmin".
 Utilice cat para visualizar el contenido de /etc/passwd,
 _redirija__ la salida a este archivo de resolución del ejercicio.
 
+
 ¿Qué otro archivo de configuración se altera al agregar estos usuarios?  
 
 
@@ -29,7 +32,6 @@ _redirija__ la salida a este archivo de resolución del ejercicio.
 
 
 Obtenga, del archivo /etc/passwd, solo información del usuario dbadmin.
-
 
 
 Cambie la clave del usuario dbadmin. La nueva clave debe ser: dbadmin123
