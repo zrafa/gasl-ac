@@ -35,6 +35,10 @@ Obtenga, del archivo /etc/passwd, solo información del usuario dbadmin.
 
 
 
+Cambie la clave del usuario dbadmin. La nueva clave debe ser: dbadmin123
+
+
+
 Utilizando el comando addgroup agregue al sistema el grupo "administradores".
 
 
