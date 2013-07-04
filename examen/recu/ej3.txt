@@ -9,23 +9,24 @@ Apellido:
 Legajo:
 
 
-
+****************************************************************************
+* En cada respuesta indique qué comando utilizó para obtener la respuesta. *
+****************************************************************************
 
 Ejercicio 3 - Procesos
 ----------------------
 
-Nota: En cada respuesta indique qué comando utilizó para obtener la respuesta.
+Obtenga y _redirija_ a este archivo, la lista de "todos" los programas en ejecución, 
+incluyendo al menos la siguiente información:
+	* dueño del proceso
+	* identificador de proceso (PID)
+	* identificador del padre (PPID)
+	* comando que inició el proceso.
 
 
 
-Obtenga la lista de "todos" los programas en ejecución, incluyendo al menos 
-la siguiente información:
-dueño del proceso, identificador de proceso (PID), identificador del 
-padre (PPID), comando que inició el proceso.
-
-
-
-De la lista anterior, ¿Cuál es el primer proceso del sistema? ¿Cual es su PID?
+De la lista anterior, ¿Cuál es el primer proceso del sistema? ¿Cual es su PID? 
+¿Quién es el dueño de dicho proceso? 
 
 
 
@@ -33,7 +34,7 @@ De la lista anterior, ¿Cuál es el primer proceso del sistema? ¿Cual es su PID
 
 
 
-Ejecute el siguiente comando en el shell :
+Ejecute el siguiente comando en el shell:
 
 sleep 6000 &
 
@@ -42,10 +43,5 @@ sleep 6000 &
 
 
 Finalice el programa sleep que acaba de ejecutar. Indique que comando utilizó.
-
-
-
-
-
 
 

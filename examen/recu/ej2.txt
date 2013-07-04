@@ -47,7 +47,7 @@ accidentalmente borra el contenido de dicho directorio?
 Análisis del contenido de un paquete
 ------------------------------------
 
-El programa "scanimage" se utiliza para obtener imagenes desde un scanner o camara.
+El programa "scanimage" se utiliza para obtener imágenes desde un scanner o cámara.
 El paquete que instala dicho programa es sane-utils.
 Observe con el comando "dpkg -L sane-utils" todos los archivos instalados por 
 dicho paquete. _Redirija_ la salida hacia un archivo llamado 

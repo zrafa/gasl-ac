@@ -8,27 +8,24 @@ Nombre:
 Apellido:
 Legajo:
 
-
-
+****************************************************************************
+* En cada respuesta indique qué comando utilizó para obtener la respuesta. *
+****************************************************************************
 
 Ejercicio 5 - Administración de Usuarios y Grupos
 -------------------------------------------------
-
-Nota: En cada respuesta indique que comando utilizó para obtener la respuesta.
-
 
 Utilizando el comando adduser agregue los siguientes
 dos usuarios nuevo al sistema : "dbadmin", "syadmin" y "storageadmin".
 
 
-
 Utilice cat para visualizar el contenido de /etc/passwd,
-redirija la salida a este archivo de resolución del ejercicio.
+_redirija__ la salida a este archivo de resolución del ejercicio.
 
+¿Qué otro archivo de configuración se altera al agregar estos usuarios?  
 
 
 ¿Cuántos usuarios hay definidos en el sistema?.
-
 
 
 Obtenga, del archivo /etc/passwd, solo información del usuario dbadmin.
@@ -38,14 +35,12 @@ Obtenga, del archivo /etc/passwd, solo información del usuario dbadmin.
 Cambie la clave del usuario dbadmin. La nueva clave debe ser: dbadmin123
 
 
-
 Utilizando el comando addgroup agregue al sistema el grupo "administradores".
 
 
-
 Edite con vigr el archivo /etc/groups y agregue los usuarios
-"dbadmin", "syadmin" y "storageadmin"
-creados en el primer inciso al grupo "administradores".
+"dbadmin", "syadmin" y "storageadmin" creados en el primer inciso 
+al grupo "administradores".
 
 
 
