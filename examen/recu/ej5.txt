@@ -18,7 +18,7 @@ Nota: En cada respuesta indique que comando utilizó para obtener la respuesta.
 
 
 Utilizando el comando adduser agregue los siguientes
-dos usuarios nuevo al sistema : "parcial1" y "parcial2".
+dos usuarios nuevo al sistema : "dbadmin", "syadmin" y "storageadmin".
 
 
 
@@ -31,16 +31,17 @@ redirija la salida a este archivo de resolución del ejercicio.
 
 
 
-Obtenga, del archivo /etc/passwd, solo información del usuario root.
+Obtenga, del archivo /etc/passwd, solo información del usuario dbadmin.
 
 
 
-Utilizando el comando addgroup agregue al sistema el grupo "examenes".
+Utilizando el comando addgroup agregue al sistema el grupo "administradores".
 
 
 
-Edite con vigr el archivo /etc/groups y agregue los usuarios "parcial1" y
-"parcial2" creados en el primer inciso al grupo "examenes".
+Edite con vigr el archivo /etc/groups y agregue los usuarios
+"dbadmin", "syadmin" y "storageadmin"
+creados en el primer inciso al grupo "administradores".
 
 
 
