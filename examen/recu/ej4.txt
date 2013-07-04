@@ -17,14 +17,15 @@ Ejercicio 4 - Una Sesión de Trabajo
 Nota: En cada ejercicio indique qué comandos utilizó para obtener la respuesta.
 
 
-¿Cómo saber cuáles son las opciones soportadas por un comando sin recurrir a 
-Internet?
+EL programa "du" informa de la cantidad de espacio utilizada por los archivos
+en el disco.
+Obtenga al menos 3 opciones que el programa acepta y coloque la descripción de cada una.
 
 
 ¿En qué directorio se encuentra trabajando?
 
 
-¿Cuál es su directorio HOME?
+¿Cuál es el valor de la variable SHELL?
 
 
 ¿Cuál es el valor de la variable PATH? ¿Para qué se utiliza?
@@ -34,12 +35,12 @@ Obtenga la lista de variables de entorno del usuario.
 ¿Cuántas variables hay definidas? 
 
 
-Crear un directorio llamado "configuracion" en su directorio HOME.
-Copiar todos los archivos del directorio /etc/ al directorio configuracion/
+Crear un directorio llamado "ejecutables" en su directorio HOME.
+Copiar todos los archivos del directorio /bin/ al directorio ejecutables/
 creado en su HOME.
 
 
-¿Cuántas lineas tiene el archivo /etc/services?
+¿Cuántos archivos existen en el directorio /usr/bin/?
 
 
 ¿Qué nombre tiene su sistema?
