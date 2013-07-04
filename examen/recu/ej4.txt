@@ -8,14 +8,12 @@ Nombre:
 Apellido:
 Legajo:
 
-
-
+****************************************************************************
+* En cada respuesta indique qué comando utilizó para obtener la respuesta. *
+****************************************************************************
 
 Ejercicio 4 - Una Sesión de Trabajo
 -----------------------------------
-
-Nota: En cada ejercicio indique qué comandos utilizó para obtener la respuesta.
-
 
 EL programa "du" informa de la cantidad de espacio utilizada por los archivos
 en el disco.
