@@ -1,0 +1,12 @@
+
+9. Administración de Sistemas - 128 horas
+Objetivos:
+● Conocer las técnicas de administración de elementos lógicos de los sistemas.
+● Conocer como instalar, actualizar y eliminar programas del sistema.
+● Saber evaluar los niveles de actividad de un sistema.
+● Saber detectar anomalías en la actividad y aplicar acciones correctivas.
+Contenidos mínimos:
+Instalación, configuración y actualización de software. Copias de Respaldo. Mantenimiento de los
+relojes de software y hardware. Detección y corrección de problemas. Procesos. Uso de recursos,
+memoria, CPU, I/O. Monitorización de recursos. Administración básica de servicios
+

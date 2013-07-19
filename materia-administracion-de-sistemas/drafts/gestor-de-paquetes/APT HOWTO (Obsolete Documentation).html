@@ -1,0 +1,211 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<!-- saved from url=(0044)http://www.debian.org/doc/manuals/apt-howto/ -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+
+
+
+<title>APT HOWTO (Obsolete Documentation)</title>
+
+<link href="http://www.debian.org/doc/manuals/apt-howto/index.es.html" rel="start">
+<link href="http://www.debian.org/doc/manuals/apt-howto/ch-novas.es.html" rel="prev">
+<link href="http://www.debian.org/doc/manuals/apt-howto/ch1.es.html" rel="next">
+<link href="http://www.debian.org/doc/manuals/apt-howto/index.es.html#contents" rel="contents">
+<link href="http://www.debian.org/doc/manuals/apt-howto/index.es.html#copyright" rel="copyright">
+<link href="http://www.debian.org/doc/manuals/apt-howto/ch1.es.html" rel="chapter" title="1 Introducción">
+<link href="http://www.debian.org/doc/manuals/apt-howto/ch-basico.es.html" rel="chapter" title="2 Configuración Básica">
+<link href="http://www.debian.org/doc/manuals/apt-howto/ch-apt-get.es.html" rel="chapter" title="3 Trabajando con paquetes">
+<link href="http://www.debian.org/doc/manuals/apt-howto/ch-helpers.es.html" rel="chapter" title="4 Ayudantes muy útiles.">
+<link href="http://www.debian.org/doc/manuals/apt-howto/ch-search.es.html" rel="chapter" title="5 Obteniendo información de los paquetes.">
+<link href="http://www.debian.org/doc/manuals/apt-howto/ch-sourcehandling.es.html" rel="chapter" title="6 Trabajando con los paquetes fuente">
+<link href="http://www.debian.org/doc/manuals/apt-howto/ch-erros.es.html" rel="chapter" title="7 Cómo lidiar con los errores">
+<link href="http://www.debian.org/doc/manuals/apt-howto/ch-distros.es.html" rel="chapter" title="8 Que distribuciónes soporten APT.">
+<link href="http://www.debian.org/doc/manuals/apt-howto/ch-agradecimientos.es.html" rel="chapter" title="9 Créditos">
+<link href="http://www.debian.org/doc/manuals/apt-howto/ch-novas.es.html" rel="chapter" title="10 Nuevas versiónes de este tutorial:">
+<link href="http://www.debian.org/doc/manuals/apt-howto/ch-basico.es.html#s-sources.list" rel="section" title="2.1 El archivo /etc/apt/sources.list">
+<link href="http://www.debian.org/doc/manuals/apt-howto/ch-basico.es.html#s-dpkg-scanpackages" rel="section" title="2.2 Cómo utilizar APT localmente">
+<link href="http://www.debian.org/doc/manuals/apt-howto/ch-basico.es.html#s-netselect" rel="section" title="2.3 Decidiendo cual archivo sources.list es el mejor: netselect, netselect-apt.">
+<link href="http://www.debian.org/doc/manuals/apt-howto/ch-basico.es.html#s-cdrom" rel="section" title="2.4 Agregando un CD-ROM al archivo sources.list">
+<link href="http://www.debian.org/doc/manuals/apt-howto/ch-apt-get.es.html#s-update" rel="section" title="3.1 Actualizando la lista de paquetes disponibles">
+<link href="http://www.debian.org/doc/manuals/apt-howto/ch-apt-get.es.html#s-install" rel="section" title="3.2 Instalando paquetes">
+<link href="http://www.debian.org/doc/manuals/apt-howto/ch-apt-get.es.html#s-remove" rel="section" title="3.3 Eliminando paquetes">
+<link href="http://www.debian.org/doc/manuals/apt-howto/ch-apt-get.es.html#s-upgrade" rel="section" title="3.4 Actualizando paquetes">
+<link href="http://www.debian.org/doc/manuals/apt-howto/ch-apt-get.es.html#s-dist-upgrade" rel="section" title="3.5 Actualizando a una nueva versión">
+<link href="http://www.debian.org/doc/manuals/apt-howto/ch-apt-get.es.html#s-clean" rel="section" title="3.6 Eliminando archivos de paquete no utilizados: apt-get clean y autoclean.">
+<link href="http://www.debian.org/doc/manuals/apt-howto/ch-apt-get.es.html#s-dselect-upgrade" rel="section" title="3.7 Utilizando APT con dselect">
+<link href="http://www.debian.org/doc/manuals/apt-howto/ch-apt-get.es.html#s-default-version" rel="section" title="3.8 Cómo mantener un sistema Híbrido.">
+<link href="http://www.debian.org/doc/manuals/apt-howto/ch-apt-get.es.html#s-apt-show-versions" rel="section" title="3.9 Cómo actualizar paquetes de versiónes específicas de Debian.">
+<link href="http://www.debian.org/doc/manuals/apt-howto/ch-apt-get.es.html#s-pin" rel="section" title="3.10 Cómo mantener versiones específicas de paquetes instalados">
+<link href="http://www.debian.org/doc/manuals/apt-howto/ch-helpers.es.html#s-equivs" rel="section" title="4.1 Cómo instalar paquetes localmente compilados: equivs">
+<link href="http://www.debian.org/doc/manuals/apt-howto/ch-helpers.es.html#s-localepurge" rel="section" title="4.2 Eliminando archivos de localización no utilizados: localepurge">
+<link href="http://www.debian.org/doc/manuals/apt-howto/ch-helpers.es.html#s-helper-show-versions" rel="section" title="4.3 Cómo saber que paquetes pueden ser actualizados.">
+<link href="http://www.debian.org/doc/manuals/apt-howto/ch-search.es.html#s-cache" rel="section" title="5.1 Descubriendo nombres de paquetes">
+<link href="http://www.debian.org/doc/manuals/apt-howto/ch-search.es.html#s-dpkg-search" rel="section" title="5.2 Utilizando dpkg para conocer los nombres de paquetes">
+<link href="http://www.debian.org/doc/manuals/apt-howto/ch-search.es.html#s-auto-apt" rel="section" title="5.3 Cómo instalar programas &quot;en demanda&quot;">
+<link href="http://www.debian.org/doc/manuals/apt-howto/ch-search.es.html#s-apt-file" rel="section" title="5.4 Cómo descubrir a que paquete peretenece un archivo.">
+<link href="http://www.debian.org/doc/manuals/apt-howto/ch-search.es.html#s-apt-listchanges" rel="section" title="5.5 Cómo mantenerse informado de los cambios en los paquetes.">
+<link href="http://www.debian.org/doc/manuals/apt-howto/ch-sourcehandling.es.html#s-source" rel="section" title="6.1 Descargando los paquetes fuente">
+<link href="http://www.debian.org/doc/manuals/apt-howto/ch-sourcehandling.es.html#s-build-dep" rel="section" title="6.2 Paquetes necesarios para la compilación de un paquete fuente">
+<link href="http://www.debian.org/doc/manuals/apt-howto/ch-erros.es.html#s-erros-comuns" rel="section" title="7.1 Errores comunes">
+<link href="http://www.debian.org/doc/manuals/apt-howto/ch-erros.es.html#s-help" rel="section" title="7.2 ¿Dónde puedo encontrar ayuda?">
+
+</head>
+
+<body>
+
+<p><a name="index"></a></p>
+<hr>
+
+<p>
+[ <a href="http://www.debian.org/doc/manuals/apt-howto/ch-novas.es.html">anterior</a> ]
+[ <a href="http://www.debian.org/doc/manuals/apt-howto/#contents">Contenidos</a> ]
+[ <a href="http://www.debian.org/doc/manuals/apt-howto/ch1.es.html">1</a> ]
+[ <a href="http://www.debian.org/doc/manuals/apt-howto/ch-basico.es.html">2</a> ]
+[ <a href="http://www.debian.org/doc/manuals/apt-howto/ch-apt-get.es.html">3</a> ]
+[ <a href="http://www.debian.org/doc/manuals/apt-howto/ch-helpers.es.html">4</a> ]
+[ <a href="http://www.debian.org/doc/manuals/apt-howto/ch-search.es.html">5</a> ]
+[ <a href="http://www.debian.org/doc/manuals/apt-howto/ch-sourcehandling.es.html">6</a> ]
+[ <a href="http://www.debian.org/doc/manuals/apt-howto/ch-erros.es.html">7</a> ]
+[ <a href="http://www.debian.org/doc/manuals/apt-howto/ch-distros.es.html">8</a> ]
+[ <a href="http://www.debian.org/doc/manuals/apt-howto/ch-agradecimientos.es.html">9</a> ]
+[ <a href="http://www.debian.org/doc/manuals/apt-howto/ch-novas.es.html">10</a> ]
+[ <a href="http://www.debian.org/doc/manuals/apt-howto/ch1.es.html">siguiente</a> ]
+</p>
+
+<hr>
+
+<h1>
+APT HOWTO (Obsolete Documentation)
+<br></h1>
+
+<hr>
+
+<h2><a name="abstract"></a>Resumen</h2>
+
+<p>
+Este documento pretende proveer al usuario de conocimientos sobre el programa
+para manejar la paquetería de Debian, el APT.  El propósito de este documento,
+es hacer la vida más fácil a los nuevos usuarios de Debian y ayudar a aquellos
+que desean tener un conocimiento más profundo de la administración de este
+sistema.  Fue creado para el proyecto Debian para mejorar y ayudar al soporte
+existente y también a los usuarios de este sistema.
+</p>
+
+<hr>
+
+<h2><a name="copyright"></a>Nota de Copyright</h2>
+
+<p>
+Copyright © 2001, 2002, 2003, 2004 Gustavo Noronha Silva<br>
+Traducción: Hugo Mora <code><a href="mailto:h.mora@melix.com.mx">h.mora@melix.com.mx</a></code>
+</p>
+
+<p>
+This manual is free software; you may redistribute it and/or modify it under
+the terms of the GNU General Public License as published by the Free Software
+Foundation; either version 2, or (at your option) any later version.
+</p>
+
+<p>
+This is distributed in the hope that it will be useful, but without any
+warranty; without even the implied warranty of merchantability or fitness for a
+particular purpose.  See the GNU General Public License for more details.
+</p>
+
+<p>
+A copy of the GNU General Public License is available as
+/usr/share/common-licenses/GPL in the Debian GNU/Linux distribution or on the
+World Wide Web at the GNU General Public Licence.  You can also obtain it by
+writing to the Free Software Foundation, Inc., 59 Temple Place - Suite 330,
+Boston, MA 02111-1307, USA.
+</p>
+
+<hr>
+
+<h2><a name="contents"></a>Contenidos</h2>
+
+<ul>
+<li><a href="http://www.debian.org/doc/manuals/apt-howto/ch1.es.html">1 Introducción</a></li><li><a href="http://www.debian.org/doc/manuals/apt-howto/ch-basico.es.html">2 Configuración Básica</a>
+  <ul>
+  <li><a href="http://www.debian.org/doc/manuals/apt-howto/ch-basico.es.html#s-sources.list">2.1 El archivo /etc/apt/sources.list</a></li>
+  <li><a href="http://www.debian.org/doc/manuals/apt-howto/ch-basico.es.html#s-dpkg-scanpackages">2.2 Cómo utilizar APT localmente</a></li>
+  <li><a href="http://www.debian.org/doc/manuals/apt-howto/ch-basico.es.html#s-netselect">2.3 Decidiendo cual archivo sources.list es el mejor: netselect, netselect-apt.</a></li>
+  <li><a href="http://www.debian.org/doc/manuals/apt-howto/ch-basico.es.html#s-cdrom">2.4 Agregando un CD-ROM al archivo sources.list</a>
+  </li></ul></li>
+<li><a href="http://www.debian.org/doc/manuals/apt-howto/ch-apt-get.es.html">3 Trabajando con paquetes</a>
+  <ul>
+  <li><a href="http://www.debian.org/doc/manuals/apt-howto/ch-apt-get.es.html#s-update">3.1 Actualizando la lista de paquetes disponibles</a></li>
+  <li><a href="http://www.debian.org/doc/manuals/apt-howto/ch-apt-get.es.html#s-install">3.2 Instalando paquetes</a></li>
+  <li><a href="http://www.debian.org/doc/manuals/apt-howto/ch-apt-get.es.html#s-remove">3.3 Eliminando paquetes</a></li>
+  <li><a href="http://www.debian.org/doc/manuals/apt-howto/ch-apt-get.es.html#s-upgrade">3.4 Actualizando paquetes</a></li>
+  <li><a href="http://www.debian.org/doc/manuals/apt-howto/ch-apt-get.es.html#s-dist-upgrade">3.5 Actualizando a una nueva versión</a></li>
+  <li><a href="http://www.debian.org/doc/manuals/apt-howto/ch-apt-get.es.html#s-clean">3.6 Eliminando archivos de paquete no utilizados: apt-get clean y autoclean.</a></li>
+  <li><a href="http://www.debian.org/doc/manuals/apt-howto/ch-apt-get.es.html#s-dselect-upgrade">3.7 Utilizando APT con dselect</a></li>
+  <li><a href="http://www.debian.org/doc/manuals/apt-howto/ch-apt-get.es.html#s-default-version">3.8 Cómo mantener un sistema Híbrido.</a></li>
+  <li><a href="http://www.debian.org/doc/manuals/apt-howto/ch-apt-get.es.html#s-apt-show-versions">3.9 Cómo actualizar paquetes de versiónes específicas de Debian.</a></li>
+  <li><a href="http://www.debian.org/doc/manuals/apt-howto/ch-apt-get.es.html#s-pin">3.10 Cómo mantener versiones específicas de paquetes instalados</a>
+  </li></ul></li>
+<li><a href="http://www.debian.org/doc/manuals/apt-howto/ch-helpers.es.html">4 Ayudantes muy útiles.</a>
+  <ul>
+  <li><a href="http://www.debian.org/doc/manuals/apt-howto/ch-helpers.es.html#s-equivs">4.1 Cómo instalar paquetes localmente compilados: equivs</a></li>
+  <li><a href="http://www.debian.org/doc/manuals/apt-howto/ch-helpers.es.html#s-localepurge">4.2 Eliminando archivos de localización no utilizados: localepurge</a></li>
+  <li><a href="http://www.debian.org/doc/manuals/apt-howto/ch-helpers.es.html#s-helper-show-versions">4.3 Cómo saber que paquetes pueden ser actualizados.</a>
+  </li></ul></li>
+<li><a href="http://www.debian.org/doc/manuals/apt-howto/ch-search.es.html">5 Obteniendo información de los paquetes.</a>
+  <ul>
+  <li><a href="http://www.debian.org/doc/manuals/apt-howto/ch-search.es.html#s-cache">5.1 Descubriendo nombres de paquetes</a></li>
+  <li><a href="http://www.debian.org/doc/manuals/apt-howto/ch-search.es.html#s-dpkg-search">5.2 Utilizando dpkg para conocer los nombres de paquetes</a></li>
+  <li><a href="http://www.debian.org/doc/manuals/apt-howto/ch-search.es.html#s-auto-apt">5.3 Cómo instalar programas "en demanda"</a></li>
+  <li><a href="http://www.debian.org/doc/manuals/apt-howto/ch-search.es.html#s-apt-file">5.4 Cómo descubrir a que paquete peretenece un archivo.</a></li>
+  <li><a href="http://www.debian.org/doc/manuals/apt-howto/ch-search.es.html#s-apt-listchanges">5.5 Cómo mantenerse informado de los cambios en los paquetes.</a>
+  </li></ul></li>
+<li><a href="http://www.debian.org/doc/manuals/apt-howto/ch-sourcehandling.es.html">6 Trabajando con los paquetes fuente</a>
+  <ul>
+  <li><a href="http://www.debian.org/doc/manuals/apt-howto/ch-sourcehandling.es.html#s-source">6.1 Descargando los paquetes fuente</a></li>
+  <li><a href="http://www.debian.org/doc/manuals/apt-howto/ch-sourcehandling.es.html#s-build-dep">6.2 Paquetes necesarios para la compilación de un paquete fuente</a>
+  </li></ul></li>
+<li><a href="http://www.debian.org/doc/manuals/apt-howto/ch-erros.es.html">7 Cómo lidiar con los errores</a>
+  <ul>
+  <li><a href="http://www.debian.org/doc/manuals/apt-howto/ch-erros.es.html#s-erros-comuns">7.1 Errores comunes</a></li>
+  <li><a href="http://www.debian.org/doc/manuals/apt-howto/ch-erros.es.html#s-help">7.2 ¿Dónde puedo encontrar ayuda?</a>
+  </li></ul></li>
+<li><a href="http://www.debian.org/doc/manuals/apt-howto/ch-distros.es.html">8 Que distribuciónes soporten APT.</a></li><li><a href="http://www.debian.org/doc/manuals/apt-howto/ch-agradecimientos.es.html">9 Créditos</a></li><li><a href="http://www.debian.org/doc/manuals/apt-howto/ch-novas.es.html">10 Nuevas versiónes de este tutorial:</a></li>
+</ul>
+
+<hr>
+
+<p>
+[ <a href="http://www.debian.org/doc/manuals/apt-howto/ch-novas.es.html">anterior</a> ]
+[ <a href="http://www.debian.org/doc/manuals/apt-howto/#contents">Contenidos</a> ]
+[ <a href="http://www.debian.org/doc/manuals/apt-howto/ch1.es.html">1</a> ]
+[ <a href="http://www.debian.org/doc/manuals/apt-howto/ch-basico.es.html">2</a> ]
+[ <a href="http://www.debian.org/doc/manuals/apt-howto/ch-apt-get.es.html">3</a> ]
+[ <a href="http://www.debian.org/doc/manuals/apt-howto/ch-helpers.es.html">4</a> ]
+[ <a href="http://www.debian.org/doc/manuals/apt-howto/ch-search.es.html">5</a> ]
+[ <a href="http://www.debian.org/doc/manuals/apt-howto/ch-sourcehandling.es.html">6</a> ]
+[ <a href="http://www.debian.org/doc/manuals/apt-howto/ch-erros.es.html">7</a> ]
+[ <a href="http://www.debian.org/doc/manuals/apt-howto/ch-distros.es.html">8</a> ]
+[ <a href="http://www.debian.org/doc/manuals/apt-howto/ch-agradecimientos.es.html">9</a> ]
+[ <a href="http://www.debian.org/doc/manuals/apt-howto/ch-novas.es.html">10</a> ]
+[ <a href="http://www.debian.org/doc/manuals/apt-howto/ch1.es.html">siguiente</a> ]
+</p>
+
+<hr>
+
+<p>
+APT HOWTO (Obsolete Documentation)
+</p>
+
+<address>
+1.8.4 - April 2003<br>
+<br>
+Gustavo Noronha Silva <code><a href="mailto:kov@debian.org">kov@debian.org</a></code><br>
+Hugo Mora <code><a href="mailto:h.mora@melix.com.mx">h.mora@melix.com.mx</a></code><br>
+<br>
+</address>
+<hr>
+
+
+
+
+
+</body></html>

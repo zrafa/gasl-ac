@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>5.8. Obtener información de un paquete</title><link rel="stylesheet" href="Common_Content/css/default.css" type="text/css" /><link rel="stylesheet" media="print" href="Common_Content/css/print.css" type="text/css" /><meta name="generator" content="publican 2.1" /><meta name="package" content="Fedora-Software_Management_Guide-14-es-ES-1.0-0" /><link rel="home" href="index.html" title="Manual para gestión del software" /><link rel="up" href="Uso_del_comando_yum.html" title="Capítulo 5. Uso del comando yum" /><link rel="prev" href="ch05s07.html" title="5.7. Removiendo software" /><link rel="next" href="ch05s09.html" title="5.9. Búsquedas y listados de paquetes" /></head><body class="toc_embeded "><div id="tocdiv" class="toc"><iframe id="tocframe" class="toc" src="../../../../toc.html">This is an iframe, to view it upgrade your browser or enable iframe display.</iframe></div><p id="title"><a class="left" href="http://www.fedoraproject.org"><img src="Common_Content/images/image_left.png" alt="Product Site" /></a><a class="right" href="http://docs.fedoraproject.org"><img src="Common_Content/images/image_right.png" alt="Documentation Site" /></a></p><ul class="docnav"><li class="previous"><a accesskey="p" href="ch05s07.html"><strong>Anterior</strong></a></li><li class="next"><a accesskey="n" href="ch05s09.html"><strong>Siguiente</strong></a></li></ul><div class="section" title="5.8. Obtener información de un paquete"><div class="titlepage"><div><div keep-together.within-column="always"><h2 class="title" id="id3200168">5.8. Obtener información de un paquete</h2></div></div></div><div class="para">
+			Es posible consultar los detalles de un paquete en particular con el comando <code class="command">yum info</code>.
+		</div><pre class="screen">$ su -c "yum info squid"
+Complementos cargados:downloadonly, filter-data, list-data, presto, verify
+Paquetes instalados
+Nombre       : squid
+Arquitectura : x86_64
+Período      : 7
+Versión      : 3.1.4
+Lanzamiento  : 2.fc13
+Tamaño       : 5.2 M
+Repositorio  : installed
+Desde el repositorio  : updates
+Resumen    : El servidor proxy con caché Squid
+URL        : http://www.squid-cache.org
+Licencia    : GPLv2
+Descripción:Squid es un servidor de caché proxy de alta performance para
+          : clientes Web, con soporte para objetos de datos FTP, gopher y HTTP.
+          : A diferencia del software de caché tradicional, Squid maneja todos
+          : los requerimientos en un sólo proceso no bloqueante manejado por
+          : E/S. Squid mantiene meta datos y especialmente objetos muy
+          : solicitados en caché en RAM, hace cache¸ de búsquedas DNS, tiene
+          : soporte de consulta DNS no bloqueante, e implementa el cacheo
+          : negativo de pedidos fallidos.
+          : 
+          : Squid consta de un servidor principal llamado squid, un programa de
+          : búsqueda DNS (dnsserver), un programa para extraer datos FTP
+          : (ftpget), y algunas herramientas de administración y clientes.
+</pre><div class="para">
+			Si existe más de un paquete que hace coincidencia con el nombre de paquete o glob, puede entonces que el comando <code class="command">yum info</code> muestre la información de cada uno de ellos. En el ejemplo a continuación hay una nueva versión de yum disponible en los repositorios aún no instalada, <code class="command">yum info</code> lista ambos paquetes y su respectiva información.
+		</div><pre class="screen">
+$ yum info yum
+...
+Paquetes instalados
+Name        : yum
+Arch        : noarch
+Version     : 3.2.28
+Release     : 3.fc13
+Size        : 4.2 M
+Repositorio        : installed
+From repo   : updates
+Summary     : Instalador/Actualizador de RPM
+URL         : http://yum.baseurl.org/
+License     : GPLv2+
+Descripción :Yum is a utility that can check for and automatically download and
+           : install updated RPM packages. Dependencies are obtained and
+           : downloaded automatically, prompting the user for permission as
+           : necessary.
+
+Paquetes disponibles
+Name        : yum
+Arch        : noarch
+Version     : 3.2.28
+Release     : 4.fc13
+Size        : 913 k
+Repositorio        : updates
+Summary     : Instalador/Actualizador de RPM
+URL         : http://yum.baseurl.org/
+License     : GPLv2+
+Descripción :Yum is a utility that can check for and automatically download and
+           : install updated RPM packages. Dependencies are obtained and
+           : downloaded automatically, prompting the user for permission as
+           : necessary.
+</pre><div class="note"><h2>Sólo con root</h2><div class="para">
+				El listado resultante del comando <code class="command">yum info</code> no mostrará los otros resultados si no se corre con privilegios de superusuario root.
+			</div></div></div><ul class="docnav"><li class="previous"><a accesskey="p" href="ch05s07.html"><strong>Anterior</strong>5.7. Removiendo software</a></li><li class="up"><a accesskey="u" href="#"><strong>Subir</strong></a></li><li class="home"><a accesskey="h" href="index.html"><strong>Inicio</strong></a></li><li class="next"><a accesskey="n" href="ch05s09.html"><strong>Siguiente</strong>5.9. Búsquedas y listados de paquetes</a></li></ul></body></html>

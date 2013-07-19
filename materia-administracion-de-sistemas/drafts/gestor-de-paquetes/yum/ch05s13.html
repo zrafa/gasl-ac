@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>5.13. Mostrar duplicados</title><link rel="stylesheet" href="Common_Content/css/default.css" type="text/css" /><link rel="stylesheet" media="print" href="Common_Content/css/print.css" type="text/css" /><meta name="generator" content="publican 2.1" /><meta name="package" content="Fedora-Software_Management_Guide-14-es-ES-1.0-0" /><link rel="home" href="index.html" title="Manual para gestión del software" /><link rel="up" href="Uso_del_comando_yum.html" title="Capítulo 5. Uso del comando yum" /><link rel="prev" href="ch05s12.html" title="5.12. Consulta al cache" /><link rel="next" href="ch05s14.html" title="5.14. Bloqueo existente ..." /></head><body class="toc_embeded "><div id="tocdiv" class="toc"><iframe id="tocframe" class="toc" src="../../../../toc.html">This is an iframe, to view it upgrade your browser or enable iframe display.</iframe></div><p id="title"><a class="left" href="http://www.fedoraproject.org"><img src="Common_Content/images/image_left.png" alt="Product Site" /></a><a class="right" href="http://docs.fedoraproject.org"><img src="Common_Content/images/image_right.png" alt="Documentation Site" /></a></p><ul class="docnav"><li class="previous"><a accesskey="p" href="ch05s12.html"><strong>Anterior</strong></a></li><li class="next"><a accesskey="n" href="ch05s14.html"><strong>Siguiente</strong></a></li></ul><div class="section" title="5.13. Mostrar duplicados"><div class="titlepage"><div><div keep-together.within-column="always"><h2 class="title" id="id3210042">5.13. Mostrar duplicados</h2></div></div></div><div class="para">
+			En operación con configuración estandar, <span class="application"><strong>yum</strong></span> sólo considera la última versión de un paquete dado. Para poder visualizar las versiones previas, hay que habilitar la posibilidad de listar los duplicados:
+		</div><pre class="screen">[main]
+cachedir=/var/cache/yum
+keepcache=0
+debuglevel=2
+logfile=/var/log/yum.log
+gpgcheck=1
+plugins=1
+# Mostrar duplicados 
+showdupesfromrepos=1</pre><div class="para">
+			Un ejemplo de los resultados se muestra a continuación.
+		</div><div class="para">
+			<em class="parameter"><code>showdupesfromrepos=0</code></em>
+		</div><pre class="screen"># su -c "yum list available vorbis-tools"
+...
+Paquetes disponibles
+vorbis-tools.i686                    1:1.2.0-8.fc12                     updates
+</pre><div class="para">
+			<em class="parameter"><code>showdupesfromrepos=1</code></em>
+		</div><pre class="screen"># su -c "yum list available vorbis-tools"
+...
+Paquetes disponibles
+vorbis-tools.i686                    1:1.2.0-6.fc12                     fedora 
+vorbis-tools.i686                    1:1.2.0-8.fc12                     updates</pre><div class="para">
+			También es posible sólo habilitar al momento con el uso de la opción <code class="option">--showduplicates</code>.
+		</div><pre class="screen"># su -c "yum list available vorbis-tools --showduplicates"
+...
+Paquetes disponibles
+vorbis-tools.x86_64                  1:1.2.0-7.fc13                   fedora 
+vorbis-tools.x86_64                  1:1.2.0-8.fc13                   updates</pre></div><ul class="docnav"><li class="previous"><a accesskey="p" href="ch05s12.html"><strong>Anterior</strong>5.12. Consulta al cache</a></li><li class="up"><a accesskey="u" href="#"><strong>Subir</strong></a></li><li class="home"><a accesskey="h" href="index.html"><strong>Inicio</strong></a></li><li class="next"><a accesskey="n" href="ch05s14.html"><strong>Siguiente</strong>5.14. Bloqueo existente ...</a></li></ul></body></html>

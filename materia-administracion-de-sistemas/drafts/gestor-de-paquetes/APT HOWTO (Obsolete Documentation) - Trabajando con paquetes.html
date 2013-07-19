@@ -1,0 +1,864 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0//EN">
+<!-- saved from url=(0062)http://www.debian.org/doc/manuals/apt-howto/ch-apt-get.es.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+
+
+
+<title>APT HOWTO (Obsolete Documentation) - Trabajando con paquetes</title>
+
+<link href="http://www.debian.org/doc/manuals/apt-howto/index.es.html" rel="start">
+<link href="http://www.debian.org/doc/manuals/apt-howto/ch-basico.es.html" rel="prev">
+<link href="http://www.debian.org/doc/manuals/apt-howto/ch-helpers.es.html" rel="next">
+<link href="http://www.debian.org/doc/manuals/apt-howto/index.es.html#contents" rel="contents">
+<link href="http://www.debian.org/doc/manuals/apt-howto/index.es.html#copyright" rel="copyright">
+<link href="http://www.debian.org/doc/manuals/apt-howto/ch1.es.html" rel="chapter" title="1 Introducción">
+<link href="http://www.debian.org/doc/manuals/apt-howto/ch-basico.es.html" rel="chapter" title="2 Configuración Básica">
+<link href="./APT HOWTO (Obsolete Documentation) - Trabajando con paquetes_files/APT HOWTO (Obsolete Documentation) - Trabajando con paquetes.html" rel="chapter" title="3 Trabajando con paquetes">
+<link href="http://www.debian.org/doc/manuals/apt-howto/ch-helpers.es.html" rel="chapter" title="4 Ayudantes muy útiles.">
+<link href="http://www.debian.org/doc/manuals/apt-howto/ch-search.es.html" rel="chapter" title="5 Obteniendo información de los paquetes.">
+<link href="http://www.debian.org/doc/manuals/apt-howto/ch-sourcehandling.es.html" rel="chapter" title="6 Trabajando con los paquetes fuente">
+<link href="http://www.debian.org/doc/manuals/apt-howto/ch-erros.es.html" rel="chapter" title="7 Cómo lidiar con los errores">
+<link href="http://www.debian.org/doc/manuals/apt-howto/ch-distros.es.html" rel="chapter" title="8 Que distribuciónes soporten APT.">
+<link href="http://www.debian.org/doc/manuals/apt-howto/ch-agradecimientos.es.html" rel="chapter" title="9 Créditos">
+<link href="http://www.debian.org/doc/manuals/apt-howto/ch-novas.es.html" rel="chapter" title="10 Nuevas versiónes de este tutorial:">
+<link href="http://www.debian.org/doc/manuals/apt-howto/ch-basico.es.html#s-sources.list" rel="section" title="2.1 El archivo /etc/apt/sources.list">
+<link href="http://www.debian.org/doc/manuals/apt-howto/ch-basico.es.html#s-dpkg-scanpackages" rel="section" title="2.2 Cómo utilizar APT localmente">
+<link href="http://www.debian.org/doc/manuals/apt-howto/ch-basico.es.html#s-netselect" rel="section" title="2.3 Decidiendo cual archivo sources.list es el mejor: netselect, netselect-apt.">
+<link href="http://www.debian.org/doc/manuals/apt-howto/ch-basico.es.html#s-cdrom" rel="section" title="2.4 Agregando un CD-ROM al archivo sources.list">
+<link href="http://www.debian.org/doc/manuals/apt-howto/ch-apt-get.es.html#s-update" rel="section" title="3.1 Actualizando la lista de paquetes disponibles">
+<link href="http://www.debian.org/doc/manuals/apt-howto/ch-apt-get.es.html#s-install" rel="section" title="3.2 Instalando paquetes">
+<link href="http://www.debian.org/doc/manuals/apt-howto/ch-apt-get.es.html#s-remove" rel="section" title="3.3 Eliminando paquetes">
+<link href="http://www.debian.org/doc/manuals/apt-howto/ch-apt-get.es.html#s-upgrade" rel="section" title="3.4 Actualizando paquetes">
+<link href="http://www.debian.org/doc/manuals/apt-howto/ch-apt-get.es.html#s-dist-upgrade" rel="section" title="3.5 Actualizando a una nueva versión">
+<link href="http://www.debian.org/doc/manuals/apt-howto/ch-apt-get.es.html#s-clean" rel="section" title="3.6 Eliminando archivos de paquete no utilizados: apt-get clean y autoclean.">
+<link href="http://www.debian.org/doc/manuals/apt-howto/ch-apt-get.es.html#s-dselect-upgrade" rel="section" title="3.7 Utilizando APT con dselect">
+<link href="http://www.debian.org/doc/manuals/apt-howto/ch-apt-get.es.html#s-default-version" rel="section" title="3.8 Cómo mantener un sistema Híbrido.">
+<link href="http://www.debian.org/doc/manuals/apt-howto/ch-apt-get.es.html#s-apt-show-versions" rel="section" title="3.9 Cómo actualizar paquetes de versiónes específicas de Debian.">
+<link href="http://www.debian.org/doc/manuals/apt-howto/ch-apt-get.es.html#s-pin" rel="section" title="3.10 Cómo mantener versiones específicas de paquetes instalados">
+<link href="http://www.debian.org/doc/manuals/apt-howto/ch-helpers.es.html#s-equivs" rel="section" title="4.1 Cómo instalar paquetes localmente compilados: equivs">
+<link href="http://www.debian.org/doc/manuals/apt-howto/ch-helpers.es.html#s-localepurge" rel="section" title="4.2 Eliminando archivos de localización no utilizados: localepurge">
+<link href="http://www.debian.org/doc/manuals/apt-howto/ch-helpers.es.html#s-helper-show-versions" rel="section" title="4.3 Cómo saber que paquetes pueden ser actualizados.">
+<link href="http://www.debian.org/doc/manuals/apt-howto/ch-search.es.html#s-cache" rel="section" title="5.1 Descubriendo nombres de paquetes">
+<link href="http://www.debian.org/doc/manuals/apt-howto/ch-search.es.html#s-dpkg-search" rel="section" title="5.2 Utilizando dpkg para conocer los nombres de paquetes">
+<link href="http://www.debian.org/doc/manuals/apt-howto/ch-search.es.html#s-auto-apt" rel="section" title="5.3 Cómo instalar programas &quot;en demanda&quot;">
+<link href="http://www.debian.org/doc/manuals/apt-howto/ch-search.es.html#s-apt-file" rel="section" title="5.4 Cómo descubrir a que paquete peretenece un archivo.">
+<link href="http://www.debian.org/doc/manuals/apt-howto/ch-search.es.html#s-apt-listchanges" rel="section" title="5.5 Cómo mantenerse informado de los cambios en los paquetes.">
+<link href="http://www.debian.org/doc/manuals/apt-howto/ch-sourcehandling.es.html#s-source" rel="section" title="6.1 Descargando los paquetes fuente">
+<link href="http://www.debian.org/doc/manuals/apt-howto/ch-sourcehandling.es.html#s-build-dep" rel="section" title="6.2 Paquetes necesarios para la compilación de un paquete fuente">
+<link href="http://www.debian.org/doc/manuals/apt-howto/ch-erros.es.html#s-erros-comuns" rel="section" title="7.1 Errores comunes">
+<link href="http://www.debian.org/doc/manuals/apt-howto/ch-erros.es.html#s-help" rel="section" title="7.2 ¿Dónde puedo encontrar ayuda?">
+
+</head>
+
+<body>
+
+<p><a name="ch-apt-get"></a></p>
+<hr>
+
+<p>
+[ <a href="http://www.debian.org/doc/manuals/apt-howto/ch-basico.es.html">anterior</a> ]
+[ <a href="http://www.debian.org/doc/manuals/apt-howto/index.es.html#contents">Contenidos</a> ]
+[ <a href="http://www.debian.org/doc/manuals/apt-howto/ch1.es.html">1</a> ]
+[ <a href="http://www.debian.org/doc/manuals/apt-howto/ch-basico.es.html">2</a> ]
+[ 3 ]
+[ <a href="http://www.debian.org/doc/manuals/apt-howto/ch-helpers.es.html">4</a> ]
+[ <a href="http://www.debian.org/doc/manuals/apt-howto/ch-search.es.html">5</a> ]
+[ <a href="http://www.debian.org/doc/manuals/apt-howto/ch-sourcehandling.es.html">6</a> ]
+[ <a href="http://www.debian.org/doc/manuals/apt-howto/ch-erros.es.html">7</a> ]
+[ <a href="http://www.debian.org/doc/manuals/apt-howto/ch-distros.es.html">8</a> ]
+[ <a href="http://www.debian.org/doc/manuals/apt-howto/ch-agradecimientos.es.html">9</a> ]
+[ <a href="http://www.debian.org/doc/manuals/apt-howto/ch-novas.es.html">10</a> ]
+[ <a href="http://www.debian.org/doc/manuals/apt-howto/ch-helpers.es.html">siguiente</a> ]
+</p>
+
+<hr>
+
+<h1>
+APT HOWTO (Obsolete Documentation)
+<br>Capítulo 3 - Trabajando con paquetes
+</h1>
+
+<hr>
+
+<h2><a name="s-update"></a>3.1 Actualizando la lista de paquetes disponibles</h2>
+
+<p>
+El sistema de paquetes utiliza una base de datos para llevar un monitoreo de
+los paquetes instalados, los no instalados y cuales están disponibles para su
+futura instalación.  El programa <code>apt-get</code> utiliza esta base de
+datos para averiguar como instalar los paquetes que son requeridos por el
+usuario y para indagar sobre que paquetes adicionales serán requeridos para que
+el paquete seleccionado funcione correctamente.
+</p>
+
+<p>
+Para actualizar la lista, se utiliza el comando <code>apt-get update</code>.
+Este comando busca el paquete en los archivos listados en
+<samp>/etc/apt/sources.list</samp>; para más información acerca de este
+archivo, revise <a href="http://www.debian.org/doc/manuals/apt-howto/ch-basico.es.html#s-sources.list">El archivo
+/etc/apt/sources.list, Sección 2.1</a>
+</p>
+
+<p>
+Es una buena costumbre ejecutar este archivo regularmente para mantenerse
+informado acerca de las posibilidades de actualización para el sistema,
+particularmente las actualizaciones de seguridad.
+</p>
+
+<hr>
+
+<h2><a name="s-install"></a>3.2 Instalando paquetes</h2>
+
+<p>
+Finalmente, ¡el proceso que estaba esperando!.  Con su archivo sources.list
+listo y su lista de paquetes disponibles al día, todo lo que necesita es
+ejecutar <samp>apt-get</samp> para tener el paquete que quiera instalado.  Por
+ejemplo, puede ejecutar:
+</p>
+
+<pre>     # apt-get install xchat
+</pre>
+
+<p>
+APT buscará en su base de datos para encontrar la versión más reciente del
+paquete y lo descargará del servidor correspondiente especificado en
+<samp>sources.list</samp>.  Si este paquete necesitara otro para funcionar --
+como en este caso -- APT resolverá las dependencias e instalará los paquetes
+necesarios.  Observe este ejemplo:
+</p>
+
+<pre>     # apt-get install nautilus
+     Reading Package Lists... Done
+     Building Dependency Tree... Done
+     The following extra packages will be installed:
+       bonobo libmedusa0 libnautilus0
+     The following NEW packages will be installed:
+       bonobo libmedusa0 libnautilus0 nautilus
+     0 packages upgraded, 4 newly installed, 0 to remove and 1 not upgraded.
+     Need to get 8329kB of archives. After unpacking 17.2MB will be used.
+     Do you want to continue? [Y/n]
+</pre>
+
+<p>
+El paquete <code>nautilus</code> necesita las librerías compartidas
+mencionadas, así pues APT las descargará del servidor.  Si se especifican antes
+los nombres de esas librerías con el comando <samp>apt-get</samp> APT no
+pregunta, si desea continuar o no; supone automáticamente que se desean
+instalar esos paquetes.
+</p>
+
+<p>
+Esto significa que APT sólo pregunta por confirmación cuando se van a instalar
+paquetes que no fueron especificados en la línea de comando.
+</p>
+
+<p>
+Las siguientes opciones de apt-get podrían ser útiles
+</p>
+
+<pre>     -h  This help text.
+     -d  Download only - do NOT install or unpack archives
+     -f  Attempt to continue if the integrity check fails
+     -s  No-act. Perform ordering simulation
+     -y  Assume Yes to all queries and do not prompt
+     -u  Show a list of upgraded packages as well
+</pre>
+
+<p>
+Pueden seleccionarse varios paquetes para instalar en una sola línea.  Los
+archivos descargados son almacenados en el directorio
+<samp>/var/cache/apt/archives</samp> para su instalación posterior.
+</p>
+
+<p>
+Puede especificar también que paquetes serán eliminados en la misma línea.
+Sólo agregue un "-" inmediatamente después del nombre del paquete que
+quiere eliminar, por ejemplo:
+</p>
+
+<pre>     # apt-get install nautilus gnome-panel-
+     Reading Package Lists... Done
+     Building Dependency Tree... Done
+     The following extra packages will be installed:
+       bonobo libmedusa0 libnautilus0
+     The following packages will be REMOVED:
+       gnome-applets gnome-panel gnome-panel-data gnome-session
+     The following NEW packages will be installed:
+       bonobo libmedusa0 libnautilus0 nautilus
+     0 packages upgraded, 4 newly installed, 4 to remove and 1 not upgraded.
+     Need to get 8329kB of archives. After unpacking 2594kB will be used.
+     Do you want to continue? [Y/n]
+</pre>
+
+<p>
+Consulte la sección <a href="http://www.debian.org/doc/manuals/apt-howto/ch-apt-get.es.html#s-remove">Eliminando paquetes, Sección 3.3</a>
+para más detalles acerca de la eliminación de paquetes.
+</p>
+
+<p>
+Si de alguna forma daña un paquete instalado, o simplemente desea reinstalar la
+versión más nueva disponible del paquete, puede utilizar la opción
+<samp>--reinstall</samp> como se muestra:
+</p>
+
+<pre>     # apt-get --reinstall install gdm
+     Reading Package Lists... Done
+     Building Dependency Tree... Done
+     0 packages upgraded, 0 newly installed, 1 reinstalled, 0 to remove and 1 not
+      upgraded.
+     Need to get 0B/182kB of archives. After unpacking 0B will be used.
+     Do you want to continue? [Y/n]
+</pre>
+
+<p>
+La versión de APT al crear este documento es la 0.5.3, la cual forma parte de
+la versión inestable de Debian (<samp>sid</samp>) al momento de escribir.  Si
+tiene esta versión instalada, tiene algunas opciones más a su alcance: Puede
+utilizar un comando como <samp>apt-get install paquete/distribución</samp> para
+instalar paquetes de una distribución en específico, o <samp>apt-get install
+package=versión</samp>.  por ejemplo:
+</p>
+
+<pre>     # apt-get install nautilus/unstable
+</pre>
+
+<p>
+Esta instrucción instalará nautilus de la distribución inestable aun si está
+utilizando la estable.  Los valores aceptados para distribución son
+<samp>stable</samp>, <samp>testing</samp> y <samp>unstable</samp>.
+</p>
+
+<p>
+Podría preferir utilizar el modificador <samp>-t</samp> para especificar una
+distribución destino, dejando a <code>apt-get</code> la oportunidad de resolver
+a favor de esa distribución las dependencias.
+</p>
+
+<p>
+<em>IMPORTANTE</em>: La versión "unstable" de Debian es la versión a
+la cual se le agregan las nuevas versiones de los paquetes de Debian.  Esta
+distribución tiene todos los cambios por los cuales atraviesan muchos de los
+paquetes, ya sean cambios pequeños o grandes que afecten a unos paquetes o a
+todo el sistema.  Por esta razón, esta versión de la distribución <em>no</em>
+deberá ser usada por usuarios novatos o por aquellos que necesitan de
+estabilidad.
+</p>
+
+<p>
+La distribución "testing" (de prueba) es un poco mejor que la
+inestable, con algo de estabilidad, pero para sistemas en producción la que se
+debe usar es la estable.
+</p>
+
+<hr>
+
+<h2><a name="s-remove"></a>3.3 Eliminando paquetes</h2>
+
+<p>
+Si ya no necesita utilizar cierto paquete, puede eliminarlo de su sistema
+utilizando APT.  Para realizar esta tarea sólo escriba: <samp>apt-get remove
+paquete</samp>.  por ejemplo:
+</p>
+
+<pre>     # apt-get remove gnome-panel
+     Reading Package Lists... Done
+     Building Dependency Tree... Done
+     The following packages will be REMOVED:
+       gnome-applets gnome-panel gnome-panel-data gnome-session
+     0 packages upgraded, 0 newly installed, 4 to remove and 1 not upgraded.
+     Need to get 0B of archives. After unpacking 14.6MB will be freed.
+     Do you want to continue? [Y/n]
+</pre>
+
+<p>
+Como se puede apreciar en el ejemplo anterior, APT se hace cargo de eliminar
+los paquetes dependientes del paquete eliminado.  No hay manera de eliminar un
+paquete utilizando APT sin eliminar los paquetes que éste necesitaba.
+</p>
+
+<p>
+Ejecutando <code>apt-get</code> como en el ejemplo causará que los paquetes
+sean eliminados, pero sus archivos de configuración, si existían, permanecerán
+intactos en el sistema.  Para una eliminación completa del paquete, ejecute:
+</p>
+
+<pre>     # apt-get --purge remove gnome-panel
+     Reading Package Lists... Done
+     Building Dependency Tree... Done
+     The following packages will be REMOVED:
+       gnome-applets* gnome-panel* gnome-panel-data* gnome-session*
+     0 packages upgraded, 0 newly installed, 4 to remove and 1 not upgraded.
+     Need to get 0B of archives. After unpacking 14.6MB will be freed.
+     Do you want to continue? [Y/n]
+</pre>
+
+<p>
+Observe el "*" después de los nombres.  Esto indica que los archivos
+de configuración de cada paquete serán eliminados también.
+</p>
+
+<p>
+Al igual que en el caso de la <samp>instalación</samp>, puede utilizar un
+símbolo con la opción de <samp>"remove"</samp> para invertir el
+significado de un paquete en especial.  En el caso de la eliminación, si agrega
+un <samp>"+"</samp> después del nombre del paquete, el paquete será
+instalado en vez de eliminarlo.
+</p>
+
+<pre>     # apt-get --purge remove gnome-panel nautilus+
+     Reading Package Lists... Done
+     Building Dependency Tree... Done
+     The following extra packages will be installed:
+       bonobo libmedusa0 libnautilus0 nautilus
+     The following packages will be REMOVED:
+       gnome-applets* gnome-panel* gnome-panel-data* gnome-session*
+     The following NEW packages will be installed:
+       bonobo libmedusa0 libnautilus0 nautilus
+     0 packages upgraded, 4 newly installed, 4 to remove and 1 not upgraded.
+     Need to get 8329kB of archives. After unpacking 2594kB will be used.
+     Do you want to continue? [Y/n]
+</pre>
+
+<p>
+Observe que <code>apt-get</code> enlista los paquetes que serán instalados
+aparte de los seleccionados (esto es, aquellos que su instalación es necesaria
+para el funcionamiento de aquellos que son seleccionados), aquellos que serán
+eliminados, y aquellos que serán instalados (incluyendo los paquetes
+adicionales otra vez).
+</p>
+
+<hr>
+
+<h2><a name="s-upgrade"></a>3.4 Actualizando paquetes</h2>
+
+<p>
+Las actualizaciones de los paquetes son un gran éxito de APT.  Pueden
+realizarse con tan sólo un comando: <samp>apt-get upgrade</samp>.  Puede
+utilizar esa opción para actualizar los paquetes de la distribución actual, o
+bien para actualizar a una nueva distribución, aunque el comando <samp>apt-get
+dist-upgrade</samp> es una mejor opción; para mayor información, consulte la
+sección <a href="http://www.debian.org/doc/manuals/apt-howto/ch-apt-get.es.html#s-dist-upgrade">Actualizando a una nueva versión, Sección
+3.5</a>.
+</p>
+
+<p>
+Es muy útil utilizar este comando con la opción <samp>-u</samp>.  Esta opción
+muestra la lista completa de paquetes que APT actualizará.  Sin ella, se
+estaría actualizando a ciegas.  APT descargará las versiones más recientes de
+cada paquete y las instalará de la manera más apropiada.  Es muy importante
+ejecutar siempre <samp>apt-get update</samp> antes de probar esto.  Consulte la
+sección <a href="http://www.debian.org/doc/manuals/apt-howto/ch-apt-get.es.html#s-update">Actualizando la lista de paquetes disponibles,
+Sección 3.1</a>.  Observe este ejemplo:
+</p>
+
+<pre>     # apt-get -u upgrade
+     Reading Package Lists... Done
+     Building Dependency Tree... Done
+     The following packages have been kept back
+       cpp gcc lilo
+     The following packages will be upgraded
+       adduser ae apt autoconf debhelper dpkg-dev esound esound-common ftp indent
+       ipchains isapnptools libaudiofile-dev libaudiofile0 libesd0 libesd0-dev
+       libgtk1.2 libgtk1.2-dev liblockfile1 libnewt0 liborbit-dev liborbit0
+       libstdc++2.10-glibc2.2 libtiff3g libtiff3g-dev modconf orbit procps psmisc
+     29 packages upgraded, 0 newly installed, 0 to remove and 3 not upgraded.
+     Need to get 5055B/5055kB of archives. After unpacking 1161kB will be used.
+     Do you want to continue? [Y/n]
+</pre>
+
+<p>
+El proceso es muy fácil.  Note que en las primeras líneas <samp>apt-get</samp>
+menciona que algunos paquetes fueron <samp>conservados</samp>.  Esto significa
+que hay versiones nuevas de estos paquetes mas no fueron actualizados por
+alguna razón.  Algunas razones pueden ser dependencias fallidas (el paquete del
+cual depende no tiene una versión nueva para actualizar) o nuevas dependencias
+(el paquete ahora depende de nuevos paquetes que la versión anterior).
+</p>
+
+<p>
+No hay una solución clara para el primer caso.  Para el segundo, es suficiente
+con ejecutar <samp>apt-get install</samp> para el paquete en cuestión, ya que
+con esto se descargarán las nuevas dependencias.  Una solución aún mejor es
+utilizar <samp>dist-upgrade</samp>.  Consulte la sección <a href="http://www.debian.org/doc/manuals/apt-howto/ch-apt-get.es.html#s-dist-upgrade">Actualizando a una nueva versión, Sección 3.5</a>.
+</p>
+
+<hr>
+
+<h2><a name="s-dist-upgrade"></a>3.5 Actualizando a una nueva versión</h2>
+
+<p>
+Esta opción de APT permite actualizar un sistema debian en un solo paso, ya sea
+desde Internet o por CDs (comprado o descargado como una imagen ISO).
+</p>
+
+<p>
+También es utilizado cuando son realizados cambios entre las relaciones de los
+paquetes instalados.  Con <samp>apt-get upgrade</samp>, estos paquetes
+permanecerían sin modificación (<samp>conservados</samp>).
+</p>
+
+<p>
+Por ejemplo, supongamos que está utilizando la revisión 0 de la versión estable
+de Debian, y compra el CD con la revisión 3.  Puede utilizar APT para
+actualizar el sistema al de el CD.  Para lograr esto, utilice
+<code>apt-cdrom</code> (consulte la sección <a href="http://www.debian.org/doc/manuals/apt-howto/ch-basico.es.html#s-cdrom">Agregando un CD-ROM al archivo sources.list,
+Sección 2.4</a>) para agregar el CD al archivo
+<samp>/etc/apt/sources.list</samp> y ejecute <samp>apt-get dist-upgrade</samp>
+</p>
+
+<p>
+Es muy importante mencionar que APT siempre busca la versión más reciente de
+los paquetes.  Así pues, si en su archivo <samp>/etc/apt/sources.list</samp> se
+encontrara alguna otra fuente que tuviera una versión más reciente que la del
+CD, APT descargaría esta versión.
+</p>
+
+<p>
+En el ejemplo mostrado en la sección <a href="http://www.debian.org/doc/manuals/apt-howto/ch-apt-get.es.html#s-upgrade">Actualizando
+paquetes, Sección 3.4</a>, observamos que algunos paquetes eran
+<samp>conservados</samp>.  Solucionaremos este problema ahora con el programa
+<samp>dist-upgrade</samp>:
+</p>
+
+<pre>     # apt-get -u dist-upgrade
+     Reading Package Lists... Done
+     Building Dependency Tree... Done
+     Calculating Upgrade... Done
+     The following NEW packages will be installed:
+       cpp-2.95 cron exim gcc-2.95 libident libopenldap-runtime libopenldap1
+       libpcre2 logrotate mailx
+     The following packages have been kept back
+       lilo
+     The following packages will be upgraded
+       adduser ae apt autoconf cpp debhelper dpkg-dev esound esound-common ftp gcc
+       indent ipchains isapnptools libaudiofile-dev libaudiofile0 libesd0
+       libesd0-dev libgtk1.2 libgtk1.2-dev liblockfile1 libnewt0 liborbit-dev
+       liborbit0 libstdc++2.10-glibc2.2 libtiff3g libtiff3g-dev modconf orbit
+       procps psmisc
+     31 packages upgraded, 10 newly installed, 0 to remove and 1 not upgraded.
+     Need to get 0B/7098kB of archives. After unpacking 3118kB will be used.
+     Do you want to continue? [Y/n]
+</pre>
+
+<p>
+Observe que los paquetes ahora serán actualizados, y que nuevos paquetes serán
+instalados (las nuevas dependencias de los paquetes).  Observe también que lilo
+sigue siendo <samp>conservado</samp>.  Probablemente tiene un problema aún más
+serio que una dependencia.  Esto lo podemos saber si ejecutamos:
+</p>
+
+<pre>     # apt-get -u install lilo
+     Reading Package Lists... Done
+     Building Dependency Tree... Done
+     The following extra packages will be installed:
+       cron debconf exim libident libopenldap-runtime libopenldap1 libpcre2
+       logrotate mailx
+     The following packages will be REMOVED:
+       debconf-tiny
+     The following NEW packages will be installed:
+       cron debconf exim libident libopenldap-runtime libopenldap1 libpcre2
+       logrotate mailx
+     The following packages will be upgraded
+       lilo
+     1 packages upgraded, 9 newly installed, 1 to remove and 31 not upgraded.
+     Need to get 225kB/1179kB of archives. After unpacking 2659kB will be used.
+     Do you want to continue? [Y/n]
+</pre>
+
+<p>
+Como se observa arriba, lilo tiene un nuevo conflicto con el paquete
+<code>debconf-tiny</code>, lo cual significa que no podrá ser instalado (o
+actualizado) sin antes eliminar debconf-tiny
+</p>
+
+<p>
+Para saber que guarda o elimina un paquete puede utilizar:
+</p>
+
+<pre>     # apt-get -o Debug::pkgProblemResolver=yes dist-upgrade
+     Reading Package Lists... Done
+     Building Dependency Tree... Done
+     Calculating Upgrade... Starting
+     Starting 2
+     Investigating python1.5
+     Package python1.5 has broken dep on python1.5-base
+       Considering python1.5-base 0 as a solution to python1.5 0
+       Holding Back python1.5 rather than change python1.5-base
+     Investigating python1.5-dev
+     Package python1.5-dev has broken dep on python1.5
+       Considering python1.5 0 as a solution to python1.5-dev 0
+       Holding Back python1.5-dev rather than change python1.5
+      Try to Re-Instate python1.5-dev
+     Done
+     Done
+     The following packages have been kept back
+       gs python1.5-dev 
+     0 packages upgraded, 0 newly installed, 0 to remove and 2  not upgraded.
+</pre>
+
+<p>
+De este modo, es fácil notar que el paquete python1.5-dev no puede ser
+instalado debido a una dependencia: python1.5.
+</p>
+
+<hr>
+
+<h2><a name="s-clean"></a>3.6 Eliminando archivos de paquete no utilizados: apt-get clean y autoclean.</h2>
+
+<p>
+Cuando APT instala un paquete, descarga los archivos necesarios de los
+servidores enlistados en /etc/apt/sources, estos a su vez son guardados en un
+depósito local (<code>/var/cache/apt/archives/</code>), y de ahí se procede con
+la instalación, consulte <a href="http://www.debian.org/doc/manuals/apt-howto/ch-apt-get.es.html#s-install">Instalando paquetes, Sección
+3.2</a>.
+</p>
+
+<p>
+Con el tiempo el depósito puede crecer y ocupar mucho espacio en disco.
+Afortunadamente, APT provee de herramientas para manejar su depósito local:
+<code>apt-get</code>, <samp>clean</samp> y <samp>autoclean</samp>.
+</p>
+
+<p>
+<code>apt-get clean</code> elimina todo excepto los archivos "lock"
+de <code>/var/cache/apt/archives/</code> y
+<code>/var/cache/apt/archives/partial/</code>.  Así, si necesita reinstalar un
+paquete APT, lo descargará de nueva cuenta.
+</p>
+
+<p>
+<code>apt-get autoclean</code> elimina sólo los archivos que no pueden ser
+descargados de nuevo.
+</p>
+
+<p>
+EL siguiente ejemplo muestra como funciona la autolimpieza de apt-get:
+</p>
+
+<pre>     # ls /var/cache/apt/archives/logrotate* /var/cache/apt/archives/gpm*
+     logrotate_3.5.9-7_i386.deb
+     logrotate_3.5.9-8_i386.deb
+     gpm_1.19.6-11_i386.deb
+</pre>
+
+<p>
+En /var/cache/apt/archives hay dos archivos para el paquete
+<code>logrotate</code>y uno para <code>gpm</code>.
+</p>
+
+<pre>     # apt-show-versions -p logrotate
+     logrotate/stable uptodate 3.5.9-8
+     # apt-show-versions -p gpm
+     gpm/stable upgradeable from 1.19.6-11 to 1.19.6-12
+</pre>
+
+<p>
+<code>apt-show-versions</code> muestra que
+<code>logrotate_3.5.9-8_i386.deb</code> provee la versión actualizada de of
+<code>logrotate</code>, así pues <code>logrotate_3.5.9-7_i386.deb</code> es
+innecesario.  También <code>gpm_1.19.6-11_i386.deb</code> no es necesario
+debido a que una versión mas reciente puede ser descargada.
+</p>
+
+<pre>     # apt-get autoclean
+     Reading Package Lists... Done
+     Building Dependency Tree... Done
+     Del gpm 1.19.6-11 [145kB]
+     Del logrotate 3.5.9-7 [26.5kB]
+</pre>
+
+<p>
+Finalmente, <samp>apt-get autoclean</samp> elimina los archivos viejos.
+Consulte <a href="http://www.debian.org/doc/manuals/apt-howto/ch-apt-get.es.html#s-apt-show-versions">Cómo actualizar paquetes de versiónes
+específicas de Debian., Sección 3.9</a> para más información sobre
+apt-show-versions.
+</p>
+
+<hr>
+
+<h2><a name="s-dselect-upgrade"></a>3.7 Utilizando APT con dselect</h2>
+
+<p>
+<code>dselect</code> es un programa que ayuda a los usuarios a seleccionar
+paquetes de Debian para su instalación.  Es considerado como algo complicado y
+un poco aburrido, pero con practica podrás utilizar su interfaz basada en
+consola-ncurses.
+</p>
+
+<p>
+dselect se caracteriza por ser un programa que sabe como explotar la capacidad
+de los paquetes Debian para "recomendar" y "sugerir" otros
+paquetes para su instalación.  Para utilizar el programa, ejecuta
+<samp>'dselect'</samp> como root.  Selecciona 'apt' como el método de acceso.
+Esto no es verdaderamente necesario, pero si no está utilizando un CD ROM y
+quiere descargar los paquetes de Internet, la mejor opción es utilizar dselect.
+</p>
+
+<p>
+Para entender mejor el uso de dselect, lea la documentación que se encuentra en
+la página de Debian <code><a href="http://www.debian.org/doc/ddp">http://www.debian.org/doc/ddp</a></code>
+</p>
+
+<p>
+Después de seleccionar los paquetes con dselect, utilice:
+</p>
+
+<pre>     # apt-get -u dselect-upgrade
+</pre>
+
+<p>
+Como en el siguiente ejemplo:
+</p>
+
+<pre>     # apt-get -u dselect-upgrade
+     Reading Package Lists... Done
+     Building Dependency Tree... Done
+     The following packages will be REMOVED:
+       lbxproxy
+     The following NEW packages will be installed:
+       bonobo console-tools-libs cpp-3.0 enscript expat fingerd gcc-3.0
+       gcc-3.0-base icepref klogd libdigest-md5-perl libfnlib0 libft-perl
+       libgc5-dev libgcc300 libhtml-clean-perl libltdl0-dev libsasl-modules
+       libstdc++3.0 metamail nethack proftpd-doc psfontmgr python-newt talk tidy
+       util-linux-locales vacation xbill xplanet-images
+     The following packages will be upgraded
+       debian-policy
+     1 packages upgraded, 30 newly installed, 1 to remove and 0 not upgraded.
+     Need to get 7140kB of archives. After unpacking 16.3MB will be used.
+     Do you want to continue? [Y/n]
+</pre>
+
+<p>
+Compárelo con lo que pasa al ejecutar apt-get dist-upgrade en el mismo sistema:
+</p>
+
+<pre>     # apt-get -u dist-upgrade
+     Reading Package Lists... Done
+     Building Dependency Tree... Done
+     Calculating Upgrade... Done
+     The following packages will be upgraded
+       debian-policy
+     1 packages upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
+     Need to get 421kB of archives. After unpacking 25.6kB will be freed.
+     Do you want to continue? [Y/n]
+</pre>
+
+<p>
+Observe que muchos paquetes de arriba están siendo instalados porque otros
+paquetes los sugirieron o recomendaron.  Otros están siendo instalados o
+eliminados (en el caso de lbxproxy, por ejemplo) por las selecciones que
+realizamos por medio de la lista de dselect.  Dselect puede ser una herramienta
+poderosa al usarse en conjunción con APT.
+</p>
+
+<hr>
+
+<h2><a name="s-default-version"></a>3.8 Cómo mantener un sistema Híbrido.</h2>
+
+<p>
+La gente frecuentemente utiliza la distribución de prueba, ya que es más
+estable que la inestable y más al día que la estable.  Sin embargo, los
+usuarios que quieren la última versión de algunos paquetes mas sin embargo no
+confian en cambiar su sistema completo, tienen la opción de utilizar una mezcla
+de un sistema prueba/inestable.  Por otro lado, los mas conservadores querrán
+utilizar una mezcla de estable/prueba.
+</p>
+
+<p>
+Para hacer esto, agrega la siguiente línea en <code>/etc/apt/apt.conf</code>:
+</p>
+
+<pre>     APT::Default-Release "testing";
+</pre>
+
+<p>
+Después, cuando esté listo a instalar paquetes de inestable, sólo utilice el
+modificador <samp>-t</samp>:
+</p>
+
+<pre>     # apt-get -t unstable install <var>packagename</var>
+</pre>
+
+<p>
+No olvide que para utilizar paquetes de una versión de Debian, necesita agregar
+una línea de apt source a la lista en <code>/etc/apt/sources</code>.  En el
+ejemplo, necesitamos líneas de <samp>unstable</samp>en vez de
+<samp>testing</samp>.
+</p>
+
+<hr>
+
+<h2><a name="s-apt-show-versions"></a>3.9 Cómo actualizar paquetes de versiónes específicas de Debian.</h2>
+
+<p>
+<code>apt-show-versions</code> provee una amnera segura de actualizar los
+sistemas híbridos sin tener que instalar más de la distribución menos estable
+de la que tenían en mente.  Por ejemplo, es posible actualizar solo los
+paquetes inestables ejecutando:
+</p>
+
+<pre>     # apt-get install `apt-show-versions -u -b | grep unstable`
+</pre>
+
+<hr>
+
+<h2><a name="s-pin"></a>3.10 Cómo mantener versiones específicas de paquetes instalados</h2>
+
+<p>
+Usted puede modificarle algo a un programa, y no tener tiempo o no querer
+portar los cambios hacia una nueva versión del mismo.  O tal vez haya
+actualizado su sistema a la versión 3.0 de Debian, pero quiere continuar con
+cierta versión de un programa de Debian 2.2.  Puede marcar la versión que tiene
+instalada así ésta no será actualizada.
+</p>
+
+<p>
+Utilizar este recurso es simple.  Sólo se necesita editar el archivo
+<samp>/etc/apt/preferences</samp>.
+</p>
+
+<p>
+El formato es simple:
+</p>
+
+<pre>     Package: &lt;package&gt;
+     Pin: &lt;pin definition&gt;
+     Pin-Priority: &lt;pin's priority&gt;
+</pre>
+
+<p>
+Por ejemplo, para mantener el paquete <code>sylpheed</code> el cual he
+modificado para utilizar "reply-to-kist" en la versión 0.4.99,
+agrego:
+</p>
+
+<pre>     Package: sylpheed
+     Pin: version 0.4.99*
+</pre>
+
+<p>
+Observe que utilizo un <samp>*</samp> (asterisco).  Este es un
+"comodín"; este específica que yo quiero que este "pin" sea
+válido para todas las versiones que empiecen con 0.4.99.  Esto es así porque
+Debian numera sus paquetes con una "revisión Debian" y yo no quiero
+entorpecer la instalación de esas revisiones.  Así pues, las versiones 0.4.99-1
+y 0.4.99-10 serán instaladas tan pronto como estén disponibles.  Observe que si
+modificó un programa no querrá hacer esto.
+</p>
+
+<p>
+El campo <samp>Pin-Priority</samp> es opcional; si no se especifica algo, el
+valor por omisión es 989
+</p>
+
+<p>
+Veamos como trabajan las prioridades de "pin".  Una prioridad menor
+que 0 indica que el paquete jamás deberá ser instalado.  Prioridades de 0 a 100
+denotan paquetes que no están instalados y que no hay versiones disponibles.
+Esto no vendrá en el proceso de escoger-versión.  La prioridad de 100 es
+asignada a los paquetes instalados - para la versión instalada de un paquete
+que será reemplazado por una versión diferente, el reemplazo deberá tener una
+prioridad mayor a 100.
+</p>
+
+<p>
+Prioridades mayores a 100 indican que el paquete debe ser instalado.
+Típicamente, la versión instalada del paquete cambia sólo con las
+actualizaciones a una versión más nueva.  Cualquier prioridad entre 100 y 1000
+(incluyéndolos) indica este comportamiento típico.  Un paquete con tal
+prioridad no se reemplazará por una versión anterior.  Por lo tanto, si yo
+tuviera sylpheed 0.5.3 instalado y definiera un pin en sylpheed 0.4.99 con
+prioridad 999, el paquete 0.4.99 este <samp>no</samp> se instalaría para
+satisfacer el pin.  Para hacer un programa que pueda reemplazarse por una
+versión anterior, necesita poseer una prioridad mayor a 1000.
+</p>
+
+<p>
+Un "pin" puede ser especificado en una <samp>versión</samp>,
+<samp>sub-versión</samp> o al <samp>origen</samp> de un paquete.
+</p>
+
+<p>
+Estableciendo un "pin" en una <samp>versión</samp>, como hemos visto,
+pueden ser especificadas utilizando números y comodines, varias versiones al
+mismo tiempo.
+</p>
+
+<p>
+La opción <samp>"release"</samp> depende de el archivo
+"Release" de un servidor o CD.  Esta opción podría no ser de mucha
+utilidad si está utilizando servidores que no ofrezcan este archivo.  Puede ver
+los contenidos de este archivo que tiene en <samp>/var/lib/apt/lists/</samp>.
+Los parámetros para un "release" son: <samp>a</samp> (archive),
+<samp>c</samp> (components), <samp>v</samp> (version), <samp>o</samp> (origin)
+and <samp>l</samp> (label).
+</p>
+
+<p>
+Un ejemplo:
+</p>
+
+<pre>     Package: *
+     Pin: release v=2.2*,a=stable,c=main,o=Debian,l=Debian
+     Pin-Priority: 1001
+</pre>
+
+<p>
+En este ejemplo, escogimos la versión 2.2* de Debian (la cual puede ser 2.2r2,
+2.2r3 -- esto es un "point release" que típicamente incluyen parches
+de seguridad y otras actualizaciones importantes), el servidor
+<samp>estable</samp>, sección <samp>principal</samp> etiqueta y origen Debian.
+Origen(o=) define quien creó el archivo "Release", la etiqueta (l=)
+define el nombre d la distribución: Debian para Debian como si mismo y
+"Progeny" para "Progeny", por ejemplo:
+</p>
+
+<pre>     $ cat
+      /var/lib/apt/lists/ftp.debian.org.br_debian_dists_potato_main_binary-i386_Relea
+     se
+     Archive: stable
+     version: 2.2r3
+     Component: main
+     Origin: Debian
+     Label: Debian
+     Architecture: i386
+</pre>
+
+<hr>
+
+<p>
+[ <a href="http://www.debian.org/doc/manuals/apt-howto/ch-basico.es.html">anterior</a> ]
+[ <a href="http://www.debian.org/doc/manuals/apt-howto/index.es.html#contents">Contenidos</a> ]
+[ <a href="http://www.debian.org/doc/manuals/apt-howto/ch1.es.html">1</a> ]
+[ <a href="http://www.debian.org/doc/manuals/apt-howto/ch-basico.es.html">2</a> ]
+[ 3 ]
+[ <a href="http://www.debian.org/doc/manuals/apt-howto/ch-helpers.es.html">4</a> ]
+[ <a href="http://www.debian.org/doc/manuals/apt-howto/ch-search.es.html">5</a> ]
+[ <a href="http://www.debian.org/doc/manuals/apt-howto/ch-sourcehandling.es.html">6</a> ]
+[ <a href="http://www.debian.org/doc/manuals/apt-howto/ch-erros.es.html">7</a> ]
+[ <a href="http://www.debian.org/doc/manuals/apt-howto/ch-distros.es.html">8</a> ]
+[ <a href="http://www.debian.org/doc/manuals/apt-howto/ch-agradecimientos.es.html">9</a> ]
+[ <a href="http://www.debian.org/doc/manuals/apt-howto/ch-novas.es.html">10</a> ]
+[ <a href="http://www.debian.org/doc/manuals/apt-howto/ch-helpers.es.html">siguiente</a> ]
+</p>
+
+<hr>
+
+<p>
+APT HOWTO (Obsolete Documentation)
+</p>
+
+<address>
+1.8.4 - April 2003<br>
+<br>
+Gustavo Noronha Silva <code><a href="mailto:kov@debian.org">kov@debian.org</a></code><br>
+Hugo Mora <code><a href="mailto:h.mora@melix.com.mx">h.mora@melix.com.mx</a></code><br>
+<br>
+</address>
+<hr>
+
+
+
+
+
+</body></html>

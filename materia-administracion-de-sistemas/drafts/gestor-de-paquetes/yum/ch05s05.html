@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>5.5. Instalación de nuevo software</title><link rel="stylesheet" href="Common_Content/css/default.css" type="text/css" /><link rel="stylesheet" media="print" href="Common_Content/css/print.css" type="text/css" /><meta name="generator" content="publican 2.1" /><meta name="package" content="Fedora-Software_Management_Guide-14-es-ES-1.0-0" /><link rel="home" href="index.html" title="Manual para gestión del software" /><link rel="up" href="Uso_del_comando_yum.html" title="Capítulo 5. Uso del comando yum" /><link rel="prev" href="ch05s04.html" title="5.4. Listado de repositorios" /><link rel="next" href="ch05s05s02.html" title="5.5.2. Error de dedo, mire las sugerencias" /></head><body class="toc_embeded "><div id="tocdiv" class="toc"><iframe id="tocframe" class="toc" src="../../../../toc.html">This is an iframe, to view it upgrade your browser or enable iframe display.</iframe></div><p id="title"><a class="left" href="http://www.fedoraproject.org"><img src="Common_Content/images/image_left.png" alt="Product Site" /></a><a class="right" href="http://docs.fedoraproject.org"><img src="Common_Content/images/image_right.png" alt="Documentation Site" /></a></p><ul class="docnav"><li class="previous"><a accesskey="p" href="ch05s04.html"><strong>Anterior</strong></a></li><li class="next"><a accesskey="n" href="ch05s05s02.html"><strong>Siguiente</strong></a></li></ul><div class="section" title="5.5. Instalación de nuevo software"><div class="titlepage"><div><div keep-together.within-column="always"><h2 class="title" id="id3056034">5.5. Instalación de nuevo software</h2></div></div></div><div class="para">
+			El comando <code class="command">yum install</code> es lo que usted debe utilizar para instalar la última versión del paquete o grupo de paquetes designados y al mismo tiempo asegurar que todas las dependencias sean satisfechas en el proceso.
+		</div><div class="para">
+			Se debe especificar los nombres de paquetes deseados, si el o los nombres no se consiguen, se asumen que dichos nombres son "shell glob" y cualquier correspondencia que se consiga en los repositorios será instalada.
+		</div><div class="para">
+			Si no se consigue identificar el paquete, entonces se realizará una búsqueda.
+		</div><div class="section" title="5.5.1. Instalar desde los repositorios habilitados"><div class="titlepage"><div><div keep-together.within-column="always"><h3 class="title" id="id3183918">5.5.1. Instalar desde los repositorios habilitados</h3></div></div></div><pre class="screen"># su -c "yum install xfig"
+...
+Configurando el proceso de instalación
+Resolviendo dependencias
+Skipping filters plugin, no data
+--&gt; Ejecutando prueba de transacción
+---&gt; Paquete xfig.i686 0:3.2.5-22.a.fc12 definido para ser actualizado
+--&gt; Procesando dependencias: xfig-common = 3.2.5-22.a.fc12 para el paquete: xfig-3.2.5-22.a.fc12.i686
+--&gt; Procesando dependencias: libXaw3d.so.7 para el paquete: xfig-3.2.5-22.a.fc12.i686
+--&gt; Ejecutando prueba de transacción
+---&gt; Paquete Xaw3d.i686 0:1.5E-15.fc12 definido para ser actualizado
+---&gt; Paquete xfig-common.i686 0:3.2.5-22.a.fc12 definido para ser actualizado
+--&gt; Procesando dependencias: transfig &gt;= 1:3.2.5 para el paquete: xfig-common-3.2.5-22.a.fc12.i686
+--&gt; Ejecutando prueba de transacción
+---&gt; Paquete transfig.i686 1:3.2.5-8.fc12 definido para ser actualizado
+--&gt; Resolución de dependencias finalizada
+
+Dependencias resueltas
+
+==========================================================================================================
+ Paquete            Arquitectura          Versión                 Repositorio                       Tamaño
+==========================================================================================================
+Instalando:
+ xfig                                   i686  3.2.5-22.a.fc12        fedora                         414 k
+Instalando para las dependencias:
+ Xaw3d                                  i686  1.5E-15.fc12           fedora                         143 k
+ transfig                               i686  1:3.2.5-8.fc12         fedora                         215 k
+ xfig-common                            i686  3.2.5-22.a.fc12        fedora                         4.3 M
+
+Resumen de la transacción
+==========================================================================================================
+Instalar       4 Paquete(s)
+Actualizar       0 Paquete(s)
+
+Tamaño total de la descarga: 5.1 M
+Tamaño instalado: 15 M
+Está de acuerdo [s/N]:
+</pre><div class="para">
+				En este ejemplo se desea instalar la aplicacion <span class="application"><strong>xfig</strong></span> pero se necesita una serie de dependencias no instaladas previamente en el sistema.
+			</div><div class="para">
+				<span class="application"><strong>yum</strong></span> se ha dado cuenta de ello y ha incluido las dependencias necesarias para poder tener éxito en la tarea encomendada.
+			</div></div></div><ul class="docnav"><li class="previous"><a accesskey="p" href="ch05s04.html"><strong>Anterior</strong>5.4. Listado de repositorios</a></li><li class="up"><a accesskey="u" href="#"><strong>Subir</strong></a></li><li class="home"><a accesskey="h" href="index.html"><strong>Inicio</strong></a></li><li class="next"><a accesskey="n" href="ch05s05s02.html"><strong>Siguiente</strong>5.5.2. Error de dedo, mire las sugerencias</a></li></ul></body></html>

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>5.10. Habilitar repositorio al momento</title><link rel="stylesheet" href="Common_Content/css/default.css" type="text/css" /><link rel="stylesheet" media="print" href="Common_Content/css/print.css" type="text/css" /><meta name="generator" content="publican 2.1" /><meta name="package" content="Fedora-Software_Management_Guide-14-es-ES-1.0-0" /><link rel="home" href="index.html" title="Manual para gestión del software" /><link rel="up" href="Uso_del_comando_yum.html" title="Capítulo 5. Uso del comando yum" /><link rel="prev" href="ch05s09s07.html" title="5.9.7. Listado de paquetes foráneos" /><link rel="next" href="ch05s11.html" title="5.11. Listar dependencias" /></head><body class="toc_embeded "><div id="tocdiv" class="toc"><iframe id="tocframe" class="toc" src="../../../../toc.html">This is an iframe, to view it upgrade your browser or enable iframe display.</iframe></div><p id="title"><a class="left" href="http://www.fedoraproject.org"><img src="Common_Content/images/image_left.png" alt="Product Site" /></a><a class="right" href="http://docs.fedoraproject.org"><img src="Common_Content/images/image_right.png" alt="Documentation Site" /></a></p><ul class="docnav"><li class="previous"><a accesskey="p" href="ch05s09s07.html"><strong>Anterior</strong></a></li><li class="next"><a accesskey="n" href="ch05s11.html"><strong>Siguiente</strong></a></li></ul><div class="section" title="5.10. Habilitar repositorio al momento"><div class="titlepage"><div><div keep-together.within-column="always"><h2 class="title" id="id3083836">5.10. Habilitar repositorio al momento</h2></div></div></div><div class="para">
+			Es común que se tengan repositorios deshabilitados, por ejemplo, los de fuentes rpm o los repositorios con paquetes bajo prueba, dada la circunstancia es necesario habilitarlos y realizar alguna acción <span class="application"><strong>yum</strong></span>, por ejemplo buscar información de algún paquete en rawhide, use <code class="option">--enablerepo</code> y habilite al momento:
+		</div><pre class="screen"># su -c "yum info --enablerepo=rawhide bro"
+...
+rawhide                                              | 4.3 kB     00:00     
+rawhide/primary_db                                   |  13 MB     01:55     
+...
+Paquetes disponibles
+Name        : bro
+Arch        : i686
+Version     : 1.5.1
+Release     : 1.fc15
+Size        : 1.9 M
+Repositorio        : rawhide
+Summary     : Open-source, Unix-based Network Intrusion Detection System
+URL         : http://bro-ids.org
+License     : BSD
+Descripción :Bro is an open-source, Unix-based Network Intrusion Detection System (NIDS)
+            : that passively monitors network traffic and looks for suspicious activity.
+            : Bro detects intrusions by first parsing network traffic to extract is
+            : application-level semantics and then executing event-oriented analyzers that
+            : compare the activity with patterns deemed troublesome. Its analysis includes
+            : detection of specific attacks (including those defined by signatures, but also
+            : those defined in terms of events) and unusual activities (e.g., certain hosts
+            : connecting to certain services, or patterns of failed connection attempts).
+</pre></div><ul class="docnav"><li class="previous"><a accesskey="p" href="ch05s09s07.html"><strong>Anterior</strong>5.9.7. Listado de paquetes foráneos</a></li><li class="up"><a accesskey="u" href="#"><strong>Subir</strong></a></li><li class="home"><a accesskey="h" href="index.html"><strong>Inicio</strong></a></li><li class="next"><a accesskey="n" href="ch05s11.html"><strong>Siguiente</strong>5.11. Listar dependencias</a></li></ul></body></html>

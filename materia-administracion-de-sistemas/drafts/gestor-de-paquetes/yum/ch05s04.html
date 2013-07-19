@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>5.4. Listado de repositorios</title><link rel="stylesheet" href="Common_Content/css/default.css" type="text/css" /><link rel="stylesheet" media="print" href="Common_Content/css/print.css" type="text/css" /><meta name="generator" content="publican 2.1" /><meta name="package" content="Fedora-Software_Management_Guide-14-es-ES-1.0-0" /><link rel="home" href="index.html" title="Manual para gestión del software" /><link rel="up" href="Uso_del_comando_yum.html" title="Capítulo 5. Uso del comando yum" /><link rel="prev" href="ch05s03.html" title="5.3. El comando help" /><link rel="next" href="ch05s05.html" title="5.5. Instalación de nuevo software" /></head><body class="toc_embeded "><div id="tocdiv" class="toc"><iframe id="tocframe" class="toc" src="../../../../toc.html">This is an iframe, to view it upgrade your browser or enable iframe display.</iframe></div><p id="title"><a class="left" href="http://www.fedoraproject.org"><img src="Common_Content/images/image_left.png" alt="Product Site" /></a><a class="right" href="http://docs.fedoraproject.org"><img src="Common_Content/images/image_right.png" alt="Documentation Site" /></a></p><ul class="docnav"><li class="previous"><a accesskey="p" href="ch05s03.html"><strong>Anterior</strong></a></li><li class="next"><a accesskey="n" href="ch05s05.html"><strong>Siguiente</strong></a></li></ul><div class="section" title="5.4. Listado de repositorios"><div class="titlepage"><div><div keep-together.within-column="always"><h2 class="title" id="id3055977">5.4. Listado de repositorios</h2></div></div></div><div class="para">
+			Siempre que se hace referencia en esta manual a repositorios habilitados, es importante poder identificarlos desde la línea de comandos sin tener que revisar manualmente los archivos .repo. El comando <span class="application"><strong>yum</strong></span> tiene el subcomando adecuado para la tarea con sus respectivas opciones, <code class="option">repolist</code>.
+		</div><pre class="screen"># yum repolist enabled
+...
+id del repositorio        nombre del repositorio                         estado
+chromium                  Chromium Test Packages                            13
+fedora                    Fedora 12 - i386                               15366
+google-chrome             google-chrome                                      5
+playonlinux               PlayOnLinux Official repo                          7
+poptop-stable             PoPToP stable repository for Fedora Core 12 (i     4
+pptp-stable               PPTP Client stable repository for Fedora Core      6
+rpmfusion-free            RPM Fusion for Fedora 12 - Free                  383
+rpmfusion-free-updates    RPM Fusion for Fedora 12 - Free - Updates       1287
+rpmfusion-nonfree         RPM Fusion for Fedora 12 - Nonfree               124
+rpmfusion-nonfree-updates RPM Fusion for Fedora 12 - Nonfree - Updates     502
+updates                   Fedora 12 - i386 - Updates                      6975
+repolist: 24672
+</pre><div class="para">
+			Igualmente se pueden listar los repositorios deshabilitados o simplemente todos los repositorios:
+		</div><pre class="screen"># yum repolist disabled
+...
+id del repositorio                          nombre del repositorio                          
+adobe-linux-i386                            Adobe Systems Incorporated         
+atrpms                                      Fedora 12 - i386 - ATrpms          
+fedora-debuginfo                            Fedora 12 - i386 - Debug           
+fedora-dvd                                  Fedora 10 DVD - i386               
+fedora-source                               Fedora 12 - Source                 
+...
+rpmfusion-nonfree-updates-testing-debuginfo RPM Fusion for Fedora 12 - Nonfree 
+rpmfusion-nonfree-updates-testing-source    RPM Fusion for Fedora 12 - Nonfree 
+thatfleminggent                             That Fleming Gent's Repository for 
+thatfleminggent-sources                     That Fleming Gent's Repository for 
+updates-debuginfo                           Fedora 12 - i386 - Updates - Debug 
+updates-source                              Fedora 12 - Updates Source         
+updates-testing                             Fedora 12 - i386 - Test Updates    
+updates-testing-debuginfo                   Fedora 12 - i386 - Test Updates Deb
+updates-testing-source                      Fedora 12 - Test Updates Source    
+repolist: 0
+</pre><pre class="screen"># yum repolist all
+...
+id del repositorio                          nombre del repositorio estado
+adobe-linux-i386                            Adobe Systems Incor disabled
+atrpms                                      Fedora 12 - i386 -  disabled
+chromium                                    Chromium Test Packa enabled:     13
+fedora                                      Fedora 12 - i386    enabled: 15,366
+fedora-debuginfo                            Fedora 12 - i386 -  disabled
+fedora-dvd                                  Fedora 10 DVD - i38 disabled
+fedora-source                               Fedora 12 - Source  disabled
+...
+updates                                     Fedora 12 - i386 -  enabled:  6,975
+updates-debuginfo                           Fedora 12 - i386 -  disabled
+updates-source                              Fedora 12 - Updates disabled
+updates-testing                             Fedora 12 - i386 -  disabled
+updates-testing-debuginfo                   Fedora 12 - i386 -  disabled
+updates-testing-source                      Fedora 12 - Test Up disabled
+repolist: 24,672
+</pre></div><ul class="docnav"><li class="previous"><a accesskey="p" href="ch05s03.html"><strong>Anterior</strong>5.3. El comando help</a></li><li class="up"><a accesskey="u" href="#"><strong>Subir</strong></a></li><li class="home"><a accesskey="h" href="index.html"><strong>Inicio</strong></a></li><li class="next"><a accesskey="n" href="ch05s05.html"><strong>Siguiente</strong>5.5. Instalación de nuevo software</a></li></ul></body></html>

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>5.12. Consulta al cache</title><link rel="stylesheet" href="Common_Content/css/default.css" type="text/css" /><link rel="stylesheet" media="print" href="Common_Content/css/print.css" type="text/css" /><meta name="generator" content="publican 2.1" /><meta name="package" content="Fedora-Software_Management_Guide-14-es-ES-1.0-0" /><link rel="home" href="index.html" title="Manual para gestión del software" /><link rel="up" href="Uso_del_comando_yum.html" title="Capítulo 5. Uso del comando yum" /><link rel="prev" href="ch05s11.html" title="5.11. Listar dependencias" /><link rel="next" href="ch05s13.html" title="5.13. Mostrar duplicados" /></head><body class="toc_embeded "><div id="tocdiv" class="toc"><iframe id="tocframe" class="toc" src="../../../../toc.html">This is an iframe, to view it upgrade your browser or enable iframe display.</iframe></div><p id="title"><a class="left" href="http://www.fedoraproject.org"><img src="Common_Content/images/image_left.png" alt="Product Site" /></a><a class="right" href="http://docs.fedoraproject.org"><img src="Common_Content/images/image_right.png" alt="Documentation Site" /></a></p><ul class="docnav"><li class="previous"><a accesskey="p" href="ch05s11.html"><strong>Anterior</strong></a></li><li class="next"><a accesskey="n" href="ch05s13.html"><strong>Siguiente</strong></a></li></ul><div class="section" title="5.12. Consulta al cache"><div class="titlepage"><div><div keep-together.within-column="always"><h2 class="title" id="id3210006">5.12. Consulta al cache</h2></div></div></div><div class="para">
+			Si se requiere consultar la base de datos de paquetes y no tiene conexión de red con los repositorios configurados, se puede especificar la opción <code class="option">-C</code> para que sólo se actúe sobre los datos cacheados localmente. Los datos en el cache debe estar vigentes y la acción requerida no debe implicar una descarga de la red. Ejemplo simple, búsqueda de paquete:
+		</div><pre class="screen">$ yum -C search squid
+...
+============================= Concordante: squid ==============================
+squid.x86_64 : El servidor proxy con caché Squid
+squidGuard.x86_64 : Filter, redirector and access controller plugin for squid
+calamaris.noarch : Squid native log format (NLF) analyzer and report generator
+awstats.noarch : Advanced Web Statistics
+ccze.x86_64 : A robust log colorizer
+dansguardian.x86_64 : Content filtering web proxy
+mod_auth_ntlm_winbind.x86_64 : NTLM authentication for the Apache web server
+                             : using winbind daemon
+tinyproxy.x86_64 : A small, efficient HTTP/SSL proxy daemon
+</pre></div><ul class="docnav"><li class="previous"><a accesskey="p" href="ch05s11.html"><strong>Anterior</strong>5.11. Listar dependencias</a></li><li class="up"><a accesskey="u" href="#"><strong>Subir</strong></a></li><li class="home"><a accesskey="h" href="index.html"><strong>Inicio</strong></a></li><li class="next"><a accesskey="n" href="ch05s13.html"><strong>Siguiente</strong>5.13. Mostrar duplicados</a></li></ul></body></html>

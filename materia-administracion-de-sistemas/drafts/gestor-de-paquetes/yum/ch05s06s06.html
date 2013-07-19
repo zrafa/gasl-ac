@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>5.6.6. Exclusión al actualizar</title><link rel="stylesheet" href="Common_Content/css/default.css" type="text/css" /><link rel="stylesheet" media="print" href="Common_Content/css/print.css" type="text/css" /><meta name="generator" content="publican 2.1" /><meta name="package" content="Fedora-Software_Management_Guide-14-es-ES-1.0-0" /><link rel="home" href="index.html" title="Manual para gestión del software" /><link rel="up" href="ch05s06.html" title="5.6. Actualizando el software" /><link rel="prev" href="ch05s06s05.html" title="5.6.5. Verificación y listado de actualizaciones" /><link rel="next" href="ch05s06s07.html" title="5.6.7. Evitar paquetes problemáticos al actualizar" /></head><body class="toc_embeded "><div id="tocdiv" class="toc"><iframe id="tocframe" class="toc" src="../../../../toc.html">This is an iframe, to view it upgrade your browser or enable iframe display.</iframe></div><p id="title"><a class="left" href="http://www.fedoraproject.org"><img src="Common_Content/images/image_left.png" alt="Product Site" /></a><a class="right" href="http://docs.fedoraproject.org"><img src="Common_Content/images/image_right.png" alt="Documentation Site" /></a></p><ul class="docnav"><li class="previous"><a accesskey="p" href="ch05s06s05.html"><strong>Anterior</strong></a></li><li class="next"><a accesskey="n" href="ch05s06s07.html"><strong>Siguiente</strong></a></li></ul><div class="section" title="5.6.6. Exclusión al actualizar"><div class="titlepage"><div><div keep-together.within-column="always"><h3 class="title" id="id3095357">5.6.6. Exclusión al actualizar</h3></div></div></div><div class="para">
+				De tanto en tanto se da el caso que es necesario excluir este o cual paquete durante el proceso de actualización, es posible que se desee mantener la versión actual, luego se mostrará otra técnica más adecuada para esta situación particular. Por ahora siga la corrient y use la opción <code class="option">--exclude</code>, así:
+			</div><pre class="screen"># su -c "yum update --exclude=ekiga"</pre><div class="para">
+				Esto puede que sea necesario porque en un momento dado los espejos que usa no se actualizan lo suficientemente rápido y no quiere o no puede esperar, o simplemente no desea o no puede usar la nueva versión.
+			</div><div class="para">
+				Si desea excluir paquetes de <span class="application"><strong>yum</strong></span> de manera que estos no puedan ser actualizados de forma permanente, se debe modificar <code class="filename">yum.conf</code> agregando la directiva <em class="parameter"><code>exclude</code></em>. Puede usar una lista de nombres de paquetes separados por coma.
+			</div><pre class="screen">[main]
+cachedir=/var/cache/yum
+keepcache=0
+debuglevel=2
+logfile=/var/log/yum.log
+exactarch=1
+obsoletes=1
+gpgcheck=1
+plugins=1
+metadata_expire=1800
+installonly_limit=2
+exclude=pidgin, amsn, emesene, paquete</pre><div class="para">
+				Además, puede excluir paquetes de repositorios específicos, agregando el exclude en el archivo .repo correspondiente, localizado en <code class="filename">/etc/yum.repos.d/nombre_del_repo.repo</code>
+			</div></div><ul class="docnav"><li class="previous"><a accesskey="p" href="ch05s06s05.html"><strong>Anterior</strong>5.6.5. Verificación y listado de actualizaciones</a></li><li class="up"><a accesskey="u" href="#"><strong>Subir</strong></a></li><li class="home"><a accesskey="h" href="index.html"><strong>Inicio</strong></a></li><li class="next"><a accesskey="n" href="ch05s06s07.html"><strong>Siguiente</strong>5.6.7. Evitar paquetes problemáticos al actualizar</a></li></ul></body></html>

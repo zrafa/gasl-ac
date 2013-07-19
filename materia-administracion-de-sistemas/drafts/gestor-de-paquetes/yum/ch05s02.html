@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>5.2. Los nombres de paquetes</title><link rel="stylesheet" href="Common_Content/css/default.css" type="text/css" /><link rel="stylesheet" media="print" href="Common_Content/css/print.css" type="text/css" /><meta name="generator" content="publican 2.1" /><meta name="package" content="Fedora-Software_Management_Guide-14-es-ES-1.0-0" /><link rel="home" href="index.html" title="Manual para gestión del software" /><link rel="up" href="Uso_del_comando_yum.html" title="Capítulo 5. Uso del comando yum" /><link rel="prev" href="Uso_del_comando_yum.html" title="Capítulo 5. Uso del comando yum" /><link rel="next" href="ch05s03.html" title="5.3. El comando help" /></head><body class="toc_embeded "><div id="tocdiv" class="toc"><iframe id="tocframe" class="toc" src="../../../../toc.html">This is an iframe, to view it upgrade your browser or enable iframe display.</iframe></div><p id="title"><a class="left" href="http://www.fedoraproject.org"><img src="Common_Content/images/image_left.png" alt="Product Site" /></a><a class="right" href="http://docs.fedoraproject.org"><img src="Common_Content/images/image_right.png" alt="Documentation Site" /></a></p><ul class="docnav"><li class="previous"><a accesskey="p" href="Uso_del_comando_yum.html"><strong>Anterior</strong></a></li><li class="next"><a accesskey="n" href="ch05s03.html"><strong>Siguiente</strong></a></li></ul><div class="section" title="5.2. Los nombres de paquetes"><div class="titlepage"><div><div keep-together.within-column="always"><h2 class="title" id="id3031676">5.2. Los nombres de paquetes</h2></div></div></div><div class="para">
+			Cuando se deba referir a un nombre de paquete para instalar, actualizar, remover, listar, obtener información, etc., puede especificar el nombre del paquete con alguno de los siguientes formatos:
+		</div><div class="itemizedlist"><ul><li class="listitem"><div class="para">
+					nombre
+				</div></li><li class="listitem"><div class="para">
+					nombre.arq
+				</div></li><li class="listitem"><div class="para">
+					nombre-ver
+				</div></li><li class="listitem"><div class="para">
+					nombre-ver-lib
+				</div></li><li class="listitem"><div class="para">
+					nombre-ver-lib.arq
+				</div></li><li class="listitem"><div class="para">
+					nombre-epoca:ver-lib.arq
+				</div></li><li class="listitem"><div class="para">
+					epoca:nombre-ver-lib.arq
+				</div></li></ul></div><div class="para">
+			Por ejemplo:
+		</div><pre class="screen"># yum remove kernel-2.4.1-10.i686</pre><div class="para">
+			Removerá esa versión específica de kernel y arquitectura.
+		</div><pre class="screen"># yum list available ’foo*’</pre><div class="para">
+			Listará todos los paquetes disponibles que hagan coincidencia con el patrón 'foo*'. Las comillas simples evitarán la expansión shell.
+		</div><pre class="screen">Architecture	Compatibility
+i386	Suitable for any current Intel-compatible computer
+noarch	Compatible with all computer architectures
+ppc	Suitable for PowerPC systems, such as Apple Power Macintosh
+x86_64	Suitable for 64-bit Intel-compatible processors, such as Opterons
+</pre><div class="para">
+			Use el nombre corto en los comandos <span class="application"><strong>yum</strong></span>. Esto provoca que <span class="application"><strong>yum</strong></span> automáticamente seleccione el paquete más reciente en los repositorios que haga coincidencia para la arquitectura en su computadora.
+		</div><div class="para">
+			Especifique el nombre con alguno de los otros formatos para invalidar el comportamiento por omisión de <span class="application"><strong>yum</strong></span> y forzarlo a usar el paquete que haga coincidencia con lo que especifique ya sea de versión o arquitectura. Tome esta decisión solamente cuando sepa que la selección por omisión tenga un bug o alguna otra falla que lo haga inutilizable en su sistema.
+		</div></div><ul class="docnav"><li class="previous"><a accesskey="p" href="Uso_del_comando_yum.html"><strong>Anterior</strong>Capítulo 5. Uso del comando yum</a></li><li class="up"><a accesskey="u" href="#"><strong>Subir</strong></a></li><li class="home"><a accesskey="h" href="index.html"><strong>Inicio</strong></a></li><li class="next"><a accesskey="n" href="ch05s03.html"><strong>Siguiente</strong>5.3. El comando help</a></li></ul></body></html>

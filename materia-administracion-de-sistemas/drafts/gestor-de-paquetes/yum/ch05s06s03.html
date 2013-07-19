@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>5.6.3. Volver a versión anterior</title><link rel="stylesheet" href="Common_Content/css/default.css" type="text/css" /><link rel="stylesheet" media="print" href="Common_Content/css/print.css" type="text/css" /><meta name="generator" content="publican 2.1" /><meta name="package" content="Fedora-Software_Management_Guide-14-es-ES-1.0-0" /><link rel="home" href="index.html" title="Manual para gestión del software" /><link rel="up" href="ch05s06.html" title="5.6. Actualizando el software" /><link rel="prev" href="ch05s06s02.html" title="5.6.2. Actualizar con un RPM" /><link rel="next" href="ch05s06s04.html" title="5.6.4. Actualización general" /></head><body class="toc_embeded "><div id="tocdiv" class="toc"><iframe id="tocframe" class="toc" src="../../../../toc.html">This is an iframe, to view it upgrade your browser or enable iframe display.</iframe></div><p id="title"><a class="left" href="http://www.fedoraproject.org"><img src="Common_Content/images/image_left.png" alt="Product Site" /></a><a class="right" href="http://docs.fedoraproject.org"><img src="Common_Content/images/image_right.png" alt="Documentation Site" /></a></p><ul class="docnav"><li class="previous"><a accesskey="p" href="ch05s06s02.html"><strong>Anterior</strong></a></li><li class="next"><a accesskey="n" href="ch05s06s04.html"><strong>Siguiente</strong></a></li></ul><div class="section" title="5.6.3. Volver a versión anterior"><div class="titlepage"><div><div keep-together.within-column="always"><h3 class="title" id="id3095203">5.6.3. Volver a versión anterior</h3></div></div></div><div class="para">
+				<code class="command">yum downgrade</code> está disponible y permite volver a la versión justamente anterior previa del software especificado disponible en los repositorios.
+			</div><pre class="screen"># rpm -q vorbis-tools
+vorbis-tools-1.2.0-8.fc12.i686
+# yum downgrade vorbis-tools
+...
+Resolviendo dependencias
+--&gt; Ejecutando prueba de transacción
+---&gt; Paquete vorbis-tools.i686 1:1.2.0-6.fc12 definido para ser actualizado
+---&gt; Paquete vorbis-tools.i686 1:1.2.0-8.fc12 definido para ser eliminado
+--&gt; Resolución de dependencias finalizada
+
+Dependencias resueltas
+
+===========================================================================================
+ Paquete            Arquitectura          Versión                 Repositorio        Tamaño
+===========================================================================================
+Desactualizando:
+ vorbis-tools          i686       1:1.2.0-6.fc12                   fedora             157 k
+
+Resumen de la transacción
+===========================================================================================
+Eliminar          0 Paquete(s)
+Reinstalar        0 Paquete(s)
+Desactualizar     1 Paquete(s)
+
+Tamaño total de la descarga: 157 k
+Está de acuerdo [s/N]:s
+Descargando paquetes:
+Setting up and reading Presto delta metadata
+Processing delta metadata
+Package(s) data still to download: 157 k
+vorbis-tools-1.2.0-6.fc12.i686.rpm                                                                                                    | 157 kB     00:01     
+Ejecutando el rpm_check_debug
+Ejecutando prueba de transacción
+La prueba de transacción ha sido exitosa
+Ejecutando transacción
+  Instalando     : 1:vorbis-tools-1.2.0-6.fc12.i686                                        1/2 
+  Limpieza       : 1:vorbis-tools-1.2.0-8.fc12.i686                                        2/2 
+
+Eliminado(s):
+  vorbis-tools.i686 1:1.2.0-8.fc12                                                                                                                           
+Instalado:
+  vorbis-tools.i686 1:1.2.0-6.fc12                                                                                                                           
+¡Listo!
+# rpm -q vorbis-tools
+vorbis-tools-1.2.0-6.fc12.i686
+</pre><div class="warning"><h2>Use en conjunto con repo updates-testing</h2><div class="para">
+					El repositorio [updates] sólo mantiene la última versión del paquete, entonces, para usar <code class="command">yum downgrade</code> de forma confiable debe habilitar el repositorio [updates-testing] y entonces hacer <code class="command">yum update ...</code> y luego si no resulta, se puede entonces revertir hacia la versión anterior en [updates] o en el mismo repo [fedora] con <code class="command">yum downgrade ...</code>.
+				</div><div class="para">
+					Otra alternativa es mantener un repositorio local con dichas versiones con por ejemplo la extensión <span class="application"><strong>yum-plugin-local</strong></span>.
+				</div></div></div><ul class="docnav"><li class="previous"><a accesskey="p" href="ch05s06s02.html"><strong>Anterior</strong>5.6.2. Actualizar con un RPM</a></li><li class="up"><a accesskey="u" href="#"><strong>Subir</strong></a></li><li class="home"><a accesskey="h" href="index.html"><strong>Inicio</strong></a></li><li class="next"><a accesskey="n" href="ch05s06s04.html"><strong>Siguiente</strong>5.6.4. Actualización general</a></li></ul></body></html>

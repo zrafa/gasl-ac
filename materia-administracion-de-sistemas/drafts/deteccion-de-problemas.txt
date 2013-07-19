@@ -1,0 +1,19 @@
+
+- se lleno el/los filesystems al 100%?
+- el /tmp se puede escribir? hay espacio? el duenio?
+- el HOME del usuario pertenece al usuario y puede escribir?
+
+- hay procesos consumiendo 100% de cpu?
+- hay procesos consumiendo 100% de memoria RAM?
+- hay espacio de swap?
+- hay uso de la red al 100%? quien?
+- hay uso del ancho de banda de los discos al 100%? quien? oracle? postgressql?
+
+uso de io : vmstat iostat
+uso de la red : netstat
+
+strace para ver porque falla el programa?
+
+- cuantos procesos hay? hay algun proceso generando nuevos procesos indefinidamente?
+
+- problemas en los discos. Chequeo de los sistemas de archivos.

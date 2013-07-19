@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>Capítulo 5. Uso del comando yum</title><link rel="stylesheet" href="Common_Content/css/default.css" type="text/css" /><link rel="stylesheet" media="print" href="Common_Content/css/print.css" type="text/css" /><meta name="generator" content="publican 2.1" /><meta name="package" content="Fedora-Software_Management_Guide-14-es-ES-1.0-0" /><link rel="home" href="index.html" title="Manual para gestión del software" /><link rel="up" href="index.html" title="Manual para gestión del software" /><link rel="prev" href="ch04s08s07.html" title="4.8.7. Configuración para protección de paquetes" /><link rel="next" href="ch05s02.html" title="5.2. Los nombres de paquetes" /></head><body class="toc_embeded "><div id="tocdiv" class="toc"><iframe id="tocframe" class="toc" src="../../../../toc.html">This is an iframe, to view it upgrade your browser or enable iframe display.</iframe></div><p id="title"><a class="left" href="http://www.fedoraproject.org"><img src="Common_Content/images/image_left.png" alt="Product Site" /></a><a class="right" href="http://docs.fedoraproject.org"><img src="Common_Content/images/image_right.png" alt="Documentation Site" /></a></p><ul class="docnav"><li class="previous"><a accesskey="p" href="ch04s08s07.html"><strong>Anterior</strong></a></li><li class="next"><a accesskey="n" href="ch05s02.html"><strong>Siguiente</strong></a></li></ul><div xml:lang="es-ES" class="chapter" title="Capítulo 5. Uso del comando yum" id="Uso_del_comando_yum" lang="es-ES"><div class="titlepage"><div><div><h2 class="title">Capítulo 5. Uso del comando yum</h2></div></div></div><div class="toc"><dl><dt><span class="section"><a href="Uso_del_comando_yum.html#id3029853">5.1. Comandos yum y su sintaxis</a></span></dt><dt><span class="section"><a href="ch05s02.html">5.2. Los nombres de paquetes</a></span></dt><dt><span class="section"><a href="ch05s03.html">5.3. El comando help</a></span></dt><dt><span class="section"><a href="ch05s04.html">5.4. Listado de repositorios</a></span></dt><dt><span class="section"><a href="ch05s05.html">5.5. Instalación de nuevo software</a></span></dt><dd><dl><dt><span class="section"><a href="ch05s05.html#id3183918">5.5.1. Instalar desde los repositorios habilitados</a></span></dt><dt><span class="section"><a href="ch05s05s02.html">5.5.2. Error de dedo, mire las sugerencias</a></span></dt><dt><span class="section"><a href="ch05s05s03.html">5.5.3. Instalar un RPM</a></span></dt><dt><span class="section"><a href="ch05s05s04.html">5.5.4. Reinstalando software</a></span></dt></dl></dd><dt><span class="section"><a href="ch05s06.html">5.6. Actualizando el software</a></span></dt><dd><dl><dt><span class="section"><a href="ch05s06.html#id3095145">5.6.1. Actualizar un paquete</a></span></dt><dt><span class="section"><a href="ch05s06s02.html">5.6.2. Actualizar con un RPM</a></span></dt><dt><span class="section"><a href="ch05s06s03.html">5.6.3. Volver a versión anterior</a></span></dt><dt><span class="section"><a href="ch05s06s04.html">5.6.4. Actualización general</a></span></dt><dt><span class="section"><a href="ch05s06s05.html">5.6.5. Verificación y listado de actualizaciones</a></span></dt><dt><span class="section"><a href="ch05s06s06.html">5.6.6. Exclusión al actualizar</a></span></dt><dt><span class="section"><a href="ch05s06s07.html">5.6.7. Evitar paquetes problemáticos al actualizar</a></span></dt></dl></dd><dt><span class="section"><a href="ch05s07.html">5.7. Removiendo software</a></span></dt><dt><span class="section"><a href="ch05s08.html">5.8. Obtener información de un paquete</a></span></dt><dt><span class="section"><a href="ch05s09.html">5.9. Búsquedas y listados de paquetes</a></span></dt><dd><dl><dt><span class="section"><a href="ch05s09.html#id3200282">5.9.1. Búsqueda por nombre, descripcón y resumen</a></span></dt><dt><span class="section"><a href="ch05s09s02.html">5.9.2. Búsqueda por funcionalidad o archivo</a></span></dt><dt><span class="section"><a href="ch05s09s03.html">5.9.3. Listado de paquetes instalados</a></span></dt><dt><span class="section"><a href="ch05s09s04.html">5.9.4. Listado de paquetes disponibles</a></span></dt><dt><span class="section"><a href="ch05s09s05.html">5.9.5. Listado de actualizaciones disponibles</a></span></dt><dt><span class="section"><a href="ch05s09s06.html">5.9.6. Listado de paquetes recientes</a></span></dt><dt><span class="section"><a href="ch05s09s07.html">5.9.7. Listado de paquetes foráneos</a></span></dt></dl></dd><dt><span class="section"><a href="ch05s10.html">5.10. Habilitar repositorio al momento</a></span></dt><dt><span class="section"><a href="ch05s11.html">5.11. Listar dependencias</a></span></dt><dt><span class="section"><a href="ch05s12.html">5.12. Consulta al cache</a></span></dt><dt><span class="section"><a href="ch05s13.html">5.13. Mostrar duplicados</a></span></dt><dt><span class="section"><a href="ch05s14.html">5.14. Bloqueo existente ...</a></span></dt><dt><span class="section"><a href="ch05s15.html">5.15. Grupos de software YUM</a></span></dt><dd><dl><dt><span class="section"><a href="ch05s15.html#id3210242">5.15.1. Listar grupos disponibles</a></span></dt><dt><span class="section"><a href="ch05s15s02.html">5.15.2. Información de paquetes de grupo</a></span></dt><dt><span class="section"><a href="ch05s15s03.html">5.15.3. Instalación y remoción de grupos</a></span></dt></dl></dd><dt><span class="section"><a href="ch05s16.html">5.16. Registros e históricos YUM</a></span></dt><dd><dl><dt><span class="section"><a href="ch05s16.html#id3157643">5.16.1. Historia</a></span></dt><dt><span class="section"><a href="ch05s16s02.html">5.16.2. ¿Undo?¡Redo!</a></span></dt><dt><span class="section"><a href="ch05s16s03.html">5.16.3. Histórico corrupto</a></span></dt><dt><span class="section"><a href="ch05s16s04.html">5.16.4. Identificación del responsable con sudo</a></span></dt><dt><span class="section"><a href="ch05s16s05.html">5.16.5. Verificación de la base de datos rpm</a></span></dt></dl></dd></dl></div><div class="para">
+		Una vez configurado el sistema YUM, puede usar la herramienta en la línea de comandos (CLI) <span class="application"><strong>yum</strong></span>. Se demostrará con ejemplos y exposición de parámetros comunes útiles y necesarios en las tareas diarias del administrador de sistemas Fedora.
+	</div><div class="section" title="5.1. Comandos yum y su sintaxis"><div class="titlepage"><div><div keep-together.within-column="always"><h2 class="title" id="id3029853">5.1. Comandos yum y su sintaxis</h2></div></div></div><div class="para">
+			Si se revisa las páginas del manual, <code class="command">man yum</code>, se encontrará la siguiente definición para el uso de <span class="application"><strong>yum</strong></span>:
+		</div><pre class="screen">yum [options] [command] [package ...]</pre><div class="para">
+			De la sintáxis entonces se sabe que existen opciones y comandos <span class="application"><strong>yum</strong></span>, seguido de una lista de nombres de paquetes. Se mezclarán a continuación a lo largo del desarrollo de este manual diferentes comandos y opciones de la <span class="application"><strong>yum</strong></span> pero es de suma importancia destacar su diferencia ya que no todas las opciones aplican a todos los comandos. La referencia es la página del manual de <span class="application"><strong>yum</strong></span> (<code class="command">man yum</code>). Una opción rápida es simplemente tipear el comando <code class="command">yum</code> y ver la ayuda que despliega de su uso, por ejemplo, abajo la salida del comando <code class="command">yum</code> y de acuerdo a las extensiones instaladas en un sistema Fedora 13 dado, se listan los comandos y opciones:
+		</div><pre class="screen">$ yum
+Complementos cargados:downloadonly, filter-data, list-data, presto, refresh-packagekit, show-leaves
+Necesita ingresar algún comando
+Usage: yum [options] COMMAND
+
+List of Commands:
+
+check-update   Verifica la existencia de actualizaciones de paquetes
+clean          Elimina los datos del caché
+deplist        Muestra las dependencias que necesita un paquete
+downgrade      desactualizar un paquete a una versión anterior
+erase          Elimina uno o varios paquetes de su sistema
+groupinfo      Muestra detalles acerca de un grupo de paquetes
+groupinstall   Instala los paquetes en un grupo de su sistema
+grouplist      Muestra los grupos de paquetes disponibles
+groupremove    Elimina los paquetes de un grupo de su sistema
+help           Muestra un mensaje de ayuda del uso
+history        Mostrar, o utilizar, el historial de la transacción
+info           Muestra detalles acerca de un paquete o de un grupo de paquetes
+info-arches    Display aggregate data on the arch attribute of a group of
+               packages and list all the packages under each 
+info-archive-sizes Display aggregate data on the archivesize attribute of a
+               group of packages and list all the packages under each
+info-baseurls  Display aggregate data on the url attribute of a group of 
+               packages and list all the packages under each
+info-buildhosts Display aggregate data on the buildhost attribute of a group of 
+               packages and list all the packages under each
+info-committers Display aggregate data on the committer attribute of a group of 
+               packages and list all the packages under each
+info-groups    Display aggregate group data, for matching members and list all 
+               the packages under each
+info-installed-sizes Display aggregate data on the installedsize attribute of a 
+               group of packages and list all the packages under each
+info-licenses  Display aggregate data on the license attribute of a group of 
+               packages and list all the packages under each
+info-package-sizes Display aggregate data on the packagesize attribute of a 
+               group of packages and list all the packages under each
+info-packagers Display aggregate data on the packager attribute of a group of 
+               packages and list all the packages under each
+info-rpm-groups Display aggregate data on the group attribute of a group of 
+               packages and list all the packages under each
+info-vendors   Display aggregate data on the vendor attribute of a group of 
+               packages and list all the packages under each
+install        Instala uno o varios paquetes en su sistema
+list           Muestra un paquete o grupos de paquete
+list-arches    Display aggregate data on the arch attribute of a group of 
+               packages
+list-archive-sizes Display aggregate data on the archivesize attribute of a 
+               group of packages
+list-baseurls  Display aggregate data on the url attribute of a group of 
+               packages
+list-buildhosts Display aggregate data on the buildhost attribute of a group of 
+               packages
+list-committers Display aggregate data on the committer attribute of a group of 
+               packages
+list-groups    Display aggregate group data, for matching members
+list-installed-sizes Display aggregate data on the installedsize attribute of a 
+               group of packages
+list-licenses  Display aggregate data on the license attribute of a group of 
+               packages
+list-package-sizes Display aggregate data on the packagesize attribute of a 
+               group of packages
+list-packagers Display aggregate data on the packager attribute of a group of 
+               packages
+list-rpm-groups Display aggregate data on the group attribute of a group of 
+               packages
+list-vendors   Display aggregate data on the vendor attribute of a group of 
+               packages
+localinstall   Instala un RPM local
+makecache      Genera el caché de metadatos
+provides       Localiza el paquete que ofrezca el valor indicado
+reinstall      reinstalar un paquete
+repolist       Muestra los repositorios de software configurados
+resolvedep     Determina qué paquetes ofrecen la dependencia indicada
+search         Busca detalles en los paquetes para la cadena indicada
+shell          Ejecuta una shell de Yum interactiva 
+update         Actualiza uno o varios paquetes en su sistema
+upgrade        Actualiza los paquetes tomando en cuenta los obsoletos
+version        Muestra una versión para la máquina y/o los repositorios disponibles.
+
+
+Options:
+  -h, --help            muestra este mensaje de ayuda y cierra
+  -t, --tolerant        sea tolerante con los errores
+  -C                    se ejecuta completamente a partir del caché, pero no
+                        lo actualiza
+  -c  [config file]     configurar ubicación de archivo
+  -R  [minutes]         tiempo máximo de espera del comando
+  -d  [debug level]     nivel de depuración de la salida
+  --showduplicates      muestra duplicados en los repositorios, y en los
+                        comandos para mostrar/buscar
+  -e  [error level]     nivel de error de la salida
+  -q, --quiet           operación discreta
+  -v, --verbose         operación detallada
+  -y                    responde "si" a todas las preguntas
+  --version             muestra la versión de Yum y finaliza
+  --installroot=[path]  define la raíz de instalación
+  --enablerepo=[repo]   activa uno o más repositorios (los comodines son
+                        permitidos)
+  --disablerepo=[repo]  desactiva uno o más repositorios (los comodines son
+                        permitidos)
+  -x [package], --exclude=[package]
+                        excluya paquete(s) de acuerdo a su nombre o glob
+  --disableexcludes=[repo]
+                        deshabilita la posibilidad de exclusión desde main,
+                        para un repositorio o para todos
+  --obsoletes           habilita el proceso de paquetes obsoletos durante las
+                        actualizaciones
+  --noplugins           deshabilita los complementos de Yum
+  --nogpgcheck          deshabilita la verificación de firmas GPG
+  --disableplugin=[plugin]
+                        deshabilita complementos de acuerdo a su nombre
+  --enableplugin=[plugin]
+                        habilita complementos de acuerdo a su nombre
+  --skip-broken         ignora paquetes con problemas de resolución de
+                        dependencias
+  --color=COLOR         controla la utilización de colores
+  --filter-vendors=FILTER_VENDORS
+                        Filter to packages with a matching vendor
+  --filter-rpm-groups=FILTER_RPM_GROUPS
+                        Filter to packages with a matching group
+  --filter-packagers=FILTER_PACKAGERS
+                        Filter to packages with a matching packager
+  --filter-licenses=FILTER_LICENSES
+                        Filter to packages with a matching license
+  --filter-committers=FILTER_COMMITTERS
+                        Filter to packages with a matching committer
+  --filter-arches=FILTER_ARCHES
+                        Filter to packages with a matching arch
+  --filter-buildhosts=FILTER_BUILDHOSTS
+                        Filter to packages with a matching buildhost
+  --filter-urls=FILTER_URLS
+                        Filter to packages with a matching url
+  --filter-package-sizes=FILTER_PACKAGE_SIZES
+                        Filter to packages with a packagesize in the given
+                        range
+  --filter-archive-sizes=FILTER_ARCHIVE_SIZES
+                        Filter to packages with a archivesize in the given
+                        range
+  --filter-installed-sizes=FILTER_INSTALLED_SIZES
+                        Filter to packages with a installedsize in the given
+                        range
+  --filter-groups=FILTER_GROUPS
+                        Filter to packages within a matching yum group
+  --disablepresto       disable Presto plugin and don't download any deltarpms
+
+  Opciones de complementos:
+    --downloadonly      don't update, just download
+    --downloaddir=DLDIR
+                        specifies an alternate directory to store packages
+</pre></div></div><ul class="docnav"><li class="previous"><a accesskey="p" href="ch04s08s07.html"><strong>Anterior</strong>4.8.7. Configuración para protección de paquetes</a></li><li class="up"><a accesskey="u" href="#"><strong>Subir</strong></a></li><li class="home"><a accesskey="h" href="index.html"><strong>Inicio</strong></a></li><li class="next"><a accesskey="n" href="ch05s02.html"><strong>Siguiente</strong>5.2. Los nombres de paquetes</a></li></ul></body></html>

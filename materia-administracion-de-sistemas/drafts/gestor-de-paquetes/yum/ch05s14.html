@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8" /><title>5.14. Bloqueo existente ...</title><link rel="stylesheet" href="Common_Content/css/default.css" type="text/css" /><link rel="stylesheet" media="print" href="Common_Content/css/print.css" type="text/css" /><meta name="generator" content="publican 2.1" /><meta name="package" content="Fedora-Software_Management_Guide-14-es-ES-1.0-0" /><link rel="home" href="index.html" title="Manual para gestión del software" /><link rel="up" href="Uso_del_comando_yum.html" title="Capítulo 5. Uso del comando yum" /><link rel="prev" href="ch05s13.html" title="5.13. Mostrar duplicados" /><link rel="next" href="ch05s15.html" title="5.15. Grupos de software YUM" /></head><body class="toc_embeded "><div id="tocdiv" class="toc"><iframe id="tocframe" class="toc" src="../../../../toc.html">This is an iframe, to view it upgrade your browser or enable iframe display.</iframe></div><p id="title"><a class="left" href="http://www.fedoraproject.org"><img src="Common_Content/images/image_left.png" alt="Product Site" /></a><a class="right" href="http://docs.fedoraproject.org"><img src="Common_Content/images/image_right.png" alt="Documentation Site" /></a></p><ul class="docnav"><li class="previous"><a accesskey="p" href="ch05s13.html"><strong>Anterior</strong></a></li><li class="next"><a accesskey="n" href="ch05s15.html"><strong>Siguiente</strong></a></li></ul><div class="section" title="5.14. Bloqueo existente ..."><div class="titlepage"><div><div keep-together.within-column="always"><h2 class="title" id="id3210117">5.14. Bloqueo existente ...</h2></div></div></div><div class="para">
+			Si obtiene el siguiente mensaje al ejecutar un comando <span class="application"><strong>yum</strong></span>:
+		</div><pre class="screen"># yum install xxx*
+Complementos cargados:aliases, presto, verify
+Bloqueo existente en /var/run/yum.pid: otra copia se encuentra en ejecución como pid 12588.
+Otra aplicación tiene retenido el bloqueo de Yum; esperándolo para salir... 
+La otra aplicación es: yum
+Memoria : 101 M RSS (400 MB VSZ)
+Iniciado: Sun Sep 26 07:59:51 2010 - 12:05 atrás
+Estado  : Ininterrumplible, pid: 12588
+...
+</pre><div class="para">
+			Es porque existe otra instancia <span class="application"><strong>yum</strong></span> ejecutándose o muerta. El origen de esta situación es que el sistema YUM no soporta concurrencia con todas las operaciones. Una circunstancia en que suele ocurrir esto es cuando <span class="application"><strong>yum-updatesd</strong></span> está en ejecución. Resuelva con:
+		</div><pre class="screen">$ su -
+contraseña
+# service yum-updatesd stop
+&lt;mis operaciones yum&gt;
+# service yum-updatesd start
+</pre><div class="para">
+			Esto sólo funciona si <span class="application"><strong>yum-updatesd</strong></span> es el causante de que el sistema esté ocupado. Si es otra aplicación <span class="application"><strong>yum</strong></span>, simplemente espere, y sólo en última instancia, si presume que dicha aplicación está muerta y no responde:
+		</div><pre class="screen">su -
+contraseña
+kill -kill &lt;pid&gt;</pre><div class="para">
+			Donde &lt;pid&gt; es el identificador de proceso de la otra aplicación.
+		</div></div><ul class="docnav"><li class="previous"><a accesskey="p" href="ch05s13.html"><strong>Anterior</strong>5.13. Mostrar duplicados</a></li><li class="up"><a accesskey="u" href="#"><strong>Subir</strong></a></li><li class="home"><a accesskey="h" href="index.html"><strong>Inicio</strong></a></li><li class="next"><a accesskey="n" href="ch05s15.html"><strong>Siguiente</strong>5.15. Grupos de software YUM</a></li></ul></body></html>
