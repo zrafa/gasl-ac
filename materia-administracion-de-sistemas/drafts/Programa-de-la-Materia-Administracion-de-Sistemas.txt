@@ -45,4 +45,26 @@ Octubre 5 semanas
 
 Noviembre 3 semanas  
 
-Total tentativo: 15 semanas, 30 clases.
+Total tentativo: 15 semanas (si no tenemos los lunes)
+-----------------------------------------------------
+Conocer las técnicas de administración de elementos lógicos de los sistemas. (2 semanas)
+	\-> sistemas de archivos
+	\-> dispositivos 
+Saber evaluar los niveles de actividad de un sistema.
+	\-> Detección y corrección de problemas.  Saber detectar anomalías en la actividad y aplicar acciones correctivas. (fábrica de fallas)
+Instalación, configuración y actualización de software. (2 semanas)
+Copias de Respaldo. (2 semanas)
+Mantenimiento de los relojes de software y hardware. (1 semana)
+Procesos. Uso de recursos, memoria, CPU, I/O. Monitorización de recursos. (2 semanas)
+Administración básica de servicios (2 semana)
+Total: 11 Semanas disponibles para clases. 
+
+Taller de fallas: últimas dos semanas (del 11 al 22 de noviembre con entrega de reporte final).
+Examenes
+	Dos examenes. 
+	Dos recuperatorios. 
+	Total: 4 clases. 2 semanas. 
+	Primer examen tentativo: segunda de septiembre. (semana del 9 al 13)
+	Primer recuperatorio: cuarta semana de septiembre. (semana del 23 al 27) 
+	Segundo examen: cuarta semana de octubre. (semana del 21 al 25) 
+	Segundo recuperatorio: primer semana de noviembre. (semana del 4 al 8) 
