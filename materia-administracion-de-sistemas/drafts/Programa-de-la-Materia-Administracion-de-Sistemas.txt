@@ -92,3 +92,24 @@ Total: 11 Semanas disponibles para clases.
 Saber evaluar los niveles de actividad de un sistema.
 	\-> Detección y corrección de problemas.  Saber detectar anomalías en la actividad y aplicar acciones correctivas. (fábrica de fallas)
 
+	* Procesos descontrolados en CPU y MEMORIA
+	* Problemas de permisos 
+	* UID duplicados 
+	* Instalación de un paquete que necesita dependencias 
+	* Corrupción de file system 
+	* File system en el fstab que no está presente en el sistema. 
+	* restauración desde backup 
+
+
+ORDEN TENTATIVO: 
+2 clases: mantenimiento de la hora
+3 clases: reconocimiento de dispositivos y sistema de archivos
+3 clases: procesos
+1 er parcial 
+3 clases: paquetes, inst. sw
+3 clases: administración de servicios
+3 clases: copias de respaldo. 
+2 do parcial
+3 clases reconocimiento de fallos: logs, monitoreo. 
+
+
