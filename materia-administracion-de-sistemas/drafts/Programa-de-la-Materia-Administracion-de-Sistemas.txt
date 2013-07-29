@@ -10,7 +10,7 @@ Instalación, configuración y actualización de software. Copias de Respaldo. M
 relojes de software y hardware. Detección y corrección de problemas. Procesos. Uso de recursos,
 memoria, CPU, I/O. Monitorización de recursos. Administración básica de servicios
 
-12 de Agosto al 29 de noviembre. 
+PERIODO: 12 de Agosto al 29 de noviembre. 
 2 clases x 4 hs por semana 
                             2013
                              Agosto              Septiembre       
@@ -30,18 +30,39 @@ do lu ma mi ju vi sá  do lu ma mi ju vi sá
 27 28 29 30 31        24 25 26 27 28 29 30
                                                                   
 Feriados: 
-17 de Agosto - Lunes 20 de Agosto - Paso a la Inmortalidad del General José de San Martín
-24 de Setiembre - Lunes - Bicentenario de la Batalla de Tucumán
-12 de Octubre - Lunes 8 de Octubre - Día del Respeto a la Diversidad Cultural
-20 de Noviembre -  Lunes 26 de Noviembre -  Día de la Soberanía Nacional
+17 de Agosto - Lunes 19 de Agosto - Paso a la Inmortalidad del General José de San Martín
+12 de Octubre - Lunes 14 de Octubre - Día del Respeto a la Diversidad Cultural
+20 de Noviembre - Lunes 25 de Noviembre -  Día de la Soberanía Nacional
 
-Agosto 3 semanas
+Agosto 3 semanas (5 clases netas) 
+-------------------- 
+17 de Agosto - Lunes 19 de Agosto - Paso a la Inmortalidad del General José de San Martín
 
-Septiembre 4 semanas
+Septiembre 4 semanas (6 clases netas) 
+--------------------
+Primer examen tentativo: segunda de septiembre. (semana del 9 al 13, idealmente el 13, 8 clases hasta el 13)
+Primer recuperatorio: cuarta semana de septiembre. (semana del 23 al 27) 
 
-Octubre 5 semanas 
+Octubre 5 semanas (8 clases netas) 
+--------------------
+12 de Octubre - Lunes 14 de Octubre - Día del Respeto a la Diversidad Cultural
+Segundo examen: cuarta semana de octubre. (semana del 21 al 25, idealmente el 25, 9 clases hasta el 25) 
 
-Noviembre 3 semanas  
+Noviembre 3 semanas (1 clase neta)
+--------------------
+Segundo recuperatorio: primer semana de noviembre. (semana del 4 al 8) 
+11 al 22: Fabrica de fallas, entrega reporte. 
+20 de Noviembre - Lunes 25 de Noviembre -  Día de la Soberanía Nacional
+Taller de fallas: últimas dos semanas (del 11 al 22 de noviembre con entrega de reporte final).
+
+Hay tres clases que quedan después del segundo recuperatorio, hay que ver 
+cómo organizar ese tema, si entra en la fabrica de fallas o qué.
+
+Cierre de notas: 25 al 29 de noviembre. 
+----------------
+
+20 clases netas a distribuir. 
+
 
 Total tentativo: 15 semanas (si no tenemos los lunes)
 -----------------------------------------------------
@@ -68,15 +89,4 @@ Copias de Respaldo. (2 semanas)
 Total: 11 Semanas disponibles para clases. 
 Saber evaluar los niveles de actividad de un sistema.
 	\-> Detección y corrección de problemas.  Saber detectar anomalías en la actividad y aplicar acciones correctivas. (fábrica de fallas)
-
-Taller de fallas: últimas dos semanas (del 11 al 22 de noviembre con entrega de reporte final).
-Examenes
-	Dos examenes. 
-	Dos recuperatorios. 
-	Total: 4 clases. 2 semanas. 
-	Primer examen tentativo: segunda de septiembre. (semana del 9 al 13)
-	Primer recuperatorio: cuarta semana de septiembre. (semana del 23 al 27) 
-	Segundo examen: cuarta semana de octubre. (semana del 21 al 25) 
-	Segundo recuperatorio: primer semana de noviembre. (semana del 4 al 8) 
-
 
