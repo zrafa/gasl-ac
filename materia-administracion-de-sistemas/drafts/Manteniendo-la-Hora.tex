@@ -15,8 +15,8 @@
 % Titulo 
  \makeatletter
  {\color{bl} \centering \huge \sc \textbf{
- El shell o intérprete de comandos \\ 
-\large \vspace*{-8pt} \color{black} Guía básica de uso del shell
+ Manteniendo la hora \\ 
+\large \vspace*{-8pt} \color{black} Guía básica de mantenimiento de la hora
  \vspace*{8pt} }\par}
  \makeatother
 
@@ -35,7 +35,7 @@
 \fancyhf{} % clear all header and footer fields
 \fancypagestyle{plain}{\fancyhf{}}
   	\pagestyle{fancy}
- 	\lhead{\footnotesize El Intérprete de comandos (shell) - Departamento de Ingeniería de Computadoras}
+ 	\lhead{\footnotesize Manteniendo la hora - Departamento de Ingeniería de Computadoras}
  	\rhead{\footnotesize \thepage\ }	% ''Page 1 of 2''
 
 \def\ti#1#2{\texttt{#1} & #2 \\ }
@@ -50,17 +50,13 @@
 
 \section{ Manteniendo La Hora}
 
-\textit{``Time is an illusion. Lunchtime double so.''} (Douglas Adams.)
-
-
 En este capítulo se explica como un sistema Linux mantiene la fecha y hora,
-y lo que debe conocer para evitar problemas.
-Usualmente no es necesario realizar
-ninguna actividad, pero es bueno entender su funcionamiento.
+y lo que debe conocer para evitar problemas. Si bien el mantenimiento de
+la hora no es una actividad frecuente, es resposabilidad del administrador 
+del sistema realizar los cambios que sean necearios. 
 
 
-\subsection{
-Zonas horarias}
+\subsection{ Zonas horarias}
 
 Las mediciones horarias están basadas en su mayoría a fenómenos naturales regulares,
 como por ejemplo, los periodos alternados de luz y oscuridad
@@ -68,70 +64,58 @@ causados por la rotación del planeta. El tiempo total tomado por dos períodos
 sucesivos es constante, pero la duración del período de luz varía
 con respecto al de oscuridad. Una constante simple es la luz del mediodía.
 
-
-
 El mediodía es el momento del día en el cual el Sol se encuentra en la posición más alta. 
-Debido a la rotación de la Tierra,
-		\footnote{According to
-		recent research.}
-
- el momento del mediodía sucede en diferentes 
+Debido a la rotación de la Tierra, el momento del mediodía sucede en diferentes 
 momentos en diferentes lugares. Esto nos conduce al concepto de \textit{hora local}.
-La hora se mide en muchas unidades, y con frecuencia, estas
-mediciones están relacionadas a fenómenos naturales como la luz del mediodía.
-En caso de que permanezca siempre en el mismo lugar, las diferencias entre los
-horarios locales no tienen mucha importancia.
+Si permanecemos siempre en el mismo lugar, las diferencias entre los
+horarios locales de diferentes sitios pareciera no tienen mucha importancia.
 
 
-
-En cuanto necesite comunicarse con lugares distantes, notará la necesidad de una
-hora en común. Hoy en día, la mayoría de los lugares en el mundo deben
+Sin embargo, en cuanto necesite comunicarse con lugares distantes, con horarios locales 
+diferentes, notará la necesidad de una hora en común. Hoy en día, la mayoría de los lugares en el mundo deben
 comunicarse con otros, por lo que se definió un estándar mundial de medición
 horaria. Este estándar se llama \textit{hora universal} (UT o UTC, formalmente
 conocido como Greenwich Mean Time o GMT, debido a que se utiliza como hora
 local en Greenwich, Inglaterra). Cuando personas con diferentes horas locales
 necesitan comunicarse, pueden expresar el tiempo en hora universal,
-para que no exista confusión acerca de cuando deben suceder las cosas.
+para que no exista confusión acerca de cuándo deben suceder las cosas.
 
 Cada hora local es llamada zona horaria (time zone), y existen 24 zonas horarias
-en el planeta. Aunque geográficamente es posible pensar que todos los lugares
+en el planeta. Si bien geográficamente es posible pensar que todos los lugares
 en donde el mediodía suceda en el mismo momento tienen la misma zona horaria,
-políticamente no siempre esto es posible. Por diversas razones, varios países
+políticamente esto no siempre así. Por diversas razones, varios países
 adoptan el ``horario de verano'' (\textit{daylight savings time}) para atender las demandas
 económicas. Los países que adoptan el ``horario de verano'' cambian la hora
 de sus relojes en verano (en gral. se retrasan los relojes una hora) para
 tener más luz natural mientras trabajan (durante la tarde), y vuelven a adelantar
 la hora de sus relojes en otoño o invierno. Otros países no adoptan estos procedimientos.
-Los países que utilizan horarios de verano no tienen un acuerdo común de cuando deben
+Más aún, los países que utilizan horarios de verano no tienen un acuerdo común de cuándo deben
 modificarse los relojes, y cambian, además, las reglas año tras año. Por lo que las
 conversiones de zonas horarias son definitivamente no-triviales.
 
-
-
 Las zonas horarias son denominadas de mejor manera a través de su ubicación o por
-la diferencia entre la hora universal y la hora local. En los Estados Unidos y
+la diferencia entre la hora universal y la hora local. En la Argentina y
 en algunos otros países, las zonas horarias locales tienen un nombre y una abreviatura
-de tres letras. Las abreviaturas no son únicas, por lo que no deberían
+de tres letras (ART en nuestro caso). Las abreviaturas \textbf{no son únicas}, por lo que no deberían
 ser utilizadas sin que aparezca también el nombre del país. Es mejor referirse a la
 la hora local en Helsinki, que referirse a la hora del Este de Europa, debido a que
-no todos los países del Este de Europa adoptan las mismas reglas.
+no todos los países del Este de Europa adoptan las mismas reglas. De hecho dentro 
+de nuestro país, Argentina,  ha sucedido que diferentes provincias utilicen diferentes
+zonas horarias. \footnote{Ver http://es.wikipedia.org/wiki/Hora\_oficial\_argentina}
 
 
-
-Linux tiene un paquete de zonas horarias que reconoce todas las zonas horarias existentes,
+GNU/Linux tiene un paquete de zonas horarias que reconoce todas las zonas horarias existentes,
 y puede ser fácilmente actualizado cuando las reglas cambian. Todo lo que un administrador de 
-sistemas necesita hacer es seleccionar la zona horaria apropiada. Cada usuario también
-puede establecer su propia zona horaria; por lo que facilita el trabajo de mucha gente,
-debido a que muchas personas trabajan en diferentes países a través de Internet.
-Cuando las reglas del ``horario de verano'' cambia en su zona horaria local, asegúrese
-de actualizar al menos la zona horaria del sistema. Además de configurar la zona horaria
-del sistema y de actualizar los archivos de datos de zonas horarias de vez en cuando, 
-no hay mucho de que preocuparse con respecto al tiempo.
+sistemas necesita hacer es seleccionar la zona horaria apropiada. A su vez, cada usuario 
+puede establecer su propia zona horaria (recordemos que GNU/Linux es un sistema multiusuario); 
+por lo que facilita el trabajo de mucha gente, debido a que muchas personas trabajan en diferentes 
+países a través de Internet y quizá sobre el mismo equipo.
+Cuando las reglas del ``horario de verano'' cambian en el horaria local de los equipos que 
+administra, asegúrese de actualizar al menos la zona horaria del sistema y de ser necesario 
+la definición de zonas horarias disponibles. 
 
 
-
-
-\section{ Los relojes de software y hardware}
+\subsection{ Los relojes de software y hardware}
 
 
 Una computadora personal tiene un reloj de hardware alimentado por una batería.
