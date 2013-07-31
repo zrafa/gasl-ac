@@ -1,7 +1,56 @@
-﻿\chapter{
-Manteniendo La Hora}
+%%% LaTeX Template: Article/Thesis/etc. with colored headings and special fonts
+%%%
+%%% Source: http://www.howtotex.com/
 
-<blockquote>\textit{"Time is an illusion. Lunchtime double so."} (Douglas Adams.)</blockquote>
+\documentclass[12pt]{article}
+
+
+\usepackage{apuntes-estilo}
+\usepackage{fancyhdr,lastpage}
+\usepackage{color,colortbl}
+\usepackage{verbatim}
+
+\def\maketitle{
+
+% Titulo 
+ \makeatletter
+ {\color{bl} \centering \huge \sc \textbf{
+ El shell o intérprete de comandos \\ 
+\large \vspace*{-8pt} \color{black} Guía básica de uso del shell
+ \vspace*{8pt} }\par}
+ \makeatother
+
+
+% Autor
+ \makeatletter
+ {\centering \small 
+ 	Departamento de Ingeniería de Computadoras \\
+ 	Facultad de Informática - Universidad Nacional del Comahue \\
+ 	\vspace{20pt} }
+ \makeatother
+
+}
+
+% Custom headers and footers
+\fancyhf{} % clear all header and footer fields
+\fancypagestyle{plain}{\fancyhf{}}
+  	\pagestyle{fancy}
+ 	\lhead{\footnotesize El Intérprete de comandos (shell) - Departamento de Ingeniería de Computadoras}
+ 	\rhead{\footnotesize \thepage\ }	% ''Page 1 of 2''
+
+\def\ti#1#2{\texttt{#1} & #2 \\ }
+
+
+
+\begin{document}
+
+\thispagestyle{empty}
+\maketitle
+\setlength{\parindent}{0pt}
+
+\section{ Manteniendo La Hora}
+
+\textit{``Time is an illusion. Lunchtime double so.''} (Douglas Adams.)
 
 
 En este capítulo se explica como un sistema Linux mantiene la fecha y hora,
@@ -10,7 +59,7 @@ Usualmente no es necesario realizar
 ninguna actividad, pero es bueno entender su funcionamiento.
 
 
-\section{
+\subsection{
 Zonas horarias}
 
 Las mediciones horarias están basadas en su mayoría a fenómenos naturales regulares,
@@ -44,20 +93,18 @@ local en Greenwich, Inglaterra). Cuando personas con diferentes horas locales
 necesitan comunicarse, pueden expresar el tiempo en hora universal,
 para que no exista confusión acerca de cuando deben suceder las cosas.
 
-
-
 Cada hora local es llamada zona horaria (time zone), y existen 24 zonas horarias
 en el planeta. Aunque geográficamente es posible pensar que todos los lugares
 en donde el mediodía suceda en el mismo momento tienen la misma zona horaria,
 políticamente no siempre esto es posible. Por diversas razones, varios países
-adoptan el "horario de verano" (\textit{daylight savings time}) para atender las demandas
-económicas. Los países que adoptan el "horario de verano" cambian la hora
+adoptan el ``horario de verano'' (\textit{daylight savings time}) para atender las demandas
+económicas. Los países que adoptan el ``horario de verano'' cambian la hora
 de sus relojes en verano (en gral. se retrasan los relojes una hora) para
 tener más luz natural mientras trabajan (durante la tarde), y vuelven a adelantar
-la hora de sus relojes en otoño u invierno. Otros países no adoptan estos procedimientos.
+la hora de sus relojes en otoño o invierno. Otros países no adoptan estos procedimientos.
 Los países que utilizan horarios de verano no tienen un acuerdo común de cuando deben
 modificarse los relojes, y cambian, además, las reglas año tras año. Por lo que las
-conversiones de zonas horarios son definitivamente no-triviales.
+conversiones de zonas horarias son definitivamente no-triviales.
 
 
 
@@ -76,7 +123,7 @@ y puede ser fácilmente actualizado cuando las reglas cambian. Todo lo que un ad
 sistemas necesita hacer es seleccionar la zona horaria apropiada. Cada usuario también
 puede establecer su propia zona horaria; por lo que facilita el trabajo de mucha gente,
 debido a que muchas personas trabajan en diferentes países a través de Internet.
-Cuando las reglas del "horario de verano" cambia en su zona horaria local, asegúrese
+Cuando las reglas del ``horario de verano'' cambia en su zona horaria local, asegúrese
 de actualizar al menos la zona horaria del sistema. Además de configurar la zona horaria
 del sistema y de actualizar los archivos de datos de zonas horarias de vez en cuando, 
 no hay mucho de que preocuparse con respecto al tiempo.
@@ -84,16 +131,13 @@ no hay mucho de que preocuparse con respecto al tiempo.
 
 
 
-\section{
-Los relojes de software y hardware}
+\section{ Los relojes de software y hardware}
 
 
 Una computadora personal tiene un reloj de hardware alimentado por una batería.
 Esa batería asegura que el reloj continúe trabajando aún cuando la computadora se encuentre sin
 suministro eléctrico. El reloj de hardware puede ser modificado (o definido)
 desde la pantalla de configuración de la BIOS o desde cualquier sistema operativo.
-
-
 
 
 El kernel Linux mantiene la fecha y hora de manera independiente al reloj de hardware.
@@ -114,14 +158,11 @@ de manera independiente (utilizando herramientas estándar que son parte del paq
 
 El reloj de hardware puede estar en formato de hora local u hora universal.
 Usualmente es mejor que el reloj de hardware mantenga la hora universal,
-porque de esta manera no será necesario modificar la hora del reloj cuando el "horario de verano"
+porque de esta manera no será necesario modificar la hora del reloj cuando el ``horario de verano''
 (daylight savings time) empiece o finalice (UTC no tiene DST). Desafortunadamente, algunos sistemas operativos de PC
 (incluyendo a MS-DOS, Windows y OS/2) asumen que el reloj de hardware muestra la hora local.
 Linux puede manejar cualquiera de los dos formatos, pero si el reloj de hardware muestra la hora local,
-entonces debe modificarlo cada vez que el "horario de verano" empiece o finalice.
-
-
-
+entonces debe modificarlo cada vez que el ``horario de verano'' empiece o finalice.
 
 
 \section{
@@ -162,31 +203,28 @@ El comando \texttt{\textbf{date}} muestra la hora y fecha actuales. Por ejemplo:
 	For example:
 
 
-<prompt>$</prompt> <userinput>date</userinput>
+$</prompt> <userinput>date</userinput>
 \colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} {\tt Sun Jul 14 21:53:41 EET DST 1996 } \vspace*{0.5cm} } } 
-<prompt>$</prompt>
+<prompt>$
 
 
-Domingo, 14 de julio de 1996, alrededor de las 10 menos 10 de la noche, en la zona horaria llamada \textit{"EET DST"}
-(la cual puede ser el "horario de verano" del Día del Este de Europa).
+Domingo, 14 de julio de 1996, alrededor de las 10 menos 10 de la noche, en la zona horaria llamada \textit{``EET DST''}
+(la cual puede ser el ``horario de verano'' del Día del Este de Europa).
 \texttt{\textbf{date}} puede también mostrar la hora en forma universal:
 
 
 
-<prompt>$</prompt> <userinput>date -u</userinput>
+$</prompt> <userinput>date -u</userinput>
 \colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} {\tt Sun Jul 14 18:53:42 UTC 1996 } \vspace*{0.5cm} } } 
-<prompt>$</prompt>
+<prompt>$
 
 
 	\texttt{\textbf{date}} también se utiliza para establecer la hora del reloj del kernel:
 	
 
 
-<prompt>#</prompt> <userinput>date 07142157</userinput>
 \colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} {\tt Sun Jul 14 21:57:00 EET DST 1996 } \vspace*{0.5cm} } } 
-<prompt>#</prompt> <userinput>date</userinput>
 \colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} {\tt Sun Jul 14 21:57:02 EET DST 1996 } \vspace*{0.5cm} } } 
-<prompt>#</prompt>
 
 
 Lea la página de manual de \texttt{\textbf{date}} si desea conocer mayores detalles; ya que la sintaxis es un poco complicada.
@@ -216,19 +254,17 @@ Hubo una vez, en un sistema UNIX antiguo, en donde alguien adelantó el reloj 20
 entonces \texttt{\textbf{cron}} quiso ejecutar
 los comandos periódicos de veinte años, todos de una sola vez.
 Las versiones actuales de \texttt{\textbf{cron}} no tienen este problema, pero aún así debe ser cuidadoso con estos
-detalles (pueden existir otros programas actuales que trabajen similarmente mal como "ese" viejo cron).
+detalles (pueden existir otros programas actuales que trabajen similarmente mal como ``ese'' viejo cron).
 Grandes saltos en el tiempo (hacia el futuro o el pasado) son mas peligrosos que pequeñas diferencias.
 
 
 
 
-\section{
-
-Cuando el reloj es erróneo}
+\section{Cuando el reloj es erróneo}
 
 
 El reloj por software de un sistema Linux no siempre es preciso. Para mantener este reloj
-Linux utiliza una \textit{interrupción periódica} generada por el hardware, llamada "timer interrupt".
+Linux utiliza una \textit{interrupción periódica} generada por el hardware, llamada ``timer interrupt''.
 En caso de que existan muchos procesos siendo ejecutados (con respecto a los recursos disponibles)
 el sistema podría demorar un poco al momento de intentar servir la interrupción, por lo que 
 el reloj de software puede estar ligeramente atrasado. El reloj por hardware trabaja
@@ -255,12 +291,7 @@ hora del reloj de software) entonces puede utilizar el comando \texttt{\textbf{h
 ejecutando man \texttt{\textbf{hwclock}}.
 
 
-
-
-
-\section{
-
-NTP - Protocolo de reloj en red}
+\section{NTP - Protocolo de reloj en red}
 
 
 Un ordenador conectado en red (incluso únicamente con un módem) puede 
@@ -270,7 +301,7 @@ protocolo de reloj en red (o NTP) hace esto exactamente. Es un método para
 verificar y corregir la hora de su ordenador al sincronizarse con otro 
 sistema. Con NTP su sistema puede mantenerse a milisegundos de la Hora 
 Universal Coordinada. 
-	\footnote{Visite el sitio web <ulink url="http://www.time.gov/about.html/">
+	\footnote{Visite el sitio web <ulink url=``http://www.time.gov/about.html/''>
 		http://www.time.gov/about.html</ulink> si desea obtener mayor información.
 		}
 	
@@ -279,9 +310,9 @@ Universal Coordinada.
 Para la mayoría de usuarios ocasionales de Linux, esto puede resultar
 simplemente un lujo. En mi casa todos los relojes se ajustan en base a 
 la hora que mi sistema Linux dice que es. Para grandes organizaciones 
-este "lujo" puede convertirse en fundamental. Ser capaz de buscar sucesos 
+este ``lujo'' puede convertirse en fundamental. Ser capaz de buscar sucesos 
 en los archivos de diario basándose en la hora puede hacer la vida 
-bastante más sencilla y puede eliminar mucho "trabajo de adivinación" 
+bastante más sencilla y puede eliminar mucho ``trabajo de adivinación'' 
 durante la depuración.
 
 
@@ -298,7 +329,7 @@ de tiempo que están en el futuro.
 La mayoría de las distribuciones Linux vienen con un paquete NTP de
 algún tipo, ya sea un paquete .deb o .rpm. Puede utilizarlo para instalar
 NTP, o puede bajarse el código fuente de
-<ulink url="http://www.ntp.org/downloads.html">
+<ulink url=``http://www.ntp.org/downloads.html''>
 http://www.ntp.org/downloads.html</ulink> y compilarlo usted mismo. En
 cualquier caso, la configuración básica es la misma.
 
@@ -306,8 +337,7 @@ cualquier caso, la configuración básica es la misma.
 
 
 
-\section{
-Configuración básica de NTP}
+\section{ Configuración básica de NTP}
 
 
 El programa NTP se configura utilizando el archivo \texttt{/etc/ntp.conf} o
@@ -321,13 +351,13 @@ Un ejemplo de archivo ntp.conf debería parecer:
 
 
 
-\colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} {\tt # --- GENERAL CONFIGURATION ---
+\colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} {\tt
+\# --- GENERAL CONFIGURATION ---
 server  aaa.bbb.ccc.ddd
 server  127.127.1.0
 fudge   127.127.1.0 stratum 10
 
-# Drift file.
-
+\# Drift file.
 driftfile /etc/ntp/drift
  } \vspace*{0.5cm} } } 
 
@@ -354,14 +384,15 @@ La opción de restricción puede usarse para otorgar un mejor control y
 seguridad además de la que proporciona NTP, y quién puede efectuarla.
 Por ejemplo:
 
-\colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} {\tt # Prohibit general access to this service.
+\colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} {\tt 
+\#Prohibit general access to this service.
 restrict default ignore
 
-# Permit systems on this network to synchronize with this
-# time service. But not modify our time.
+\# Permit systems on this network to synchronize with this
+\# time service. But not modify our time.
 restrict aaa.bbb.ccc.ddd nomodify
 
-# Allow the following unrestricted access to ntpd
+\# Allow the following unrestricted access to ntpd
 
 restrict aaa.bbb.ccc.ddd
 restrict 127.0.0.1
@@ -378,13 +409,7 @@ NTP corrige el sistema lentamente. ¡Sea paciente! Una simple prueba es
 cambiar el reloj de sistema en 10 minutos antes de irse a la cama y
 comprobarlo cuando se levante. La hora deberá ser la correcta.
 
-
-
-
-
-
-\section{
-La herramienta NTP}
+\section{ La herramienta NTP}
 
 
 Hay innumerables utilidades disponibles para comprobar si NTP está 
@@ -392,36 +417,36 @@ haciendo su trabajo. El comando \texttt{\textbf{ntpq -p}} mostrará el estado de
 actual de su sistema.
 
 
-<prompt>#</prompt> <userinput>ntpq -p</userinput>
-\colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} {\tt      remote           refid      st t when poll reach   delay   offset  jitter
+\colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} {\tt      
+ntpq -p
+remote           refid      st t when poll reach   delay   offset  jitter
 ==============================================================================
 *cudns.cit.corne ntp0.usno.navy.  2 u  832 1024  377   43.208    0.361   2.646
  LOCAL(0)        LOCAL(0)        10 l   13   64  377    0.000    0.000   0.008
  } \vspace*{0.5cm} } } 
 
 	
-
-
 \texttt{\textbf{ntpdc -c}} loopinfo mostrará cómo de desviado está el reloj del sistema
 en segundos, basándose en la última vez que se contactó con el servidor 
 remoto.
 
 
 
-<prompt>#</prompt> <userinput>ntpdc -c loopinfo</userinput>
-\colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} {\tt offset:               -0.004479 s
+\colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} {\tt 
+ntpdc -c loopinfo
+offset:               -0.004479 s
 frequency:            133.625 ppm
 poll adjust:          30
 watchdog timer:       404 s
  } \vspace*{0.5cm} } } 
 
 	
+\texttt{\textbf{ntpdc -c kerninfo}}  mostrará la corrección actual acumulada.
 
-	\texttt{\textbf{ntpdc -c kerninfo}}  mostrará la corrección actual acumulada.
 
-
-<prompt>#</prompt> <userinput>ntpdc -c kerninfo</userinput>
-\colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} {\tt pll offset:           -0.003917 s
+\colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} {\tt 
+ntpdc -c kerninfo
+pll offset:           -0.003917 s
 pll frequency:        133.625 ppm
 maximum error:        0.391414 s
 estimated error:      0.003676 s
@@ -440,18 +465,15 @@ calibration errors:   0
  } \vspace*{0.5cm} } } 
 
 	
-
-	
-	
-	
 Una versión ligeramente distinta de \texttt{\textbf{ntpdc -c kerninfo}} es \texttt{\textbf{ntptime}}
 
 
-<prompt>#</prompt> <userinput>ntptime</userinput>
-\colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} {\tt ntp_gettime() returns code 0 (OK)
+\colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} {\tt 
+ntptime
+ntp\_gettime() returns code 0 (OK)
   time c35e2cc7.879ba000  Thu, Nov 13 2003 11:16:07.529, (.529718),
   maximum error 425206 us, estimated error 3676 us
-ntp_adjtime() returns code 0 (OK)
+ntp\_adjtime() returns code 0 (OK)
   modes 0x0 (),
   offset -3854.000 us, frequency 133.625 ppm, interval 4 s,
   maximum error 425206 us, estimated error 3676 us,
@@ -471,8 +493,9 @@ determinará la diferencia de tiempos pero no modificará el reloj de su sistema
 
 
 
-<prompt>#</prompt> <userinput>ntpdate -d 132.236.56.250</userinput>
-\colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} {\tt 13 Nov 14:43:17 ntpdate[29631]: ntpdate 4.1.1c-rc1@1.836 Thu Feb 13 12:17:20 EST 2003 (1)
+\colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} {\tt 
+ntpdate -d 132.236.56.250
+13 Nov 14:43:17 ntpdate[29631]: ntpdate 4.1.1c-rc1@1.836 Thu Feb 13 12:17:20 EST 2003 (1)
 transmit(132.236.56.250)
 receive(132.236.56.250)
 transmit(132.236.56.250)
@@ -499,16 +522,15 @@ offset 0.001020
 13 Nov 14:43:17 ntpdate[29631]: adjust time server 132.236.56.250 offset 0.001020 sec
  } \vspace*{0.5cm} } } 
 
-	
-
-	
 Si quiere ver al sistema sincronizarse en tiempo real puede utilizar 
 \texttt{\textbf{ntptrace}}.
 
 
-<prompt>#</prompt> <userinput>ntptrace 132.236.56.250</userinput>
-\colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} {\tt cudns.cit.cornell.edu: stratum 2, offset -0.003278, synch distance 0.02779
-dtc-truetime.ntp.aol.com: stratum 1, offset -0.014363, synch distance 0.00000, refid 'ACTS' } \vspace*{0.5cm} } } 
+\colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} {\tt 
+ntptrace 132.236.56.250
+cudns.cit.cornell.edu: stratum 2, offset -0.003278, synch distance 0.02779
+dtc-truetime.ntp.aol.com: stratum 1, offset -0.014363, synch distance 0.00000, refid 'ACTS' 
+} \vspace*{0.5cm} } } 
 
 	
 
@@ -518,21 +540,17 @@ Si necesita sincronizar su sistema inmediatamente puede utilizar
 \texttt{\textbf{ntpdate remote-servername}} para forzar una sincronización. ¡Sin esperas!
 
 
-<prompt>#</prompt> <userinput>ntpdate 132.236.56.250</userinput>
+\colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} {\tt
+ntpdate 132.236.56.250
 13 Nov 14:56:28 ntpdate[29676]: adjust time server 132.236.56.250 offset -0.003151 sec
-\colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} {\tt  } \vspace*{0.5cm} } } 
+  } \vspace*{0.5cm} } } 
 
 
-
-
-
-
-\section{
-Algunos servidores NTP conocidos}
+\section{ Algunos servidores NTP conocidos}
 
 
 Una lista de servidores públicos puede obtenerse de:
-<ulink url="http://www.eecis.udel.edu/~mills/ntp/servers.html/">
+<ulink url=``http://www.eecis.udel.edu/~mills/ntp/servers.html/''>
 	http://www.eecis.udel.edu/~mills/ntp/servers.html</ulink>. Por favor lea la
 información de utilización de la página antes de utilizar un servidor. No 
 todos los servidores tienen el suficiente ancho de banda para permitir 
@@ -542,16 +560,31 @@ servicio NTP.
 
 
 
-\section{
-
-Enlaces NTP}
+\section{ Enlaces NTP}
 
 
 Información más detallada sobre NTP puede obtenerse de la página
-original NTP: <ulink url="http://www.ntp.org/">http://www.ntp.org</ulink>, o de
-<ulink url="http://www.ntp.org/ntpfaq/NTP-a-faq.htm">
+original NTP: <ulink url=``http://www.ntp.org/''>http://www.ntp.org</ulink>, o de
+<ulink url=``http://www.ntp.org/ntpfaq/NTP-a-faq.htm''>
 	http://www.ntp.org/ntpfaq/NTP-a-faq.htm</ulink>
 
 
+\section{Licencia}
 
+Este material es una obra derivada de los siguientes textos:
 
+``Sistema operativo GNU/Linux Básico'' \footnote{http://materials.cv.uoc.edu/continguts/XW07\_M2102\_02309/index.html}
+
+© Autores: Joaquín López Sánchez-Montañés, Sofia Belles Ramos, Roger Baig i Viñas i Francesc Aulí Llinàs
+
+© 2008, FUOC. Se garantiza permiso para copiar, distribuir y modificar este documento según los
+términos de la GNU Free Documentation License, Version 1.2 o cualquiera posterior publicada por la
+Free Software Foundation, sin secciones invariantes ni textos de cubierta delantera o trasera. Se dispone
+de una copia de la licencia en el apartado ``GNU Free Documentation License'' de este documento.
+
+\begin{thebibliography}{1}
+\bibitem[CurLinux]{curlin} ``Curso de Linux''.1999 Gómez, Ahijado, Flores.\\ 
+http://www.ibiblio.org/pub/Linux/docs/LuCaS/Tutoriales/CURSOLINUX/\\curso\_linux/curso\_linux.html
+\end{thebibliography}
+
+\end{document}
