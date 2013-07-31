@@ -48,7 +48,7 @@
 \maketitle
 \setlength{\parindent}{0pt}
 
-\section{ Manteniendo La Hora}
+\section*{ Manteniendo La Hora}
 
 En este capítulo se explica como un sistema Linux mantiene la fecha y hora,
 y lo que debe conocer para evitar problemas. Si bien el mantenimiento de
@@ -56,7 +56,7 @@ la hora no es una actividad frecuente, es resposabilidad del administrador
 del sistema realizar los cambios que sean necearios. 
 
 
-\subsection{ Zonas horarias}
+\subsection*{ Zonas horarias}
 
 Las mediciones horarias están basadas en su mayoría a fenómenos naturales regulares,
 como por ejemplo, los periodos alternados de luz y oscuridad
@@ -115,29 +115,27 @@ administra, asegúrese de actualizar al menos la zona horaria del sistema y de s
 la definición de zonas horarias disponibles. 
 
 
-\subsection{ Los relojes de software y hardware}
+\subsection*{ Los relojes de software y hardware}
 
 
-Una computadora personal tiene un reloj de hardware alimentado por una batería.
+En general las computadoras tiene un reloj de hardware alimentado por una batería.
 Esa batería asegura que el reloj continúe trabajando aún cuando la computadora se encuentre sin
 suministro eléctrico. El reloj de hardware puede ser modificado (o definido)
-desde la pantalla de configuración de la BIOS o desde cualquier sistema operativo.
-
+desde el firmware inicial que controla la placa base, como por ejemplo el BIOS en las 
+computadoras personales, o desde cualquier sistema operativo.
 
 El kernel Linux mantiene la fecha y hora de manera independiente al reloj de hardware.
 Durante el inicio de un sistema Linux, el kernel configura su propio reloj de software accediendo
 a la fecha y hora mantenida por el reloj de hardware.
 Luego, ambos relojes trabajan independientemente.
-Linux mantiene su propio reloj debido a que leer el reloj de hardware constantemente es lento y complicado.
-
-
+Linux mantiene su propio reloj debido a que leer el reloj de hardware constantemente es 
+lento y complicado.
 
 El reloj del kernel siempre muestra la hora universal, por lo que
 no necesita conocer como utilizar usos horarios. La simplicidad de este
 modo de trabajar proporciona alta confiabilidad y facilita actualizar 
 la información de la zona horaria. Cada proceso realiza las conversiones de zona horaria 
 de manera independiente (utilizando herramientas estándar que son parte del paquete de zona horaria).
-
 
 
 El reloj de hardware puede estar en formato de hora local u hora universal.
@@ -149,82 +147,82 @@ Linux puede manejar cualquiera de los dos formatos, pero si el reloj de hardware
 entonces debe modificarlo cada vez que el ``horario de verano'' empiece o finalice.
 
 
-\section{
-Configurar y visualizar la hora}
+\subsection*{Configurar y visualizar la hora}
 
 
 En Linux, la zona horaria del sistema es determinada por \texttt{/etc/localtime} (algunas veces
 es un enlace simbólico). Si es un enlace, entonces apunta a un archivo de datos de zona horaria
 que describe la zona horaria local. Los archivos de datos de zonas horarias están ubicados en
-\texttt{/usr/lib/zoneinfo} o \texttt{/usr/share/zoneinfo}. (Otras distribuciones de Linux pueden llegar
-a determinar la zona horaria del sistema de manera diferente.)
+\texttt{/usr/lib/zoneinfo} o \texttt{/usr/share/zoneinfo}. (Esto puede variar según la 
+distribución particular de GNU/Linux utilizada). 
 
+Por ejemplo, en un sistema SuSE ubicado en Santiago de Chile \texttt{/etc/localtime} apuntaría
+a \texttt{/usr/share/zoneinfo/Chile/Continental (UTC/GMT-4)}.
 
+Si no encuentra el directorio \texttt{zoneinfo} en \texttt{/usr/lib} o en \texttt{/usr/share}, 
+intente encontrarlo ejecutando \texttt{\textbf{find /usr -type d -name zoneinfo}}, o consulte 
+la documentación de su distribución GNU/Linux particular.
 
-Por ejemplo, en un sistema SuSE ubicado en New Jersey, \texttt{/etc/localtime} apuntaría a \texttt{/usr/share/zoneinfo/US/Eastern}.
-
-
-
-Si no encuentra el directorio \texttt{zoneinfo} en \texttt{/usr/lib} o en \texttt{/usr/share}, intente encontrarlo ejecutando
-\texttt{\textbf{find /usr -type d -name zoneinfo}}, o consulte la documentación de su distribución Linux.
-
-
+\textbf{Múltiples usuarios en diferentes zonas horarias:}
 
 ¿Qué sucede cuando existen usuarios utilizando el mismo sistema pero se encuentran ubicados en
 zonas horarias diferentes?
-Un usuario puede cambiar su zona horaria privada definiendo la variable del ambiente TZ.
+Un usuario puede cambiar su zona horaria privada definiendo la variable de ambiente TZ.
 Si TZ no se encuentra definida, entonces la zona horaria del sistema es la utilizada.
 La sintaxis de la variable TZ se encuentra descripta en la página de manual de \texttt{\textbf{tzset}}.
 
 
+\colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} { 
+Por ejemplo si la hora local del sistema esta definida para Argentina, tal que 
+el comando \texttt{date} nos devuelve: \\
+{\tt\$ date \\
+mié jul 31 17:14:40 ART 2013} \\
+Y ahora definimos la variable de ambiente TZ a EST (Eastern Standard Time, utilizada en 
+algunas regiones de Estados Unidos), veremos que la salida de \texttt{date} responde 
+a la nueva hora local utilizada por el usuario: \\
+{\tt
+\$ export TZ=EST \\
+\$ date \\
+mié jul 31 15:14:53 EST 2013 \\
+} 
+Esto es, dos horas de diferencia con la hora local Argentina. 
+ } \vspace*{0.5cm} } } 
 
 
 El comando \texttt{\textbf{date}} muestra la hora y fecha actuales. Por ejemplo:
 
-		\footnote{Tenga cuidado con el comando \texttt{\textbf{time}},
-		ya que no muestra la fecha y hora del sistema.}
-
-	For example:
 
 
-$</prompt> <userinput>date</userinput>
-\colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} {\tt Sun Jul 14 21:53:41 EET DST 1996 } \vspace*{0.5cm} } } 
-<prompt>$
+\colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} {\tt 
+\$ date \\
+mié jul 31 17:14:40 ART 2013
+ } \vspace*{0.5cm} } } 
 
-
-Domingo, 14 de julio de 1996, alrededor de las 10 menos 10 de la noche, en la zona horaria llamada \textit{``EET DST''}
-(la cual puede ser el ``horario de verano'' del Día del Este de Europa).
-\texttt{\textbf{date}} puede también mostrar la hora en forma universal:
+Es decir, miércoles 31 de julio del 2013, cinco y cuarto de la tarde en hora local Argentina  \textit{``ART''}.
+El comando \texttt{\textbf{date}} también puede también mostrar la hora universal (UTC o GMT): 
 
 
 
-$</prompt> <userinput>date -u</userinput>
-\colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} {\tt Sun Jul 14 18:53:42 UTC 1996 } \vspace*{0.5cm} } } 
-<prompt>$
+\colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} {\tt 
+\$date -u\\
+mié jul 31 20:18:02 UTC 2013
+ } \vspace*{0.5cm} } } 
 
 
-	\texttt{\textbf{date}} también se utiliza para establecer la hora del reloj del kernel:
-	
-
-
-\colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} {\tt Sun Jul 14 21:57:00 EET DST 1996 } \vspace*{0.5cm} } } 
-\colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} {\tt Sun Jul 14 21:57:02 EET DST 1996 } \vspace*{0.5cm} } } 
-
-
-Lea la página de manual de \texttt{\textbf{date}} si desea conocer mayores detalles; ya que la sintaxis es un poco complicada.
-Solo el usuario root puede modificar la fecha y/u hora. Aunque cada usuario puede definir su propia zona horaria,
-el reloj es el mismo para todos.
+\texttt{\textbf{date}} también se utiliza para establecer la hora del reloj del kernel. Para más información
+lea la página de manual de \texttt{\textbf{date}}. Tenga en cuenta que \textbf{solo el usuario root puede 
+modificar la fecha y/u hora del sistema}. Aunque cada usuario puede definir su propia zona horaria, el reloj 
+es el mismo para todos.
 
 
 
-\texttt{\textbf{Date}} solo muestra o modifica el reloj de software. El comando \texttt{\textbf{clock}} sincroniza los relojes de hardware y software.
+\texttt{\textbf{date}} muestra o modifica el reloj de software. El comando \texttt{\textbf{hwclock}} 
+sincroniza los relojes de hardware y software.
 Cuando el sistema inicia, el comando clock es utilizado para leer el reloj de hardware y actualizar
 el reloj de software. Si necesita modificar ambos relojes, primero debe modificar el reloj de software con \texttt{\textbf{date}},
-y luego sincronizar la hora del reloj por hardware con el comando \texttt{\textbf{clock -w}}.
+y luego sincronizar la hora del reloj por hardware con el comando \texttt{\textbf{hwclock -w}}.
 
-
-
-La opción <option>-u</option> en el comando \texttt{\textbf{lock}} le indica a clock que la fecha y hora (mostrada o definida)
+La opción ``-u'' en el comando \texttt{\textbf{hwclock}} le indica a clock que la fecha y hora (mostrada o definida)
 se encuentra en formato de hora universal. \textit{Debe} utilizar la opción <option>-u</option> correctamente, en
 caso contrario, la computadora puede estar confundida sobre cual es la fecha y hora correcta.
 
@@ -244,7 +242,7 @@ Grandes saltos en el tiempo (hacia el futuro o el pasado) son mas peligrosos que
 
 
 
-\section{Cuando el reloj es erróneo}
+\section*{Cuando el reloj es erróneo}
 
 
 El reloj por software de un sistema Linux no siempre es preciso. Para mantener este reloj
@@ -275,7 +273,7 @@ hora del reloj de software) entonces puede utilizar el comando \texttt{\textbf{h
 ejecutando man \texttt{\textbf{hwclock}}.
 
 
-\section{NTP - Protocolo de reloj en red}
+\section*{NTP - Protocolo de reloj en red}
 
 
 Un ordenador conectado en red (incluso únicamente con un módem) puede 
@@ -321,7 +319,7 @@ cualquier caso, la configuración básica es la misma.
 
 
 
-\section{ Configuración básica de NTP}
+\section*{ Configuración básica de NTP}
 
 
 El programa NTP se configura utilizando el archivo \texttt{/etc/ntp.conf} o
@@ -393,7 +391,7 @@ NTP corrige el sistema lentamente. ¡Sea paciente! Una simple prueba es
 cambiar el reloj de sistema en 10 minutos antes de irse a la cama y
 comprobarlo cuando se levante. La hora deberá ser la correcta.
 
-\section{ La herramienta NTP}
+\section*{ La herramienta NTP}
 
 
 Hay innumerables utilidades disponibles para comprobar si NTP está 
@@ -530,7 +528,7 @@ ntpdate 132.236.56.250
   } \vspace*{0.5cm} } } 
 
 
-\section{ Algunos servidores NTP conocidos}
+\section*{ Algunos servidores NTP conocidos}
 
 
 Una lista de servidores públicos puede obtenerse de:
@@ -544,7 +542,7 @@ servicio NTP.
 
 
 
-\section{ Enlaces NTP}
+\section*{ Enlaces NTP}
 
 
 Información más detallada sobre NTP puede obtenerse de la página
@@ -553,7 +551,7 @@ original NTP: <ulink url=``http://www.ntp.org/''>http://www.ntp.org</ulink>, o d
 	http://www.ntp.org/ntpfaq/NTP-a-faq.htm</ulink>
 
 
-\section{Licencia}
+\section*{Licencia}
 
 Este material es una obra derivada de los siguientes textos:
 
