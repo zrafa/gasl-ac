@@ -56,7 +56,7 @@ la hora no es una actividad frecuente, es resposabilidad del administrador
 del sistema realizar los cambios que sean necearios. 
 
 
-\subsection*{ Zonas horarias}
+\subsection*{Zonas horarias}
 
 Las mediciones horarias están basadas en su mayoría a fenómenos naturales regulares,
 como por ejemplo, los periodos alternados de luz y oscuridad
@@ -70,13 +70,14 @@ momentos en diferentes lugares. Esto nos conduce al concepto de \textit{hora loc
 Si permanecemos siempre en el mismo lugar, las diferencias entre los
 horarios locales de diferentes sitios pareciera no tienen mucha importancia.
 
-
 Sin embargo, en cuanto necesite comunicarse con lugares distantes, con horarios locales 
 diferentes, notará la necesidad de una hora en común. Hoy en día, la mayoría de los lugares en el mundo deben
 comunicarse con otros, por lo que se definió un estándar mundial de medición
-horaria. Este estándar se llama \textit{hora universal} (UT o UTC, formalmente
-conocido como Greenwich Mean Time o GMT, debido a que se utiliza como hora
-local en Greenwich, Inglaterra). Cuando personas con diferentes horas locales
+horaria. Este estándar se llama \textit{hora universal} ó UTC (del inglés Universal 
+Time Coordinated), y es uno de los varios sucesores estrechamente 
+relacionados con el tiempo medio de Greenwich (GMT). De hecho, aunque técnicamente 
+difieren GMT y UTC suelen utilizarce como sinónimos en mucha bibliografía.   
+De este modo, cuando personas con diferentes horas locales
 necesitan comunicarse, pueden expresar el tiempo en hora universal,
 para que no exista confusión acerca de cuándo deben suceder las cosas.
 
@@ -84,7 +85,7 @@ Cada hora local es llamada zona horaria (time zone), y existen 24 zonas horarias
 en el planeta. Si bien geográficamente es posible pensar que todos los lugares
 en donde el mediodía suceda en el mismo momento tienen la misma zona horaria,
 políticamente esto no siempre así. Por diversas razones, varios países
-adoptan el ``horario de verano'' (\textit{daylight savings time}) para atender las demandas
+adoptan el ``horario de verano'' (\textit{daylight savings time} o DST) para atender las demandas
 económicas. Los países que adoptan el ``horario de verano'' cambian la hora
 de sus relojes en verano (en gral. se retrasan los relojes una hora) para
 tener más luz natural mientras trabajan (durante la tarde), y vuelven a adelantar
@@ -92,6 +93,10 @@ la hora de sus relojes en otoño o invierno. Otros países no adoptan estos proc
 Más aún, los países que utilizan horarios de verano no tienen un acuerdo común de cuándo deben
 modificarse los relojes, y cambian, además, las reglas año tras año. Por lo que las
 conversiones de zonas horarias son definitivamente no-triviales.
+
+\begin{center}
+ \includegraphics{World_Time_Zones_Map.jpg}
+\end{center}
 
 Las zonas horarias son denominadas de mejor manera a través de su ubicación o por
 la diferencia entre la hora universal y la hora local. En la Argentina y
@@ -110,7 +115,7 @@ sistemas necesita hacer es seleccionar la zona horaria apropiada. A su vez, cada
 puede establecer su propia zona horaria (recordemos que GNU/Linux es un sistema multiusuario); 
 por lo que facilita el trabajo de mucha gente, debido a que muchas personas trabajan en diferentes 
 países a través de Internet y quizá sobre el mismo equipo.
-Cuando las reglas del ``horario de verano'' cambian en el horaria local de los equipos que 
+Cuando las reglas del ``horario de verano'' cambian para el horario local de los equipos que 
 administra, asegúrese de actualizar al menos la zona horaria del sistema y de ser necesario 
 la definición de zonas horarias disponibles. 
 
@@ -118,21 +123,24 @@ la definición de zonas horarias disponibles.
 \subsection*{ Los relojes de software y hardware}
 
 
-En general las computadoras tiene un reloj de hardware alimentado por una batería.
+En general las computadoras tiene un reloj de hardware alimentado por una batería, conocido también como 
+``reloj de tiempo real'' o RTC (del inglés \textit{Real Time Clock}). 
 Esa batería asegura que el reloj continúe trabajando aún cuando la computadora se encuentre sin
 suministro eléctrico. El reloj de hardware puede ser modificado (o definido)
 desde el firmware inicial que controla la placa base, como por ejemplo el BIOS en las 
 computadoras personales, o desde cualquier sistema operativo.
 
-El kernel Linux mantiene la fecha y hora de manera independiente al reloj de hardware.
+Por otra parte, una vez iniciado el sistema, el kernel Linux mantiene la fecha y hora 
+de manera independiente al reloj de hardware. Este reloj es conocido como ``reloj de sistema'', 
+``reloj de software'' o ``reloj del kernel''. 
 Durante el inicio de un sistema Linux, el kernel configura su propio reloj de software accediendo
 a la fecha y hora mantenida por el reloj de hardware.
 Luego, ambos relojes trabajan independientemente.
 Linux mantiene su propio reloj debido a que leer el reloj de hardware constantemente es 
-lento y complicado.
+lento, complicado e inexacto.
 
 El reloj del kernel siempre muestra la hora universal, por lo que
-no necesita conocer como utilizar usos horarios. La simplicidad de este
+no necesita conocer como utilizar husos horarios. La simplicidad de este
 modo de trabajar proporciona alta confiabilidad y facilita actualizar 
 la información de la zona horaria. Cada proceso realiza las conversiones de zona horaria 
 de manera independiente (utilizando herramientas estándar que son parte del paquete de zona horaria).
@@ -141,14 +149,15 @@ de manera independiente (utilizando herramientas estándar que son parte del paq
 El reloj de hardware puede estar en formato de hora local u hora universal.
 Usualmente es mejor que el reloj de hardware mantenga la hora universal,
 porque de esta manera no será necesario modificar la hora del reloj cuando el ``horario de verano''
-(daylight savings time) empiece o finalice (UTC no tiene DST). Desafortunadamente, algunos sistemas operativos de PC
-(incluyendo a MS-DOS, Windows y OS/2) asumen que el reloj de hardware muestra la hora local.
-Linux puede manejar cualquiera de los dos formatos, pero si el reloj de hardware muestra la hora local,
-entonces debe modificarlo cada vez que el ``horario de verano'' empiece o finalice.
+(daylight savings time o DST) empiece o finalice (UTC no tiene DST). Desafortunadamente, algunos sistemas operativos 
+(por ejemplo MS-DOS, Windows y OS/2) asumen que el reloj de hardware muestra la hora local.
+Por otra parte, Linux puede manejar cualquiera de los dos formatos, pero si el reloj de hardware muestra la hora local,
+entonces debe modificarlo cada vez que el ``horario de verano'' empiece o finalice. Este 
+punto es particularmente conflictivo en equipos donde coexisten más de un 
+sistema operativo (clásico dual boot Windows-GNU/Linux). 
 
 
 \subsection*{Configurar y visualizar la hora}
-
 
 En Linux, la zona horaria del sistema es determinada por \texttt{/etc/localtime} (algunas veces
 es un enlace simbólico). Si es un enlace, entonces apunta a un archivo de datos de zona horaria
@@ -157,7 +166,7 @@ que describe la zona horaria local. Los archivos de datos de zonas horarias est�
 distribución particular de GNU/Linux utilizada). 
 
 Por ejemplo, en un sistema SuSE ubicado en Santiago de Chile \texttt{/etc/localtime} apuntaría
-a \texttt{/usr/share/zoneinfo/Chile/Continental (UTC/GMT-4)}.
+a \texttt{/usr/share/zoneinfo/Chile/Continental (UTC-4)}.
 
 Si no encuentra el directorio \texttt{zoneinfo} en \texttt{/usr/lib} o en \texttt{/usr/share}, 
 intente encontrarlo ejecutando \texttt{\textbf{find /usr -type d -name zoneinfo}}, o consulte 
@@ -177,7 +186,7 @@ Por ejemplo si la hora local del sistema esta definida para Argentina, tal que
 el comando \texttt{date} nos devuelve: \\
 {\tt\$ date \\
 mié jul 31 17:14:40 ART 2013} \\
-Y ahora definimos la variable de ambiente TZ a EST (Eastern Standard Time, utilizada en 
+Y ahora definimos la variable de ambiente TZ con el valor (Eastern Standard Time, utilizada en 
 algunas regiones de Estados Unidos), veremos que la salida de \texttt{date} responde 
 a la nueva hora local utilizada por el usuario: \\
 {\tt
@@ -199,7 +208,7 @@ mié jul 31 17:14:40 ART 2013
  } \vspace*{0.5cm} } } 
 
 Es decir, miércoles 31 de julio del 2013, cinco y cuarto de la tarde en hora local Argentina  \textit{``ART''}.
-El comando \texttt{\textbf{date}} también puede también mostrar la hora universal (UTC o GMT): 
+El comando \texttt{\textbf{date}} también puede también mostrar la hora universal (UTC): 
 
 
 
@@ -214,16 +223,15 @@ lea la página de manual de \texttt{\textbf{date}}. Tenga en cuenta que \textbf{
 modificar la fecha y/u hora del sistema}. Aunque cada usuario puede definir su propia zona horaria, el reloj 
 es el mismo para todos.
 
-
-
 \texttt{\textbf{date}} muestra o modifica el reloj de software. El comando \texttt{\textbf{hwclock}} 
 sincroniza los relojes de hardware y software.
-Cuando el sistema inicia, el comando clock es utilizado para leer el reloj de hardware y actualizar
+Cuando el sistema inicia, el comando \texttt{hwclock} es utilizado para leer el reloj de hardware y actualizar
 el reloj de software. Si necesita modificar ambos relojes, primero debe modificar el reloj de software con \texttt{\textbf{date}},
-y luego sincronizar la hora del reloj por hardware con el comando \texttt{\textbf{hwclock -w}}.
+y luego sincronizar la hora del reloj por hardware con el comando \texttt{\textbf{hwclock -w o hwclock --systohc}}.
 
-La opción ``-u'' en el comando \texttt{\textbf{hwclock}} le indica a clock que la fecha y hora (mostrada o definida)
-se encuentra en formato de hora universal. \textit{Debe} utilizar la opción <option>-u</option> correctamente, en
+La opción \texttt{ ``-u o --utc''} en el comando \texttt{\textbf{hwclock}} le indica 
+a \texttt{hwclock} que la fecha y hora (mostrada o definida)
+se encuentra en formato de hora universal. \textit{Debe} utilizar la opción -u correctamente, en
 caso contrario, la computadora puede estar confundida sobre cual es la fecha y hora correcta.
 
 
@@ -260,8 +268,9 @@ Si es necesario modificar el reloj de hardware, la manera mas simple es reinicia
 ingresar a la pantalla de configuración de la BIOS y realizar el cambio de fecha y hora desde
 ahí. Esta manera evita todos los problemas que podrían suceder si se modifica el reloj desde 
 el sistema. Si la modificación desde la configuración de la BIOS no se puede realizar, modifique
-el reloj utilizando \texttt{\textbf{date}} y \texttt{\textbf{clock}} (en ese orden), pero esté preparado para reiniciar Linux, si
-alguna parte del sistema comienza a actuar de manera extraña, mal y/o divertida. :)
+el reloj utilizando \texttt{\textbf{date}} y \texttt{\textbf{hwclock}} (en ese orden), pero 
+esté preparado para reiniciar Linux, si alguna parte del sistema comienza a actuar de manera 
+extraña, mal y/o divertida. :)
 
 
 
@@ -554,6 +563,8 @@ original NTP: <ulink url=``http://www.ntp.org/''>http://www.ntp.org</ulink>, o d
 \section*{Licencia}
 
 Este material es una obra derivada de los siguientes textos:
+
+http://tldp.org/HOWTO/Clock.html\#toc2
 
 ``Sistema operativo GNU/Linux Básico'' \footnote{http://materials.cv.uoc.edu/continguts/XW07\_M2102\_02309/index.html}
 
