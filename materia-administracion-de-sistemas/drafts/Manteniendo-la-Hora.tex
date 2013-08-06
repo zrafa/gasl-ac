@@ -348,28 +348,35 @@ que pequeñas diferencias.
 
 
 
-\section*{NTP - Protocolo de tiempo en red}
+\section*{NTP - Protocolo de red para sincronización de reloj}
 
 Alternativamente a revisar periódicamente el reloj del kernel y ajustarlo 
 manualmente, una computadora conectada en red puede 
 comprobar su propio reloj de forma automática, comparándolo con la hora
 de otro ordenador que se sabe almacena la hora de forma precisa. El 
-protocolo de reloj en red (o NTP) hace esto exactamente. Es un método para 
+protocolo de tiempo en red (o NTP) hace esto exactamente. Es un método para 
 verificar y corregir la hora de su computadora al sincronizarse con otro 
 sistema. Con NTP su sistema puede mantenerse a milisegundos de la Hora 
 Universal Coordinada (UTC). 
-	\footnote{Visite el sitio web <ulink url=``http://www.time.gov/about.html/''>
-		http://www.time.gov/about.html</ulink> si desea obtener mayor información.
-		}
 	
-Para la mayoría de usuarios ocasionales de Linux, esto puede resultar
-simplemente un lujo. En mi casa todos los relojes se ajustan en base a 
-la hora que mi sistema Linux dice que es. Para grandes organizaciones 
+Para la mayoría de usuarios ocasionales de Linux, esto puede parecer
+simplemente un lujo.  Para grandes organizaciones 
 este ``lujo'' puede convertirse en fundamental. Por ejemplo, ser capaz de 
 buscar sucesos en los archivos de bitácora (log) basándose en la hora puede hacer la vida 
 bastante más sencilla y puede eliminar mucho ``trabajo de adivinación'' 
 durante la depuración.
 
+En diversos software de clustering, esto es software que implementa el trabajo 
+en equipo entre dos o más computadoras, la sincronización de relojes es 
+clave para el correcto funcionamiento del software. Muchas de las actividades 
+en las que las computadoras pertenecientes a un cluster (grupo de trabajo)
+se ponen de acuerdo están basadas en el tiempo.
+
+Dentro de un centro de cómputos, existen múltiples ejemplos en los que la 
+exactitud del reloj es clave para el correcto funcionamiento. Por otra parte
+debe tenerse en cuenta que, en muchos casos, lo importante es la sincronización de 
+relojes entre máquinas en una misma red y no la exactitud con respecto a UTC, NTP 
+esta pensado para tal fin.   
 
 
 %Otro ejemplo de cuan importante puede ser NTP es con SAN. Algunos SAN
@@ -380,88 +387,47 @@ durante la depuración.
 %de tiempo que están en el futuro.
 
 
-
-La mayoría de las distribuciones Linux vienen con un paquete NTP de
-algún tipo, ya sea un paquete .deb o .rpm. Puede utilizarlo para instalar
-NTP, o puede bajarse el código fuente de
-<ulink url=``http://www.ntp.org/downloads.html''>
-http://www.ntp.org/downloads.html</ulink> y compilarlo usted mismo. En
-cualquier caso, la configuración básica es la misma.
-
-
-
-
-
 \section*{ Configuración básica de NTP}
 
+La mayoría de las distribuciones GNU/Linux proveen un paquete de software que implementa 
+NTP. Puede utilizarlo para instalar NTP, o bien puede bajarse el código fuente de \\
+http://www.ntp.org/downloads.html y compilarlo usted mismo. En
+cualquier caso, la configuración básica es la misma.
 
-El programa NTP se configura utilizando el archivo \texttt{/etc/ntp.conf} o
-\texttt{/etc/xntp.conf} dependiendo de qué distribución Linux tenga. No entraré
-ahora en demasiados detalles sobre cómo configurar NTP. En su lugar cubriré
-sólo lo básico.
+El programa NTP, \texttt{ntpd} se configura utilizando el archivo \texttt{/etc/ntp.conf} o
+\texttt{/etc/xntp.conf} \footnote{Xntp hace referencia a la vieja implementación 
+NTPv3 que fue reemplazada por ntpd NTPv4} dependiendo de qué distribución Linux tenga. 
+En dicho archivo se establece uno o mas \textit{servidores NTP} a los cuales 
+consultar el reloj. 
 
-
-
-Un ejemplo de archivo ntp.conf debería parecer:
-
-
+Ejemplo de archivo ntp.conf básico: 
 
 \colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} {\tt
 \# --- GENERAL CONFIGURATION ---
-server  aaa.bbb.ccc.ddd
-server  127.127.1.0
-fudge   127.127.1.0 stratum 10
+server  0.debian.pool.ntp.org #nombre de dominio 
+server  142.54.181.202 #IP v4
+server  127.127.1.0 #local 
 
 \# Drift file.
 driftfile /etc/ntp/drift
  } \vspace*{0.5cm} } } 
 
 	
-
-	El archivo ntp.config más básico simplemente listará 2 servidores, uno
+El archivo ntp.conf más básico simplemente listará dos servidores, uno
 con el que le gustaría sincronizarse, y una dirección pseudo-IP para él 
 mismo (en este caso 127.127.1.0). La pseudo-IP se utiliza en el caso de
 errores en la red o si cae el servidor NTP remoto. NTP sincronizará
 consigo mismo hasta que pueda empezar a sincronizar de nuevo con el 
-servidor remoto. Se recomienda que se pongan al menos 2 servidores remotos
+servidor remoto. Se recomienda que se pongan al menos dos servidores remotos
 con los que pueda sincronizarse. Uno actuará como servidor primario y el 
-otro como copia de respaldo.
+otro en caso de fallo.
 
-
-
-También debe ponerse una ubicación para el archivo de fluctuación. De 
+También debe ponerse una ubicación para el archivo de fluctuación (drift). De 
 vez en cuando NTP \textit{aprenderá} el error que se comete en el reloj de
-sistema y automáticamente se ajustará.
-
-
-
-La opción de restricción puede usarse para otorgar un mejor control y 
-seguridad además de la que proporciona NTP, y quién puede efectuarla.
-Por ejemplo:
-
-\colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} {\tt 
-\#Prohibit general access to this service.
-restrict default ignore
-
-\# Permit systems on this network to synchronize with this
-\# time service. But not modify our time.
-restrict aaa.bbb.ccc.ddd nomodify
-
-\# Allow the following unrestricted access to ntpd
-
-restrict aaa.bbb.ccc.ddd
-restrict 127.0.0.1
- } \vspace*{0.5cm} } } 
-
-
-Está avisado: debe esperar hasta que tenga NTP trabajando adecuadamente 
-antes de añadir la opción de restricción. Puede accidentalmente 
-restringirse usted mismo de sincronizarse y perder tiempo buscando el por qué.
-
-
+sistema (local) y automáticamente se ajustará.
 
 NTP corrige el sistema lentamente. ¡Sea paciente! Una simple prueba es
-cambiar el reloj de sistema en 10 minutos antes de irse a la cama y
+cambiar el reloj de sistema en diez minutos antes de irse a la cama y
 comprobarlo cuando se levante. La hora deberá ser la correcta.
 
 \section*{ La herramienta NTP}
@@ -473,11 +439,21 @@ actual de su sistema.
 
 
 \colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} {\tt      
-ntpq -p
-remote           refid      st t when poll reach   delay   offset  jitter
-==============================================================================
-*cudns.cit.corne ntp0.usno.navy.  2 u  832 1024  377   43.208    0.361   2.646
- LOCAL(0)        LOCAL(0)        10 l   13   64  377    0.000    0.000   0.008
+\$ ntpq -p\\
+     remote           refid      st t when poll reach   delay   offset  jitter\\
+==============================================================================\\
++mirror          128.138.140.44   2 u  675 1024  377  245.748   -8.376  13.128\\
+*va-time.techpro 206.246.122.250  2 u  150 1024  377  169.764    6.025  10.521\\
++zulu.frizzen.ne 72.8.140.222     3 u  107 1024  377  212.593   21.022  10.819\\
+-x2la01.hostigat 41.222.253.216   3 u  198 1024  377  207.414   14.456   4.775\\
+\$ ntpq -pn\\
+     remote           refid      st t when poll reach   delay   offset  jitter\\
+==============================================================================\\
++208.53.158.34   128.138.140.44   2 u  680 1024  377  245.748   -8.376  13.128\\
+*208.87.104.40   206.246.122.250  2 u  155 1024  377  169.764    6.025  10.521\\
++209.141.47.34   72.8.140.222     3 u  111 1024  377  212.593   21.022  10.819\\
+-96.44.154.34    41.222.253.216   3 u  202 1024  377  207.414   14.456   4.775\\
+
  } \vspace*{0.5cm} } } 
 
 	
@@ -642,6 +618,7 @@ de una copia de la licencia en el apartado ``GNU Free Documentation License'' de
 \begin{thebibliography}{1}
 \bibitem[CurLinux]{curlin} ``Curso de Linux''.1999 Gómez, Ahijado, Flores.\\ 
 http://www.ibiblio.org/pub/Linux/docs/LuCaS/Tutoriales/CURSOLINUX/\\curso\_linux/curso\_linux.html
+http://www.eecis.udel.edu/~mills/ntp.html
 \end{thebibliography}
 
 \end{document}
