@@ -52,8 +52,8 @@
 
 En este capítulo se explica como un sistema Linux mantiene la fecha y hora,
 y lo que debe conocer para evitar problemas. Si bien el mantenimiento de
-la hora no es una actividad frecuente, es resposabilidad del administrador 
-del sistema realizar los cambios que sean necearios. 
+la hora no es una actividad frecuente, es responsabilidad del administrador 
+del sistema realizar los cambios que sean necesarios. 
 
 
 \subsection*{Zonas horarias}
@@ -76,7 +76,7 @@ comunicarse con otros, por lo que se definió un estándar mundial de medición
 horaria. Este estándar se llama \textit{hora universal} ó UTC (del inglés Universal 
 Time Coordinated), y es uno de los varios sucesores estrechamente 
 relacionados con el tiempo medio de Greenwich (GMT). De hecho, aunque técnicamente 
-difieren GMT y UTC suelen utilizarce como sinónimos en mucha bibliografía.   
+difieren GMT y UTC suelen utilizarse como sinónimos en mucha bibliografía.   
 De este modo, cuando personas con diferentes horas locales
 necesitan comunicarse, pueden expresar el tiempo en hora universal,
 para que no exista confusión acerca de cuándo deben suceder las cosas.
@@ -87,7 +87,7 @@ en donde el mediodía suceda en el mismo momento tienen la misma zona horaria,
 políticamente esto no siempre así. Por diversas razones, varios países
 adoptan el ``horario de verano'' (\textit{daylight savings time} o DST) para atender las demandas
 económicas. Los países que adoptan el ``horario de verano'' cambian la hora
-de sus relojes en verano (en gral. se retrasan los relojes una hora) para
+de sus relojes en verano (en general. se retrasan los relojes una hora) para
 tener más luz natural mientras trabajan (durante la tarde), y vuelven a adelantar
 la hora de sus relojes en otoño o invierno. Otros países no adoptan estos procedimientos.
 Más aún, los países que utilizan horarios de verano no tienen un acuerdo común de cuándo deben
@@ -120,7 +120,7 @@ administra, asegúrese de actualizar al menos la zona horaria del sistema y de s
 la definición de zonas horarias disponibles. 
 
 
-\subsection*{ Los relojes de software y hardware}
+\subsection*{Los relojes de software y hardware}
 
 
 En general las computadoras tiene un reloj de hardware alimentado por una batería, conocido también como 
@@ -184,14 +184,14 @@ La sintaxis de la variable TZ se encuentra descripta en la página de manual de 
 \colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} { 
 Por ejemplo si la hora local del sistema esta definida para Argentina, tal que 
 el comando \texttt{date} nos devuelve: \\
-{\tt\$ date \\
+{\tt\# date \\
 mié jul 31 17:14:40 ART 2013} \\
 Y ahora definimos la variable de ambiente TZ con el valor (Eastern Standard Time, utilizada en 
 algunas regiones de Estados Unidos), veremos que la salida de \texttt{date} responde 
 a la nueva hora local utilizada por el usuario: \\
 {\tt
-\$ export TZ=EST \\
-\$ date \\
+\# export TZ=EST \\
+\# date \\
 mié jul 31 15:14:53 EST 2013 \\
 } 
 Esto es, dos horas de diferencia con la hora local Argentina. 
@@ -202,7 +202,7 @@ identificar el valor que debiera utilizar para la variable TZ.
 
 \colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} { 
 {\tt 
-\$ tzselect \\
+\# tzselect \\
 Please identify a location so that time zone rules can be set correctly.\\
 Please select a continent or ocean.\\
  1) Africa\\
@@ -262,10 +262,10 @@ to the file '.profile' in your home directory; then log out and log in again.\\
 Here is that TZ value again, this time on standard output so that you\\
 can use the /usr/bin/tzselect command in shell scripts:\\
 Africa/Luanda\\
-\$ TZ='Africa/Luanda'; export TZ\\
-\$ date\\
+\# TZ='Africa/Luanda'; export TZ\\
+\# date\\
 lun ago  5 14:30:26 WAT 2013\\
-\$ \\
+\# \\
 }
  } \vspace*{0.5cm} } } 
 \\ 
@@ -276,7 +276,7 @@ lun ago  5 14:30:26 WAT 2013\\
 El comando \texttt{\textbf{date}} muestra la hora y fecha actuales. Por ejemplo:
 
 \colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} {\tt 
-\$ date \\
+\# date \\
 mié jul 31 17:14:40 ART 2013
  } \vspace*{0.5cm} } } 
 
@@ -285,7 +285,7 @@ El comando \texttt{\textbf{date}} también puede también mostrar la hora univer
 
 
 \colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} {\tt 
-\$ date -u\\
+\# date -u\\
 mié jul 31 20:18:02 UTC 2013
  } \vspace*{0.5cm} } } 
 
@@ -387,7 +387,7 @@ esta pensado para tal fin.
 %de tiempo que están en el futuro.
 
 
-\section*{ Configuración básica de NTP}
+\subsection*{Configuración básica de NTP}
 
 La mayoría de las distribuciones GNU/Linux proveen un paquete de software que implementa 
 NTP. Puede utilizarlo para instalar NTP, o bien puede bajarse el código fuente de \\
@@ -403,17 +403,17 @@ consultar el reloj.
 Ejemplo de archivo ntp.conf básico: 
 
 \colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} {\tt
-\# --- GENERAL CONFIGURATION ---
-server  0.debian.pool.ntp.org #nombre de dominio 
-server  142.54.181.202 #IP v4
-server  127.127.1.0 #local 
+\# --- GENERAL CONFIGURATION --- \\
+server  0.debian.pool.ntp.org \#nombre de dominio \\
+server  142.54.181.202 \#IP v4 \\
+server  127.127.1.0 \#local \\
 
-\# Drift file.
+\# Drift file.\\
 driftfile /etc/ntp/drift
  } \vspace*{0.5cm} } } 
 
 	
-El archivo ntp.conf más básico simplemente listará dos servidores, uno
+El archivo ntp.conf básico listará dos servidores, uno
 con el que le gustaría sincronizarse, y una dirección pseudo-IP para él 
 mismo (en este caso 127.127.1.0). La pseudo-IP se utiliza en el caso de
 errores en la red o si cae el servidor NTP remoto. NTP sincronizará
@@ -430,23 +430,49 @@ NTP corrige el sistema lentamente. ¡Sea paciente! Una simple prueba es
 cambiar el reloj de sistema en diez minutos antes de irse a la cama y
 comprobarlo cuando se levante. La hora deberá ser la correcta.
 
-\section*{ La herramienta NTP}
+\subsection*{NTP en el arranque: ntpd}
+El software de NTP se inicia con el arranque del sistema. Usualmente encontraremos
+un script the inicio en /etc/init.d o similar, dependiendo del sistema de servicios 
+de su distribución particular, que ejecuta el binario \texttt{ntpd}.
 
+\colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} 
+Por ejemplo en el caso de una distribución Debian encontramos los siguientes 
+archivos en /etc: \\ 
+{\tt
+\# find /etc/ -iname "*ntp*"\\
+/etc/rc2.d/S07ntp\\
+/etc/rc5.d/S07ntp\\
+/etc/rc4.d/S07ntp\\
+/etc/rc3.d/S07ntp\\
+/etc/init.d/ntp\\
+/etc/ntp.conf\\
+/etc/default/ntp\\
+ } 
+Observamos que existen scripts de inicio de ntp, luego si comprobamos los procesos en 
+ejecución encontraremos a \texttt{ntpd} ejecutándose:\\ 
+{\tt
+\# ps -ef |grep ntpd\\
+ntp       3719     1  0 jul28 ?        00:00:57 /usr/sbin/ntpd -p /var/run/ntpd.pid -g -u 115:123\\
+}
+Dicho proceso es el encargado de mantener el reloj de sistema sincronizado con 
+los servidores NTP configurados en el archivo de configuración \texttt{ntp.conf}.
+\vspace*{0.5cm} } } 
+
+\subsection*{Herramientas para NTP en GNU/Linux}
 
 Hay innumerables utilidades disponibles para comprobar si NTP está 
-haciendo su trabajo. El comando \texttt{\textbf{ntpq -p}} mostrará el estado de la hora
-actual de su sistema.
-
+haciendo su trabajo. El comando \texttt{\textbf{ntpq}} permite analizar
+la operación y estado de ntpd. 
 
 \colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} {\tt      
-\$ ntpq -p\\
+\# ntpq -p\\
      remote           refid      st t when poll reach   delay   offset  jitter\\
 ==============================================================================\\
 +mirror          128.138.140.44   2 u  675 1024  377  245.748   -8.376  13.128\\
 *va-time.techpro 206.246.122.250  2 u  150 1024  377  169.764    6.025  10.521\\
 +zulu.frizzen.ne 72.8.140.222     3 u  107 1024  377  212.593   21.022  10.819\\
 -x2la01.hostigat 41.222.253.216   3 u  198 1024  377  207.414   14.456   4.775\\
-\$ ntpq -pn\\
+\# ntpq -pn\\
      remote           refid      st t when poll reach   delay   offset  jitter\\
 ==============================================================================\\
 +208.53.158.34   128.138.140.44   2 u  680 1024  377  245.748   -8.376  13.128\\
@@ -456,169 +482,100 @@ actual de su sistema.
 
  } \vspace*{0.5cm} } } 
 
+En la salida anterior es importante el primer caracter que aparece listado para
+cada servidor. Este caracter conocido como \textit{tally code} se encuentra definido 
+en la siguiente tabla\footnote{Obtenido de la documentación disponible en el paquete
+ntp-doc, archivo file:///usr/share/doc/ntp-doc/html/decode.html\#peer}: 
+
+\begin{center}
+\begin{tabular}{|l|l|}\hline 
+Código & Significado \\\hline
+  (espacio) & Descartado, no válido.\\\hline
+× & Descartado por algoritmo de intersección.\\\hline
+. & Descartado por overflow de tabla (no utilizado).\\\hline
+- & Descartado por algoritmo de clustering. \\\hline
++ & Incluido por el algoritmo combinado.\\\hline
+\# & Seleccionado como reemplazo en caso de falla.\\\hline
+* & Sistema par.\\\hline
+o & Par PPS.\\\hline
+\end{tabular}
+\end{center}
+
+Para más información consulte la documentación de ntpq. 
 	
-\texttt{\textbf{ntpdc -c}} loopinfo mostrará cómo de desviado está el reloj del sistema
-en segundos, basándose en la última vez que se contactó con el servidor 
-remoto.
-
-
-
-\colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} {\tt 
-ntpdc -c loopinfo
-offset:               -0.004479 s
-frequency:            133.625 ppm
-poll adjust:          30
-watchdog timer:       404 s
- } \vspace*{0.5cm} } } 
-
-	
-\texttt{\textbf{ntpdc -c kerninfo}}  mostrará la corrección actual acumulada.
-
-
-\colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} {\tt 
-ntpdc -c kerninfo
-pll offset:           -0.003917 s
-pll frequency:        133.625 ppm
-maximum error:        0.391414 s
-estimated error:      0.003676 s
-status:               0001  pll
-pll time constant:    6
-precision:            1e-06 s
-frequency tolerance:  512 ppm
-pps frequency:        0.000 ppm
-pps stability:        512.000 ppm
-pps jitter:           0.0002 s
-calibration interval: 4 s
-calibration cycles:   0
-jitter exceeded:      0
-stability exceeded:   0
-calibration errors:   0
- } \vspace*{0.5cm} } } 
-
-	
-Una versión ligeramente distinta de \texttt{\textbf{ntpdc -c kerninfo}} es \texttt{\textbf{ntptime}}
-
-
-\colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} {\tt 
-ntptime
-ntp\_gettime() returns code 0 (OK)
-  time c35e2cc7.879ba000  Thu, Nov 13 2003 11:16:07.529, (.529718),
-  maximum error 425206 us, estimated error 3676 us
-ntp\_adjtime() returns code 0 (OK)
-  modes 0x0 (),
-  offset -3854.000 us, frequency 133.625 ppm, interval 4 s,
-  maximum error 425206 us, estimated error 3676 us,
-  status 0x1 (PLL),
-  time constant 6, precision 1.000 us, tolerance 512 ppm,
-  pps frequency 0.000 ppm, stability 512.000 ppm, jitter 200.000 us,
-  intervals 0, jitter exceeded 0, stability exceeded 0, errors 0.
- } \vspace*{0.5cm} } } 
-
-	
-	
-	
-
 Existe todavía otra manera de ver cómo de bien está trabajando NTP con 
 el comando \texttt{\textbf{ntpdate -d}}. Éste contactará con un servidor NTP y
 determinará la diferencia de tiempos pero no modificará el reloj de su sistema.
 
-
-
 \colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} {\tt 
-ntpdate -d 132.236.56.250
-13 Nov 14:43:17 ntpdate[29631]: ntpdate 4.1.1c-rc1@1.836 Thu Feb 13 12:17:20 EST 2003 (1)
-transmit(132.236.56.250)
-receive(132.236.56.250)
-transmit(132.236.56.250)
-receive(132.236.56.250)
-transmit(132.236.56.250)
-receive(132.236.56.250)
-transmit(132.236.56.250)
-receive(132.236.56.250)
-transmit(132.236.56.250)
-server 132.236.56.250, port 123
-stratum 2, precision -17, leap 00, trust 000
-refid [192.5.41.209], delay 0.06372, dispersion 0.00044
-transmitted 4, in filter 4
-reference time:    c35e5998.4a46cfc8  Thu, Nov 13 2003 14:27:20.290
-originate timestamp: c35e5d55.d69a6f82  Thu, Nov 13 2003 14:43:17.838
-transmit timestamp:  c35e5d55.d16fc9bc  Thu, Nov 13 2003 14:43:17.818
-filter delay:  0.06522  0.06372  0.06442  0.06442
-         0.00000  0.00000  0.00000  0.00000
-filter offset: 0.000036 0.001020 0.000527 0.000684
-         0.000000 0.000000 0.000000 0.000000
-delay 0.06372, dispersion 0.00044
-offset 0.001020
-
-13 Nov 14:43:17 ntpdate[29631]: adjust time server 132.236.56.250 offset 0.001020 sec
+\# ntpdate -d 132.236.56.250 \# IP de un servidor NTP \\
+13 Nov 14:43:17 ntpdate[29631]: ntpdate 4.1.1c-rc1@1.836 Thu Feb 13 12:17:20 EST 2003 (1)\\
+transmit(132.236.56.250)\\
+receive(132.236.56.250)\\
+transmit(132.236.56.250)\\
+receive(132.236.56.250)\\
+transmit(132.236.56.250)\\
+receive(132.236.56.250)\\
+transmit(132.236.56.250)\\
+receive(132.236.56.250)\\
+transmit(132.236.56.250)\\
+server 132.236.56.250, port 123\\
+stratum 2, precision -17, leap 00, trust 000\\
+refid [192.5.41.209], delay 0.06372, dispersion 0.00044\\
+transmitted 4, in filter 4\\
+reference time:    c35e5998.4a46cfc8  Thu, Nov 13 2003 14:27:20.290\\
+originate timestamp: c35e5d55.d69a6f82  Thu, Nov 13 2003 14:43:17.838\\
+transmit timestamp:  c35e5d55.d16fc9bc  Thu, Nov 13 2003 14:43:17.818\\
+filter delay:  0.06522  0.06372  0.06442  0.06442\\
+         0.00000  0.00000  0.00000  0.00000\\
+filter offset: 0.000036 0.001020 0.000527 0.000684\\
+         0.000000 0.000000 0.000000 0.000000\\
+delay 0.06372, dispersion 0.00044\\
+offset 0.001020\\
+\\
+13 Nov 14:43:17 ntpdate[29631]: adjust time server 132.236.56.250 offset 0.001020 sec\\
  } \vspace*{0.5cm} } } 
 
 Si quiere ver al sistema sincronizarse en tiempo real puede utilizar 
 \texttt{\textbf{ntptrace}}.
 
-
 \colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} {\tt 
-ntptrace 132.236.56.250
-cudns.cit.cornell.edu: stratum 2, offset -0.003278, synch distance 0.02779
-dtc-truetime.ntp.aol.com: stratum 1, offset -0.014363, synch distance 0.00000, refid 'ACTS' 
+ntptrace 132.236.56.250 \\
+cudns.cit.cornell.edu: stratum 2, offset -0.003278, synch distance 0.02779 \\
+dtc-truetime.ntp.aol.com: stratum 1, offset -0.014363, synch distance 0.00000, refid 'ACTS'  \\
 } \vspace*{0.5cm} } } 
 
-	
-
-	
-	
 Si necesita sincronizar su sistema inmediatamente puede utilizar
-\texttt{\textbf{ntpdate remote-servername}} para forzar una sincronización. ¡Sin esperas!
-
+\texttt{\textbf{ntpdate remote-servername}} para forzar una sincronización: 
 
 \colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} {\tt
-ntpdate 132.236.56.250
-13 Nov 14:56:28 ntpdate[29676]: adjust time server 132.236.56.250 offset -0.003151 sec
-  } \vspace*{0.5cm} } } 
+\# ntpdate 208.87.104.40 \\
+ 6 Aug 17:46:45 ntpdate[31480]: step time server 208.87.104.40 offset 532.154985 sec \\
+} \vspace*{0.5cm} } } 
 
 
-\section*{ Algunos servidores NTP conocidos}
-
+\subsection*{Información adicional sobre NTP}
 
 Una lista de servidores públicos puede obtenerse de:
-<ulink url=``http://www.eecis.udel.edu/~mills/ntp/servers.html/''>
-	http://www.eecis.udel.edu/~mills/ntp/servers.html</ulink>. Por favor lea la
+http://www.eecis.udel.edu/~mills/ntp/servers.html. Por favor lea la
 información de utilización de la página antes de utilizar un servidor. No 
 todos los servidores tienen el suficiente ancho de banda para permitir 
 un gran número de sistemas sincronizándose con ellos. Así que es buena 
 idea contactar con el administrador de sistemas antes de utilizar su 
 servicio NTP.
 
+Información más detallada sobre NTP y su implementación en Linux 
+puede obtenerse de la página: http://www.ntp.org/. 
 
-
-\section*{ Enlaces NTP}
-
-
-Información más detallada sobre NTP puede obtenerse de la página
-original NTP: <ulink url=``http://www.ntp.org/''>http://www.ntp.org</ulink>, o de
-<ulink url=``http://www.ntp.org/ntpfaq/NTP-a-faq.htm''>
-	http://www.ntp.org/ntpfaq/NTP-a-faq.htm</ulink>
+Información sobre el protocolo NTP y su definición: http://tools.ietf.org/html/rfc5905
 
 
 \section*{Licencia}
 
 Este material es una obra derivada de los siguientes textos:
 
-http://tldp.org/HOWTO/Clock.html\#toc2
+``The Clock Mini-HOWTO'' del sitio TLDP: http://tldp.org/HOWTO/Clock.html\#toc1
 
-``Sistema operativo GNU/Linux Básico'' \footnote{http://materials.cv.uoc.edu/continguts/XW07\_M2102\_02309/index.html}
-
-© Autores: Joaquín López Sánchez-Montañés, Sofia Belles Ramos, Roger Baig i Viñas i Francesc Aulí Llinàs
-
-© 2008, FUOC. Se garantiza permiso para copiar, distribuir y modificar este documento según los
-términos de la GNU Free Documentation License, Version 1.2 o cualquiera posterior publicada por la
-Free Software Foundation, sin secciones invariantes ni textos de cubierta delantera o trasera. Se dispone
-de una copia de la licencia en el apartado ``GNU Free Documentation License'' de este documento.
-
-\begin{thebibliography}{1}
-\bibitem[CurLinux]{curlin} ``Curso de Linux''.1999 Gómez, Ahijado, Flores.\\ 
-http://www.ibiblio.org/pub/Linux/docs/LuCaS/Tutoriales/CURSOLINUX/\\curso\_linux/curso\_linux.html
-http://www.eecis.udel.edu/~mills/ntp.html
-\end{thebibliography}
+``The Linux System Administrator's Guide'' del sitio TLDP: http://www.tldp.org/LDP/sag/html/
 
 \end{document}
