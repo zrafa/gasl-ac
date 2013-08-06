@@ -197,10 +197,83 @@ mié jul 31 15:14:53 EST 2013 \\
 Esto es, dos horas de diferencia con la hora local Argentina. 
  } \vspace*{0.5cm} } } 
 
+Algunas distribuciones proveen el comando \texttt{tzselec} para ayudar al usuario a 
+identificar el valor que debiera utilizar para la variable TZ.
+
+\colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} { 
+{\tt 
+\$ tzselect \\
+Please identify a location so that time zone rules can be set correctly.\\
+Please select a continent or ocean.\\
+ 1) Africa\\
+ 2) Americas\\
+ 3) Antarctica\\
+ 4) Arctic Ocean\\
+ 5) Asia\\
+ 6) Atlantic Ocean\\
+ 7) Australia\\
+ 8) Europe\\
+ 9) Indian Ocean\\
+10) Pacific Ocean\\
+11) none - I want to specify the time zone using the Posix TZ format.\\
+\#? 1\\
+}
+ } \vspace*{0.5cm} } } 
+
+
+\colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} { 
+{\tt 
+Please select a country.\\
+ 1) Algeria		  18) Gabon		    35) Rwanda\\
+ 2) Angola		  19) Gambia		    36) Sao Tome \& Principe\\
+ 3) Benin		  20) Ghana		    37) Senegal\\
+ 4) Botswana		  21) Guinea		    38) Sierra Leone\\
+ 5) Burkina Faso	  22) Guinea-Bissau	    39) Somalia\\
+ 6) Burundi		  23) Kenya		    40) South Africa\\
+ 7) Cameroon		  24) Lesotho		    41) South Sudan\\
+ 8) Central African Rep.  25) Liberia		    42) Spain\\
+ 9) Chad		  26) Libya		    43) Sudan\\
+10) Congo (Dem. Rep.)	  27) Malawi		    44) Swaziland\\
+11) Congo (Rep.)	  28) Mali		    45) Tanzania\\
+12) Cote d'Ivoire	  29) Mauritania	    46) Togo\\
+13) Djibouti		  30) Morocco		    47) Tunisia\\
+14) Egypt		  31) Mozambique	    48) Uganda\\
+15) Equatorial Guinea	  32) Namibia		    49) Western Sahara\\
+16) Eritrea		  33) Niger		    50) Zambia\\
+17) Ethiopia		  34) Nigeria		    51) Zimbabwe\\
+\#? 2\\
+\\
+The following information has been given:\\
+\\
+	Angola\\
+\\
+Therefore TZ='Africa/Luanda' will be used.\\
+Local time is now:	Mon Aug  5 14:29:57 WAT 2013.\\
+Universal Time is now:	Mon Aug  5 13:29:57 UTC 2013.\\
+Is the above information OK?\\
+1) Yes\\
+2) No\\
+\#? 1\\
+\\
+You can make this change permanent for yourself by appending the line\\
+	TZ='Africa/Luanda'; export TZ\\
+to the file '.profile' in your home directory; then log out and log in again.\\
+\\
+Here is that TZ value again, this time on standard output so that you\\
+can use the /usr/bin/tzselect command in shell scripts:\\
+Africa/Luanda\\
+\$ TZ='Africa/Luanda'; export TZ\\
+\$ date\\
+lun ago  5 14:30:26 WAT 2013\\
+\$ \\
+}
+ } \vspace*{0.5cm} } } 
+\\ 
+\\ 
+\\ 
+\textbf{El comando \texttt{\textbf{date}}}
 
 El comando \texttt{\textbf{date}} muestra la hora y fecha actuales. Por ejemplo:
-
-
 
 \colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} {\tt 
 \$ date \\
@@ -211,109 +284,100 @@ Es decir, miércoles 31 de julio del 2013, cinco y cuarto de la tarde en hora lo
 El comando \texttt{\textbf{date}} también puede también mostrar la hora universal (UTC): 
 
 
-
 \colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} {\tt 
-\$date -u\\
+\$ date -u\\
 mié jul 31 20:18:02 UTC 2013
  } \vspace*{0.5cm} } } 
 
 
-\texttt{\textbf{date}} también se utiliza para establecer la hora del reloj del kernel. Para más información
+\texttt{\textbf{date}} también se utiliza para establecer la hora del \textit{reloj del kernel}. Para más información
 lea la página de manual de \texttt{\textbf{date}}. Tenga en cuenta que \textbf{solo el usuario root puede 
-modificar la fecha y/u hora del sistema}. Aunque cada usuario puede definir su propia zona horaria, el reloj 
+modificar la fecha y/u hora del sistema}. Recuerde que si bien cada usuario puede definir su propia zona horaria, el reloj 
 es el mismo para todos.
 
-\texttt{\textbf{date}} muestra o modifica el reloj de software. El comando \texttt{\textbf{hwclock}} 
-sincroniza los relojes de hardware y software.
-Cuando el sistema inicia, el comando \texttt{hwclock} es utilizado para leer el reloj de hardware y actualizar
-el reloj de software. Si necesita modificar ambos relojes, primero debe modificar el reloj de software con \texttt{\textbf{date}},
-y luego sincronizar la hora del reloj por hardware con el comando \texttt{\textbf{hwclock -w o hwclock --systohc}}.
+\colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm}
+En el siguiente ejemplo se modifica la hora y fecha del reloj del kernel 
+utilizando el comando date: \\
+{\tt 
+\# date 08051657 \\
+lun ago  5 16:57:00 ART 2013
+ } \vspace*{0.5cm} } } 
+
+\textbf{El comando \texttt{hwclock}}
+
+Como vimos, \texttt{\textbf{date}} muestra o modifica el reloj de software. 
+Por otra parte, todas las distribuciones GNU/Linux proveen el comando \texttt{clock} o su reemplazo más
+reciente \texttt{hwclock} (utilizaremos este último en el resto del texto). Dichos comandos permiten 
+sincronizar los relojes de hardware y software. Cuando el sistema inicia, el comando \texttt{hwclock}
+ es utilizado para leer el reloj de hardware y actualizar el reloj de software. La forma en que el 
+sistema lleva a cabo esta tarea varía entre distribuciones. 
+
+\colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm}
+Por ejemplo en el caso particular de Debian esto se hace a través de un script de inicio ubicado 
+en /etc/init.d y un archivo de configuración /etc/default/hwclock que controla el comportamiento 
+de dicho script: \\
+{\tt
+find /etc -iname "*hwclock*"\\
+/etc/rcS.d/S05hwclock.sh\\
+/etc/init.d/hwclock.sh\\
+/etc/rc0.d/K08hwclock.sh\\
+/etc/rc6.d/K08hwclock.sh\\
+/etc/default/hwclock\\
+}
+Otros lugares comunes para efectuar la sincronización en el arranque son /etc/rc.local, 
+/etc/rc.d/rc.sysinit, /etc/rc.d/boot, entre otros. 
+} \vspace*{0.5cm} }  
+
+Si necesita modificar ambos relojes (software y hardware), primero debe modificar el 
+reloj de software con \texttt{\textbf{date}}, y luego sincronizar la hora del reloj 
+por hardware con el comando \texttt{\textbf{hwclock -w o hwclock --systohc}}.
 
 La opción \texttt{ ``-u o --utc''} en el comando \texttt{\textbf{hwclock}} le indica 
 a \texttt{hwclock} que la fecha y hora (mostrada o definida)
-se encuentra en formato de hora universal. \textit{Debe} utilizar la opción -u correctamente, en
-caso contrario, la computadora puede estar confundida sobre cual es la fecha y hora correcta.
-
+se encuentra en formato de hora universal (UTC). \textit{Debe} utilizar la opción -u correctamente, en
+caso contrario el efecto sobre la hora del sistema puede no ser el esperado. 
 
 
 Los relojes deben modificarse con cuidado y precisión.
-Muchas partes de un sistema UNIX requieren que los relojes trabajen correctamente.
-Por ejemplo, el demonio \texttt{\textbf{cron}} ejecuta comandos periódicamente. Si cambia el reloj, el sistema puede
-estar confundido en cuanto a la necesidad o no de ejecutar determinado comando.
-Hubo una vez, en un sistema UNIX antiguo, en donde alguien adelantó el reloj 20 años en el futuro, y
-entonces \texttt{\textbf{cron}} quiso ejecutar
-los comandos periódicos de veinte años, todos de una sola vez.
-Las versiones actuales de \texttt{\textbf{cron}} no tienen este problema, pero aún así debe ser cuidadoso con estos
-detalles (pueden existir otros programas actuales que trabajen similarmente mal como ``ese'' viejo cron).
-Grandes saltos en el tiempo (hacia el futuro o el pasado) son mas peligrosos que pequeñas diferencias.
+Algunas partes de un sistema UNIX requieren que los relojes trabajen correctamente.
+Por ejemplo, el demonio \texttt{\textbf{cron}} ejecuta comandos periódicamente basándose en la
+hora y día para ello. Si cambia el reloj, el sistema puede tomar decisiones no previstas por 
+el administrador en cuanto a la necesidad o no de ejecutar determinado comando.
+En general grandes saltos en el tiempo (hacia el futuro o el pasado) pueden causar conflictos mayores
+que pequeñas diferencias.
 
 
 
+\section*{NTP - Protocolo de tiempo en red}
 
-\section*{Cuando el reloj es erróneo}
-
-
-El reloj por software de un sistema Linux no siempre es preciso. Para mantener este reloj
-Linux utiliza una \textit{interrupción periódica} generada por el hardware, llamada ``timer interrupt''.
-En caso de que existan muchos procesos siendo ejecutados (con respecto a los recursos disponibles)
-el sistema podría demorar un poco al momento de intentar servir la interrupción, por lo que 
-el reloj de software puede estar ligeramente atrasado. El reloj por hardware trabaja
-independientemente del sistema operativo, así que usualmente es mas preciso. 
-Si re-inicia de manera frecuente la computadora (como es el caso para la mayoría de los
-sistemas que no son servidores) el reloj debe encontrarse prácticamente correcto.
-
-
-
-Si es necesario modificar el reloj de hardware, la manera mas simple es reiniciar el sistema,
-ingresar a la pantalla de configuración de la BIOS y realizar el cambio de fecha y hora desde
-ahí. Esta manera evita todos los problemas que podrían suceder si se modifica el reloj desde 
-el sistema. Si la modificación desde la configuración de la BIOS no se puede realizar, modifique
-el reloj utilizando \texttt{\textbf{date}} y \texttt{\textbf{hwclock}} (en ese orden), pero 
-esté preparado para reiniciar Linux, si alguna parte del sistema comienza a actuar de manera 
-extraña, mal y/o divertida. :)
-
-
-
-Otro método posible para sincronizar el reloj de software es utilizar \texttt{\textbf{hwclock -w}} o \texttt{\textbf{hwclock --systohc}}.
-Ambos comandos obtienen la fecha y hora desde el reloj de hardware y modifican el reloj de software.
-Si en cambio desea sincronizar de manera inversa (modificar el reloj de hardware con la fecha y
-hora del reloj de software) entonces puede utilizar el comando \texttt{\textbf{hwclock -s}} o el comando
-\texttt{\textbf{hwclock --hctosys}}. Si desea conocer mayores detalles de este comando lea su página de manual
-ejecutando man \texttt{\textbf{hwclock}}.
-
-
-\section*{NTP - Protocolo de reloj en red}
-
-
-Un ordenador conectado en red (incluso únicamente con un módem) puede 
-comprobar su propio reloj de forma automática comparándolo con la hora
+Alternativamente a revisar periódicamente el reloj del kernel y ajustarlo 
+manualmente, una computadora conectada en red puede 
+comprobar su propio reloj de forma automática, comparándolo con la hora
 de otro ordenador que se sabe almacena la hora de forma precisa. El 
 protocolo de reloj en red (o NTP) hace esto exactamente. Es un método para 
-verificar y corregir la hora de su ordenador al sincronizarse con otro 
+verificar y corregir la hora de su computadora al sincronizarse con otro 
 sistema. Con NTP su sistema puede mantenerse a milisegundos de la Hora 
-Universal Coordinada. 
+Universal Coordinada (UTC). 
 	\footnote{Visite el sitio web <ulink url=``http://www.time.gov/about.html/''>
 		http://www.time.gov/about.html</ulink> si desea obtener mayor información.
 		}
 	
-
-
 Para la mayoría de usuarios ocasionales de Linux, esto puede resultar
 simplemente un lujo. En mi casa todos los relojes se ajustan en base a 
 la hora que mi sistema Linux dice que es. Para grandes organizaciones 
-este ``lujo'' puede convertirse en fundamental. Ser capaz de buscar sucesos 
-en los archivos de diario basándose en la hora puede hacer la vida 
+este ``lujo'' puede convertirse en fundamental. Por ejemplo, ser capaz de 
+buscar sucesos en los archivos de bitácora (log) basándose en la hora puede hacer la vida 
 bastante más sencilla y puede eliminar mucho ``trabajo de adivinación'' 
 durante la depuración.
 
 
 
-Otro ejemplo de cuan importante puede ser NTP es con SAN. Algunos SAN
-necesitan NTP para configurarse y funcionar adecuadamente para permitir
-la correcta sincronización durante el uso del sistema de ficheros, y un
-control adecuado de las marcas de tiempo. Algunos SAN (y algunas
-aplicaciones) pueden confundirse cuando tratan con archivos que tienen marcas
-de tiempo que están en el futuro.
+%Otro ejemplo de cuan importante puede ser NTP es con SAN. Algunos SAN
+%necesitan NTP para configurarse y funcionar adecuadamente para permitir
+%la correcta sincronización durante el uso del sistema de ficheros, y un
+%control adecuado de las marcas de tiempo. Algunos SAN (y algunas
+%aplicaciones) pueden confundirse cuando tratan con archivos que tienen marcas
+%de tiempo que están en el futuro.
 
 
 
