@@ -20,15 +20,15 @@ Proceso de arranque:
 Utilizando las siguientes palabras complete la frase: getty, kernel Linux, 
 login, init, BIOS, gestor de arranque (ej Grub). 
 
-"Una vez presionado el boton de suministro eléctrico, el ___________ se encarga
+"Una vez presionado el botón de suministro eléctrico, el ___________ se encarga
 de hacer los chequeos de hardware básicos para verificar que los componentes 
 mínimos se encuentran funcionales. Pasada esta verificación el ___________ 
 pasa el control al ___________, que se encuentra almacenado en alguna memoria 
-secundaria (como por ejemplo un disco rigido). El ___________ tiene como objetivo 
+secundaria (como por ejemplo un disco rígido). El ___________ tiene como objetivo 
 principal cargar en memoria primaria (RAM) el ___________. Este último es quien 
 toma control del hardware e inicializa los controladores de dispositivos entre otras
 cosas. En última instancia el ___________ ejecuta el primer proceso del sistema, 
-llamdo ___________. A su vez éste comienza la ejecución de diversos servicios, como 
+llamado ___________. A su vez éste comienza la ejecución de diversos servicios, como 
 por ejemplo el servidor de ssh. En última instancia, el proceso padre __________, 
 ejecuta un programa ___________ en cada terminal de tipo tty, dicho proceso será el 
 encargado de pedir al usuario su nombre. Una vez que el usuario ingresa su nombre, 
