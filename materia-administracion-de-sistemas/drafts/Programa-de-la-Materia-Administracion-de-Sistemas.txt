@@ -68,12 +68,12 @@ fabrica de fallas.
 
 Total tentativo: 15 semanas (si no tenemos los lunes)
 -----------------------------------------------------
+Mantenimiento de los relojes de software y hardware. (1 semana)
+Procesos. Uso de recursos, memoria, CPU, I/O. Monitorización de recursos. (2 semanas)
 Conocer las técnicas de administración de elementos lógicos de los sistemas. (2 semanas)
 	\-> sistemas de archivos
 	\-> dispositivos (dmidecode, lsusb, lspci)
 	\-> identificación de componentes básicos. 
-Mantenimiento de los relojes de software y hardware. (1 semana)
-Procesos. Uso de recursos, memoria, CPU, I/O. Monitorización de recursos. (2 semanas)
 
 Instalación, configuración y actualización de software. (2 semanas)
 	\-> dpkg, rpm, yum, apt, etc. 
@@ -103,8 +103,8 @@ Saber evaluar los niveles de actividad de un sistema.
 
 ORDEN TENTATIVO: 
 2 clases: mantenimiento de la hora
-3 clases: reconocimiento de dispositivos y sistema de archivos
-3 clases: procesos
+4 clases: reconocimiento de dispositivos y sistema de archivos
+2 clases: procesos
 1 er parcial 
 3 clases: paquetes, inst. sw
 3 clases: administración de servicios
