@@ -1,0 +1,45 @@
+Examen final de Introducción a la Administración de Sistemas
+Segundo cuatrimestre, 1er año, 2013
+Facultad de Informática
+
+7 de agosto de 2013
+
+Nombre:
+Apellido:
+Legajo:
+
+****************************************************************************
+* En cada respuesta indique qué comando utilizó para obtener la respuesta. *
+****************************************************************************
+
+
+Ejercicio 4 - Una Sesión de Trabajo
+-----------------------------------
+
+
+EL programa "df" informa acerca de la utilización de los sistemas de archivos
+en uso por el sistema:  
+	* Obtenga al menos 3 opciones que el programa acepta y coloque la descripción 
+	de cada una.
+	* De ejemplo de uso de al menos dos de las opciones mencionadas. 
+
+
+¿En qué directorio se encuentra trabajando? ¿coincide con el definido por su variable HOME?
+
+
+¿Cuál es el valor de la variable PATH? ¿Para qué se utiliza?
+
+
+Obtenga la lista de variables de entorno del usuario.
+¿Cuántas variables hay definidas? 
+
+
+Crear un directorio llamado "temporales" en su directorio HOME.
+Copiar todos los archivos del directorio /tmp al directorio temporales/
+creado en su HOME.
+
+
+¿Cuántos archivos existen en el directorio /bin?
+
+
+¿Qué nombre tiene su sistema?

@@ -1,0 +1,51 @@
+Examen final de Introducción a la Administración de Sistemas
+Segundo cuatrimestre, 1er año, 2013
+Facultad de Informática
+
+7 de agosto de 2013
+
+Nombre:
+Apellido:
+Legajo:
+
+
+****************************************************************************
+* En cada respuesta indique qué comando utilizó para obtener la respuesta. *
+****************************************************************************
+
+
+Ejercicio 3 - Procesos
+----------------------
+
+Obtenga y _redirija_ a este archivo, la lista de "todos" los programas en ejecución, 
+incluyendo al menos la siguiente información:
+	* dueño del proceso
+	* identificador de proceso (PID)
+	* identificador del padre (PPID)
+	* comando que inició el proceso.
+
+
+
+De la lista anterior, ¿Cuál es el primer proceso del sistema? ¿Cual es su PID? 
+¿Quién es el dueño de dicho proceso? 
+
+
+
+¿Cuántos procesos hay en ejecución? ¿cómo obtuvo este valor? ¿conoce más de un 
+modo de obtener el número de procesos en ejecución?
+
+
+
+Ejecute los siguientes siguiente comando en el shell:
+
+sleep 6000 & 
+sleep 7000 &
+
+¿Cuál es el identificador de ambos procesos (PID) de los comandos sleep que acaba de ejecutar?
+¿Cuál es proceso padre? (indique el PPID y el nombre del programa/proceso) ¿En qué terminal 
+se están ejecutando? 
+
+
+Finalice los procesos sleep que acaba de ejecutar. Indique que comando utilizó.
+
+

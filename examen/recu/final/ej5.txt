@@ -1,0 +1,50 @@
+Examen final de Introducción a la Administración de Sistemas
+Segundo cuatrimestre, 1er año, 2013
+Facultad de Informática
+
+7 de agosto de 2013
+
+Nombre:
+Apellido:
+Legajo:
+
+****************************************************************************
+* En cada respuesta indique qué comando utilizó para obtener la respuesta. *
+****************************************************************************
+
+
+Ejercicio 5 - Administración de Usuarios y Grupos
+-------------------------------------------------
+
+
+Utilizando el comando adduser agregue los siguientes
+dos usuarios nuevo al sistema : "bedel", "secretaria" y "docente1".
+
+
+Utilice cat para visualizar el contenido de /etc/passwd,
+_redirija__ la salida a este archivo de resolución del ejercicio.
+
+
+¿Qué otro archivo de configuración, fuera de /etc/passwd,  se altera siempre
+al agregar usuarios? ¿Cuál es la función de dicho archivo?  
+
+
+¿Cuántos grupos hay definidos en el sistema? 
+
+
+Obtenga, del archivo /etc/passwd, solo información del usuario docente1.
+
+
+Cambie la clave del usuario docente1. La nueva clave debe ser: docente123
+
+
+Utilizando el comando addgroup agregue al sistema el grupo "docentes" y "nodocentes".
+¿Cuántos grupos hay en el sistema ahora? 
+
+Edite con vigr el archivo /etc/groups y agregue los usuarios
+"docente1", creados en el primer inciso al grupo "docentes"; y 
+los usuarios "bedel" y "secretaria" al grupo "nodocentes". 
+
+
+
+
