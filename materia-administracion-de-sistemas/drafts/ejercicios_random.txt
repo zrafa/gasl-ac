@@ -1,0 +1,8 @@
+alterar el reloj con date y luego corregirlo con ntpdate 
+
+configurar ntp e iniciar el servicio 
+
+jugar con date  y el cron 
+
+agregar un usuario y cambiar el timezone. garantizar que el cambio
+permanezca entre sesiones, uso del .profile 
