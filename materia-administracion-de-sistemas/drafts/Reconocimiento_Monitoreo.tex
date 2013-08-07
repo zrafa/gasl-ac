@@ -16,7 +16,7 @@
  \makeatletter
  {\color{bl} \centering \huge \sc \textbf{
  Manteniendo la hora \\ 
-\large \vspace*{-8pt} \color{black} Guia básica de reconocimiento y monitoreo de recursos. 
+\large \vspace*{-8pt} \color{black} Guía básica de reconocimiento y monitoreo de recursos. 
  \vspace*{8pt} }\par}
  \makeatother
 
@@ -56,7 +56,7 @@ correcto funcionamiento. Durante esta guía se verán una serie de comandos y pr
 recursos y verificar su estado. Dada la variedad del hardware existente hoy en día, este apunte no pretende
 ser exhaustivo sino plantear un método de identificación y monitoreo a partir de ejemplos. Cunado 
 el recurso a administrar no este dentro de lo visto en esta guía el administrador deberá preguntarse e
-investigar cuál es la forma de inentificar y observar el estado del recurso en cuestión. 
+investigar cuál es la forma de identificar y observar el estado del recurso en cuestión. 
 
 Cuando hablamos de recursos en general nos referimos a representaciones en el sistema operativo para 
 recursos físicos, como por ejemplo un CPU. O bien a recursos netamente lógicos que no tienen una
@@ -66,16 +66,58 @@ un sistema de archivos, etc.
 
 \section*{Identificando recursos}
 
+
+Comenzaremos por identificar recursos físicos. Cuando el administrador necesita realizar una tarea
+sobre un recurso, por ejemplo ver si el sistema reconoce un dispositivo usb recientemente conectado, 
+debe preguntarse: ¿cuál es el comando que me permite listar información acerca de este dispositivo?. 
+El administrador podrá recordar un conjunto de comandos, quizá no todos, y en caso que no lo recuerde
+investigará hasta encontrar la respuesta. En nuestro ejemplo del reconocimiento de un dispositivo 
+usb la pregunta se resuelve casi de manera inmediata al realizar una pequeña búsqueda entre las páginas
+del manual de GNU/Linux: 
+
+\colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} { 
+Observe que efectivamente la primera y sexta línea de resultados tienen grandes chances 
+de darnos algo de la información que estamos buscando: \\ 
+{\tt 
+\$ man -k usb \\
+lsusb (8)            - list USB devices\\
+sane-find-scanner (1) - find SCSI and USB scanners and their device files\\
+sisusb (4)           - SiS USB video driver\\
+unetbootin (1)       - program to install Linux/BSD distributions to a partit...\\
+update-usbids (8)    - download new version of the USB ID list\\
+usb-devices (1)      - print USB device details\\
+usb\_modeswitch (1)   - switch mode of ``multi-state'' USB devices\\
+usb\_printerid (1)    - prints the ID of the printer on a USB port\\
+usbip (8)            - manage USB/IP devices\\
+usbipd (8)           - USB/IP server daemon\\
+usbmuxd (1)          - iPhone/iPod Touch USB multiplex server daemon\\ \\
+}
+NOTA A PEGAR EN EL ESPEJO: ¡``{\tt man -k}'' es tu amigo!
+} \vspace*{0.5cm} } } 
+
+Obviamente si el administrador no logra resultados investigando entre las 
+páginas del manual de la máquina en cuestión, irá a Internet y haciendo la consulta
+correcta ``list usb devices linux'' ó ``listar usb en linux'' (en 
+muchos casos la búsqueda en idioma inglés devuelva más resultados que en español),  
+muy probablemente obtendrá lo que busca entre los primeros resultados: 
+
+\begin{center}
+ \includegraphics{lsusb.jpg}
+\end{center}
+
+Si no resuelve la pregunta de este modo, recurra a expertos en el tema, pero recuerde
+intentar la identificación de recursos por sus propios medios al menos siguiendo los dos 
+métodos anteriores, el administrador debe ser curioso e investigar, de otro modo puede 
+obtener respuestas como esta: http://lmgtfy.com/?q=list+usb+devices+linux
+
 \subsection*{Identificando el hardware}
-Comenzaremos por identificar recursos físicos. 
+En esta sección listaremos una serie de comandos clásicos para identificar recursos de
+hardware dentro del sistema operativo. 
 
 \subsection*{Identificando recursos netamente lógicos}
 
 \section*{Monitoreo de recursos}
 
-\begin{center}
- \includegraphics{World_Time_Zones_Map.jpg}
-\end{center}
 
 \colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} { 
 {\tt 
