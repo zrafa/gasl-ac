@@ -12,10 +12,12 @@ Obtenga la hora actual con el comando date
 	¿Difiere del timezone general del sistema? 
 	¿Cuál es la hora UTC configurada en su sistema? ¿Es correcta?
 
+
 Ejercicio 2
 El usuario Umar vive en Singapur. Crear un usuario para Umar 
 con el timezone adecuado para él. Verifique que al cerrar e 
 iniciar nuevamente la sesión, el timezone se mantiene (ayuda: tzselect). 
+
 
 Ejercicio 3
 Las distribuciones GNU/Linux en general poseen un modo sencillo 
@@ -53,18 +55,15 @@ Sobre lo anterior responda los siguientes preguntas:
 	Buenos Aires, Argentina.
 	* Ejecute date nuevamente. Comente el resultado.
 
-
 Ejercicio 6 
 Investigue y explique cómo se cambiaría la zona horaria en una 
 distribución RedHat (ultima versión). Indique de dónde obtuvo la 
 información. 
 
-
 Ejercicio 7
 ¿Qué es el reloj de hardware? ¿Con qué otro nombre se lo conoce? 
 ¿Desde dónde puede ser configurado? ¿Qué sucede con este reloj 
 cuando el sistema se encuentra sin suministro eléctrico? 
-
 
 Ejercicio 8 
 ¿Qué es el reloj de sistema? ¿Con qué otro nombre se lo conoce? 
@@ -76,4 +75,7 @@ Ejercicio 9
 hardware desde el sistema operativo? (indique qué opción 
 utilizaría en particular).
 
+Ejercicio 10
+¿Qué comando utilizaría para cambiar la hora del reloj de
+software? (indique el comando completo con un ejemplo).
   
