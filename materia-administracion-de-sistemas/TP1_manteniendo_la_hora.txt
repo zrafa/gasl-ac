@@ -1,0 +1,62 @@
+Ejercicio 1 
+¿Qué entiende por zona horaria o timezone? 
+
+¿Qué entiende por UTC? ¿Por qué cree que es necesario UTC?
+
+¿Cuántas zonas horarias existen? ¿Cuál es la de Argentina?
+
+Obtenga la hora actual con el comando date
+	¿Cuál es el timezone en uso configurado para su usuario? 
+	¿Difiere del timezone general del sistema? 
+	¿Cuál es la hora UTC configurada en su sistema? ¿Es correcta?
+
+Ejercicio 2
+El usuario Umar vive en Singapur. Crear un usuario para Umar 
+con el timezone adecuado para él. Verifique que al cerrar e 
+iniciar nuevamente la sesión, el timezone se mantiene. 
+
+Ejercicio 3
+Las distribuciones GNU/Linux en general poseen un modo sencillo 
+de cambiar la zona horaria (timezone) sin tener que adivinar 
+dónde se encuentran ubicados los archivos que las definen. En 
+el caso de Debian el comando dpkg-reconfigure sirve para 
+reconfigurar un paquete ya instalado. Utilice dpkg-reconfigure
+sobre el paquete tzdata para cambiar la zona horaria de 
+su sistema a la que se utilizaría en Sydney, Australia.  
+
+
+Ejercicio 4
+Liste el contenido del paquete tzdata con dpkg -L y redirija su 
+contenido a este archivo (exactamente debajo de éste párrafo). ¿En qué 
+directorio se encuentran instaladas las zonas horarias? 
+
+
+Ejercicio 5
+Para un administrador siempre es importante conocer
+cómo realizar la misma tarea a nivel de archivos de configuración. En 
+general en las distribuciones GNU/Linux el archivo /etc/localtime, 
+determina la zona horaria del sistema. Este archivo puede ser una 
+copia de una de las zonas horarias instaladas por el paquete 
+tzdata o bien un link a una de ellas. Dependiendo de la distribución, 
+puede que se requiera la modificación de algún archivo adicional. 
+En particular en las últimas versiones de Debian existe el archivo 
+/etc/timezone que indica cuál es el timezone copiado en /etc/localtime. 
+Sobre lo anterior responda los siguientes preguntas: 
+	* ¿Qué tipo de archivo es /etc/localtime? 
+	* ¿Qué tipo de archivo es /etc/timezone? 
+	* Ejecute el comando date, borre /etc/localtime y vuelva a 
+	ejecutar date. ¿Que es lo que observa? 
+	* Copie a /etc/localtime el archivo de zona horaria para 
+	Buenos Aires, Argentina.
+	* Ejecute date nuevamente. Comente el resultado.
+
+
+Ejericio 6 
+Investigue y explique cómo se cambiaría la zona horaria en una 
+distribución RedHat (ultima versión). Indique de dónde obtuvo la 
+información. 
+
+
+Ejercicio 7
+Indique cuáles son los relojes que un administrador de sistemas 
+debe tener en cuenta. ¿Quién maneja cada uno de ellos? 
