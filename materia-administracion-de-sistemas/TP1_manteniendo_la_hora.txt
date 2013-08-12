@@ -67,10 +67,9 @@ cuando el sistema se encuentra sin suministro eléctrico?
 
 
 Ejercicio 8 
-¿Qué es el relij de sistema? ¿Con qué otro nombre se lo conoce? 
+¿Qué es el reloj de sistema? ¿Con qué otro nombre se lo conoce? 
 ¿Desde dónde puede ser configurado? ¿Qué sucede con este reloj 
 cuando el sistema se encuentra sin suministro eléctrico? 
-
 
 Ejercicio 9
 ¿Qué comando utilizaría para cambiar la hora del reloj de 
