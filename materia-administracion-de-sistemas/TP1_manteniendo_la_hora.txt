@@ -1,7 +1,9 @@
 Ejercicio 1 
 ¿Qué entiende por zona horaria o timezone? 
 
-¿Qué entiende por UTC? ¿Por qué cree que es necesario UTC?
+¿Qué entiende por UTC? ¿Por qué cree que es necesario UTC?o
+
+¿Qué es DST? ¿Actualmente Argentina usa DST?
 
 ¿Cuántas zonas horarias existen? ¿Cuál es la de Argentina?
 
@@ -44,19 +46,31 @@ En particular en las últimas versiones de Debian existe el archivo
 Sobre lo anterior responda los siguientes preguntas: 
 	* ¿Qué tipo de archivo es /etc/localtime? 
 	* ¿Qué tipo de archivo es /etc/timezone? 
+	* ¿Qué tipo de archivo son las zonas horarias instaladas por tzdata?
 	* Ejecute el comando date, borre /etc/localtime y vuelva a 
-	ejecutar date. ¿Que es lo que observa? 
+	ejecutar date. ¿Qué observa? 
 	* Copie a /etc/localtime el archivo de zona horaria para 
 	Buenos Aires, Argentina.
 	* Ejecute date nuevamente. Comente el resultado.
 
 
-Ejericio 6 
+Ejercicio 6 
 Investigue y explique cómo se cambiaría la zona horaria en una 
 distribución RedHat (ultima versión). Indique de dónde obtuvo la 
 información. 
 
 
 Ejercicio 7
-Indique cuáles son los relojes que un administrador de sistemas 
-debe tener en cuenta. ¿Quién maneja cada uno de ellos? 
+¿Qué es el reloj de hardware? ¿Con qué otro nombre se lo conoce? 
+¿Desde dónde puede ser configurado? 
+
+
+Ejercicio 8 
+¿Qué es el relij de sistema? ¿Con qué otro nombre se lo conoce? 
+¿Desde dónde puede ser configurado?
+
+
+
+
+
+  
