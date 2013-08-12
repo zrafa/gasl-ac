@@ -127,8 +127,6 @@ El comando \textbf{\texttt{dmidecode}} tiene una sección ``Processor Informatio
 información almacenada en el firmware de la placa base (SMBIOS) acerca de los componentes de 
 hardware. 
 
-
-
 \colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} { 
 {\tt
 \# lscpu \\
@@ -151,11 +149,13 @@ L1d cache:             64K\\
 L1i cache:             64K\\
 L2 cache:              1024K\\
 }
+El mismo resultado se obtiene ejecutando \texttt{cat /proc/cpuinfo}
 } \vspace*{0.5cm} } } 
 
+A continuación mostramos un ejemplo de la salida de \texttt{dmidecode}, en particular 
+solo la sección que pertenece a información del procesador:
+
 \colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} { 
-A continuación mostramos la salida de \texttt{dmidecode} que pertenece a información \\
-del procesador:\\
 {\tt
 \# dmidecode |sed -n '/Processor Information/,/\^\$/p'\\
 Processor Information\\
@@ -205,8 +205,33 @@ Processor Information\\
 	Characteristics:\\
 		64-bit capable
 }
-
 } \vspace*{0.5cm} } } 
+
+\textbf{Información de la memoria principal (RAM):}
+
+\textbf{Información de dispositivos conectados a puertos PCI y USB:}
+
+PCI y USB permiten la interconexión de dispositivos periféricos a una computadora 
+personal estándar (también se encuentran en servidores junto a otro tipo de buses). 
+Puede que el lector este familiarizado con la conexión de 
+dispositivos USB, y con menos frecuencia PCI. Este úlimo normalmente se encuentra 
+accesible dentro del gabinete donde reside la placa base, y a este tipo de buses se
+conectan placas de extensión como puede ser una placa de video, de sonido, de red, etc.   
+
+En la figura se muestran tres buses PCI para una placa base de pentium I:
+
+\begin{center}
+ \includegraphics{Bus_pci.jpg}
+\end{center}
+
+En ambos casos (USB y PCI) suele ser de interés obtener la información de cuáles son 
+los dispositivos conectados a estos puertos o buses. Convenientemente existen los 
+comandos \texttt{lsusb} y \texttt{lspci}. 
+
+Por ejemplo, si conectamos un dispositivo , digamos una memoria flash (pendrive) y 
+el sistema no lo monta automaticamente como esperamos, al menos podemos listar 
+ 
+
 \subsection*{Identificando recursos netamente lógicos}
 
 \section*{Monitoreo de recursos}
