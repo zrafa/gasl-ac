@@ -14,5 +14,10 @@ Ejercicio 2
 	e) Sincronice la hora del sistema con el comando ntpdate usando la IP del servidor que obtuvo en a). Verifique el resultado. 
 	f) Vuelva a iniciar el servicio de NTP. 
 
+Ejercicio 3) 
+Determine cuál es el proceso (demonio/servicio) en ejecución que implementa NTP en su máquina. Compruebe deteniendo y reiniciando el servicio de NTP. 
 
-
+Ejercicio 4
+	a) Utilice el servicio de NTP de otra máquina en la misma red, agregando la IP de dicha máquina en la configuración de su servidor. Verifique el resultado observando contra qué servidores se encuentra sincronizando la hora actualmente. 
+	b) Basado en el ejercicio anterior responda: ¿Es necesario tener una 
+conexión a Internet para tener las máquinas de una misma red LAN sincronizadas? 
