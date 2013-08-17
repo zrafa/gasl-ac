@@ -66,7 +66,6 @@ un sistema de archivos, etc.
 
 \section*{Identificando recursos}
 
-
 Comenzaremos por identificar recursos físicos, esto es listar sus características y la forma en que 
 se encuentra representado en el SO. Cuando el administrador necesita realizar una tarea
 sobre un recurso, por ejemplo ver si el sistema reconoce un dispositivo usb recientemente conectado, 
@@ -116,16 +115,29 @@ obtener respuestas como esta: http://lmgtfy.com/?q=list+usb+devices+linux
 En esta sección listaremos una serie de comandos clásicos para identificar recursos de
 hardware dentro del sistema operativo. 
 
+\textbf{El kernel Linux me habla}
+
+Como sabemos, el kernel Linux es el primer elemento de software del sistema operativo 
+que se carga luego del gestor de arranque, y es quien inicializa y toma control del hardware. 
+El resto del sistema operativo que se carga a continuación de este, interactúa con el kernel 
+cuando necesita utilizar el hardware con algun fin. 
+
+A medida que el kernel linux reconoce el hardware, tanto en el arranque como durante la 
+operación normal del sistema al insertar y remover dispositivos de hardware 
+en caliente (sin apagar la computadora), el kernel se comunica a través de mensajes para 
+que el administrador tenga información acerca de lo que sucede. 
+
+Estos mensajes son recolectados y guardados en archivos bitácora (logs) para su posterior 
+revisión por parte de los administradores de sistemas. Es tarea del administrador leer la 
+información que el Kernel provee. 
+
+
 \textbf{Información del CPU:}
 
 Si miramos el resultado de \texttt{man -k cpu}, encontraremos muchos comandos probables, quizá 
 uno de los más evidentes es \textbf{\texttt{lscpu}} cuya función es listar el contenido del archivo 
-\texttt{/proc/cpuinfo} (normalmente los comandos ls{\textless}algo\textgreater normalmente 
+\texttt{/proc/cpuinfo} (normalmente los comandos ls{\textless}algo\textgreater  
 \textbf{listan} información acerca de {\textless}algo\textgreater).
-
-El comando \textbf{\texttt{dmidecode}} tiene una sección ``Processor Information'' que muestra
-información almacenada en el firmware de la placa base (SMBIOS) acerca de los componentes de 
-hardware. 
 
 \colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} { 
 {\tt
@@ -151,6 +163,10 @@ L2 cache:              1024K\\
 }
 El mismo resultado se obtiene ejecutando \texttt{cat /proc/cpuinfo}
 } \vspace*{0.5cm} } } 
+
+El comando \textbf{\texttt{dmidecode}} tiene una sección ``Processor Information'' que muestra
+información almacenada en el firmware de la placa base (SMBIOS) acerca de los componentes de 
+hardware. 
 
 A continuación mostramos un ejemplo de la salida de \texttt{dmidecode}, en particular 
 solo la sección que pertenece a información del procesador:
@@ -228,9 +244,50 @@ En ambos casos (USB y PCI) suele ser de interés obtener la información de cuá
 los dispositivos conectados a estos puertos o buses. Convenientemente existen los 
 comandos \texttt{lsusb} y \texttt{lspci}. 
 
-Por ejemplo, si conectamos un dispositivo , digamos una memoria flash (pendrive) y 
-el sistema no lo monta automaticamente como esperamos, al menos podemos listar 
+Por ejemplo si conectamos un dispositivo, digamos una memoria flash (pendrive) o un 
+módem 3g USB, y el sistema no realiza automáticamente las acciones que esperamos, un primer paso en la 
+identificación del problema observar si el dispositivo es reconocido o no. 
+
+En el siguiente ejemplo, se observan tres dispositivos conectados, un teclado, 
+un lector de memorias y un conector inalámbrico para mouse o teclado: 
  
+\colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} { 
+{\tt
+Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub\\
+Bus 002 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub\\
+Bus 003 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub\\
+Bus 004 Device 001: ID 1d6b:0001 Linux Foundation 1.1 root hub\\
+Bus 005 Device 001: ID 1d6b:0001 Linux Foundation 1.1 root hub\\
+Bus 006 Device 001: ID 1d6b:0001 Linux Foundation 1.1 root hub\\
+Bus 007 Device 001: ID 1d6b:0001 Linux Foundation 1.1 root hub\\
+Bus 005 Device 002: ID 0430:0005 Sun Microsystems, Inc. Type 6 Keyboard\\
+Bus 004 Device 002: ID 04e6:5119 SCM Microsystems, Inc. SCR3340 - ExpressCard54 Smart Card Reader\\
+Bus 004 Device 003: ID 1d57:32da Xenta 2.4GHz Receiver (Keyboard and Mouse)
+}
+} \vspace*{0.5cm} } } 
+
+Luego, si conectamos un módem 3g observamos un nuevo dispositivo: 
+
+\colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} { 
+{\tt
+Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub\\
+Bus 002 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub\\
+Bus 003 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub\\
+Bus 004 Device 001: ID 1d6b:0001 Linux Foundation 1.1 root hub\\
+Bus 005 Device 001: ID 1d6b:0001 Linux Foundation 1.1 root hub\\
+Bus 006 Device 001: ID 1d6b:0001 Linux Foundation 1.1 root hub\\
+Bus 007 Device 001: ID 1d6b:0001 Linux Foundation 1.1 root hub\\
+Bus 005 Device 002: ID 0430:0005 Sun Microsystems, Inc. Type 6 Keyboard\\
+Bus 004 Device 002: ID 04e6:5119 SCM Microsystems, Inc. SCR3340 - ExpressCard54 Smart Card Reader\\
+Bus 004 Device 003: ID 1d57:32da Xenta 2.4GHz Receiver (Keyboard and Mouse)\\
+\textbf{Bus 001 Device 005: ID 12d1:150f Huawei Technologies Co., Ltd.}
+}
+} \vspace*{0.5cm} } } 
+
+En este punto sabemos, al menos que el sistema reconoce el dispositivo. 
+
+
+
 
 \subsection*{Identificando recursos netamente lógicos}
 
