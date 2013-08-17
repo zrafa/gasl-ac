@@ -115,22 +115,77 @@ obtener respuestas como esta: http://lmgtfy.com/?q=list+usb+devices+linux
 En esta sección listaremos una serie de comandos clásicos para identificar recursos de
 hardware dentro del sistema operativo. 
 
-\textbf{El kernel Linux me habla}
+\textbf{Aprendiendo a escuchar al kernel Linux}
 
 Como sabemos, el kernel Linux es el primer elemento de software del sistema operativo 
 que se carga luego del gestor de arranque, y es quien inicializa y toma control del hardware. 
 El resto del sistema operativo que se carga a continuación de este, interactúa con el kernel 
-cuando necesita utilizar el hardware con algun fin. 
+cuando necesita utilizar el hardware con algún fin. 
 
-A medida que el kernel linux reconoce el hardware, tanto en el arranque como durante la 
+A medida que el kernel Linux reconoce el hardware, tanto en el arranque como durante la 
 operación normal del sistema al insertar y remover dispositivos de hardware 
 en caliente (sin apagar la computadora), el kernel se comunica a través de mensajes para 
 que el administrador tenga información acerca de lo que sucede. 
 
 Estos mensajes son recolectados y guardados en archivos bitácora (logs) para su posterior 
-revisión por parte de los administradores de sistemas. Es tarea del administrador leer la 
-información que el Kernel provee. 
+revisión por parte de los administradores de sistemas. 
+La información provistas por el kernel no se limita a reconocimiento del hardware, también 
+provee información sobre el funcionamiento del mismo, y otros componentes lógicos que 
+interactúan con el kernel. 
+Es tarea del administrador leer la información que el kernel provee. 
 
+En las secciones siguientes se proveen herramientas específicas para consultar el estado 
+e información de dispositivos de hardware, sin embargo el administrador de sistemas debe
+tener presente la información provista por el kernel en los archivos de bitácora y en su 
+buffer (sección de memoria) temporal a modo de información complementaria; y en algunos 
+casos, como único medio de información. Por este motivo, cada vez que se encuentre en el 
+proceso de identificación de recursos, recuerde además de utilizar herramientas 
+específicas, revisar los archivos de bitácora del sistema y el buffer temporal. 
+
+En las distribuciones GNU/Linux el directorio \texttt{/var/log} contiene diferentes 
+archivos de bitácora donde distintos elementos del sistema reportan su actividad. En 
+particular, es de interés el archivo \texttt{/var/log/messages}, ya que es en dónde 
+el kernel vuelca su información. 
+
+Cada línea en el archivo \texttt{/var/log/messages} consta de una estampilla de tiempo, 
+el nombre del sistema, el componente del sistema operativo que reporta el mensaje y 
+finalmente el mensaje. 
+
+\colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} { 
+Por ejemplo, los siguientes mensajes son reportados en dicho archivo al conectar (en caliente) un módem 3g:\\
+{\tt
+Aug 17 12:00:47 acerino kernel: [490611.120188] usb 1-4: new high-speed USB device number 11 using ehci\_hcd\\
+Aug 17 12:00:47 acerino kernel: [490611.253621] usb 1-4: New USB device found, idVendor=12d1, idProduct=14fe\\
+Aug 17 12:00:47 acerino kernel: [490611.253625] usb 1-4: New USB device strings: Mfr=2, Product=1, SerialNumber=0\\
+Aug 17 12:00:47 acerino kernel: [490611.253628] usb 1-4: Product: HUAWEI Mobile\\
+Aug 17 12:00:47 acerino kernel: [490611.253630] usb 1-4: Manufacturer: HUAWEI\\
+Aug 17 12:00:47 acerino kernel: [490611.255295] scsi12 : usb-storage 1-4:1.0\\
+Aug 17 12:00:47 acerino kernel: [490611.255486] scsi13 : usb-storage 1-4:1.1\\
+Aug 17 12:00:48 acerino mtp-probe: checking bus 1, device 11: "/sys/devices/pci0000:00/0000:00:12.2/usb1/1-4"\\
+Aug 17 12:00:48 acerino mtp-probe: bus: 1, device: 11 was not an MTP device\\
+Aug 17 12:00:48 acerino kernel: [490612.253335] scsi 12:0:0:0: CD-ROM            HUAWEI   Mass Storage     2.31 PQ: 0 ANSI: 2\\
+Aug 17 12:00:48 acerino kernel: [490612.253409] scsi 13:0:0:0: Direct-Access     HUAWEI   SD Storage       2.31 PQ: 0 ANSI: 2\\
+Aug 17 12:00:49 acerino kernel: [490612.261977] sr1: scsi-1 drive\\
+Aug 17 12:00:49 acerino kernel: [490612.265664] sr 12:0:0:0: Attached scsi generic sg2 type 5\\
+Aug 17 12:00:49 acerino kernel: [490612.268493] sd 13:0:0:0: Attached scsi generic sg3 type 0\\
+Aug 17 12:00:49 acerino kernel: [490612.271945] sd 13:0:0:0: [sdb] Attached SCSI removable disk\\
+}
+Tenga en cuenta que no siempre observaremos la misma secuencia para un dispositivo en particular, 
+el tipo de mensaje específico dependerá de la configuración de nuestro sistema. \textbf{Lo 
+importante aquí es comenzar a incorporar el hábito de consultar los archivos de log y tratar de 
+identificar la información de interés para nuestro caso, o bien la ausencia de la misma.} 
+} \vspace*{0.5cm} } } 
+
+Además de los mensajes guardados en el archivo \texttt{/var/log/message}, el kernel Linux posee un buffer 
+(sección de memoria) en el que almacena temporalmente los mensajes que va produciendo. Este buffer es 
+finito y la información en él se va perdiendo a medida que nuevos mensajes son guardados. Sirve para realizar 
+un análisis en un momento dado y no posee estampillas de tiempo. Para ver la información contenida en el 
+buffer utilizamos el comando \texttt{\textbf{dmesg}}. 
+
+Por ejemplo cuando estamos tratando de reconocer la actividad del sistema al agregar y quitar 
+dispositivos en caliente (hot plug en inglés), una secuencia clásica será: ejecutar \texttt{dmesg} 
+antes de insertar el dispositivo y observar la última línea del buffer, proceder a insertar 
+el dispositivo y volver a ejecutar \texttt{dmesg} para detectar los nuevos mensajes producidos. 
 
 \textbf{Información del CPU:}
 
@@ -230,7 +285,7 @@ Processor Information\\
 PCI y USB permiten la interconexión de dispositivos periféricos a una computadora 
 personal estándar (también se encuentran en servidores junto a otro tipo de buses). 
 Puede que el lector este familiarizado con la conexión de 
-dispositivos USB, y con menos frecuencia PCI. Este úlimo normalmente se encuentra 
+dispositivos USB, y con menos frecuencia PCI. Este último normalmente se encuentra 
 accesible dentro del gabinete donde reside la placa base, y a este tipo de buses se
 conectan placas de extensión como puede ser una placa de video, de sonido, de red, etc.   
 
@@ -246,7 +301,7 @@ comandos \texttt{lsusb} y \texttt{lspci}.
 
 Por ejemplo si conectamos un dispositivo, digamos una memoria flash (pendrive) o un 
 módem 3g USB, y el sistema no realiza automáticamente las acciones que esperamos, un primer paso en la 
-identificación del problema observar si el dispositivo es reconocido o no. 
+identificación del problema es observar si el dispositivo es reconocido o no. 
 
 En el siguiente ejemplo, se observan tres dispositivos conectados, un teclado, 
 un lector de memorias y un conector inalámbrico para mouse o teclado: 
@@ -294,22 +349,6 @@ En este punto sabemos, al menos que el sistema reconoce el dispositivo.
 \section*{Monitoreo de recursos}
 
 
-\colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} { 
-{\tt 
-11) none - I want to specify the time zone using the Posix TZ format.\\
-\#? 1\\
-}
-} \vspace*{0.5cm} } } 
-
-
-
-
 \section*{Licencia}
-
-Este material es una obra derivada de los siguientes textos:
-
-``The Clock Mini-HOWTO'' del sitio TLDP: http://tldp.org/HOWTO/Clock.html\#toc1
-
-``The Linux System Administrator's Guide'' del sitio TLDP: http://www.tldp.org/LDP/sag/html/
 
 \end{document}

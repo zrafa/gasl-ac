@@ -1,8 +1,12 @@
-alterar el reloj con date y luego corregirlo con ntpdate 
+Ejemplo de observación y resolución de problemas observando el messages: deluge el software de torrent explota cuando tenemos que remover un torrent en debian testing. Al mirar los messages encontramos que: 
 
-configurar ntp e iniciar el servicio 
+[443010.566402] /usr/bin/deluge[21727]: segfault at 54 ip 080b47bc sp a67feef0 error 6 in python2.7[8048000+232000]
+[443026.056912] /usr/bin/deluge[21745]: segfault at 54 ip 080b47bc sp a9995ef0 error 6 in python2.7[8048000+232000]
+[443055.664924] /usr/bin/deluge[21767]: segfault at 54 ip 080b47bc sp a68feef0 error 6 in python2.7[8048000+232000]
+[443961.813015] /usr/bin/deluge[21809]: segfault at 54 ip 080b47bc sp a6995ef0 error 6 in python2.7[8048000+232000]
 
-jugar con date  y el cron 
+Haciendo una busqueda de las palabras relevantes de los mensajes anteriores encontramos que: 
 
-agregar un usuario y cambiar el timezone. garantizar que el cambio
-permanezca entre sesiones, uso del .profile 
+http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=698113
+
+
