@@ -280,6 +280,121 @@ Processor Information\\
 
 \textbf{Información de la memoria principal (RAM):}
 
+\colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} { 
+{\tt
+\# free\\
+             total       used       free     shared    buffers     cached\\
+Mem:       3875460    3613388     262072          0      29656    1957156\\
+-/+ buffers/cache:    1626576    2248884\\
+Swap:      3998716     149772    3848944\\
+}
+} \vspace*{0.5cm} } } 
+
+\colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} { 
+{\tt
+\# cat /proc/meminfo \\
+MemTotal:        3875460 kB\\
+MemFree:          245836 kB\\
+Buffers:           30904 kB\\
+Cached:          1970332 kB\\
+SwapCached:        23976 kB\\
+Active:          2209596 kB\\
+Inactive:        1327412 kB\\
+Active(anon):    1332812 kB\\
+Inactive(anon):   417508 kB\\
+Active(file):     876784 kB\\
+Inactive(file):   909904 kB\\
+Unevictable:          32 kB\\
+Mlocked:              32 kB\\
+HighTotal:       3011400 kB\\
+HighFree:          56128 kB\\
+LowTotal:         864060 kB\\
+LowFree:          189708 kB\\
+SwapTotal:       3998716 kB\\
+SwapFree:        3848944 kB\\
+Dirty:               180 kB\\
+Writeback:             0 kB\\
+AnonPages:       1518200 kB\\
+Mapped:           263320 kB\\
+Shmem:            214548 kB\\
+Slab:              59356 kB\\
+SReclaimable:      43072 kB\\
+SUnreclaim:        16284 kB\\
+KernelStack:        3192 kB\\
+PageTables:        11796 kB\\
+NFS\_Unstable:          0 kB\\
+Bounce:                0 kB\\
+WritebackTmp:          0 kB\\
+CommitLimit:     5936444 kB\\
+Committed\_AS:    3895336 kB\\
+VmallocTotal:     122880 kB\\
+VmallocUsed:       16620 kB\\
+VmallocChunk:      83156 kB\\
+HardwareCorrupted:     0 kB\\
+AnonHugePages:         0 kB\\
+HugePages\_Total:       0\\
+HugePages\_Free:        0\\
+HugePages\_Rsvd:        0\\
+HugePages\_Surp:        0\\
+Hugepagesize:       2048 kB\\
+DirectMap4k:        8184 kB\\
+DirectMap2M:      903168 kB\\
+}
+} \vspace*{0.5cm} } } 
+
+
+\colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} { 
+{\tt
+Handle 0x0003, DMI type 16, 15 bytes\\
+Physical Memory Array\\
+	Location: System Board Or Motherboard\\
+	Use: System Memory\\
+	Error Correction Type: None\\
+	Maximum Capacity: 16 GB\\
+	Error Information Handle: Not Provided\\
+	Number Of Devices: 2\\
+\\
+Handle 0x0004, DMI type 17, 27 bytes\\
+Memory Device\\
+	Array Handle: 0x0003\\
+	Error Information Handle: Not Provided\\
+	Total Width: 64 bits\\
+	Data Width: 64 bits\\
+	Size: 2048 MB\\
+	Form Factor: SODIMM\\
+	Set: None\\
+	Locator: Top-Slot 1(top)\\
+	Bank Locator: BANK0\\
+	Type: DDR3\\
+	Type Detail: Synchronous\\
+	Speed: 1333 MHz\\
+	Manufacturer: Micron\\
+	Serial Number: 330131FD\\
+	Asset Tag: Unknown\\
+	Part Number: 16JSF25664HZ-1G4F1\\
+\\
+Handle 0x0006, DMI type 17, 27 bytes\\
+Memory Device\\
+	Array Handle: 0x0003\\
+	Error Information Handle: Not Provided\\
+	Total Width: 64 bits\\
+	Data Width: 64 bits\\
+	Size: 2048 MB\\
+	Form Factor: SODIMM\\
+	Set: None\\
+	Locator: Top-Slot 2(under)\\
+	Bank Locator: BANK2\\
+	Type: DDR3\\
+	Type Detail: Synchronous\\
+	Speed: 1333 MHz\\
+	Manufacturer: Micron\\
+	Serial Number: 330131FA\\
+	Asset Tag: Unknown\\
+	Part Number: 16JSF25664HZ-1G4F1\\
+}
+} \vspace*{0.5cm} } } 
+
+
 \textbf{Información de dispositivos conectados a puertos PCI y USB:}
 
 PCI y USB permiten la interconexión de dispositivos periféricos a una computadora 
