@@ -280,6 +280,66 @@ Processor Information\\
 
 \textbf{Información de la memoria principal (RAM):}
 
+El comando \texttt{dmidecode} nos provee información acerca de la cantidad de memoria 
+principal reconocida por la placa base. También provee información acerca del fabricante, 
+cantidad de memoria potencial reconocida por la placa, números de serie, velocidad de los
+bancos, entre otros. 
+
+\colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} { 
+El siguiente es un ejemplo de la salida de \texttt{dmidecode}, en 
+particular sólo se observan las líneas pertenecietentes a la 
+información de memoria principal: \\ 
+\\ 
+{\tt
+Handle 0x0003, DMI type 16, 15 bytes\\
+Physical Memory Array\\
+	Location: System Board Or Motherboard\\
+	Use: System Memory\\
+	Error Correction Type: None\\
+	Maximum Capacity: 16 GB\\
+	Error Information Handle: Not Provided\\
+	Number Of Devices: 2\\
+\\
+Handle 0x0004, DMI type 17, 27 bytes\\
+Memory Device\\
+	Array Handle: 0x0003\\
+	Error Information Handle: Not Provided\\
+	Total Width: 64 bits\\
+	Data Width: 64 bits\\
+	Size: 2048 MB\\
+	Form Factor: SODIMM\\
+	Set: None\\
+	Locator: Top-Slot 1(top)\\
+	Bank Locator: BANK0\\
+	Type: DDR3\\
+	Type Detail: Synchronous\\
+	Speed: 1333 MHz\\
+	Manufacturer: Micron\\
+	Serial Number: 330131FD\\
+	Asset Tag: Unknown\\
+	Part Number: 16JSF25664HZ-1G4F1\\
+\\
+Handle 0x0006, DMI type 17, 27 bytes\\
+Memory Device\\
+	Array Handle: 0x0003\\
+	Error Information Handle: Not Provided\\
+	Total Width: 64 bits\\
+	Data Width: 64 bits\\
+	Size: 2048 MB\\
+	Form Factor: SODIMM\\
+	Set: None\\
+	Locator: Top-Slot 2(under)\\
+	Bank Locator: BANK2\\
+	Type: DDR3\\
+	Type Detail: Synchronous\\
+	Speed: 1333 MHz\\
+	Manufacturer: Micron\\
+	Serial Number: 330131FA\\
+	Asset Tag: Unknown\\
+	Part Number: 16JSF25664HZ-1G4F1\\
+}
+} \vspace*{0.5cm} } } 
+
 \colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} { 
 {\tt
 \# free\\
@@ -343,57 +403,8 @@ DirectMap2M:      903168 kB\\
 } \vspace*{0.5cm} } } 
 
 
-\colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} { 
-{\tt
-Handle 0x0003, DMI type 16, 15 bytes\\
-Physical Memory Array\\
-	Location: System Board Or Motherboard\\
-	Use: System Memory\\
-	Error Correction Type: None\\
-	Maximum Capacity: 16 GB\\
-	Error Information Handle: Not Provided\\
-	Number Of Devices: 2\\
-\\
-Handle 0x0004, DMI type 17, 27 bytes\\
-Memory Device\\
-	Array Handle: 0x0003\\
-	Error Information Handle: Not Provided\\
-	Total Width: 64 bits\\
-	Data Width: 64 bits\\
-	Size: 2048 MB\\
-	Form Factor: SODIMM\\
-	Set: None\\
-	Locator: Top-Slot 1(top)\\
-	Bank Locator: BANK0\\
-	Type: DDR3\\
-	Type Detail: Synchronous\\
-	Speed: 1333 MHz\\
-	Manufacturer: Micron\\
-	Serial Number: 330131FD\\
-	Asset Tag: Unknown\\
-	Part Number: 16JSF25664HZ-1G4F1\\
-\\
-Handle 0x0006, DMI type 17, 27 bytes\\
-Memory Device\\
-	Array Handle: 0x0003\\
-	Error Information Handle: Not Provided\\
-	Total Width: 64 bits\\
-	Data Width: 64 bits\\
-	Size: 2048 MB\\
-	Form Factor: SODIMM\\
-	Set: None\\
-	Locator: Top-Slot 2(under)\\
-	Bank Locator: BANK2\\
-	Type: DDR3\\
-	Type Detail: Synchronous\\
-	Speed: 1333 MHz\\
-	Manufacturer: Micron\\
-	Serial Number: 330131FA\\
-	Asset Tag: Unknown\\
-	Part Number: 16JSF25664HZ-1G4F1\\
-}
-} \vspace*{0.5cm} } } 
 
+\textbf{Información de discos:}
 
 \textbf{Información de dispositivos conectados a puertos PCI y USB:}
 
