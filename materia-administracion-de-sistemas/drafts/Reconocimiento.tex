@@ -15,7 +15,7 @@
 % Titulo 
  \makeatletter
  {\color{bl} \centering \huge \sc \textbf{
- Administración de recursos \\ 
+ Administración de Recursos \\ 
 \large \vspace*{-8pt} \color{black} Guía básica de reconocimiento de recursos. 
  \vspace*{8pt} }\par}
  \makeatother
@@ -35,7 +35,7 @@
 \fancyhf{} % clear all header and footer fields
 \fancypagestyle{plain}{\fancyhf{}}
   	\pagestyle{fancy}
- 	\lhead{\footnotesize Reconocimiento de recursos - Departamento de Ingeniería de Computadoras}
+ 	\lhead{\footnotesize Reconocimiento de Recursos - Departamento de Ingeniería de Computadoras}
  	\rhead{\footnotesize \thepage\ }	% ''Page 1 of 2''
 
 \def\ti#1#2{\texttt{#1} & #2 \\ }
@@ -65,27 +65,30 @@ el recurso a administrar no este contemplado en esta guía el administrador debe
 investigar cuál es la forma de obtener información del recurso, y cómo observar su estado.
 
 Los recursos detallados en este documento pueden referirse a :
-- recursos físicos, como por ejemplo una CPU (de los cuales nos interesa su reprensentación por software en el sistema operativo);
-- o recursos netamente lógicos que no tienen una
+
+\begin{itemize}
+	\item recursos físicos, como por ejemplo una CPU (de los cuales nos interesa su reprensentación por software en el sistema operativo);
+	\item o recursos netamente lógicos que no tienen una
 contraparte física, como puede ser un proceso (programa en ejecución), una prioridad de ejecución, 
 un sistema de archivos, etc. 
+\end{itemize}
+
 
 
 \section*{Identificando recursos}
 
-Comenzaremos por identificar recursos físicos, esto es listar sus características y la forma en que 
-se encuentra representado en el SO. Cuando el administrador necesita realizar una tarea
-sobre un recurso, por ejemplo ver si el sistema reconoce un dispositivo usb recientemente conectado, 
-debe preguntarse: ¿cuál es el comando que me permite listar información acerca de este dispositivo?. 
-El administrador podrá recordar un conjunto de comandos, quizá no todos, y en caso que no lo recuerde
-investigará hasta encontrar la respuesta. En nuestro ejemplo del reconocimiento de un dispositivo 
-usb la pregunta se resuelve casi de manera inmediata al realizar una pequeña búsqueda entre las páginas
-del manual de GNU/Linux: 
+Comenzaremos por identificar recursos físicos con un ejemplo, que nos permita
+listar sus características y la forma en que 
+se encuentra representado en el sistema operativo.
+Un procedimiento sencillo de recordar, al momento de gestionar recursos, es pensar en la siguiente pregunta: \\
+¿Qué programas nos permite obtener información acerca del dispositivo?. \\
+Por ejemplo, si se necesita reconocer un dispositivo USB recientemente conectado, 
+el administrador debe identificar el conjunto de comandos que le permita obtener información del recurso.
+En este caso, la identificación de los programas útiles se resuelve casi 
+de manera inmediata al realizar una búsqueda entre las páginas de manual de GNU/Linux: 
 
 \colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} { 
-Observe que efectivamente la primera y sexta línea de resultados tienen grandes chances 
-de darnos algo de la información que estamos buscando (puede y de hecho lo habrá mas de un 
-modo de obtener la misma información): \\ 
+{\bf Ejemplo : Identificando un dispositivo USB} \\ \\
 {\tt 
 \$ man -k usb \\
 lsusb (8)            - list USB devices\\
@@ -100,7 +103,11 @@ usbip (8)            - manage USB/IP devices\\
 usbipd (8)           - USB/IP server daemon\\
 usbmuxd (1)          - iPhone/iPod Touch USB multiplex server daemon\\ \\
 }
-NOTA A PEGAR EN EL ESPEJO: ¡``{\tt man -k}'' es tu amigo!
+Observe que la primera y sexta línea de resultados tienen grandes chances 
+de darnos la información que estamos buscando. Es importante remarcar que
+siempre existen diversos modos de obtener la misma información. \\ 
+\\
+{\bf NOTA A PEGAR EN EL ESPEJO: ¡``{\tt man -k}'' es tu amigo! }
 } \vspace*{0.5cm} } } 
 
 Obviamente si el administrador no logra resultados investigando entre las 
