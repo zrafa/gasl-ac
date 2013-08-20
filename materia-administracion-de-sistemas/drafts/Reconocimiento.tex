@@ -16,7 +16,7 @@
  \makeatletter
  {\color{bl} \centering \huge \sc \textbf{
  Administración de recursos \\ 
-\large \vspace*{-8pt} \color{black} Guía básica de reconocimiento y monitoreo de recursos. 
+\large \vspace*{-8pt} \color{black} Guía básica de reconocimiento de recursos. 
  \vspace*{8pt} }\par}
  \makeatother
 
@@ -35,7 +35,7 @@
 \fancyhf{} % clear all header and footer fields
 \fancypagestyle{plain}{\fancyhf{}}
   	\pagestyle{fancy}
- 	\lhead{\footnotesize Reconocimiento y monitoreo de recursos - Departamento de Ingeniería de Computadoras}
+ 	\lhead{\footnotesize Reconocimiento de recursos - Departamento de Ingeniería de Computadoras}
  	\rhead{\footnotesize \thepage\ }	% ''Page 1 of 2''
 
 \def\ti#1#2{\texttt{#1} & #2 \\ }
@@ -98,7 +98,7 @@ NOTA A PEGAR EN EL ESPEJO: ¡``{\tt man -k}'' es tu amigo!
 
 Obviamente si el administrador no logra resultados investigando entre las 
 páginas del manual de la máquina en cuestión, irá a Internet y haciendo la consulta
-correcta ``list usb devices linux'' ó ``listar usb en linux'' (en 
+correcta ``list usb devices Linux'' ó ``listar usb en Linux'' (en 
 muchos casos la búsqueda en idioma inglés devuelva más resultados que en español),  
 muy probablemente obtendrá lo que busca entre los primeros resultados: 
 
@@ -111,11 +111,11 @@ intentar la identificación de recursos por sus propios medios al menos siguiend
 métodos anteriores, el administrador debe ser curioso e investigar, de otro modo puede 
 obtener respuestas como esta: http://lmgtfy.com/?q=list+usb+devices+linux
 
-\subsection*{Identificando el hardware}
+\section*{Identificando el hardware}
 En esta sección listaremos una serie de comandos clásicos para identificar recursos de
 hardware dentro del sistema operativo. 
 
-\textbf{Aprendiendo a escuchar al kernel Linux}
+\subsection*{Aprendiendo a escuchar al kernel Linux}
 
 Como sabemos, el kernel Linux es el primer elemento de software del sistema operativo 
 que se carga luego del gestor de arranque, y es quien inicializa y toma control del hardware. 
@@ -161,7 +161,7 @@ Aug 17 12:00:47 acerino kernel: [490611.253628] usb 1-4: Product: HUAWEI Mobile\
 Aug 17 12:00:47 acerino kernel: [490611.253630] usb 1-4: Manufacturer: HUAWEI\\
 Aug 17 12:00:47 acerino kernel: [490611.255295] scsi12 : usb-storage 1-4:1.0\\
 Aug 17 12:00:47 acerino kernel: [490611.255486] scsi13 : usb-storage 1-4:1.1\\
-Aug 17 12:00:48 acerino mtp-probe: checking bus 1, device 11: "/sys/devices/pci0000:00/0000:00:12.2/usb1/1-4"\\
+Aug 17 12:00:48 acerino mtp-probe: checking bus 1, device 11: ``/sys/devices/pci0000:00/0000:00:12.2/usb1/1-4''\\
 Aug 17 12:00:48 acerino mtp-probe: bus: 1, device: 11 was not an MTP device\\
 Aug 17 12:00:48 acerino kernel: [490612.253335] scsi 12:0:0:0: CD-ROM            HUAWEI   Mass Storage     2.31 PQ: 0 ANSI: 2\\
 Aug 17 12:00:48 acerino kernel: [490612.253409] scsi 13:0:0:0: Direct-Access     HUAWEI   SD Storage       2.31 PQ: 0 ANSI: 2\\
@@ -170,6 +170,7 @@ Aug 17 12:00:49 acerino kernel: [490612.265664] sr 12:0:0:0: Attached scsi gener
 Aug 17 12:00:49 acerino kernel: [490612.268493] sd 13:0:0:0: Attached scsi generic sg3 type 0\\
 Aug 17 12:00:49 acerino kernel: [490612.271945] sd 13:0:0:0: [sdb] Attached SCSI removable disk\\
 }
+\\
 Tenga en cuenta que no siempre observaremos la misma secuencia para un dispositivo en particular, 
 el tipo de mensaje específico dependerá de la configuración de nuestro sistema. \textbf{Lo 
 importante aquí es comenzar a incorporar el hábito de consultar los archivos de log y tratar de 
@@ -187,7 +188,7 @@ dispositivos en caliente (hot plug en inglés), una secuencia clásica será: ej
 antes de insertar el dispositivo y observar la última línea del buffer, proceder a insertar 
 el dispositivo y volver a ejecutar \texttt{dmesg} para detectar los nuevos mensajes producidos. 
 
-\textbf{Información del CPU:}
+\subsection*{Información del CPU:}
 
 Si miramos el resultado de \texttt{man -k cpu}, encontraremos muchos comandos probables, quizá 
 uno de los más evidentes es \textbf{\texttt{lscpu}} cuya función es listar el contenido del archivo 
@@ -278,16 +279,16 @@ Processor Information\\
 }
 } \vspace*{0.5cm} } } 
 
-\textbf{Información de la memoria principal (RAM):}
+\subsection*{Información de la memoria principal (RAM):}
 
 El comando \texttt{dmidecode} nos provee información acerca de la cantidad de memoria 
 principal reconocida por la placa base. También provee información acerca del fabricante, 
-cantidad de memoria potencial reconocida por la placa, números de serie, velocidad de los
+cantidad de memoria potencial reconocida por la placa base, número de serie, velocidad de los
 bancos, entre otros. 
 
 \colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} { 
 El siguiente es un ejemplo de la salida de \texttt{dmidecode}, en 
-particular sólo se observan las líneas pertenecietentes a la 
+particular sólo se observan las líneas pertenecientes a la 
 información de memoria principal: \\ 
 \\ 
 {\tt
@@ -318,7 +319,12 @@ Memory Device\\
 	Serial Number: 330131FD\\
 	Asset Tag: Unknown\\
 	Part Number: 16JSF25664HZ-1G4F1\\
-\\
+}
+} \vspace*{0.5cm} } } 
+
+\colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} { 
+{\tt
+Handle 0x0003, DMI type 16, 15 bytes\\
 Handle 0x0006, DMI type 17, 27 bytes\\
 Memory Device\\
 	Array Handle: 0x0003\\
@@ -340,73 +346,208 @@ Memory Device\\
 }
 } \vspace*{0.5cm} } } 
 
+\subsection*{Información de dispositivos de almacenamiento masivo:}
+
+Acerca de los dispositivos de almacenamiento masivo, como por ejemplo discos rígidos, memorias
+flash, etc. Normalmente nos interesa conocer su tamaño y particionado, así como también el uso 
+que se le da a cada partición dentro del sistema.  
+
+En los sistemas GNU/Linux los dispositivos de almacenamiento masivo están representados por 
+archivos de dispositivos en el directorio \texttt{/dev/}. Por ejemplo en las salida a continuación 
+observamos un disco SATA representado por el archivo de dispositivo /dev/sda, y cuatro 
+particiones de dicho disco numeradas 1,2, 3 y 5. Estos son archivos de bloque, oberve la letra 
+\textbf{\texttt{b}} al principio de cada línea. 
+
+
 \colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} { 
 {\tt
-\# free\\
-             total       used       free     shared    buffers     cached\\
-Mem:       3875460    3613388     262072          0      29656    1957156\\
--/+ buffers/cache:    1626576    2248884\\
-Swap:      3998716     149772    3848944\\
+\# ls -l /dev/sd*\\
+brw-rw---T  1 root disk        8,   0 ago 19 20:50 /dev/sda\\
+brw-rw---T  1 root disk        8,   1 ago 19 20:50 /dev/sda1\\
+brw-rw---T  1 root disk        8,   2 ago 19 20:50 /dev/sda2\\
+brw-rw---T  1 root disk        8,   3 ago 19 20:50 /dev/sda3\\
+brw-rw---T  1 root disk        8,   5 ago 19 20:50 /dev/sda5\\
+}
+\\
+En particular listamos los archivos que comienzan con \texttt{sd} ya que la 
+mayoría (existen excepciones) de los dispositivos de almacenamiento comenzarán con esas 
+dos letras. 
+} \vspace*{0.5cm} } } 
+
+Es así que la identificación del archivo de dispositivo es el primer paso en el 
+reconocimiento de este tipo de hardware. Sin embargo el sólo nombre de archivo, no 
+presenta demasiada información útil al administrador (OJO: el hecho que exista el 
+archivo indica que el dispositivo esta presente, lo cual no es un dato menor). El paso 
+siguiente será utilizar herramientas que hagan uso de estos archivos de dispositivo y que nos 
+permitan obtener la información que buscamos. 
+
+El comando \texttt{fdisk} es quizá el más habitual a la hora de obtener 
+información de un disco y manipular la tabla de particiones. En el ejemplo 
+a continuación se utiliza el archivo de dispositivo que representa a todo 
+el disco \texttt{/dev/sda} para listar el contenido de la tabla de particiones:
+ 
+
+\colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} { 
+{\tt
+\# fdisk -l /dev/sda\\
+\\
+Disk /dev/sda: 320.1 GB, 320072933376 bytes\\
+255 heads, 63 sectors/track, 38913 cylinders, total 625142448 sectors\\
+Units = sectors of 1 * 512 = 512 bytes\\
+Sector size (logical/physical): 512 bytes / 512 bytes\\
+I/O size (minimum/optimal): 512 bytes / 512 bytes\\
+Disk identifier: 0x000b2ad1\\
+\\
+   Device Boot      Start         End      Blocks   Id  System\\
+/dev/sda1            2048     7999487     3998720   82  Linux swap / Solaris\\
+/dev/sda2   *     7999488   203311103    97655808   83  Linux\\
+/dev/sda3       203313150   625141759   210914305    5  Extended\\
+/dev/sda5       203313152   625141759   210914304   83  Linux\\
+\\
+}
+} \vspace*{0.5cm} } } 
+
+El comando \texttt{lsblk} también provee información similar: 
+
+\colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} { 
+{\tt
+\# lsblk \\
+NAME   MAJ:MIN RM   SIZE RO TYPE MOUNTPOINT\\
+sda      8:0    0 298,1G  0 disk \\
+|-sda1   8:1    0   3,8G  0 part [SWAP]\\
+|-sda2   8:2    0  93,1G  0 part /\\
+|-sda3   8:3    0     1K  0 part \\
+|-sda5   8:5    0 201,1G  0 part /home\\
+sr0     11:0    1  1024M  0 rom  \\
+\\
+}
+} \vspace*{0.5cm} } } 
+
+Es importante notar que en los sistemas GNU/Linux modernos, el nombre de 
+archivo que representa a un dispositivo puede variar cuando se hacen 
+modificaciones al hardware. De este modo un disco que se llamaba en un 
+comienzo \texttt{/dev/sdb}, luego de insertar otro disco podría pasar a llamarse,
+digamos \texttt{/dev/sdc}. Si el nombre de dispositivo \texttt{/dev/sdb}
+era utilizado por el sistema (por ejemplo en \texttt{/etc/fstab}), el cambio puede 
+conducir a errores. Es por esto que se establecen identificadores
+únicos sobre cada partición de disco, a fin de evitar errores de 
+interpretación. Este identificador UUID puede obtenerse por ejemplo 
+a través del comando \texttt{blkid}:  
+
+\colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} { 
+Siguiendo el ejemplo del disco \texttt{/dev/sda}, las particiones 1, 2
+y 5 tienen un UUID asignado para su identificación unívoca: \\ 
+{\tt
+\# blkid\\
+/dev/sda1: UUID=``295cb3b3-d521-4470-9b62-4e08003f66ae'' TYPE=``swap''\\
+/dev/sda2: UUID=``e60ae915-192b-46de-b687-c897cff5d0db'' TYPE=``ext4''\\
+/dev/sda5: UUID=``c2c64bf8-d61f-450a-be70-0f1e2c3502a2'' TYPE=``ext4''\\ 
+}
+} \vspace*{0.5cm} } } 
+
+Por último, un administrador de sistemas puede requerir más información acerca 
+del dispositivo, por ejemplo, quién es su fabricante, cuál es el tipo de
+controlador físico (IDE, SCSI, SATA, etc) al que se encuentra conectado, etc. 
+El comando \texttt{lshw} provee esta información: 
+
+\colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} { 
+{\tt
+Extracto de la salida de \texttt{lshw}\\
+        *-storage\\
+             description: SATA controller\\
+             product: SB7x0/SB8x0/SB9x0 SATA Controller [AHCI mode]\\
+             vendor: Advanced Micro Devices, Inc. [AMD/ATI]\\
+             physical id: 11\\
+             bus info: pci@0000:00:11.0\\
+             logical name: scsi0\\
+             logical name: scsi1\\
+             version: 00\\
+             width: 32 bits\\
+             clock: 66MHz\\
+             capabilities: storage ahci\_1.0 bus\_master cap\_list emulated\\
+             configuration: driver=ahci latency=64\\
+             resources: irq:19 ioport:7018(size=8) ioport:7024(size=4) ioport:7010(size=8) ioport:7020(size=4) ioport:7000(size=16) memory:d650b000-d650b3ff\\
+           *-disk\\
+                description: ATA Disk\\
+                product: WDC WD3200BEKT-6\\
+                vendor: Western Digital\\
+                physical id: 0\\
+                bus info: scsi@0:0.0.0\\
+                logical name: /dev/sda\\
+                version: 01.0\\
+                serial: WD-WX31A70J5170\\
+                size: 298GiB (320GB)\\
+                capabilities: partitioned partitioned:dos\\
+                configuration: ansiversion=5 sectorsize=512 signature=000b2ad1\\
 }
 } \vspace*{0.5cm} } } 
 
 \colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} { 
 {\tt
-\# cat /proc/meminfo \\
-MemTotal:        3875460 kB\\
-MemFree:          245836 kB\\
-Buffers:           30904 kB\\
-Cached:          1970332 kB\\
-SwapCached:        23976 kB\\
-Active:          2209596 kB\\
-Inactive:        1327412 kB\\
-Active(anon):    1332812 kB\\
-Inactive(anon):   417508 kB\\
-Active(file):     876784 kB\\
-Inactive(file):   909904 kB\\
-Unevictable:          32 kB\\
-Mlocked:              32 kB\\
-HighTotal:       3011400 kB\\
-HighFree:          56128 kB\\
-LowTotal:         864060 kB\\
-LowFree:          189708 kB\\
-SwapTotal:       3998716 kB\\
-SwapFree:        3848944 kB\\
-Dirty:               180 kB\\
-Writeback:             0 kB\\
-AnonPages:       1518200 kB\\
-Mapped:           263320 kB\\
-Shmem:            214548 kB\\
-Slab:              59356 kB\\
-SReclaimable:      43072 kB\\
-SUnreclaim:        16284 kB\\
-KernelStack:        3192 kB\\
-PageTables:        11796 kB\\
-NFS\_Unstable:          0 kB\\
-Bounce:                0 kB\\
-WritebackTmp:          0 kB\\
-CommitLimit:     5936444 kB\\
-Committed\_AS:    3895336 kB\\
-VmallocTotal:     122880 kB\\
-VmallocUsed:       16620 kB\\
-VmallocChunk:      83156 kB\\
-HardwareCorrupted:     0 kB\\
-AnonHugePages:         0 kB\\
-HugePages\_Total:       0\\
-HugePages\_Free:        0\\
-HugePages\_Rsvd:        0\\
-HugePages\_Surp:        0\\
-Hugepagesize:       2048 kB\\
-DirectMap4k:        8184 kB\\
-DirectMap2M:      903168 kB\\
+              *-volume:0\\
+                   description: Linux swap volume\\
+                   physical id: 1\\
+                   bus info: scsi@0:0.0.0,1\\
+                   logical name: /dev/sda1\\
+                   version: 1\\
+                   serial: 295cb3b3-d521-4470-9b62-4e08003f66ae\\
+                   size: 3905MiB\\
+                   capacity: 3905MiB\\
+                   capabilities: primary nofs swap initialized\\
+                   configuration: filesystem=swap pagesize=4096\\
+              *-volume:1\\
+                   description: EXT4 volume\\
+                   vendor: Linux\\
+                   physical id: 2\\
+                   bus info: scsi@0:0.0.0,2\\
+                   logical name: /dev/sda2\\
+                   logical name: /\\
+                   version: 1.0\\
+                   serial: e60ae915-192b-46de-b687-c897cff5d0db\\
+                   size: 93GiB\\
+                   capacity: 93GiB\\
+                   capabilities: primary bootable journaled extended\_attributes large\_files huge\_files dir\_nlink recover extents ext4 ext2 initialized\\
+                   configuration: created=2012-02-26 12:56:44 filesystem=ext4 lastmountpoint=/ modified=2013-08-19 18:47:08 mount.fstype=ext4 mount.options=rw,relatime,errors=remount-ro,user\_xattr,barrier=1,data=ordered mounted=2013-08-19 18:47:08 state=mounted\\
+              *-volume:2\\
+                   description: Extended partition\\
+                   physical id: 3\\
+                   bus info: scsi@0:0.0.0,3\\
+                   logical name: /dev/sda3\\
+                   size: 201GiB\\
+                   capacity: 201GiB\\
+                   capabilities: primary extended partitioned partitioned:extended\\
+                 *-logicalvolume\\
+                      description: Linux filesystem partition\\
+                      physical id: 5\\
+                      logical name: /dev/sda5\\
+                      logical name: /home\\
+                      capacity: 201GiB\\
+                      configuration: mount.fstype=ext4 mount.options=rw,relatime,user\_xattr,barrier=1,data=ordered state=mounted\\
+}
+} \vspace*{0.5cm} } } 
+
+\colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} { 
+{\tt
+           *-cdrom\\
+                description: DVD-RAM writer\\
+                product: CDDVDW TS-L633N\\
+                vendor: hp\\
+                physical id: 1\\
+                bus info: scsi@1:0.0.0\\
+                logical name: /dev/cdrom\\
+                logical name: /dev/cdrw\\
+                logical name: /dev/dvd\\
+                logical name: /dev/dvdrw\\
+                logical name: /dev/sr0\\
+                version: 0300\\
+                capabilities: removable audio cd-r cd-rw dvd dvd-r dvd-ram\\
+                configuration: ansiversion=5 status=nodisc\\
+
 }
 } \vspace*{0.5cm} } } 
 
 
-
-\textbf{Información de discos:}
-
-\textbf{Información de dispositivos conectados a puertos PCI y USB:}
+\subsection*{Información de dispositivos conectados a puertos PCI y USB:}
 
 PCI y USB permiten la interconexión de dispositivos periféricos a una computadora 
 personal estándar (también se encuentran en servidores junto a otro tipo de buses). 
@@ -467,14 +608,12 @@ Bus 004 Device 003: ID 1d57:32da Xenta 2.4GHz Receiver (Keyboard and Mouse)\\
 
 En este punto sabemos, al menos que el sistema reconoce el dispositivo. 
 
-
-
-
-\subsection*{Identificando recursos netamente lógicos}
-
-\section*{Monitoreo de recursos}
+\section{Conclusión}
 
 
 \section*{Licencia}
+
+Este texto fue creado por Miriam Tamara Lechner y se encuentra bajo 
+Licencia Creative Commons Atribución-CompartirDerivadasIgual 3.0 Unported
 
 \end{document}
