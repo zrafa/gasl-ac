@@ -62,3 +62,7 @@ fdisk -l | grep Disk
     del CPU, de la placa de video VGA, y de la cantidad de procesos en ejecución.
     - Ejecute el script y redirija la salida. 
 
+
+11. En la máquina local, inserte un dispositivo USB (pida uno a la cátedra en 
+caso de no tener uno) e identifique los mensajes reportados al respecto por 
+el kernel Linux. 
