@@ -1,0 +1,64 @@
+******************************************************************
+        Administración de Sistemas
+        Departamento Ingeniería de Computadoras
+        Facultad de Informática - Universidad Nacional del Comahue
+******************************************************************
+
+TP N 2 - Reconocimiento de recursos del sistema
+-----------------------------------------------
+
+
+
+ NOTA : Los siguientes ejercicios se realizan en su totalidad desde una
+        terminal en un sistema GNU/Linux .
+	Para cada pregunte indique el comando o los comandos que utilizó
+        para obtener la respuesta.
+
+
+1. Identifique cual o es la CPU de su equipo.
+   Marca, modelo y velocidad en Mhz.
+
+2. Identifique la cantidad de memoria RAM que dispone la computadora.
+   En unidades de MB y GB.
+
+3. - ¿Cuántos discos contiene su equipo?
+   - ¿De qué capacidad cada uno?
+   - ¿Existen particiones? ¿Cuantas? 
+   - Indique cuales son los archivos de dispositivos que representan esas particiones.
+
+4. ¿Cuales son los dispositivos USB conectados?
+
+5. ¿Cuál es la placa de red (marca, modelo y velocidad) de su equipo?
+
+6. ¿Cuál es la placa de video VGA de su equipo?
+
+7. ¿Cuál es la marca y modelo de la placa de sonido?
+
+8. a. ¿Cuántos procesos hay en ejecución?
+   b. Ejecute :
+	#  for ((i=0;i<10000;i++)) ; do sleep 60 ; done
+      Responda : ¿Cuántos procesos existen ahora en ejecución?
+
+9. Escriba su primer programa script que reporta informacion del sistema.
+   Editar con Vi un nuevo archivo llamado "sysinfo.sh" , que será el programa a entregar y ejecutar.
+   Dentro del archivo coloque el siguiente programa script:
+
+#!/bin/bash
+
+echo "====== Informacion de la memoria RAM ======"
+free
+
+
+echo "====== Informacion de los discos del sistema ======"
+fdisk -l | grep Disk
+
+# FIN DEL SCRIPT
+
+    - Luego de editar el archivo, guarde y vuelva al shell.
+    - Agregue al archivo script "sysinfo.sh" permiso de ejecucion.
+    - Ejecute el script y redirija la salida. 
+    
+10. Ampliar el script anterior para que presente al usuario informacion 
+    del CPU, de la placa de video VGA, y de la cantidad de procesos en ejecución.
+    - Ejecute el script y redirija la salida. 
+
