@@ -217,15 +217,18 @@ dispositivos en caliente (hot plug en inglés), una secuencia clásica es :
 \end{enumerate}
 
 
-\subsection*{Información del CPU:}
+\subsection*{Información del CPU}
 
-Si miramos el resultado de \texttt{man -k cpu}, encontraremos muchos comandos probables, quizá 
+Si se consulta \texttt{man -k cpu}, encontraremos muchos comandos probables, quizá 
 uno de los más evidentes es \textbf{\texttt{lscpu}} cuya función es listar el contenido del archivo 
 \texttt{/proc/cpuinfo} (normalmente los comandos ls{\textless}algo\textgreater  
 \textbf{listan} información acerca de {\textless}algo\textgreater).
 
-\colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} { 
-{\tt
+\fcolorbox{black}{grey}{
+\parbox[t]{1.0\linewidth}{ \vspace*{0.4cm}
+{\bf Ejemplo : Utilizando lscpu }
+\\ \\
+{\tt \small
 \# lscpu \\
 Architecture:          i686\\
 CPU op-mode(s):        32-bit, 64-bit\\
@@ -246,18 +249,19 @@ L1d cache:             64K\\
 L1i cache:             64K\\
 L2 cache:              1024K\\
 }
-El mismo resultado se obtiene ejecutando \texttt{cat /proc/cpuinfo}
-} \vspace*{0.5cm} } } 
+\\
+{\bf Nota :i} Se puede obtener la misma información ejecutando \texttt{cat /proc/cpuinfo}
+} \vspace*{0.5cm} }
 
-El comando \textbf{\texttt{dmidecode}} tiene una sección ``Processor Information'' que muestra
+Otro programa muy utilizado es \textbf{\texttt{dmidecode}}, que proporciona
 información almacenada en el firmware de la placa base (SMBIOS) acerca de los componentes de 
 hardware. 
 
-A continuación mostramos un ejemplo de la salida de \texttt{dmidecode}, en particular 
-solo la sección que pertenece a información del procesador:
-
-\colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} { 
-{\tt
+\fcolorbox{black}{grey}{
+\parbox[t]{1.0\linewidth}{ \vspace*{0.4cm}
+{\bf Ejemplo : Utilizando \texttt{dmidecode} para obtener información del CPU}
+\\ \\
+{\tt \scriptsize
 \# dmidecode |sed -n '/Processor Information/,/\^\$/p'\\
 Processor Information\\
 	Socket Designation: Unknown\\
@@ -306,7 +310,7 @@ Processor Information\\
 	Characteristics:\\
 		64-bit capable
 }
-} \vspace*{0.5cm} } } 
+} \vspace*{0.5cm} }
 
 \subsection*{Información de la memoria principal (RAM):}
 
