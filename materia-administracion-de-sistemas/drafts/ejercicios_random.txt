@@ -10,3 +10,7 @@ Haciendo una busqueda de las palabras relevantes de los mensajes anteriores enco
 http://bugs.debian.org/cgi-bin/bugreport.cgi?bug=698113
 
 
+Sobre la maquina local agregar y sacar un dispositivo USB para para observar con la salida
+de dmesg y lsusb.
+
+Ver que dispositivos PCI se encuentran conectados.  
