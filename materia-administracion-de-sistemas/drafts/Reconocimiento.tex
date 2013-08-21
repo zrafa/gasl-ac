@@ -169,42 +169,53 @@ Cada línea en el archivo \texttt{/var/log/messages} consta de una estampilla de
 el nombre del sistema, el componente del sistema operativo que reporta el mensaje y 
 finalmente el mensaje. 
 
-\colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} { 
-Por ejemplo, los siguientes mensajes son reportados en dicho archivo al conectar (en caliente) un módem 3g:\\
-{\tt
-Aug 17 12:00:47 acerino kernel: [490611.120188] usb 1-4: new high-speed USB device number 11 using ehci\_hcd\\
-Aug 17 12:00:47 acerino kernel: [490611.253621] usb 1-4: New USB device found, idVendor=12d1, idProduct=14fe\\
-Aug 17 12:00:47 acerino kernel: [490611.253625] usb 1-4: New USB device strings: Mfr=2, Product=1, SerialNumber=0\\
-Aug 17 12:00:47 acerino kernel: [490611.253628] usb 1-4: Product: HUAWEI Mobile\\
-Aug 17 12:00:47 acerino kernel: [490611.253630] usb 1-4: Manufacturer: HUAWEI\\
-Aug 17 12:00:47 acerino kernel: [490611.255295] scsi12 : usb-storage 1-4:1.0\\
-Aug 17 12:00:47 acerino kernel: [490611.255486] scsi13 : usb-storage 1-4:1.1\\
-Aug 17 12:00:48 acerino mtp-probe: checking bus 1, device 11: ``/sys/devices/pci0000:00/0000:00:12.2/usb1/1-4''\\
-Aug 17 12:00:48 acerino mtp-probe: bus: 1, device: 11 was not an MTP device\\
-Aug 17 12:00:48 acerino kernel: [490612.253335] scsi 12:0:0:0: CD-ROM            HUAWEI   Mass Storage     2.31 PQ: 0 ANSI: 2\\
-Aug 17 12:00:48 acerino kernel: [490612.253409] scsi 13:0:0:0: Direct-Access     HUAWEI   SD Storage       2.31 PQ: 0 ANSI: 2\\
-Aug 17 12:00:49 acerino kernel: [490612.261977] sr1: scsi-1 drive\\
-Aug 17 12:00:49 acerino kernel: [490612.265664] sr 12:0:0:0: Attached scsi generic sg2 type 5\\
-Aug 17 12:00:49 acerino kernel: [490612.268493] sd 13:0:0:0: Attached scsi generic sg3 type 0\\
-Aug 17 12:00:49 acerino kernel: [490612.271945] sd 13:0:0:0: [sdb] Attached SCSI removable disk\\
+\fcolorbox{black}{grey}{
+\parbox[t]{1.0\linewidth}{ \vspace*{0.4cm}
+{\bf Ejemplo: mensajes del kernel Linux al conectar (en caliente) un módem 3g\\ }
+\\ {\tt \scriptsize
+Aug 17 12:00:47 m01 kernel: [490611.120188] usb 1-4: new high-speed USB device number 11 using ehci\_hcd\\
+Aug 17 12:00:47 m01 kernel: [490611.253621] usb 1-4: New USB device found, idVendor=12d1, idProduct=14fe\\
+Aug 17 12:00:47 m01 kernel: [490611.253625] usb 1-4: New USB device strings: Mfr=2, Product=1, SerialNumber=0\\
+Aug 17 12:00:47 m01 kernel: [490611.253628] usb 1-4: Product: HUAWEI Mobile\\
+Aug 17 12:00:47 m01 kernel: [490611.253630] usb 1-4: Manufacturer: HUAWEI\\
+Aug 17 12:00:47 m01 kernel: [490611.255295] scsi12 : usb-storage 1-4:1.0\\
+Aug 17 12:00:47 m01 kernel: [490611.255486] scsi13 : usb-storage 1-4:1.1\\
+Aug 17 12:00:48 m01 mtp-probe: checking bus 1, device 11: ``/sys/devices/pci0000:00/0000:00:12.2/usb1/1-4''\\
+Aug 17 12:00:48 m01 mtp-probe: bus: 1, device: 11 was not an MTP device\\
+Aug 17 12:00:48 m01 kernel: [490612.253335] scsi 12:0:0:0: CD-ROM            HUAWEI   Mass Storage     2.31 PQ: 0 ANSI: 2\\
+Aug 17 12:00:48 m01 kernel: [490612.253409] scsi 13:0:0:0: Direct-Access     HUAWEI   SD Storage       2.31 PQ: 0 ANSI: 2\\
+Aug 17 12:00:49 m01 kernel: [490612.261977] sr1: scsi-1 drive\\
+Aug 17 12:00:49 m01 kernel: [490612.265664] sr 12:0:0:0: Attached scsi generic sg2 type 5\\
+Aug 17 12:00:49 m01 kernel: [490612.268493] sd 13:0:0:0: Attached scsi generic sg3 type 0\\
+Aug 17 12:00:49 m01 kernel: [490612.271945] sd 13:0:0:0: [sdb] Attached SCSI removable disk\\
 }
-\\
-Tenga en cuenta que no siempre observaremos la misma secuencia para un dispositivo en particular, 
-el tipo de mensaje específico dependerá de la configuración de nuestro sistema. \textbf{Lo 
-importante aquí es comenzar a incorporar el hábito de consultar los archivos de log y tratar de 
-identificar la información de interés para nuestro caso, o bien la ausencia de la misma.} 
-} \vspace*{0.5cm} } } 
+\vspace*{0.4cm} } }
 
-Además de los mensajes guardados en el archivo \texttt{/var/log/message}, el kernel Linux posee un buffer 
-(sección de memoria) en el que almacena temporalmente los mensajes que va produciendo. Este buffer es 
-finito y la información en él se va perdiendo a medida que nuevos mensajes son guardados. Sirve para realizar 
-un análisis en un momento dado y no posee estampillas de tiempo. Para ver la información contenida en el 
+Tenga en cuenta que no siempre observaremos la misma secuencia para un dispositivo en particular. 
+Los mensajes del kernel dependen de la configuración del sistema.
+
+\fcolorbox{black}{grey}{
+\parbox[t]{1.0\linewidth}{ \vspace*{0.4cm}
+{\bf Lo importante :} Incorporar el hábito de consultar los archivos de log e
+identificar la información de interés para el recurso a identificar, o bien la ausencia de la misma.
+\vspace*{0.4cm} } }
+
+Además de los mensajes almacenados en el archivo \texttt{/var/log/message}, el kernel Linux posee un buffer 
+(sección de memoria) en el que almacena temporalmente los mensajes que va emitiendo. Este buffer es 
+finito y la información en él se va perdiendo a medida que nuevos mensajes son temporalmente guardados. Sirve para 
+consultar los últimos mensajes emitidos, y no posee marcas de tiempo. Para ver la información contenida en el 
 buffer utilizamos el comando \texttt{\textbf{dmesg}}. 
 
 Por ejemplo cuando estamos tratando de reconocer la actividad del sistema al agregar y quitar 
-dispositivos en caliente (hot plug en inglés), una secuencia clásica será: ejecutar \texttt{dmesg} 
-antes de insertar el dispositivo y observar la última línea del buffer, proceder a insertar 
-el dispositivo y volver a ejecutar \texttt{dmesg} para detectar los nuevos mensajes producidos. 
+dispositivos en caliente (hot plug en inglés), una secuencia clásica es :
+
+\begin{enumerate}
+	\item Ejecutar \texttt{dmesg} antes de conectar el dispositivo;
+	\item Observar la última línea del buffer;
+	\item Colocar el dispositivo;
+	\item Volver a ejecutar \texttt{dmesg} para reconocer los nuevos mensajes producidos por el kernel.
+\end{enumerate}
+
 
 \subsection*{Información del CPU:}
 
