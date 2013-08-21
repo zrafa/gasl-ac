@@ -169,8 +169,7 @@ Cada línea en el archivo \texttt{/var/log/messages} consta de una estampilla de
 el nombre del sistema, el componente del sistema operativo que reporta el mensaje y 
 finalmente el mensaje. 
 
-\fcolorbox{black}{grey}{
-\parbox[t]{1.0\linewidth}{ \vspace*{0.4cm}
+\colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} { 
 {\bf Ejemplo: mensajes del kernel Linux al conectar (en caliente) un módem 3g\\ }
 \\ {\tt \scriptsize
 Aug 17 12:00:47 m01 kernel: [490611.120188] usb 1-4: new high-speed USB device number 11 using ehci\_hcd\\
@@ -189,7 +188,7 @@ Aug 17 12:00:49 m01 kernel: [490612.265664] sr 12:0:0:0: Attached scsi generic s
 Aug 17 12:00:49 m01 kernel: [490612.268493] sd 13:0:0:0: Attached scsi generic sg3 type 0\\
 Aug 17 12:00:49 m01 kernel: [490612.271945] sd 13:0:0:0: [sdb] Attached SCSI removable disk\\
 }
-\vspace*{0.4cm} } }
+} \vspace*{0.5cm} } } 
 
 Tenga en cuenta que no siempre observaremos la misma secuencia para un dispositivo en particular. 
 Los mensajes del kernel dependen de la configuración del sistema.
@@ -224,8 +223,7 @@ uno de los más evidentes es \textbf{\texttt{lscpu}} cuya función es listar el 
 \texttt{/proc/cpuinfo} (normalmente los comandos ls{\textless}algo\textgreater  
 \textbf{listan} información acerca de {\textless}algo\textgreater).
 
-\fcolorbox{black}{grey}{
-\parbox[t]{1.0\linewidth}{ \vspace*{0.4cm}
+\colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} { 
 {\bf Ejemplo : Utilizando lscpu }
 \\ \\
 {\tt \small
@@ -250,15 +248,14 @@ L1i cache:             64K\\
 L2 cache:              1024K\\
 }
 \\
-{\bf Nota :i} Se puede obtener la misma información ejecutando \texttt{cat /proc/cpuinfo}
-} \vspace*{0.5cm} }
+{\bf Nota :} Se puede obtener la misma información ejecutando \texttt{cat /proc/cpuinfo}
+} \vspace*{0.5cm} } } 
 
 Otro programa muy utilizado es \textbf{\texttt{dmidecode}}, que proporciona
 información almacenada en el firmware de la placa base (SMBIOS) acerca de los componentes de 
 hardware. 
 
-\fcolorbox{black}{grey}{
-\parbox[t]{1.0\linewidth}{ \vspace*{0.4cm}
+\colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} { 
 {\bf Ejemplo : Utilizando \texttt{dmidecode} para obtener información del CPU}
 \\ \\
 {\tt \scriptsize
@@ -310,12 +307,12 @@ Processor Information\\
 	Characteristics:\\
 		64-bit capable
 }
-} \vspace*{0.5cm} }
+} \vspace*{0.5cm} } } 
 
-\subsection*{Información de la memoria principal (RAM):}
+\subsection*{Información de la memoria principal (RAM)}
 
-El comando \texttt{dmidecode} nos provee información acerca de la cantidad de memoria 
-principal reconocida por la placa base. También provee información acerca del fabricante, 
+El comando \texttt{dmidecode} nos provee también información de la cantidad de memoria 
+principal reconocida por la placa base. Además proporciona información del fabricante, 
 cantidad de memoria potencial reconocida por la placa base, número de serie, velocidad de los
 bancos, entre otros. 
 
@@ -324,7 +321,7 @@ El siguiente es un ejemplo de la salida de \texttt{dmidecode}, en
 particular sólo se observan las líneas pertenecientes a la 
 información de memoria principal: \\ 
 \\ 
-{\tt
+{\tt \small
 Handle 0x0003, DMI type 16, 15 bytes\\
 Physical Memory Array\\
 	Location: System Board Or Motherboard\\
@@ -379,16 +376,17 @@ Memory Device\\
 }
 } \vspace*{0.5cm} } } 
 
-\subsection*{Información de dispositivos de almacenamiento masivo:}
+\subsection*{Información de dispositivos de almacenamiento (Discos)}
 
-Acerca de los dispositivos de almacenamiento masivo, como por ejemplo discos rígidos, memorias
-flash, etc. Normalmente nos interesa conocer su tamaño y particionado, así como también el uso 
+Los dispositivos de almacenamiento pueden ser variados, tales como discos rígidos,
+memorias SD, pen drives (estos últimos FLASH), etc.
+Normalmente interesa conocer el tamaño y particionado, así como también el uso 
 que se le da a cada partición dentro del sistema.  
 
-En los sistemas GNU/Linux los dispositivos de almacenamiento masivo están representados por 
-archivos de dispositivos en el directorio \texttt{/dev/}. Por ejemplo en las salida a continuación 
+En los sistemas GNU/Linux los dispositivos de almacenamiento están representados por 
+archivos de dispositivos en el directorio \texttt{/dev/}. Por ejemplo, en las salida a continuación,
 observamos un disco SATA representado por el archivo de dispositivo /dev/sda, y cuatro 
-particiones de dicho disco numeradas 1,2, 3 y 5. Estos son archivos de bloque, oberve la letra 
+particiones de dicho disco numeradas 1,2, 3 y 5. Estos son archivos de bloque, observe la letra 
 \textbf{\texttt{b}} al principio de cada línea. 
 
 
@@ -402,22 +400,28 @@ brw-rw---T  1 root disk        8,   3 ago 19 20:50 /dev/sda3\\
 brw-rw---T  1 root disk        8,   5 ago 19 20:50 /dev/sda5\\
 }
 \\
-En particular listamos los archivos que comienzan con \texttt{sd} ya que la 
+En particular, se lista en este ejemplo, los archivos que comienzan con \texttt{sd} ya que la 
 mayoría (existen excepciones) de los dispositivos de almacenamiento comenzarán con esas 
 dos letras. 
 } \vspace*{0.5cm} } } 
 
 Es así que la identificación del archivo de dispositivo es el primer paso en el 
 reconocimiento de este tipo de hardware. Sin embargo el sólo nombre de archivo, no 
-presenta demasiada información útil al administrador (OJO: el hecho que exista el 
-archivo indica que el dispositivo esta presente, lo cual no es un dato menor). El paso 
-siguiente será utilizar herramientas que hagan uso de estos archivos de dispositivo y que nos 
-permitan obtener la información que buscamos. 
+presenta demasiada información útil al administrador.
+
+\fcolorbox{black}{grey}{
+\parbox[t]{1.0\linewidth}{ \vspace*{0.4cm}
+{\bf Importante :} el hecho de que exista {\tt /dev/sd*} indica que el dispositivo esta presente
+\vspace*{0.4cm} } }
+
+El paso 
+siguiente es utilizar herramientas que hagan uso de estos archivos de dispositivo y que nos 
+permitan obtener la información restante.
 
 El comando \texttt{fdisk} es quizá el más habitual a la hora de obtener 
-información de un disco y manipular la tabla de particiones. En el ejemplo 
+información de un disco y manipular la tabla de particiones. En el ejemplo
 a continuación se utiliza el archivo de dispositivo que representa a todo 
-el disco \texttt{/dev/sda} para listar el contenido de la tabla de particiones:
+el disco \texttt{/dev/sda} para obtener información del disco y listar la tabla de particiones:
  
 
 \colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} { 
@@ -436,7 +440,6 @@ Disk identifier: 0x000b2ad1\\
 /dev/sda2   *     7999488   203311103    97655808   83  Linux\\
 /dev/sda3       203313150   625141759   210914305    5  Extended\\
 /dev/sda5       203313152   625141759   210914304   83  Linux\\
-\\
 }
 } \vspace*{0.5cm} } } 
 
@@ -452,7 +455,6 @@ sda      8:0    0 298,1G  0 disk \\
 |-sda3   8:3    0     1K  0 part \\
 |-sda5   8:5    0 201,1G  0 part /home\\
 sr0     11:0    1  1024M  0 rom  \\
-\\
 }
 } \vspace*{0.5cm} } } 
 
@@ -463,8 +465,8 @@ comienzo \texttt{/dev/sdb}, luego de insertar otro disco podría pasar a llamars
 digamos \texttt{/dev/sdc}. Si el nombre de dispositivo \texttt{/dev/sdb}
 era utilizado por el sistema (por ejemplo en \texttt{/etc/fstab}), el cambio puede 
 conducir a errores. Es por esto que se establecen identificadores
-únicos sobre cada partición de disco, a fin de evitar errores de 
-interpretación. Este identificador UUID puede obtenerse por ejemplo 
+únicos sobre cada partición del disco, a fin de evitar errores de 
+interpretación. Este identificador (UUID= puede obtenerse, por ejemplo,
 a través del comando \texttt{blkid}:  
 
 \colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} { 
@@ -478,14 +480,15 @@ y 5 tienen un UUID asignado para su identificación unívoca: \\
 }
 } \vspace*{0.5cm} } } 
 
-Por último, un administrador de sistemas puede requerir más información acerca 
+Por último, un administrador de sistemas puede necesitar más información acerca 
 del dispositivo, por ejemplo, quién es su fabricante, cuál es el tipo de
 controlador físico (IDE, SCSI, SATA, etc) al que se encuentra conectado, etc. 
 El comando \texttt{lshw} provee esta información: 
 
 \colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} { 
-{\tt
-Extracto de la salida de \texttt{lshw}\\
+{\bf Ejemplo : Extracto de la salida de \texttt{lshw}}
+\\ \\
+{\tt \scriptsize
         *-storage\\
              description: SATA controller\\
              product: SB7x0/SB8x0/SB9x0 SATA Controller [AHCI mode]\\
@@ -515,8 +518,9 @@ Extracto de la salida de \texttt{lshw}\\
 }
 } \vspace*{0.5cm} } } 
 
+
 \colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} { 
-{\tt
+{\tt \scriptsize
               *-volume:0\\
                    description: Linux swap volume\\
                    physical id: 1\\
@@ -559,8 +563,9 @@ Extracto de la salida de \texttt{lshw}\\
 }
 } \vspace*{0.5cm} } } 
 
+
 \colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} { 
-{\tt
+{\tt \scriptsize
            *-cdrom\\
                 description: DVD-RAM writer\\
                 product: CDDVDW TS-L633N\\
@@ -580,14 +585,14 @@ Extracto de la salida de \texttt{lshw}\\
 } \vspace*{0.5cm} } } 
 
 
-\subsection*{Información de dispositivos conectados a puertos PCI y USB:}
+\subsection*{Información de dispositivos conectados a puertos PCI y USB}
 
 PCI y USB permiten la interconexión de dispositivos periféricos a una computadora 
 personal estándar (también se encuentran en servidores junto a otro tipo de buses). 
 Puede que el lector este familiarizado con la conexión de 
 dispositivos USB, y con menos frecuencia PCI. Este último normalmente se encuentra 
 accesible dentro del gabinete donde reside la placa base, y a este tipo de buses se
-conectan placas de extensión como puede ser una placa de video, de sonido, de red, etc.   
+conectan placas de extensión, como puede ser una placa de video, de sonido, de red, etc.   
 
 En la figura se muestran tres buses PCI para una placa base de pentium I:
 
