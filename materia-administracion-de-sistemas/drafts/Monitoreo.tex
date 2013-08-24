@@ -1,0 +1,472 @@
+%%% LaTeX Template: Article/Thesis/etc. with colored headings and special fonts
+%%%
+%%% Source: http://www.howtotex.com/
+
+\documentclass[12pt]{article}
+
+
+\usepackage{apuntes-estilo}
+\usepackage{fancyhdr,lastpage}
+\usepackage{color,colortbl}
+\usepackage{verbatim}
+
+\def\maketitle{
+
+% Titulo 
+ \makeatletter
+ {\color{bl} \centering \huge \sc \textbf{
+ Monitoreo de recursos \\ 
+\large \vspace*{-8pt} \color{black} Guía básica de monitoreo de recursos. 
+ \vspace*{8pt} }\par}
+ \makeatother
+
+
+% Autor
+ \makeatletter
+ {\centering \small 
+ 	Departamento de Ingeniería de Computadoras \\
+ 	Facultad de Informática - Universidad Nacional del Comahue \\
+ 	\vspace{20pt} }
+ \makeatother
+
+}
+
+% Custom headers and footers
+\fancyhf{} % clear all header and footer fields
+\fancypagestyle{plain}{\fancyhf{}}
+  	\pagestyle{fancy}
+ 	\lhead{\footnotesize Reconocimiento y monitoreo de recursos - Departamento de Ingeniería de Computadoras}
+ 	\rhead{\footnotesize \thepage\ }	% ''Page 1 of 2''
+
+\def\ti#1#2{\texttt{#1} & #2 \\ }
+
+
+
+\begin{document}
+
+\thispagestyle{empty}
+\maketitle
+\setlength{\parindent}{0pt}
+
+\section*{Introducción}
+
+Durante el tutorial anterior hablamos de reconocimiento de recursos físicos, identificar 
+sus características y representación dentro del sistema operativo. Durante este 
+texto desarrollaremos brevemente el concepto y técnicas mínimas de monitoreo de los mismos 
+recursos. 
+
+
+\section*{Identificando recursos}
+
+Comenzaremos por identificar recursos físicos, esto es listar sus características y la forma en que 
+se encuentra representado en el SO. Cuando el administrador necesita realizar una tarea
+sobre un recurso, por ejemplo ver si el sistema reconoce un dispositivo usb recientemente conectado, 
+debe preguntarse: ¿cuál es el comando que me permite listar información acerca de este dispositivo?. 
+El administrador podrá recordar un conjunto de comandos, quizá no todos, y en caso que no lo recuerde
+investigará hasta encontrar la respuesta. En nuestro ejemplo del reconocimiento de un dispositivo 
+usb la pregunta se resuelve casi de manera inmediata al realizar una pequeña búsqueda entre las páginas
+del manual de GNU/Linux: 
+
+\colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} { 
+Observe que efectivamente la primera y sexta línea de resultados tienen grandes chances 
+de darnos algo de la información que estamos buscando (puede y de hecho lo habrá mas de un 
+modo de obtener la misma información): \\ 
+{\tt 
+\$ man -k usb \\
+lsusb (8)            - list USB devices\\
+sane-find-scanner (1) - find SCSI and USB scanners and their device files\\
+sisusb (4)           - SiS USB video driver\\
+unetbootin (1)       - program to install Linux/BSD distributions to a partit...\\
+update-usbids (8)    - download new version of the USB ID list\\
+usb-devices (1)      - print USB device details\\
+usb\_modeswitch (1)   - switch mode of ``multi-state'' USB devices\\
+usb\_printerid (1)    - prints the ID of the printer on a USB port\\
+usbip (8)            - manage USB/IP devices\\
+usbipd (8)           - USB/IP server daemon\\
+usbmuxd (1)          - iPhone/iPod Touch USB multiplex server daemon\\ \\
+}
+NOTA A PEGAR EN EL ESPEJO: ¡``{\tt man -k}'' es tu amigo!
+} \vspace*{0.5cm} } } 
+
+Obviamente si el administrador no logra resultados investigando entre las 
+páginas del manual de la máquina en cuestión, irá a Internet y haciendo la consulta
+correcta ``list usb devices linux'' ó ``listar usb en linux'' (en 
+muchos casos la búsqueda en idioma inglés devuelva más resultados que en español),  
+muy probablemente obtendrá lo que busca entre los primeros resultados: 
+
+\begin{center}
+ \includegraphics{lsusb.jpg}
+\end{center}
+
+Si no resuelve la pregunta de este modo, recurra a expertos en el tema, pero recuerde
+intentar la identificación de recursos por sus propios medios al menos siguiendo los dos 
+métodos anteriores, el administrador debe ser curioso e investigar, de otro modo puede 
+obtener respuestas como esta: http://lmgtfy.com/?q=list+usb+devices+linux
+
+\subsection*{Identificando el hardware}
+En esta sección listaremos una serie de comandos clásicos para identificar recursos de
+hardware dentro del sistema operativo. 
+
+\textbf{Aprendiendo a escuchar al kernel Linux}
+
+Como sabemos, el kernel Linux es el primer elemento de software del sistema operativo 
+que se carga luego del gestor de arranque, y es quien inicializa y toma control del hardware. 
+El resto del sistema operativo que se carga a continuación de este, interactúa con el kernel 
+cuando necesita utilizar el hardware con algún fin. 
+
+A medida que el kernel Linux reconoce el hardware, tanto en el arranque como durante la 
+operación normal del sistema al insertar y remover dispositivos de hardware 
+en caliente (sin apagar la computadora), el kernel se comunica a través de mensajes para 
+que el administrador tenga información acerca de lo que sucede. 
+
+Estos mensajes son recolectados y guardados en archivos bitácora (logs) para su posterior 
+revisión por parte de los administradores de sistemas. 
+La información provistas por el kernel no se limita a reconocimiento del hardware, también 
+provee información sobre el funcionamiento del mismo, y otros componentes lógicos que 
+interactúan con el kernel. 
+Es tarea del administrador leer la información que el kernel provee. 
+
+En las secciones siguientes se proveen herramientas específicas para consultar el estado 
+e información de dispositivos de hardware, sin embargo el administrador de sistemas debe
+tener presente la información provista por el kernel en los archivos de bitácora y en su 
+buffer (sección de memoria) temporal a modo de información complementaria; y en algunos 
+casos, como único medio de información. Por este motivo, cada vez que se encuentre en el 
+proceso de identificación de recursos, recuerde además de utilizar herramientas 
+específicas, revisar los archivos de bitácora del sistema y el buffer temporal. 
+
+En las distribuciones GNU/Linux el directorio \texttt{/var/log} contiene diferentes 
+archivos de bitácora donde distintos elementos del sistema reportan su actividad. En 
+particular, es de interés el archivo \texttt{/var/log/messages}, ya que es en dónde 
+el kernel vuelca su información. 
+
+Cada línea en el archivo \texttt{/var/log/messages} consta de una estampilla de tiempo, 
+el nombre del sistema, el componente del sistema operativo que reporta el mensaje y 
+finalmente el mensaje. 
+
+\colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} { 
+Por ejemplo, los siguientes mensajes son reportados en dicho archivo al conectar (en caliente) un módem 3g:\\
+{\tt
+Aug 17 12:00:47 acerino kernel: [490611.120188] usb 1-4: new high-speed USB device number 11 using ehci\_hcd\\
+Aug 17 12:00:47 acerino kernel: [490611.253621] usb 1-4: New USB device found, idVendor=12d1, idProduct=14fe\\
+Aug 17 12:00:47 acerino kernel: [490611.253625] usb 1-4: New USB device strings: Mfr=2, Product=1, SerialNumber=0\\
+Aug 17 12:00:47 acerino kernel: [490611.253628] usb 1-4: Product: HUAWEI Mobile\\
+Aug 17 12:00:47 acerino kernel: [490611.253630] usb 1-4: Manufacturer: HUAWEI\\
+Aug 17 12:00:47 acerino kernel: [490611.255295] scsi12 : usb-storage 1-4:1.0\\
+Aug 17 12:00:47 acerino kernel: [490611.255486] scsi13 : usb-storage 1-4:1.1\\
+Aug 17 12:00:48 acerino mtp-probe: checking bus 1, device 11: "/sys/devices/pci0000:00/0000:00:12.2/usb1/1-4"\\
+Aug 17 12:00:48 acerino mtp-probe: bus: 1, device: 11 was not an MTP device\\
+Aug 17 12:00:48 acerino kernel: [490612.253335] scsi 12:0:0:0: CD-ROM            HUAWEI   Mass Storage     2.31 PQ: 0 ANSI: 2\\
+Aug 17 12:00:48 acerino kernel: [490612.253409] scsi 13:0:0:0: Direct-Access     HUAWEI   SD Storage       2.31 PQ: 0 ANSI: 2\\
+Aug 17 12:00:49 acerino kernel: [490612.261977] sr1: scsi-1 drive\\
+Aug 17 12:00:49 acerino kernel: [490612.265664] sr 12:0:0:0: Attached scsi generic sg2 type 5\\
+Aug 17 12:00:49 acerino kernel: [490612.268493] sd 13:0:0:0: Attached scsi generic sg3 type 0\\
+Aug 17 12:00:49 acerino kernel: [490612.271945] sd 13:0:0:0: [sdb] Attached SCSI removable disk\\
+}
+Tenga en cuenta que no siempre observaremos la misma secuencia para un dispositivo en particular, 
+el tipo de mensaje específico dependerá de la configuración de nuestro sistema. \textbf{Lo 
+importante aquí es comenzar a incorporar el hábito de consultar los archivos de log y tratar de 
+identificar la información de interés para nuestro caso, o bien la ausencia de la misma.} 
+} \vspace*{0.5cm} } } 
+
+Además de los mensajes guardados en el archivo \texttt{/var/log/message}, el kernel Linux posee un buffer 
+(sección de memoria) en el que almacena temporalmente los mensajes que va produciendo. Este buffer es 
+finito y la información en él se va perdiendo a medida que nuevos mensajes son guardados. Sirve para realizar 
+un análisis en un momento dado y no posee estampillas de tiempo. Para ver la información contenida en el 
+buffer utilizamos el comando \texttt{\textbf{dmesg}}. 
+
+Por ejemplo cuando estamos tratando de reconocer la actividad del sistema al agregar y quitar 
+dispositivos en caliente (hot plug en inglés), una secuencia clásica será: ejecutar \texttt{dmesg} 
+antes de insertar el dispositivo y observar la última línea del buffer, proceder a insertar 
+el dispositivo y volver a ejecutar \texttt{dmesg} para detectar los nuevos mensajes producidos. 
+
+\textbf{Información del CPU:}
+
+Si miramos el resultado de \texttt{man -k cpu}, encontraremos muchos comandos probables, quizá 
+uno de los más evidentes es \textbf{\texttt{lscpu}} cuya función es listar el contenido del archivo 
+\texttt{/proc/cpuinfo} (normalmente los comandos ls{\textless}algo\textgreater  
+\textbf{listan} información acerca de {\textless}algo\textgreater).
+
+\colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} { 
+{\tt
+\# lscpu \\
+Architecture:          i686\\
+CPU op-mode(s):        32-bit, 64-bit\\
+Byte Order:            Little Endian\\
+CPU(s):                2\\
+On-line CPU(s) list:   0,1\\
+Thread(s) per core:    1\\
+Core(s) per socket:    2\\
+Socket(s):             1\\
+Vendor ID:             AuthenticAMD\\
+CPU family:            16\\
+Model:                 6\\
+Stepping:              3\\
+CPU MHz:               800.000\\
+BogoMIPS:              5586.01\\
+Virtualization:        AMD-V\\
+L1d cache:             64K\\
+L1i cache:             64K\\
+L2 cache:              1024K\\
+}
+El mismo resultado se obtiene ejecutando \texttt{cat /proc/cpuinfo}
+} \vspace*{0.5cm} } } 
+
+El comando \textbf{\texttt{dmidecode}} tiene una sección ``Processor Information'' que muestra
+información almacenada en el firmware de la placa base (SMBIOS) acerca de los componentes de 
+hardware. 
+
+A continuación mostramos un ejemplo de la salida de \texttt{dmidecode}, en particular 
+solo la sección que pertenece a información del procesador:
+
+\colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} { 
+{\tt
+\# dmidecode |sed -n '/Processor Information/,/\^\$/p'\\
+Processor Information\\
+	Socket Designation: Unknown\\
+	Type: Central Processor\\
+	Family: Phenom X2\\
+	Manufacturer: AMD Corporation\\
+	ID: 63 0F 10 00 FF FB 8B 17\\
+	Signature: Family 16, Model 6, Stepping 3\\
+	Flags:\\
+		FPU (Floating-point unit on-chip)\\
+		VME (Virtual mode extension)\\
+		DE (Debugging extension)\\
+		PSE (Page size extension)\\
+		TSC (Time stamp counter)\\
+		MSR (Model specific registers)\\
+		PAE (Physical address extension)\\
+		MCE (Machine check exception)\\
+		CX8 (CMPXCHG8 instruction supported)\\
+		APIC (On-chip APIC hardware supported)\\
+		SEP (Fast system call)\\
+		MTRR (Memory type range registers)\\
+		PGE (Page global enable)\\
+		MCA (Machine check architecture)\\
+		CMOV (Conditional move instruction supported)\\
+		PAT (Page attribute table)\\
+		PSE-36 (36-bit page size extension)\\
+		CLFSH (CLFLUSH instruction supported)\\
+		MMX (MMX technology supported)\\
+		FXSR (FXSAVE and FXSTOR instructions supported)\\
+		SSE (Streaming SIMD extensions)\\
+		SSE2 (Streaming SIMD extensions 2)\\
+		HTT (Multi-threading)\\
+	Version: AMD Phenom(tm) II N620 Dual-Core Processor\\
+	Voltage: 1.5 V\\
+	External Clock: 200 MHz\\
+	Max Speed: 2800 MHz\\
+	Current Speed: 2800 MHz\\
+	Status: Populated, Enabled\\
+	Upgrade: Socket S1\\
+	L1 Cache Handle: 0x0001\\
+	L2 Cache Handle: 0x0002\\
+	L3 Cache Handle: Not Provided\\
+	Serial Number: NotSupport\\
+	Asset Tag: FFFF\\
+	Part Number: Not Specified\\
+	Characteristics:\\
+		64-bit capable
+}
+} \vspace*{0.5cm} } } 
+
+\textbf{Información de la memoria principal (RAM):}
+
+El comando \texttt{dmidecode} nos provee información acerca de la cantidad de memoria 
+principal reconocida por la placa base. También provee información acerca del fabricante, 
+cantidad de memoria potencial reconocida por la placa, números de serie, velocidad de los
+bancos, entre otros. 
+
+\colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} { 
+El siguiente es un ejemplo de la salida de \texttt{dmidecode}, en 
+particular sólo se observan las líneas pertenecietentes a la 
+información de memoria principal: \\ 
+\\ 
+{\tt
+Handle 0x0003, DMI type 16, 15 bytes\\
+Physical Memory Array\\
+	Location: System Board Or Motherboard\\
+	Use: System Memory\\
+	Error Correction Type: None\\
+	Maximum Capacity: 16 GB\\
+	Error Information Handle: Not Provided\\
+	Number Of Devices: 2\\
+\\
+Handle 0x0004, DMI type 17, 27 bytes\\
+Memory Device\\
+	Array Handle: 0x0003\\
+	Error Information Handle: Not Provided\\
+	Total Width: 64 bits\\
+	Data Width: 64 bits\\
+	Size: 2048 MB\\
+	Form Factor: SODIMM\\
+	Set: None\\
+	Locator: Top-Slot 1(top)\\
+	Bank Locator: BANK0\\
+	Type: DDR3\\
+	Type Detail: Synchronous\\
+	Speed: 1333 MHz\\
+	Manufacturer: Micron\\
+	Serial Number: 330131FD\\
+	Asset Tag: Unknown\\
+	Part Number: 16JSF25664HZ-1G4F1\\
+\\
+Handle 0x0006, DMI type 17, 27 bytes\\
+Memory Device\\
+	Array Handle: 0x0003\\
+	Error Information Handle: Not Provided\\
+	Total Width: 64 bits\\
+	Data Width: 64 bits\\
+	Size: 2048 MB\\
+	Form Factor: SODIMM\\
+	Set: None\\
+	Locator: Top-Slot 2(under)\\
+	Bank Locator: BANK2\\
+	Type: DDR3\\
+	Type Detail: Synchronous\\
+	Speed: 1333 MHz\\
+	Manufacturer: Micron\\
+	Serial Number: 330131FA\\
+	Asset Tag: Unknown\\
+	Part Number: 16JSF25664HZ-1G4F1\\
+}
+} \vspace*{0.5cm} } } 
+
+\colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} { 
+{\tt
+\# free\\
+             total       used       free     shared    buffers     cached\\
+Mem:       3875460    3613388     262072          0      29656    1957156\\
+-/+ buffers/cache:    1626576    2248884\\
+Swap:      3998716     149772    3848944\\
+}
+} \vspace*{0.5cm} } } 
+
+\colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} { 
+{\tt
+\# cat /proc/meminfo \\
+MemTotal:        3875460 kB\\
+MemFree:          245836 kB\\
+Buffers:           30904 kB\\
+Cached:          1970332 kB\\
+SwapCached:        23976 kB\\
+Active:          2209596 kB\\
+Inactive:        1327412 kB\\
+Active(anon):    1332812 kB\\
+Inactive(anon):   417508 kB\\
+Active(file):     876784 kB\\
+Inactive(file):   909904 kB\\
+Unevictable:          32 kB\\
+Mlocked:              32 kB\\
+HighTotal:       3011400 kB\\
+HighFree:          56128 kB\\
+LowTotal:         864060 kB\\
+LowFree:          189708 kB\\
+SwapTotal:       3998716 kB\\
+SwapFree:        3848944 kB\\
+Dirty:               180 kB\\
+Writeback:             0 kB\\
+AnonPages:       1518200 kB\\
+Mapped:           263320 kB\\
+Shmem:            214548 kB\\
+Slab:              59356 kB\\
+SReclaimable:      43072 kB\\
+SUnreclaim:        16284 kB\\
+KernelStack:        3192 kB\\
+PageTables:        11796 kB\\
+NFS\_Unstable:          0 kB\\
+Bounce:                0 kB\\
+WritebackTmp:          0 kB\\
+CommitLimit:     5936444 kB\\
+Committed\_AS:    3895336 kB\\
+VmallocTotal:     122880 kB\\
+VmallocUsed:       16620 kB\\
+VmallocChunk:      83156 kB\\
+HardwareCorrupted:     0 kB\\
+AnonHugePages:         0 kB\\
+HugePages\_Total:       0\\
+HugePages\_Free:        0\\
+HugePages\_Rsvd:        0\\
+HugePages\_Surp:        0\\
+Hugepagesize:       2048 kB\\
+DirectMap4k:        8184 kB\\
+DirectMap2M:      903168 kB\\
+}
+} \vspace*{0.5cm} } } 
+
+
+
+\textbf{Información de discos:}
+
+\textbf{Información de dispositivos conectados a puertos PCI y USB:}
+
+PCI y USB permiten la interconexión de dispositivos periféricos a una computadora 
+personal estándar (también se encuentran en servidores junto a otro tipo de buses). 
+Puede que el lector este familiarizado con la conexión de 
+dispositivos USB, y con menos frecuencia PCI. Este último normalmente se encuentra 
+accesible dentro del gabinete donde reside la placa base, y a este tipo de buses se
+conectan placas de extensión como puede ser una placa de video, de sonido, de red, etc.   
+
+En la figura se muestran tres buses PCI para una placa base de pentium I:
+
+\begin{center}
+ \includegraphics{Bus_pci.jpg}
+\end{center}
+
+En ambos casos (USB y PCI) suele ser de interés obtener la información de cuáles son 
+los dispositivos conectados a estos puertos o buses. Convenientemente existen los 
+comandos \texttt{lsusb} y \texttt{lspci}. 
+
+Por ejemplo si conectamos un dispositivo, digamos una memoria flash (pendrive) o un 
+módem 3g USB, y el sistema no realiza automáticamente las acciones que esperamos, un primer paso en la 
+identificación del problema es observar si el dispositivo es reconocido o no. 
+
+En el siguiente ejemplo, se observan tres dispositivos conectados, un teclado, 
+un lector de memorias y un conector inalámbrico para mouse o teclado: 
+ 
+\colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} { 
+{\tt
+Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub\\
+Bus 002 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub\\
+Bus 003 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub\\
+Bus 004 Device 001: ID 1d6b:0001 Linux Foundation 1.1 root hub\\
+Bus 005 Device 001: ID 1d6b:0001 Linux Foundation 1.1 root hub\\
+Bus 006 Device 001: ID 1d6b:0001 Linux Foundation 1.1 root hub\\
+Bus 007 Device 001: ID 1d6b:0001 Linux Foundation 1.1 root hub\\
+Bus 005 Device 002: ID 0430:0005 Sun Microsystems, Inc. Type 6 Keyboard\\
+Bus 004 Device 002: ID 04e6:5119 SCM Microsystems, Inc. SCR3340 - ExpressCard54 Smart Card Reader\\
+Bus 004 Device 003: ID 1d57:32da Xenta 2.4GHz Receiver (Keyboard and Mouse)
+}
+} \vspace*{0.5cm} } } 
+
+Luego, si conectamos un módem 3g observamos un nuevo dispositivo: 
+
+\colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} { 
+{\tt
+Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub\\
+Bus 002 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub\\
+Bus 003 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub\\
+Bus 004 Device 001: ID 1d6b:0001 Linux Foundation 1.1 root hub\\
+Bus 005 Device 001: ID 1d6b:0001 Linux Foundation 1.1 root hub\\
+Bus 006 Device 001: ID 1d6b:0001 Linux Foundation 1.1 root hub\\
+Bus 007 Device 001: ID 1d6b:0001 Linux Foundation 1.1 root hub\\
+Bus 005 Device 002: ID 0430:0005 Sun Microsystems, Inc. Type 6 Keyboard\\
+Bus 004 Device 002: ID 04e6:5119 SCM Microsystems, Inc. SCR3340 - ExpressCard54 Smart Card Reader\\
+Bus 004 Device 003: ID 1d57:32da Xenta 2.4GHz Receiver (Keyboard and Mouse)\\
+\textbf{Bus 001 Device 005: ID 12d1:150f Huawei Technologies Co., Ltd.}
+}
+} \vspace*{0.5cm} } } 
+
+En este punto sabemos, al menos que el sistema reconoce el dispositivo. 
+
+
+
+
+\subsection*{Identificando recursos netamente lógicos}
+
+\section*{Monitoreo de recursos}
+
+
+\section*{Licencia}
+
+\end{document}
