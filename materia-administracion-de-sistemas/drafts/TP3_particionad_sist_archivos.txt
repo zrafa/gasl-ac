@@ -11,3 +11,5 @@ utilizando el comando fdisk
 Repita la destrucción de la tabla de particiones
 
 Cree nuevas particiones usando el comando cfdisk. 
+
+Crear un sistema de archivos ext2 y montarlo como ext3, otro como ext3 y montarlo como ext4.

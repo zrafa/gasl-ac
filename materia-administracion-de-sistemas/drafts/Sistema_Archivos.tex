@@ -369,28 +369,73 @@ tenido en cuenta a la hora de diseñar el tamaño del sistema de archivos.
 
 \subsection*{Sistemas de archivos soportados por Linux}
 
-Linux soporta una gran cantidad de tipos diferentes de sistemas de archivos. Para nuestros propósitos los más importantes son:
+Linux soporta una gran cantidad de tipos diferentes de sistemas de archivos.Con soportar nos podemos estar refiriendo a lectura y escritura, o en 
+algunos casos sólo lectura. Para nuestros propósitos los más importantes 
+son:
 
-minix
+{\bf ext4 (fourth extended filesystem o «cuarto sistema de archivos 
+extendido»)}
 
-    El más antiguo y supuestamente el más fiable, pero muy limitado en características (algunas marcas de tiempo se pierden, 30 caracteres de longitud máxima para los nombres de los archivos) y restringido en capacidad (como mucho 64 MB de tamaño por sistema de archivos).
-xia
+Es un sistema de archivos transaccional (en inglés journaling), anunciado 
+el 10 de octubre de 2006 por Andrew Morton, como una mejora compatible de 
+ext3. Esto significa que es posible montar un sistema de archivos ext3 como
+ext4 y usarlo transparentemente, mientras que la reversa puede no ser 
+siempre válida. Es la versión utilizada en la mayoría de los sistemas Linux
+modernos. 
 
-    Una versión modificada del sistema de archivos minix que eleva los límites de nombres de archivos y tamaño del sistema de archivos, pero por otro lado no introduce características nuevas. No es muy popular, pero se ha verificado que funciona muy bien.
-ext3
+{\bf ext3}
 
-    El sistema de archivos ext3 posee todas las propiedades del sistema de archivos ext2. La diferencia es que se ha añadido una bitácora (journaling). Esto mejora el rendimiento y el tiempo de recuperación en el caso de una caída del sistema. Se ha vuelto más popular que el ext2.
-ext2
+    El sistema de archivos ext3 posee todas las propiedades del sistema de
+archivos ext2. La diferencia es que se ha añadido una bitácora (journaling).
+Esto mejora el rendimiento y el tiempo de recuperación en el caso de una 
+caída del sistema y consecuente corrupción del sistema de archivos. 
+Actualmente aún muy utilizado. 
 
-    El más sistema de archivos nativo Linux que posee la mayor cantidad de características. Está diseñado para ser compatible con diseños futuros, así que las nuevas versiones del código del sistema de archivos no necesitará rehacer los sistemas de archivos existentes.
-ext
+{\bf ext2}
 
-    Una versión antigua de ext2 que no es compatible en el futuro. Casi nunca se utiliza en instalaciones nuevas, y la mayoría de la gente que lo utilizaba han migrado sus sistemas de archivos al tipo ext2.
-reiserfs
+La principal desventaja de ext2 es que no implementa la bitácora (en inglés
+Journaling) que sí poseen sus posteriores versiones ext3 y ext4. ext2 fue 
+elsistema de archivosp predeterminado de las distribuciones GNU/Linux Red 
+Hat, Fedora Core y Debian. Los lanzamientos de las nuevas versiones 
+estables, ext3 y ext4, han dezplazado considerablemente su uso. Está 
+diseñado para ser compatible con diseños futuros, así que las nuevas 
+versiones del código del sistema de archivos no  necesitan rehacer los 
+sistemas de archivos existentes.
 
-    Un sistema de archivos más robusto. Se utiliza una bitácora que provoca que la pérdida de datos sea menos frecuente. La bitácora es un mecanismo que lleva un registro por cada transacción que se va a realizar, o que ha sido realizada. Esto permite al sistema de archivos reconstruirse por sí sólo fácilmente tras un daño ocasionado, por ejemplo, por cierres del sistema inadecuados.
+{\bf reiserfs}
 
-Adicionalmente, existe soporte para sistemas de archivos adicionales ajenos, para facilitar el intercambio de archivos con otros sistemas operativos. Estos sistemas de archivos ajenos funcionan exactamente como los propios, excepto que pueden carecer de características usuales UNIX , o tienen curiosas limitaciones, u otros inconvenientes.
+    Un sistema de archivos robusto. Se utiliza una bitácora que provoca
+que la pérdida de datos sea menos frecuente. La bitácora es un mecanismo 
+que lleva un registro por cada transacción que se va a realizar, o que ha 
+sido realizada. Esto permite al sistema de archivos reconstruirse por sí 
+sólo fácilmente tras un daño ocasionado, por ejemplo, por cierres del 
+sistema inadecuados. 
+
+{\bf XFS  }
+
+XFS es un sistema de archivos de 64 bits con journaling de alto rendimiento
+creado por SGI (antiguamente Silicon Graphics Inc.) para su implementación 
+de UNIX llamada IRIX. En mayo de 2000, SGI liberó XFS bajo una licencia de 
+código abierto. 
+
+XFS se incorporó a Linux a partir de la versión 2.4.25. Los programas de 
+instalación de las distribuciones de SuSE, Gentoo, Mandriva, Slackware, 
+Fedora Core, Ubuntu y Debian ofrecen XFS como un sistema de archivos más.
+
+Esta diseñado para archivos y sistemas de archivos de gran tamaño.
+
+Por cuestiones de interoperabilidad, se hace necesario en muchos casos
+poder leer o escribir sobre sistemas de archivos que no son nativos de 
+GNU/Linux. Por este motivo, existe soporte para sistemas de archivos 
+adicionales, nativos de otros sistemas operativos o productos privativos. 
+De este modo, se facilita el intercambio de archivos con otros sistemas 
+operativos. 
+
+Desde el punto de vista de un usuario, estos sistemas de archivos ajenos 
+funcionan exactamente como los nativos, sin embargo pueden carecer de 
+algunas características. Por ejemplo el sistema de archivos vxfs (propiedad
+de Symantec) tiene soporte en Linux que permite que estos sistemas de 
+archivos sean leído pero no escritos. 
 
 msdos
 
