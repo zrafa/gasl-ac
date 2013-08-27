@@ -1,0 +1,13 @@
+Guardar la información sobre la tabla de particiones del disco 
+¿Qué tipo de particiones se encuentran creadas? 
+
+
+Destruir los primeros 512 bytes del disco utilizando el comando dd, observar
+qué sucedió con la tabla de particiones. 
+
+Recuperar la tabla de particiones a partir de la información guardada 
+utilizando el comando fdisk 
+
+Repita la destrucción de la tabla de particiones
+
+Cree nuevas particiones usando el comando cfdisk. 
