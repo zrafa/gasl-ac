@@ -437,72 +437,69 @@ algunas características. Por ejemplo el sistema de archivos vxfs (propiedad
 de Symantec) tiene soporte en Linux que permite que estos sistemas de 
 archivos sean leído pero no escritos. 
 
-msdos
+Algunos de los sistemas de archivos, no nativos, de interés son: 
+
+{\bf ntfs} 
+    Compatibilidad con el sistema de archivos NTFS de Microsoft Windows. 
+Permite lectura y escritura. 
+
+{\bf msdos}
 
     Compatibilidad con el sistema de archivos FAT de MS-DOS (y OS/2 y Windows NT).
-umsdos
+
+{\bf umsdos}
 
     Extiende el dispositivo de sistema de archivos msdos en Linux para obtener nombres de archivo largos, propietarios, permisos, enlaces, y archivos de dispositivo. Esto permite que un sistema de archivos msdos normal pueda utilizarse como si fuera de Linux, eliminando por tanto la necesidad de una partición independiente para Linux.
-vfat
+
+{\bf vfat}
 
     Esta es una extensión del sistema de archivos FAT conocida como FAT32. Soporta tamaños de discos mayores que FAT. La mayoría de discos con MS Windows son vfat.
-iso9660
+
+{\bf iso9660}
 
     El sistema de archivos estándar del CD-ROM; la extensión popular Rock Ridge del estándar del CD-ROM que permite nombres de archivo más largos se soporta de forma automática.
-nfs
+
+{\bf NFS (Network File System)}
 
     Un sistema de archivos de red que permite compartir un sistema de archivos entre varios ordenadores para permitir fácil acceso a los archivos de todos ellos.
-smbfs
 
-    Un sistema de archivos que permite compartir un sistema de archivos con un ordenador MS Windows. Es compatible con los protocolos para compartir archivos de Windows.
-hpfs
+{\bf smbfs (SAMBA file system)}
 
-    El sistema de archivos de OS/2.
-sysv
+    Un sistema de archivos que permite compartir un sistema de archivos con
+un ordenador MS Windows a través de la red. Es compatible con los 
+protocolos para compartir archivos de Windows. 
 
-    EL sistema de archivos de Xenix, Coherent y SystemV/386..
 
-La elección del sistema de archivos a utilizar depende de la situación. Si la compatibilidad o alguna otra razón hace necesario uno de los sistemas de archivos no nativos, entonces hay que utilizar ése. Si se puede elegir libremente, entonces lo más inteligente sería utilizar ext3, puesto que tiene todas las características de ext2, y es un sistema de archivos con bitácora.
+Existen también otros sistemas de archivos creados y utilizados por el 
+sitema operativo en sí mismo. Este es el caso del sistema de archivos 
+\texttt{proc}, generalmente accesible desde el directorio /proc, que en 
+realidad no es un sistema de archivos, aún cuando lo parece. El sistema 
+de archivos proc 
+facilita acceder a ciertas estructura de datos del núcleo, como la lista 
+de procesos (de ahí el nombre). Hace que estas estructuras de datos 
+parezcan un sistema de archivos, y que el sistema de archivos pueda ser 
+manipulado con las herramientas de archivos habituales. Por ejemplo, para
+obtener una lista de todos los procesos se podría utilizar el comando 
+\texttt{ls -ld /proc/[0-9]*}, cada directorio numérico se corresponde con
+un PID. 
 
-Existe también el sistema de archivos proc, generalmente accesible desde el directorio /proc, que en realidad no es un sistema de archivos, aún cuando lo parece. El sistema de archivos proc facilita acceder a ciertas estructura de datos del núcleo, como la lista de procesos (de ahí el nombre). Hace que estas estructuras de datos parezcan un sistema de archivos, y que el sistema de archivos pueda ser manipulado con las herramientas de archivos habituales. Por ejemplo, para obtener una lista de todos los procesos se puede utilizar el comando
 
-{\tt
-\$ ls -l /proc\\
-total 0\\
-dr-xr-xr-x   4 root     root            0 Jan 31 20:37 1\\
-dr-xr-xr-x   4 liw      users           0 Jan 31 20:37 63\\
-dr-xr-xr-x   4 liw      users           0 Jan 31 20:37 94\\
-dr-xr-xr-x   4 liw      users           0 Jan 31 20:37 95\\
-dr-xr-xr-x   4 root     users           0 Jan 31 20:37 98\\
-dr-xr-xr-x   4 liw      users           0 Jan 31 20:37 99\\
--r--r--r--   1 root     root            0 Jan 31 20:37 devices\\
--r--r--r--   1 root     root            0 Jan 31 20:37 dma\\
--r--r--r--   1 root     root            0 Jan 31 20:37 filesystems\\
--r--r--r--   1 root     root            0 Jan 31 20:37 interrupts\\
--r--------   1 root     root      8654848 Jan 31 20:37 kcore\\
--r--r--r--   1 root     root            0 Jan 31 11:50 kmsg\\
--r--r--r--   1 root     root            0 Jan 31 20:37 ksyms\\
--r--r--r--   1 root     root            0 Jan 31 11:51 loadavg\\
--r--r--r--   1 root     root            0 Jan 31 20:37 meminfo\\
--r--r--r--   1 root     root            0 Jan 31 20:37 modules\\
-dr-xr-xr-x   2 root     root            0 Jan 31 20:37 net\\
-dr-xr-xr-x   4 root     root            0 Jan 31 20:37 self\\
--r--r--r--   1 root     root            0 Jan 31 20:37 stat\\
--r--r--r--   1 root     root            0 Jan 31 20:37 uptime\\
--r--r--r--   1 root     root            0 Jan 31 20:37 \\
-version\\
-\$\\
-}
+\subsection*{¿Qué sistemas de archivos deben utilizarse?}
 
-(Puede haber no obstante algunos archivos adicionales que no correspondan con ningún proceso. El ejemplo anterior se ha recortado.)
+No existe un regla que establezca la mejor opción parar todos los casos. 
+La elección del sistema de archivos a utilizar depende de la situación. Si 
+la compatibilidad o alguna otra razón hace necesario uno de los sistemas 
+de archivos no nativos, entonces hay que utilizar ése. Si se puede elegir 
+libremente, entonces lo más recomendable sería utilizar ext4, ya que es 
+la opción predeterminada y nativa. 
 
-Tenga en cuenta que aunque se llame sistema de archivos, ninguna parte del sistema de archivos proc toca el disco. Existe tan sólo en la imaginación del núcleo. Cuando alguien intenta echar un vistazo a alguna parte del sistema de archivos proc, el núcleo hace que parezca como si esa parte existiera en alguna parte, aunque no lo haga. Así, aunque exista un archivo /proc/kcore de muchos megabytes, no quita espacio del disco.
-¿Qué sistemas de archivos deben utilizarse?
-
-Existe generalmente poca ventaja en utilizar muchos sistemas de archivos distintos. Actualmente, el más popular sistema de archivos es ext3, debido a que es un sistema de archivos con bitácora. Hoy en día es la opción más inteligente. Reiserfs es otra elección popular porque también posee bitácora. Dependiendo de la sobrecarga del listado de estructuras, velocidad, fiabilidad (percibible), compatibilidad, y otras varias razones, puede ser aconsejable utilizar otro sistema de archivos. Estas necesidades deben decidirse en base a cada caso.
-
-Un sistema de archivos que utiliza bitácora se denomina sistema de archivos con bitácora. Un sistema de archivos con bitácora mantiene un diario, la bitácora, de lo que ha ocurrido en el sistema de archivos. Cuando sobreviene una caída del sistema, o su hijo de dos años pulsa el botón de apagado como el mío adora hacer, un sistema de archivos con bitácora se diseña para utilizar los diarios del sistema de archivos para recuperar datos perdidos o no guardados. Esto reduce la pérdida de datos y se convertirá en una característica estándar en los sistemas de archivos de Linux. De cualquier modo, no extraiga una falsa sensación de seguridad de esto. Como todo en esta vida, puede haber errores. Procure siempre guardar sus datos para prevenir emergencias.
-
+Existe generalmente poca ventaja en utilizar muchos sistemas de archivos 
+distintos en una misma computadora. Actualmente, el más popular 
+sistema de archivos en las distribuciones GNU/Linux es ext4, debido a que 
+es un sistema de archivos con bitácora. Sin embargo, podríamos necesitar 
+un sistema de archivos diseñado para archivos grandes, en cuyo caso 
+el sistema de archivos xfs podría ser una elección. Cada caso debe ser
+analizado previo a realizar una elección.
 
 
 \section*{Referencias}
