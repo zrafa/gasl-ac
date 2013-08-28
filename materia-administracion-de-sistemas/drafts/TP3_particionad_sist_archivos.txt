@@ -110,7 +110,12 @@ d. - Repita la destrucción de la tabla de particiones
 
 5- Continúe trabajando con el PEN DRIVE USB.
 
-- Agregar una entrada en fstab y verificar su funcionamiento. Montar y desmontar.
+- Agregar una entrada en fstab y verificar su funcionamiento. 
+- Montar.
+- Copiar el contenido de /etc/ (archivos, directorios y subdirectorio) al
+  sistema de archivos recién montado.
+- Desmontar.
+- Montar y verificar la existencia del contenido copiado. Desmontar.
 - Quitar de fstab la entrada que referencia al sistema de archivos de la partición del PEN Drive.
 
 
