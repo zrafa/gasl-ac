@@ -1,12 +1,77 @@
-Guardar la información sobre la tabla de particiones del disco 
-¿Qué tipo de particiones se encuentran creadas? 
+1- Obtener la información del disco de la maquina virtual asignada.
+
+- ¿Cuál es el archivo de dispositivo que hace referencia al disco completo?
+
+- ¿De qué tamaño es el disco? En unidades de bytes, MB, y en GB.
+
+- ¿Cuántas particiones tiene el disco?  ¿Cuales son los archivos de dispositivos de esas particiones?
+
+- ¿De qué tamaño es cada partición del disco?
+
+- ¿De qué tipo son las particiones del disco? Enumere y mencione el tipo (Ej: partición 1 es de tipo NTFS)
+
+- ¿Qué sistema de archivos contiene cada partición? ¿Alguna particion en particular no tiene sistema de archivos? 
+
+- ¿Describa los comando qué debe haber ejecutado un administrador para crear los sistemas de archivos de las particiones actuales? ATENCION: NO EJECUTAR EL COMANDO, O SE ELIMINARA TODA LA INFORMACION CON EL NUEVO SISTEMA DE ARCHIVOS.
+Simplemente especifique en este práctico (SIN EJECUTAR) QUÉ comandos debe haber ejecutado el administrador.
 
 
-Destruir los primeros 512 bytes del disco utilizando el comando dd, observar
+
+
+
+2- Obtener información del disco de la PC local con la que trabaja (PC de laboratorio o netbook o notebook)
+
+- ¿Cuál es el archivo de dispositivo que hace referencia al disco completo?
+
+- ¿De qué tamaño es el disco? En unidades de bytes, MB, y en GB.
+
+- ¿Cuántas particiones tiene el disco?  ¿Cuales son los archivos de dispositivos de esas particiones?
+
+- ¿De qué tamaño es cada partición del disco?
+
+- ¿De qué tipo son las particiones del disco? Enumere y mencione el tipo (Ej: partición 1 es de tipo NTFS)
+
+- ¿Qué sistema de archivos contiene cada partición? ¿Alguna particion en particular no tiene sistema de archivos? 
+
+- ¿Describa los comando qué debe haber ejecutado un administrador para crear los sistemas de archivos de las particiones actuales? ATENCION: NO EJECUTAR EL COMANDO, O SE ELIMINARA TODA LA INFORMACION CON EL NUEVO SISTEMA DE ARCHIVOS.
+Simplemente especifique en este práctico (SIN EJECUTAR) QUÉ comandos debe haber ejecutado el administrador.
+
+
+
+3- Coloque un PEN DRIVE USB en un puerto USB de la PC.
+Obtener información del disco pen drive USB conectado.
+
+- ¿Cuál es el archivo de dispositivo que hace referencia al disco completo?
+
+- ¿De qué tamaño es el disco? En unidades de bytes, MB, y en GB.
+
+- ¿Cuántas particiones tiene el disco?  ¿Cuales son los archivos de dispositivos de esas particiones?
+
+- ¿De qué tamaño es cada partición del disco?
+
+- ¿De qué tipo son las particiones del disco? Enumere y mencione el tipo (Ej: partición 1 es de tipo NTFS)
+
+- ¿Qué sistema de archivos contiene cada partición? ¿Alguna particion en particular no tiene sistema de archivos? 
+
+- ¿Describa los comando qué debe haber ejecutado un administrador para crear los sistemas de archivos de las particiones actuales? ATENCION: NO EJECUTAR EL COMANDO, O SE ELIMINARA TODA LA INFORMACION CON EL NUEVO SISTEMA DE ARCHIVOS.
+Simplemente especifique en este práctico (SIN EJECUTAR) QUÉ comandos debe haber ejecutado el administrador.
+
+
+
+4- Continúe trabajando con el PEN DRIVE USB.
+
+a. - Guardar la información sobre la tabla de particiones del disco.
+   ATENCION: debe almacenar
+   - ¿Qué tipo de particiones se encuentran creadas? 
+
+
+b. - Destruir los primeros 512 bytes del disco utilizando el comando dd, observar
 qué sucedió con la tabla de particiones. 
 
-Recuperar la tabla de particiones a partir de la información guardada 
-utilizando el comando fdisk 
+
+
+c. - Recuperar la tabla de particiones a partir de la información guardada 
+utilizando el comando fdisk.
 
 Repita la destrucción de la tabla de particiones
 
