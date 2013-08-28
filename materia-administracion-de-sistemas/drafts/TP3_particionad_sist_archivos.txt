@@ -1,20 +1,42 @@
-Trabajo Práctico 3
+******************************************************************
+        Administración de Sistemas
+        Departamento Ingeniería de Computadoras
+        Facultad de Informática - Universidad Nacional del Comahue
+******************************************************************
+
+TP N 3 - Particiones y Sistemas de Archivos
+-------------------------------------------
+
+
+
+ NOTA : Los siguientes ejercicios se realizan en su totalidad desde una
+        terminal en un sistema GNU/Linux .
+	Para cada pregunte indique el comando o los comandos que utilizó
+        para obtener la respuesta.
+
+
 1- Obtener la información del disco de la maquina virtual asignada.
 
 - ¿Cuál es el archivo de dispositivo que hace referencia al disco completo?
 
 - ¿De qué tamaño es el disco? En unidades de bytes, MB, y en GB.
 
-- ¿Cuántas particiones tiene el disco?  ¿Cuales son los archivos de dispositivos de esas particiones?
+- ¿Cuántas particiones tiene el disco?  ¿Cuales son los archivos de
+  dispositivos de esas particiones?
 
 - ¿De qué tamaño es cada partición del disco?
 
-- ¿De qué tipo son las particiones del disco? Enumere y mencione el tipo (Ej: partición 1 es de tipo NTFS)
+- ¿De qué tipo son las particiones del disco? Enumere y mencione el tipo
+  (Ej: partición 1 es de tipo NTFS)
 
 - ¿Qué sistema de archivos contiene cada partición? ¿Alguna particion en particular no tiene sistema de archivos? 
 
-- ¿Describa los comando qué debe haber ejecutado un administrador para crear los sistemas de archivos de las particiones actuales? ATENCION: NO EJECUTAR EL COMANDO, O SE ELIMINARA TODA LA INFORMACION CON EL NUEVO SISTEMA DE ARCHIVOS.
-Simplemente especifique en este práctico (SIN EJECUTAR) QUÉ comandos debe haber ejecutado el administrador.
+- ¿Describa los comando qué debe haber ejecutado un administrador para
+  crear los sistemas de archivos de las particiones actuales? 
+  ATENCION: NO EJECUTAR EL COMANDO, O SE ELIMINARA TODA LA INFORMACION CON EL
+  NUEVO SISTEMA DE ARCHIVOS.
+  Simplemente especifique en este práctico (SIN EJECUTAR) QUÉ comandos debe
+  haber ejecutado el administrador.
 
 
 
@@ -26,36 +48,43 @@ Simplemente especifique en este práctico (SIN EJECUTAR) QUÉ comandos debe habe
 
 - ¿De qué tamaño es el disco? En unidades de bytes, MB, y en GB.
 
-- ¿Cuántas particiones tiene el disco?  ¿Cuales son los archivos de dispositivos de esas particiones?
+- ¿Cuántas particiones tiene el disco?  ¿Cuales son los archivos de
+  dispositivos de esas particiones?
 
 - ¿De qué tamaño es cada partición del disco?
 
-- ¿De qué tipo son las particiones del disco? Enumere y mencione el tipo (Ej: partición 1 es de tipo NTFS)
+- ¿De qué tipo son las particiones del disco? Enumere y mencione el tipo
+  (Ej: partición 1 es de tipo NTFS)
 
-- ¿Qué sistema de archivos contiene cada partición? ¿Alguna particion en particular no tiene sistema de archivos? 
+- ¿Qué sistema de archivos contiene cada partición? ¿Alguna particion en
+  particular no tiene sistema de archivos? 
 
-- ¿Describa los comando qué debe haber ejecutado un administrador para crear los sistemas de archivos de las particiones actuales? ATENCION: NO EJECUTAR EL COMANDO, O SE ELIMINARA TODA LA INFORMACION CON EL NUEVO SISTEMA DE ARCHIVOS.
-Simplemente especifique en este práctico (SIN EJECUTAR) QUÉ comandos debe haber ejecutado el administrador.
 
 
 
 3- Coloque un PEN DRIVE USB en un puerto USB de la PC.
-Obtener información del disco pen drive USB conectado.
+   Obtener información del disco pen drive USB conectado.
 
 - ¿Cuál es el archivo de dispositivo que hace referencia al disco completo?
 
 - ¿De qué tamaño es el disco? En unidades de bytes, MB, y en GB.
 
-- ¿Cuántas particiones tiene el disco?  ¿Cuales son los archivos de dispositivos de esas particiones?
+- ¿Cuántas particiones tiene el disco?  ¿Cuales son los archivos de
+  dispositivos de esas particiones?
 
 - ¿De qué tamaño es cada partición del disco?
 
-- ¿De qué tipo son las particiones del disco? Enumere y mencione el tipo (Ej: partición 1 es de tipo NTFS)
+- ¿De qué tipo son las particiones del disco? Enumere y mencione el tipo
+  (Ej: partición 1 es de tipo NTFS)
 
 - ¿Qué sistema de archivos contiene cada partición? ¿Alguna particion en particular no tiene sistema de archivos? 
 
-- ¿Describa los comando qué debe haber ejecutado un administrador para crear los sistemas de archivos de las particiones actuales? ATENCION: NO EJECUTAR EL COMANDO, O SE ELIMINARA TODA LA INFORMACION CON EL NUEVO SISTEMA DE ARCHIVOS.
-Simplemente especifique en este práctico (SIN EJECUTAR) QUÉ comandos debe haber ejecutado el administrador.
+- ¿Describa los comando qué debe haber ejecutado un administrador para
+  crear los sistemas de archivos de las particiones actuales? 
+  ATENCION: NO EJECUTAR EL COMANDO, O SE ELIMINARA TODA LA INFORMACION CON EL
+  NUEVO SISTEMA DE ARCHIVOS.
+  Simplemente especifique en este práctico (SIN EJECUTAR) QUÉ comandos debe
+  haber ejecutado el administrador.
 
 
 
@@ -73,14 +102,17 @@ c. - Recuperar la tabla de particiones a partir de la información guardada en e
 utilizando el comando fdisk.
 
 d. - Repita la destrucción de la tabla de particiones
-   - Crear nuevas particiones usando el comando cfdisk. Al menos, una de las particiones debe ser de tipo Linux.
+   - Crear nuevas particiones usando el comando cfdisk. Al menos, una de las
+     particiones debe ser de tipo Linux.
    - Crear un sistema de archivos ext2 en una de las particiones de tipo Linux.
    - Montar la partición ext2 como ext4. 
+
 
 5- Continúe trabajando con el PEN DRIVE USB.
 
 - Agregar una entrada en fstab y verificar su funcionamiento. Montar y desmontar.
 - Quitar de fstab la entrada que referencia al sistema de archivos de la partición del PEN Drive.
+
 
 6- Continúe trabajando con el PEN DRIVE USB.
 
