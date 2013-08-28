@@ -16,7 +16,7 @@
  \makeatletter
  {\color{bl} \centering \huge \sc \textbf{
  Particionado y sistema de archivos \\ 
-\large \vspace*{-8pt} \color{black} Guia básica sobre particionado y sistema de archivos.
+\large \vspace*{-8pt} \color{black} Guía básica sobre particionado y sistema de archivos.
  \vspace*{8pt} }\par}
  \makeatother
 
@@ -64,7 +64,7 @@ discos y sistemas de archivos.
 
 \section*{Particiones}
 
-Un disco rígido puede dividirse en varias particiones.{\bf Cada partición 
+Un disco rígido puede dividirse en varias particiones. {\bf Cada partición 
 funciona como si fuera un disco duro independiente.} 
 La idea es que si sólo se tiene un disco, y se quieren tener, digamos,
  dos sistemas operativos en él, se pueda dividir 
@@ -76,8 +76,9 @@ particiones necesitaríamos comprar un disco rígido para cada sistema
 operativo.
 
 Además de los discos rígidos, otros dispositivos de almacenamiento 
-masivo suelen particionarse, como por ejemplo las memorias flash (pendrive).Este apunte pretende cubrir el concepto de particionado, aplicando en par
-ticular dicho concepto a los esquemas seguidos por las PC convencionales.  
+masivo suelen particionarse, como por ejemplo las memorias flash (pendrive).
+Este apunte pretende cubrir el concepto de particionado, aplicando en 
+particular dicho concepto a los esquemas seguidos por las PC convencionales.  
 
 
 \subsection*{El MBR, sectores de arranque y la tabla de particiones}
@@ -395,9 +396,9 @@ Actualmente aún muy utilizado.
 
 La principal desventaja de ext2 es que no implementa la bitácora (en inglés
 Journaling) que sí poseen sus posteriores versiones ext3 y ext4. ext2 fue 
-elsistema de archivosp predeterminado de las distribuciones GNU/Linux Red 
+el sistema de archivos predeterminado de las distribuciones GNU/Linux Red 
 Hat, Fedora Core y Debian. Los lanzamientos de las nuevas versiones 
-estables, ext3 y ext4, han dezplazado considerablemente su uso. Está 
+estables, ext3 y ext4, han desplazado considerablemente su uso. Está 
 diseñado para ser compatible con diseños futuros, así que las nuevas 
 versiones del código del sistema de archivos no  necesitan rehacer los 
 sistemas de archivos existentes.
@@ -471,7 +472,7 @@ protocolos para compartir archivos de Windows.
 
 
 Existen también otros sistemas de archivos creados y utilizados por el 
-sitema operativo en sí mismo. Este es el caso del sistema de archivos 
+sistema operativo en sí mismo. Este es el caso del sistema de archivos 
 \texttt{proc}, generalmente accesible desde el directorio /proc, que en 
 realidad no es un sistema de archivos, aún cuando lo parece. El sistema 
 de archivos proc 
@@ -501,12 +502,252 @@ un sistema de archivos diseñado para archivos grandes, en cuyo caso
 el sistema de archivos xfs podría ser una elección. Cada caso debe ser
 analizado previo a realizar una elección.
 
+\subsection*{Crear un sistema de archivos}
 
-\section*{Referencias}
+Un sistema de archivos se crea, esto es, se crean y guardan en el disco las
+estructuras de datos lógicas que permiten la organización de los archivos,
+con el comando \texttt{mkfs}. Existen en realidad programas separados para 
+cada tipo de sistemas de archivos. \texttt{mkfs} es únicamente una careta 
+que ejecuta el programa apropiado dependiendo del tipo de sistemas de 
+archivos deseado. El tipo se selecciona 
+con la opción ``\texttt{-t fstype}''. Es así que si creamos ejecutamos 
+el comando \texttt{mkfs -t vfat}, en realidad terminaremos invocando 
+el comando \texttt{mkfs.vfat}.
 
-[Intro] Tutuorial Introducción a la Administración de Sistemas GNU/Linux. Materia Introducción
-a la Administración de Sistemas. UNCOMA. TUASSL. 
+Los programas a los que ``\texttt{-t fstype}'' invoca tienen líneas de 
+comando ligeramente diferentes dependiendo de las características 
+particulares del sistema de archivos a construir. En algunos casos 
+puede ser necesario cambiar los valores predeterminados, por lo que 
+recurriremos a la página del manual correspondiente al comando específico 
+para la construcción del sistema de archivos en cuestión, por ejemplo 
+``\texttt{man mkfs.vfat}''.  
 
-\section*{Licencia}
+
+\colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} { 
+{\bf Ejemplo: crear sistema de archivos ext3 en /dev/sdc1 }\\
+{\tt
+\# mkfs -t ext3 /dev/sdc1\\
+mke2fs 1.42.8 (20-Jun-2013)\\
+Etiqueta del sistema de ficheros=\\
+OS type: Linux\\
+Tamaño del bloque=4096 (bitácora=2)\\
+Tamaño del fragmento=4096 (bitácora=2)\\
+Stride=0 blocks, Stripe width=0 blocks\\
+65536 inodes, 262144 blocks\\
+13107 blocks (5.00\%) reserved for the super user\\
+Primer bloque de datos=0\\
+Número máximo de bloques del sistema de ficheros=268435456\\
+8 bloque de grupos\\
+32768 bloques por grupo, 32768 fragmentos por grupo\\
+8192 nodos-i por grupo\\
+Respaldo del superbloque guardado en los bloques: \\
+	32768, 98304, 163840, 229376\\
+\\
+Allocating group tables: 0/8   hecho                           \\
+Escribiendo las tablas de nodos-i: 0/8 hecho                           \\
+Creating journal (8192 blocks): hecho\\
+Escribiendo superbloques y la información contable del sisteDel comando anterior observamos que todos los PID listados pertenecen al 
+usuario lechnerm. Una opción será entonces comunicarse con el usuario y 
+pedirle que cierre sus programas amablemente. }
+} \vspace*{0.5cm} } } 
+
+\subsection*{Montar y desmontar sistemas de archivos}
+
+Antes de que se pueda utilizar un sistema de archivos, debe ser montado. 
+Durante este proceso el sistema operativo realiza operaciones de 
+mantenimiento para asegurarse que todo funciona correctamente. 
+Como todos los archivos en UNIX están en un mismo árbol, independizando 
+al usuario de la ubicación física real de cada archivo, la operación de 
+montaje provocará que el contenido del nuevo sistema de archivos 
+aparezca como dentro de un subdirectorio existente en algún 
+sistema de archivos montado previamente.
+
+Por ejemplo, es usual que el subdirectorio \texttt{/home} tenga su propio 
+sistema de archivos en una partición separada del sistema de archivo raíz.
+En este caso, si el sistema de archivos de \texttt{/home} no se encuentra
+montado, al listar el directorio observaremos que su contenido 
+esta vació. Luego, al montar la partición de disco que contiene el sistema
+de archivos de \texttt{/home}, hacemos visible su contenido, es decir que 
+al listar el contenido de \texttt{/home} obtendremos la lista de archivos
+guardados en esa partición. 
+
+El directorio dónde se ``engancha'' o monta el sistema de archivos se 
+conoce como ``\textit{punto de montaje}''. Por ejemplo, diremos que el 
+dispositivo {/dev/sda2} se encuentra montado en el punto de montaje 
+\texttt{/home}. De este modo, los puntos de montajes son subdirectorios, 
+que comienzan a partir del directorio raíz y es donde se presentan los
+sistemas de archivos almacenados en los dispositivos, para su acceso.  
+
+Los comando \texttt{mount} y \texttt{umount} permiten montar y desmontar
+respectivamente sistemas de archivos. 
+
+\textbf{El comando \texttt{mount}}
+
+El comando mount permite entre otras cosas, listar los sistemas de 
+archivos actualmente montados y sus propiedades de montaje. Por ejemplo: 
+
+
+\colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} { 
+{\bf Ejemplo: salida del comando \texttt{mount}} \\ 
+{\tt
+\# mount\\ 
+sysfs on /sys type sysfs (rw,nosuid,nodev,noexec,relatime)\\
+proc on /proc type proc (rw,nosuid,nodev,noexec,relatime)\\
+udev on /dev type devtmpfs (rw,relatime,size=10240k,nr\_inodes=946053,mode=755)\\
+tmpfs on /run type tmpfs (rw,nosuid,noexec,relatime,size=758272k,mode=755)\\
+/dev/sda1 on / type ext4 (rw,relatime,errors=remount-ro,data=ordered)\\
+/dev/sda2 on /home type ext4 (rw,relatime,errors=remount-ro,data=ordered)\\
+nodo3:/mnt/500gb on /mnt type nfs (rw,relatime,vers=3,rsize=262144,\\ 
+wsize=262144,namlen=255,hard,proto=tcp,timeo=600,retrans=2,sec=sys,\\ 
+mountaddr=192.168.0.33,mountvers=3,mountport=56384,mountproto=udp,\\
+local\_lock=none,addr=192.168.0.33)\\
+\\
+}
+} \vspace*{0.5cm} } } 
+
+El comando mount, también nos permite montar nuevos sistemas de archivos 
+dentro de la jerarquía de directorios. Para este caso, recibe dos 
+argumentos. El primero es el archivo de 
+dispositivo correspondiente al disco o partición que contiene el sistema 
+de archivos. El segundo es el directorio bajo el cual va a ser montado. 
+
+\colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} { 
+{\bf Ejemplo:} \\
+{\tt
+\# mount /dev/sda2 /usr\\
+\# mount /dev/sdb2 /home\\ 
+}
+} \vspace*{0.5cm} } } 
+
+Tras estos dos comandos el contenido de los dos sistemas de archivos 
+aparecen como los contenidos de los directorios /home y /usr, 
+respectivamente. Se dice que ``/dev/sdb2 está montado en /home'', e 
+igualmente para /usr, ``/dev/sda2 está montado en /usr''. Para ver
+cualquiera de los sistemas de archivos, se puede mirar el contenido del 
+directorio en el que fue montado, como si fuera cualquier otro directorio.
+
+Observe la diferencia entre el archivos de dispositivo, /dev/sda2, y el 
+punto de montaje, /home. El archivo de dispositivo proporciona acceso al 
+contenido crudo del disco, el directorio de montaje proporciona acceso a 
+los archivos del disco. El directorio de montaje se denomina punto de 
+montaje.
+
+Linux soporta multitud de sistemas de archivos, el comando \texttt{mount}
+intentará adivinar el tipo de sistema de archivos. Se puede utilizar 
+la opción ``\texttt{-t fstype}'' para especificar el tipo manualmente; 
+esto es necesario en determinados casos, puesto que la heurística que 
+utiliza \texttt{mount} no siempre funciona. Por ejemplo, para montar
+un disco MS-DOS, se puede utilizar el comando siguiente:
+
+\colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} { 
+{\tt
+\# mount -t msdos /dev/sdc1 /mnt
+}
+} \vspace*{0.5cm} } } 
+
+El directorio de montaje deberá estar vacío, aunque debe existir. 
+Cualquier archivo existente en él, en cualquier caso, será inaccesible 
+por su nombre mientras el nuevo sistema de archivos esté montado 
+(quedará oculto bajo el nuevo sistema de archivos montado. Cualquier 
+archivo que estuviera abierto seguirá estando accesible). 
+
+El comando mount también permite especificar ciertas opciones acerca del 
+sistema de archivos a montar. Por ejemplo, si no tiene intención de 
+escribir nada en el sistema de archivos a montar, puede utilizar la 
+opción  \texttt{-r} de mount para realizar un montaje de sólo lectura. 
+Esto provocará que el núcleo detenga cualquier intento de escribir en el 
+sistema de archivos, y también impedirá que el núcleo actualice el tiempo 
+de acceso a los nodos-i.
+
+El lector atento habrá notado un ligero problema lógico. ¿Cómo se monta 
+el primer sistema de archivos (denominado sistema de archivos raíz, ya que 
+contiene al directorio raíz), si obviamente no puede montarse sobre otro 
+sistema de archivos? Bueno, la respuesta es que se realiza un truco de
+ magia. El sistema de archivos raíz se monta mágicamente a la hora 
+del arranque, y se puede confiar en que siempre será montado. Si el 
+sistema de archivos no puede montarse, el sistema no arrancará. El 
+nombre del sistema de archivos que mágicamente se monta como root está 
+compilado dentro del núcleo, o se especifica utilizando opciones del gestor
+de arranque.
+
+En muchos sistemas existen otros sistemas de archivos que también deben 
+montarse de forma automática durante en el arranque. Estos se especifican 
+en el archivo de configuración \texttt{/etc/fstab} ; 
+vea la página de manual de fstab para los 
+detalles en el formato. Los detalles sobre cuándo se montan exactamente 
+los sistemas de archivos adicionales dependen de muchos factores, y 
+pueden ser configurados por cada administrador si lo necesita.
+
+\textbf{El comando \texttt{umount}}
+
+Cuando un sistema de archivos no necesita seguir montado, puede 
+desmontarse con el comando  \texttt{umount}. Dicho comando toma un 
+argumento: o bien el archivo de dispositivo o el punto de montaje. 
+Por ejemplo, para desmontar los directorios del ejemplo anterior, 
+se pueden utilizar los comandos: 
+
+\colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} { 
+{\bf Ejemplo:} \\
+{\tt
+\# umount /usr\\
+\# umount /dev/sdb2\\ 
+}
+} \vspace*{0.5cm} } } 
+
+Debido al buffer cache de disco, los datos no se escriben necesariamente 
+hasta que se desmonta el sistema de archivos. De modo que remover un 
+dispositivo de almacenamiento sin cuidado, puede provocar 
+errores en el contenido del sistema de archivos. \textbf{El comando 
+\texttt{umount}} garantiza que todos las escrituras pendientes, se 
+reflejen en el disco antes de desmontar el sistema de archivos, 
+garantizando que todos los datos y estructuras del sistema de archivos 
+se encuentren en buen estado.
+
+\fcolorbox{black}{grey}{
+\parbox[t]{1.0\linewidth}{ \vspace*{0.4cm}
+{\bf Lo importante:}  en el caso de dispositivos removibles en caliente, 
+como una memoria flash usb, es de suma importancia desmontar los sistemas
+de archivos que hubiera montados \textbf{antes} de desconectar el
+dispositivo. La omisión de este paso puede involucrar pérdida de datos 
+dentro del sistema de archivos.  
+\vspace*{0.4cm} } }
+
+También es importante notar que para poder desmontar un sistema de archivos,
+el mismo no debe estar en uso. Esto significa que ningún proceso debe
+tener archivos abiertos que se encuentren en el sistema de archivos a
+desmontar. Si intentamos desmontar un sistema de archivos en uso, el 
+comando \texttt{umount} fallará. En este caso, el administrador deberá 
+averiguar cuáles son los procesos y archivos abiertos. Los comandos 
+\texttt{fuser} y \texttt{lsof} son de gran utilidad a la hora de averiguar 
+esta información.   
+
+
+\colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} { 
+{\bf Ejemplo de detección de archivos abiertos: } \\
+{\tt
+\# fuser -cu /home \\ 
+/home:                2967cm(lechnerm)  3012m(lechnerm)  3023cm(lechnerm) \\
+ 3038m(lechnerm)  3060cm(lechnerm)  3064cm(lechnerm)  3109cm(lechnerm) \\ 
+3111c(lechnerm)  3114c(lechnerm)  3116c(lechnerm)  3119c(lechnerm)  \\
+}
+Del comando anterior observamos que todos los PID listados pertenecen al 
+usuario lechnerm. Una opción será entonces comunicarse con el usuario y 
+pedirle que cierre sus programas amablemente. 
+} \vspace*{0.5cm} } } 
+
+
+
+Montar y desmontar requieren privilegios de superusuario, esto es, sólo 
+root puede hacerlo. La manipulación incorrecta, intencional o no, del 
+sistema de archivos puede dañar seriamente el funcionamiento del sistema. 
+Por ejemplo un usuario desprevenido podría desmontar el sistema de archivos
+montado en /home y causar que el resto de los usuarios no puedan acceder 
+a sus datos, o ingresar al sistema. Esta restricción puede resultar 
+incómoda, cuando hablamos de sistemas de archivos en dispositivos
+removibles, como un pendrive. Para solucionar el problema, se usan 
+diversos métodos, entre ellos la manipulación de grupos y permisos sobre 
+los archivos de dispositivo particulares. 
+
+\include{licGASL}
 
 \end{document}

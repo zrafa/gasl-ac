@@ -12,4 +12,12 @@ Repita la destrucción de la tabla de particiones
 
 Cree nuevas particiones usando el comando cfdisk. 
 
-Crear un sistema de archivos ext2 y montarlo como ext3, otro como ext3 y montarlo como ext4.
+Crear un sistema de archivos ext2 y montarlo como ext4. 
+
+montar un dispositivo y desmontarlo manualmente. 
+
+agregar una entrada en fstab y verificar su funcionamiento. 
+
+montar en /mnt; cd /mnt y tratar de desmontar. Sacar conclusiones. Utilizar
+fuser, ps 
+
