@@ -29,6 +29,9 @@ sistema de archivos, en caso afirmativo indique el paquete de software instalado
 
 Los siguientes incisos deben realizarme en la computadora 10.0.2.XXX:
 --------------------------------------------------------------------
+¿Cuál es el tipo de sistema de archivos de /mnt/compartido? Observe 
+el comando mount. 
+
 Verifique a quién pertenecen los archivos en /mnt/compartido. ¿Coincide 
 con el usuario en la máquina virtual? ¿Qué tienen en común? 
 
