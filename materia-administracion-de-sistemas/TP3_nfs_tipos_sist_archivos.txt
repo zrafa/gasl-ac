@@ -1,45 +1,66 @@
 El servicio de NFS permite compartir sistemas de archivos a través de la red. 
 Este sistema de archivos es ampliamente utilizado en el entorno UNIX. 
 
+
 *********************************************************
 En todos los casos indique el comando que utilizó para 
 realizar el ejercicio. 
 *********************************************************
 
+
 Los siguientes ejercicios deben realizarse en la máquina virtual asignada a su grupo:
 ------------------------------------------------------------------------------------
+
+
 Guarde la salida del comando mount justo debajo de esta oración.  
 
+
 Monte a través de la red el sistema de archivos NFS ubicado en la computadora 
-10.0.2.XXX, directorio /mnt/compartido, en el punto de montaje /nfs. 
+10.0.5.7, directorio /mnt/compartido, en el punto de montaje /nfs. 
+
 
 Liste el contenido del directorio /nfs incluyendo los permisos de archivos. 
 ¿A quién pertenecen los archivos?
 
-Cree un usuario con UID 1055. 
+
+Cree un usuario con UID 1009. 
+
 
 Liste el contenido del directorio /nfs incluyendo los permisos de archivos. 
 ¿A quién pertenecen los archivos?
+
 
 Guarde justo debajo de esta oración la línea del comando mount que 
 corresponde al sistema de archivos NFS montado en el ejercicio anterior. 
 
+
 ¿Fue necesario instalar software adicional para poder montar el 
 sistema de archivos, en caso afirmativo indique el paquete de software instalado? 
 
-Los siguientes incisos deben realizarme en la computadora 10.0.2.XXX:
---------------------------------------------------------------------
+
+
+Los siguientes incisos deben realizarme en la computadora 10.0.15.7
+-------------------------------------------------------------------
+
+
+Ingrese con usuario:clave alumno:alumno
+
+
 ¿Cuál es el tipo de sistema de archivos de /mnt/compartido? Observe 
 el comando mount. 
+
 
 Verifique a quién pertenecen los archivos en /mnt/compartido. ¿Coincide 
 con el usuario en la máquina virtual? ¿Qué tienen en común? 
 
-Verifique la salida del comando exportfs. Copie dicha salida justo debajo de
+
+Verifique el contenido del archivo /etc/exports. Copie dicha salida justo debajo de
 esta oración. 
+
 
 Observe la lista de servicios en ejecución  service --status-all. 
 ¿Cuál de los servicios cree que provee el servicio de NFS? 
+
 
 ¿Existe algún proceso en ejecución que parezca estar relacionado 
 con el servicio de nfs? 
