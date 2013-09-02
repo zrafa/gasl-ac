@@ -6,7 +6,7 @@ En todos los casos indique el comando que utilizó para
 realizar el ejercicio. 
 *********************************************************
 
-Los siguientes ejercicios deben realizarce en la máquina virtual asignada a su grupo:
+Los siguientes ejercicios deben realizarse en la máquina virtual asignada a su grupo:
 ------------------------------------------------------------------------------------
 Guarde la salida del comando mount justo debajo de esta oración.  
 
@@ -27,9 +27,10 @@ corresponde al sistema de archivos NFS montado en el ejercicio anterior.
 ¿Fue necesario instalar software adicional para poder montar el 
 sistema de archivos, en caso afirmativo indique el paquete de software instalado? 
 
-Los siguientes incisos deben realizarce en la computadora 10.0.2.XXX:
+Los siguientes incisos deben realizarme en la computadora 10.0.2.XXX:
 --------------------------------------------------------------------
-Verifique a quién pertenecen los archivos en /mnt/compartido. 
+Verifique a quién pertenecen los archivos en /mnt/compartido. ¿Coincide 
+con el usuario en la máquina virtual? ¿Qué tienen en común? 
 
 Verifique la salida del comando exportfs. Copie dicha salida justo debajo de
 esta oración. 
