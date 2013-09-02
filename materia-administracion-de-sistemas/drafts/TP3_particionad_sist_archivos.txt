@@ -29,16 +29,14 @@ TP N 3 - Particiones y Sistemas de Archivos
 - ¿De qué tipo son las particiones del disco? Enumere y mencione el tipo
   (Ej: partición 1 es de tipo NTFS)
 
-- ¿Qué sistema de archivos contiene cada partición? ¿Alguna particion en particular no tiene sistema de archivos? 
+- ¿Qué sistema de archivos contiene cada partición? ¿Alguna partición en particular no tiene sistema de archivos? 
 
 - ¿Describa los comando qué debe haber ejecutado un administrador para
   crear los sistemas de archivos de las particiones actuales? 
-  ATENCION: NO EJECUTAR EL COMANDO, O SE ELIMINARA TODA LA INFORMACION CON EL
+  ATENCIÓN: NO EJECUTAR EL COMANDO, O SE ELIMINARA TODA LA INFORMACIÓN CON EL
   NUEVO SISTEMA DE ARCHIVOS.
   Simplemente especifique en este práctico (SIN EJECUTAR) QUÉ comandos debe
   haber ejecutado el administrador.
-
-
 
 
 
@@ -56,7 +54,7 @@ TP N 3 - Particiones y Sistemas de Archivos
 - ¿De qué tipo son las particiones del disco? Enumere y mencione el tipo
   (Ej: partición 1 es de tipo NTFS)
 
-- ¿Qué sistema de archivos contiene cada partición? ¿Alguna particion en
+- ¿Qué sistema de archivos contiene cada partición? ¿Alguna partición en
   particular no tiene sistema de archivos? 
 
 
@@ -77,11 +75,11 @@ TP N 3 - Particiones y Sistemas de Archivos
 - ¿De qué tipo son las particiones del disco? Enumere y mencione el tipo
   (Ej: partición 1 es de tipo NTFS)
 
-- ¿Qué sistema de archivos contiene cada partición? ¿Alguna particion en particular no tiene sistema de archivos? 
+- ¿Qué sistema de archivos contiene cada partición? ¿Alguna partición en particular no tiene sistema de archivos? 
 
 - ¿Describa los comando qué debe haber ejecutado un administrador para
   crear los sistemas de archivos de las particiones actuales? 
-  ATENCION: NO EJECUTAR EL COMANDO, O SE ELIMINARA TODA LA INFORMACION CON EL
+  ATENCIÓN: NO EJECUTAR EL COMANDO, O SE ELIMINARA TODA LA INFORMACIÓN CON EL
   NUEVO SISTEMA DE ARCHIVOS.
   Simplemente especifique en este práctico (SIN EJECUTAR) QUÉ comandos debe
   haber ejecutado el administrador.
@@ -91,7 +89,7 @@ TP N 3 - Particiones y Sistemas de Archivos
 4- Continúe trabajando con el PEN DRIVE USB.
 
 a. - Guardar la información sobre la tabla de particiones del disco.
-   ATENCION: La información que tiene que salvaguardar será utilizada en el inciso c.
+   ATENCIÓN: La información que tiene que salvaguardar será utilizada en el inciso c.
    - ¿Qué tipo de particiones se encuentran creadas? 
 
 b. - Destruir los primeros 512 bytes del disco utilizando el comando dd, observar
@@ -122,7 +120,7 @@ d. - Repita la destrucción de la tabla de particiones
 6- Continúe trabajando con el PEN DRIVE USB.
 
 - Montar un sistema de archivos del Pen Drive en el directorio /mnt
-- Situarce en  /mnt (cd /mnt) y tratar de desmontar el sistema de archivos. Sacar conclusiones. Utilizar
+- Situarse en  /mnt (cd /mnt) y tratar de desmontar el sistema de archivos. Sacar conclusiones. Utilizar
 fuser, ps, etc.
 
  
