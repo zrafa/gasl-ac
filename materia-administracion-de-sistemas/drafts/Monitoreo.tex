@@ -50,7 +50,7 @@
 
 \section*{Introducción}
 
-Durante el tutorial anterior hablamos de reconocimiento de recursos 
+Hemos hablado durante un tutorial anterior acerca de reconocimiento de recursos 
 físicos, identificar sus características y representación dentro del 
 sistema operativo.
 
@@ -63,14 +63,101 @@ traduce solamente en saber si el recurso está funcionando o no, mientras
 que en otros la definición de operación normal puede ser menos clara. 
 Por ejemplo en el caso de un CPU, además de si está presente o no, nos 
 interesará saber cuál es su carga de procesos en ejecución. 
+
+
+\section*{Procesos}
+
+Un proceso es un programa en ejecución. Son digamos, las entidades vivas dentro 
+de nuestro sistema. Cada programa que ejecutamos, por ejemplo el navegador web,
+ puede disparar la ejecución de uno o mas procesos para llevar a cabo su tarea. A su vez, existen procesos que no son disparados por los usuarios, sino que 
+los ejecuta el sistema operativo en sí mismo para cumplir sus funciones. Por 
+ejemplo, el proceso \texttt{init}, ó el servicio de ssh. 
+
+Los procesos en ejecución necesitan consumir recursos computacionales para 
+llevar a cabo su función: CPU, memoria principal (RAM), memoria secundaria, 
+transferir datos por red, etc. Algunos procesos necesitarán más tiempo de CPU, 
+como puede ser un juego, o un programa de cáluclo; mientras que otros, por 
+ejemplo el web browser, necesitarán más memoria principal (RAM), etc.
+
+Es la intención de este apunte observar el consumo de recursos por parte de 
+los procesos en ejecución. 
  
+\subsection*{Estado de los procesos}
 
-\section*{Monitoreando recursos}
+Los procesos no siempre se encuentran en ejecución. Como bien sabemos, la 
+cantidad de CPUs disponibles es finita, por ende los procesos compiten por 
+pequeñas porciones de tiempo de CPU. Momento en el cual, el proceso en 
+ejecución tendrá la oportunidad de ejecutar algunas instrucciones de su 
+código, hasta en tanto se acabe su porción de tiempo de CPU o bien ocurra 
+algún otro evento que evite que el proceso se siga ejecutando (por ejemplo, 
+porque está esperando recibir datos de la red). 
+
+Si un proceso necesita abrir un archivo que se encuentra en 
+memoria secundaria (disco), habrá una pequeña cantidad de tiempo en la que 
+dicho proceso estará esperando por la respuesta del disco, que es muchas 
+veces más lenta que la velocidad de procesamiento del CPU. Por lo que, mientras
+el proceso espera, otros procesos pueden aprovechar y ejecutarse en el CPU. 
+  
+En un sistema GNU/Linux observaremos básicamente cinco estados en los que 
+puede encontrarse un proceso: 
+\begin{itemize}
+\item R = Corriendo (running): significa que el proceso se encuentra en 
+condiciones de ejecutarse en CPU o bien que está siendo ejecutado.  
+\item S = Durmiendo (sleeping): el proceso se encuentra esperando por 
+agluna señal o evento, no se encuentra en condiciones de ser ejecutado en 
+CPU al momento. 
+\item T = Trazado o detenido (traced or stopped): proceso que ha recibido 
+la orden de detenerse (por ejemplo a pedido del usuario con el comando 
+kill y la señal SIGSTOP). 
+\item D = Durmiendo no interrumpible (uninterruptible sleep): se encuentra
+esperando por un evento y no puede ser interrumpido. 
+\item Z = zombie: proceso que termino y no fue reclamado por su proceso 
+padre. 
+\end{itemize}
+
+Las trancisiones entre estados siguen el siguiente esquema: 
+\begin{center}
+ \includegraphics{process-states-s.jpg}
+\end{center}
 
 
+\subsection*{Utilización del CPU}
+
+El CPU es utilizado por cada proceso por períodos cortos de tiempo. Dando 
+al usuario, la senación de que todos los procesos corren simultáneamente.
+El punto de interés en este caso, es averiguar cuán cargado se encuentra
+el o los procesadores de una computadora en un momento particular. El 
+primer comando que observaremos es \texttt{uptime}:
 
 
-\subsection*{Monitoreo de CPU}
+\colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} { 
+{\bf Ejemplo de salida de \texttt{uptime}:} \\
+{\tt
+# uptime \\
+ 22:28:41 up 1 day, 22:13, 10 users,  load average: 0,56, 0,65, 0,68
+}
+} \vspace*{0.5cm} } } 
+
+Este comando muestra la hora actual, el tiempo que hace que el sistema se 
+ha iniciado, la cantidad de sesiones iniciadas por usuarios, y la carga promedio del sistema en los últimos 1, 5 y 15 minutos. Estos últimos valores
+son los de interés en esta sección. 
+
+La carga promedio (load average) representa el número promedio de procesos
+que se encuentran ya sea en estado ``ejecutable'' o ``ininterrumpible'' (
+estado ``D'').  Estado ejecutable puede ser tanto un proceso que se 
+encuentra efectivamente ejecutándose en CPU o en cola de ejecución 
+(listo para ser ejectudado en CPU).  Se debe tener en cuenta que el valor 
+mostrado no se encuentra normalizado por el número de CPUs presentes en 
+el sistema, es por esto que un load average de 1 (uno) en un sistema con 
+un solo CPU significa que el mismo está cargado todo el tiempo, mientras 
+que en un sistema con cuatro CPUs el mismo valor indica que estuvo oscioso
+el 75\% del tiempo. 
+
+
+\begin{center}
+ \includegraphics{top.jpg}
+\end{center}
+
 
 
 \fcolorbox{black}{grey}{
