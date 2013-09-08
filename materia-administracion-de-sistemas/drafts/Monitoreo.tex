@@ -67,25 +67,36 @@ interesará saber cuál es su carga de procesos en ejecución.
 
 \section*{Procesos}
 
-Un proceso es un programa en ejecución. Son digamos, las entidades vivas dentro 
-de nuestro sistema. Cada programa que ejecutamos, por ejemplo el navegador web,
- puede disparar la ejecución de uno o mas procesos para llevar a cabo su tarea. A su vez, existen procesos que no son disparados por los usuarios, sino que 
-los ejecuta el sistema operativo en sí mismo para cumplir sus funciones. Por 
-ejemplo, el proceso \texttt{init}, ó el servicio de ssh. 
+Un proceso es un programa en ejecución. Son digamos, las entidades vivas 
+dentro de nuestro sistema. Cada programa que ejecutamos, por ejemplo el 
+navegador web, puede disparar la ejecución de uno o mas procesos para 
+llevar a cabo su tarea.  A su vez, existen procesos que no son disparados 
+por los usuarios, sino que los ejecuta el sistema operativo en sí mismo 
+para cumplir sus funciones. Por ejemplo, el proceso \texttt{init}, ó el 
+servicio de ssh. 
 
 Los procesos en ejecución necesitan consumir recursos computacionales para 
 llevar a cabo su función: CPU, memoria principal (RAM), memoria secundaria, 
-transferir datos por red, etc. Algunos procesos necesitarán más tiempo de CPU, 
-como puede ser un juego, o un programa de cáluclo; mientras que otros, por 
-ejemplo el web browser, necesitarán más memoria principal (RAM), etc.
+transferir datos por red, etc. Algunos procesos necesitarán más tiempo de 
+CPU, como puede ser un juego, o un programa de cáluclo; mientras que 
+otros, por ejemplo el web browser, necesitarán más memoria principal 
+(RAM), etc.
 
 Es la intención de este apunte observar el consumo de recursos por parte de 
 los procesos en ejecución. 
  
 \subsection*{Estado de los procesos}
 
-Los procesos no siempre se encuentran en ejecución. Como bien sabemos, la 
-cantidad de CPUs disponibles es finita, por ende los procesos compiten por 
+El orden en que los procesos reciben la atención de el CPUs, es 
+similar a lo que ocurre con las cajas de cobro en un supermercado. 
+Imaginemos que cada caja de cobro es un CPU y las personas son los 
+procesos. Al igual que en el supermercado, las colas se organizan con 
+prioridades, de modo que algunos procesos pueden tener prioridad 
+sobre otros a la hora de ser atendidos por el CPU. 
+
+Los procesos no siempre se encuentran en ejecución. 
+Como bien sabemos, la cantidad de CPUs disponibles es finita, por ende 
+los procesos compiten por 
 pequeñas porciones de tiempo de CPU. Momento en el cual, el proceso en 
 ejecución tendrá la oportunidad de ejecutar algunas instrucciones de su 
 código, hasta en tanto se acabe su porción de tiempo de CPU o bien ocurra 
@@ -95,11 +106,15 @@ porque está esperando recibir datos de la red).
 Si un proceso necesita abrir un archivo que se encuentra en 
 memoria secundaria (disco), habrá una pequeña cantidad de tiempo en la que 
 dicho proceso estará esperando por la respuesta del disco, que es muchas 
-veces más lenta que la velocidad de procesamiento del CPU. Por lo que, mientras
-el proceso espera, otros procesos pueden aprovechar y ejecutarse en el CPU. 
+veces más lenta que la velocidad de procesamiento del CPU. Durante esta
+espera, el proceso no está listo para ser ejecutado en CPU, se encuentra 
+``durmiendo''. Por lo que, mientras el proceso espera, otros procesos 
+pueden aprovechar y ejecutarse en el CPU. 
   
-En un sistema GNU/Linux observaremos básicamente cinco estados en los que 
-puede encontrarse un proceso: 
+Es así que durante el tiempo de vida de un proceso, este se encontrará en 
+diferentes estados. En un sistema GNU/Linux observaremos básicamente 
+cinco posibles estados, observables por el adminsitrador de sistemas: 
+
 \begin{itemize}
 \item R = Corriendo (running): significa que el proceso se encuentra en 
 condiciones de ejecutarse en CPU o bien que está siendo ejecutado.  
@@ -119,6 +134,76 @@ Las trancisiones entre estados siguen el siguiente esquema:
 \begin{center}
  \includegraphics{process-states-s.jpg}
 \end{center}
+ 
+Estas transiciones serán en la mayoría de los casos generadas por la misma
+funcionalidad del programa, es decir cuando necesita abrir un archivo
+estará en estado S, cunado necesita ejecutarse estará en estado R, etc. 
+Es decir, el administrador de sistemas, en general no inverviene en las
+transiciones de estados. Sin embargo, hay casos en los que esto ocurre. 
+
+\subsection{Manipulación de procesos}
+
+En el uso cotidiano de un sistema de escritorio, el usuario interviene 
+en los estados de los procesos sin darse cuenta. Al pedirle a un programa
+que se cierre (por ejemplo apretando la ``X'' en la ventanita), el usuario
+le esta pidiendo al proceso que termine y deje de existir. 
+
+El administrador de sistemas en ocasiones deberá manipular el estado de 
+los procesos con diferentes fines. Para ello, enviará señales a los 
+mismos a través del comando \texttt{kill}. 
+
+El comando \texttt{kill} (matar) tiene una funcionalidad predeterminada, 
+equivalente a cerrar un programa desde la interfase gráfica. El comando 
+recibe como argumento un PID, y le envía una señal pidiéndole al mismo 
+que se cierre. 
+
+\colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} { 
+{\bf Ejemplo de uso de kill :} \\
+{\tt
+Sección de la salida del comando \texttt{ps -ef}\\
+lechnerm  7324  7320  0 12:40 ?        00:00:00 gnome-pty-helper \\
+lechnerm  7325  7320  0 12:40 pts/0    00:00:00 bash\\
+lechnerm 10400  7320  0 13:11 pts/2    00:00:00 bash\\
+www-data 10725  4250  0 13:12 ?        00:00:00 /usr/sbin/apache2 -k start \\
+}
+Si, observando la salida anterior, ejecutamos ``\texttt{kill 10725}'', 
+estaremos pidiéndole al programa apache2 que termine su ejecución. 
+} \vspace*{0.5cm} } } 
+	
+
+El comando \texttt{kill} permite, además de su funcionalidad predeterminada,
+enviar otras señales que generan otros cambios de estado diferentes al de 
+terminar. La lista de señales posibles se pueden listar observando la 
+salida del comando \texttt{kill -l}, y su explicación particular en la 
+página del manual respectiva: 
+
+\colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} { 
+{\tt
+ 1) SIGHUP	 2) SIGINT	 3) SIGQUIT	 4) SIGILL	 5) SIGTRAP\\
+ 6) SIGABRT	 7) SIGBUS	 8) SIGFPE	 9) SIGKILL	10) SIGUSR1\\
+11) SIGSEGV	12) SIGUSR2	13) SIGPIPE	14) SIGALRM	15) SIGTERM\\
+16) SIGSTKFLT	17) SIGCHLD	18) SIGCONT	19) SIGSTOP	20) SIGTSTP\\
+21) SIGTTIN	22) SIGTTOU	23) SIGURG	24) SIGXCPU	25) SIGXFSZ\\
+26) SIGVTALRM	27) SIGPROF	28) SIGWINCH	29) SIGIO	30) SIGPWR\\
+31) SIGSYS	34) SIGRTMIN	35) SIGRTMIN+1	36) SIGRTMIN+2	37) SIGRTMIN+3\\
+38) SIGRTMIN+4	39) SIGRTMIN+5	40) SIGRTMIN+6	41) SIGRTMIN+7	42) SIGRTMIN+8\\
+43) SIGRTMIN+9	44) SIGRTMIN+10	45) SIGRTMIN+11	46) SIGRTMIN+12	47) SIGRTMIN+13\\
+48) SIGRTMIN+14	49) SIGRTMIN+15	50) SIGRTMAX-14	51) SIGRTMAX-13	52) SIGRTMAX-12\\
+53) SIGRTMAX-11	54) SIGRTMAX-10	55) SIGRTMAX-9	56) SIGRTMAX-8	57) SIGRTMAX-7\\
+58) SIGRTMAX-6	59) SIGRTMAX-5	60) SIGRTMAX-4	61) SIGRTMAX-3	62) SIGRTMAX-2\\
+63) SIGRTMAX-1	64) SIGRTMAX	\\
+}
+} \vspace*{0.5cm} } } 
+
+
+
+\coloox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} { 
+{\bf Importante}: cada proceso tiene un usuario dueño (el nombre del usuario
+dueño se observa en la primer columna de la salida de \texttt{ps -ef}). El
+envío de señales a un proceso mediante el comando \texttt{kill} sólo 
+pordá realizarlo el dueño o \textbf{root}}
+} \vspace*{0.5cm} } } 
+ 
 
 
 \subsection*{Utilización del CPU}
