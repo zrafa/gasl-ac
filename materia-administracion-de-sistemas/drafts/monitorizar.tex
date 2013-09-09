@@ -263,6 +263,46 @@ y el porcentaje de \textbf{ocioso}. Si los campos user+system están cercanos al
 Para analizar qué procesos consumen mucha CPU puede leer 
 la sección de procesos, la cual está ordenada por \textbf{utilización de CPU}. De mayor a menor.
 
+\section*{Monitorizar la memoria}
+Si existe un área en la que se puede encontrar gran cantidad de estadísticas de rendimiento, esta área es la utilización de la memoria. Debido a la complejidad inherente de los sistemas operativos con memoria virtual bajo demanda de hoy día, las estadísticas de utilización de memoria son muchas y variadas. Es aquí donde tiene lugar la mayoría del trabajo de un administrador de sistemas con la administración de recursos.
+
+
+\subsection*{Ejemplo de monitoreo de la memoria}
+
+
+Usando free es posible obtener una vista general concisa (quizás hasta un poco simplistica) de la utilización de la memoria principal y de intercambio. He aquí un ejemplo:
+
+\begin{center}
+ \includegraphics{free1.png}
+\end{center}
+
+      
+Podemos ver que este sistema tiene 1.2GB de RAM, de los que solamente 350MB estan realmente en uso. Como se puede esperar para un sistema con esta cantidad de RAM disponible, no se utiliza nada de los 500MB de memoria de intercambio.
+
+Compare ese ejemplo con el que sigue:
+
+\begin{center}
+ \includegraphics{free2.png}
+\end{center}
+
+      
+Este sistema tiena alrededor de 256MB de RAM, la mayoría de la cual está en uso, dejando solamente 8MB libres. Más de 100MB de los 512MB de swap estan en uso. Aún cuando el sistema está ciertamente más limitado en términos de memoria que el primer sistema, para determinar si esta limitación de memoria está causando problemas de rendimiento, tenemos que investigar un poco más.
+
+vmstat, aún cuando es más críptico que free, tiene el beneficio de que muestra más que simplemente las estadísticas de utilización de memoria. He aquí la salida de vmstat 1 10:
+
+\begin{center}
+ \includegraphics{vmstat2.png}
+\end{center}
+
+      
+Durante esta muestra de 10 segundos, la cantidad de memoria libre (el campo free) varía de alguna forma, y hay un poco de E/S relacionada con la memoria de intercambio (los campos si y so), pero en general, este sistema está funcionando bien. Sin embargo, se duda cuánta carga adicional de trabajo pueda manejar, dada la utilización actual de memoria.
+
+
+
+La supervisión exitosa de la utilización de la memoria requiere una buena comprensión de cómo funciona la memoria virtual bajo demanda de un sistema operativo. 
+
+
+
 \section*{Monitorizar el ancho de banda}
 Monitorizar el ancho de banda es más complicado que la supervisión de otros recursos descritos aquí. La razón de esto se debe al hecho de que las estadísticas de rendimiento tienden a estar basadas en dispositivos, mientras que la mayoría de los lugares en los que es importante el ancho de banda tienden a ser los buses que conectan dispositivos. En lo casos donde más de un dispositivo comparte un bus común, puede encontrar estadísticas razonables para cada dispositivo, pero la carga que esos dispositivos colocan en el bus es mucho mayor.
 
@@ -307,24 +347,6 @@ En este ejemplo, es interesante observar que /dev/sda2 es la partición swap del
 
 Otro punto interesante a tomar en cuenta es /dev/sda1. Las estadísticas para esta partición son inusuales; la actividad general parece baja, pero por qué el tamaño promedio de peticiones de E/S (el campo avgrq-sz), el tiempo promedio de espera (el campo await) y el tiempo promedio de servicio (el campo svctm) son mucho más grandes que en las otras particiones? La respuesta es que esta partición contiene el directorio /boot/, el cual es donde el kernel y el disco inicial ramdisk son almacenados. Cuando el sistema arranca, las lecturas de E/S (observe que solamente los campos rsec/s y rkB/s son diferentes de cero; no se hace ninguna escritura aquí de forma regular) usadas durante el proceso de arranque son para grandes números de bloques, resultando en despliegues iostat de esperas relativamente largas y tiempos de servicios.
 
-\section*{Monitorizar la memoria}
-Si existe un área en la que se puede encontrar gran cantidad de estadísticas de rendimiento, esta área es la utilización de la memoria. Debido a la complejidad inherente de los sistemas operativos con memoria virtual bajo demanda de hoy día, las estadísticas de utilización de memoria son muchas y variadas. Es aquí donde tiene lugar la mayoría del trabajo de un administrador de sistemas con la administración de recursos.
-
-Las estadísticas siguientes representan una descripción precipitada de las estadísticas de administración de memoria encontradas más a menudo:
-
-Páginas dentro/fuera
-Estas estadísticas hacen posible medir el flujo de páginas desde la memoria del sistema a los dispositivos de almacenamiento masivo (usualmente unidades de disco). Altas tasas de estas estadísticas pueden representar que el sistema está corto de memoria física y que está haciendo thrashing o consumiendo más recursos del sistema en mover las páginas dentro y fuera de memoria que en ejecutando aplicaciones.
-
-Páginas activas/inactivas
-Estas estaditicas muestran qué tanto se están utilizando las páginas residentes en memoria. Una falta de páginas inactivas puede estar apuntando hacia una escasez de memoria física.
-
-Páginas libres, compartidas, en memoria intermedia o en caché
-Estas estadísticas proporcionan detalles adicionales sobre las estadísticas más simples de páginas activas/inactivas. Usando estas estadísticas es posible determinar la mezcla general de utilización de memoria.
-
-Intercambio dentro/fuera
-Estas estadísticas muestran el comportamiento general de la memoria de intercambio del sistema. Tasas excesivas pueden estar apuntando a una escasez de memoria física.
-
-La supervisión exitosa de la utilización de la memoria requiere una buena comprensión de cómo funciona la memoria virtual bajo demanda de un sistema operativo. Mientras que esta materia puede tomar un libro completo, los conceptos básicos se discuten en el Capítulo 4. Este capítulo junto con tiempo invertido en monitorizar el sistema, le da los bloques de construcción necesarios para aprender más sobre este tópico.
 
 \section*{Monitorizar el almacenamiento}
 El monitoreo del almacenamiento normalmente tiene lugar en dos niveles diferentes:
