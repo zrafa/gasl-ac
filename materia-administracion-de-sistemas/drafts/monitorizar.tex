@@ -131,6 +131,20 @@ Lamentablemente, no es tan simple. Por ejemplo, considere una unidad de disco. �
 Hay más formas de estudiar el rendimiento de una unidad de disco; estos puntos solamente tocan la superficie. El concepto principal a tener en mente es que hay muchos tipos diferentes de datos para cada recurso.
 
 
+\subsection*{¿Qué herramientas utilizar para monitorizar?}
+
+Las herramientas básicas utilizadas para verificar los recursos son :
+
+\begin{itemize}
+\item free
+
+\item top
+
+\item vmstat
+
+\item La suite de herramientas de supervisión de recursos de \texttt{sysstat}
+\end{itemize}
+
 
 \section*{Monitorizar el CPU}
 En su forma más básica, monitorizar el poder de CPU significa determinar si la utilización del CPU alcanza alguna vez el 100%. Si la utilización del CPU se mantiene por debajo de 100%, sin importar lo que el sistema esté haciendo, hay poder de procesamiento adicional para más trabajo.
@@ -143,6 +157,111 @@ El porcentaje de tiempo consumido realizando procesamiento a nivel de usuario co
 Otras métricas de rendimiento que reflejan un impacto en la utilización del CPU tienden a incluir servicios diferentes que el sistema operativo proporciona a los procesos. Estas pueden incluir estadísticas sobre la administración de memoria, procesamiento de E/S, etc. Estas estadísticas también revelan que, cuando el rendimiento del sistema está siendo supervisado, no hay límites entre las diferentes estadísticas. En otras palabras, las estadísticas de utilización de CPU pueden terminar apuntando a un problema en el subsistema de E/S, o las estadísticas de utilización de memoria pueden revelar un defecto de una aplicación.
 
 Por lo tanto, cuando esté supervisando el funcionamiento del sistema, no es posible examinar una estadística de forma totalmente aislada; solamente mediante el exámen del cuadro completo es posible extraer información significativa de cualquier estadística de rendimiento que reuna.
+
+\subsection*{Ejemplo de monitoreo de la CPU}
+
+El programa mas interesante para iniciar el monitoreo del sistema, y en particular de la CPU, es \textbf{top}.
+
+\fcolorbox{black}{grey}{
+\parbox[t]{1.0\linewidth}{ \vspace*{0.4cm}
+{\bf top} 
+       proporciona una visión continuada de la actividad del procesador en
+       tiempo real. Muestra un listado de las tareas  que  hacen  un  uso  más
+       intensivo  de  la  CPU en el sistema, y puede proporcionar una interfaz
+       interactiva para manipular procesos. Puede clasificar  las  tareas  por
+       empleo   de   CPU,  uso  de  memoria  y  tiempo  de  ejecución.
+\vspace*{0.4cm} } }
+
+\begin{center}
+ \includegraphics{top.png}
+ % redireccionamiento.gif: 502x248 pixel, 72dpi, 17.71x8.75 cm, bb=0 0 502 248
+\end{center}
+
+\subsubsection{Descripciones de los campos de top}
+       top  despliega  una variada información sobre el estado del procesador.
+       La pantalla se actualiza cada 5 segundos de forma predeterminada,  pero
+       esto se puede cambiar con la opción de la línea de órdenes d o la orden
+       interactiva s.
+
+\begin{itemize}
+\item       uptime
+            Esta línea muestra el tiempo que el sistema ha  estado  activo,  y
+            las  tres medias de carga para el sistema. Las medias de carga son
+            el número medio de procesos listos  para  ejecutarse  durante  los
+            últimos  1,  5  y  15  minutos.  Esta línea es simplemente como la
+            salida de uptime(1).  La línea de uptime puede quitarse o  ponerse
+            con la orden interactiva l (ele minúscula).
+
+\item       processes
+            El   número  total  de  procesos  ejecutándose  cuando  la  última
+            actualización. Este número también  se  divide  en  el  número  de
+            tareas  que  están  ejecutándose, durmiendo, paradas o no-muertas.
+            Las líneas de procesos y estados pueden quitarse o ponerse con  la
+            orden interactiva t.
+
+\item       CPU states
+            Muestra el porcentaje de tiempo de CPU en modo de usuario, en modo
+            de sistema , en tareas con la prioridad alterada por  nice,  y  el
+            tiempo  de  inactividad. (Las tareas con la prioridad alterada por
+            nice son solamente aquéllas cuyo  valor  nice  es  negativo.)   El
+            tiempo  transcurrido  en  las tareas con la prioridad alterada por
+            nice también se contará en el tiempo de sistema y de usuario,  así
+            que  el  total  será  superior  al  100%. Las líneas de procesos y
+            estados y tiempos de CPU pueden quitarse o ponerse  con  la  orden
+            interactiva t.
+
+\item       Mem  Datos sobre el empleo de memoria, incluyendo la memoria disponible
+            en total,  la  memoria  libre,  la  usada,  la  compartida,  y  la
+            utilizada  para  búferes.  La  línea  de la información de memoria
+            puede ponerse o quitarse con la orden interactiva m.
+
+\item       Swap Datos sobre el  espacio  de  trasiego,  incluyendo  el  total,  el
+            disponible  y  el  empleado.  Esto y Mem son sencillamente como la
+            salida de free(1).
+
+
+\item       SIZE Se  muestra  aquí  el  tamaño del código de la tarea más datos más
+            espacio de pila, en kB.
+
+
+\item       RSS  Se muestra aquí la cantidad total de memoria física utilizada  por
+            la  tarea,  en  kilobytes.  Para  procesos ELF se cuentan aquí las
+            páginas de biblioteca usadas, para procesos a.out no.
+
+\item       SHARE
+            Se muestra en esta  columna  la  cantidad  de  memoria  compartida
+            empleada por la tarea.
+
+\item       STAT Aquí  se  ve  el  estado  de  la tarea. El estado puede ser S para
+            durmiente, D para sueño no interrumpible, R para ejecución, Z para
+            zombies,  o  T para parados o trazados. Estos estados se modifican
+            por un < al final para procesos con valor de nice negativo, N para
+            un  proceso  con  valor  de  nice positivo, o W para un proceso en
+            espacio de trasiego (esto no funciona correctamente para  procesos
+            del núcleo).
+
+\item       TIME El tiempo total de CPU que la tarea ha usado desde que empezó.  Si
+            el  modo  acumulativo  está activado, también incluye el tiempo de
+            CPU empleado por los hijos del proceso que hayan muerto. Uno puede
+            establecer  el  modo  acumulativo  con  la  opción  de la línea de
+            órdenes S o cambiarlo con la orden interactiva  S.   La  línea  de
+            cabecera se cambiará entonces a CTIME.
+
+\item       \%CPU La  porción  del  tiempo  de  CPU  consumido por la tarea desde la
+            última actualización de la pantalla, expresada como un  porcentaje
+            del tiempo de CPU total.
+
+
+\item       \%MEM La porción de la memoria física ocupada por la tarea.
+
+\end{itemize}
+
+
+Los campos mas utilizados para analizar la CPU son los que indican los porcentajes de \bf{utilizado},
+y el porcentaje de \bf{ocioso}. Si los campos user+system están cercanos al 100\% puede indicar una falta de recurso de CPU.
+
+Para analizar qué procesos consumen mucha CPU puede leer 
+la sección de procesos, la cual está ordenada por \bf{utilización de CPU}. De mayor a menor.
 
 \section*{Monitorizar el ancho de banda}
 Monitorizar el ancho de banda es más complicado que la supervisión de otros recursos descritos aquí. La razón de esto se debe al hecho de que las estadísticas de rendimiento tienden a estar basadas en dispositivos, mientras que la mayoría de los lugares en los que es importante el ancho de banda tienden a ser los buses que conectan dispositivos. En lo casos donde más de un dispositivo comparte un bus común, puede encontrar estadísticas razonables para cada dispositivo, pero la carga que esos dispositivos colocan en el bus es mucho mayor.
