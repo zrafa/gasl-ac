@@ -16,7 +16,7 @@
  \makeatletter
  {\color{bl} \centering \huge \sc \textbf{
  Procesos \\ 
-\large \vspace*{-8pt} \color{black} Guía básica administración de procesos. 
+\large \vspace*{-8pt} \color{black} Guía básica de administración de procesos. 
  \vspace*{8pt} }\par}
  \makeatother
 
@@ -50,19 +50,17 @@
 
 \section*{Introducción}
 
-Hemos hablado durante un tutorial anterior acerca de reconocimiento de recursos 
-físicos, identificar sus características y representación dentro del 
-sistema operativo.
+Hemos hablado durante un apunte anterior acerca de reconocimiento de 
+recursos físicos, identificar sus características y representación dentro 
+del sistema operativo. Durante el próximo texto hablaremos de 
+monitorear el consumo de recursos por parte de los proesos en ejecución. 
+Por este motivo, durante el presente apunte se desarrollarán conceptos y 
+procedimientos relacionados a la administración de procesos, como una 
+instancia previa a evaluar el consumo de recursos por parte de los mismos.
 
-Durante este texto nos dedicaremos a observar el consumo de esos recursos 
-por parte de los procesos en ejecución. 
-
-Monitorear un recurso significa verificar su estado, es decir si esta 
-operando dentro de los parámetros normales. En algunos casos, esto se 
-traduce solamente en saber si el recurso está funcionando o no, mientras 
-que en otros la definición de operación normal puede ser menos clara. 
-Por ejemplo en el caso de un CPU, además de si está presente o no, nos 
-interesará saber cuál es su carga de procesos en ejecución. 
+Es decir, no podemos evaluar el consumo de recursos por parte de los
+procesos, sin conocer mínimamente las actividades báscias de administración
+que se realizan sobre los mismos. 
 
 
 \section*{Procesos}
@@ -78,7 +76,7 @@ servicio de ssh.
 Los procesos en ejecución necesitan consumir recursos computacionales para 
 llevar a cabo su función: CPU, memoria principal (RAM), memoria secundaria, 
 transferir datos por red, etc. Algunos procesos necesitarán más tiempo de 
-CPU, como puede ser un juego, o un programa de cáluclo; mientras que 
+CPU, como puede ser un juego, o un programa de calculo; mientras que 
 otros, por ejemplo el web browser, necesitarán más memoria principal 
 (RAM), etc.
 
@@ -113,13 +111,13 @@ pueden aprovechar y ejecutarse en el CPU.
   
 Es así que durante el tiempo de vida de un proceso, este se encontrará en 
 diferentes estados. En un sistema GNU/Linux observaremos básicamente 
-cinco posibles estados, observables por el adminsitrador de sistemas: 
+cinco posibles estados, observables por el administrador de sistemas: 
 
 \begin{itemize}
 \item R = Corriendo (running): significa que el proceso se encuentra en 
 condiciones de ejecutarse en CPU o bien que está siendo ejecutado.  
 \item S = Durmiendo (sleeping): el proceso se encuentra esperando por 
-agluna señal o evento, no se encuentra en condiciones de ser ejecutado en 
+alguna señal o evento, no se encuentra en condiciones de ser ejecutado en 
 CPU al momento. 
 \item T = Trazado o detenido (traced or stopped): proceso que ha recibido 
 la orden de detenerse (por ejemplo a pedido del usuario con el comando 
@@ -130,7 +128,7 @@ esperando por un evento y no puede ser interrumpido.
 padre. 
 \end{itemize}
 
-Las trancisiones entre estados siguen el siguiente esquema: 
+Las transiciones entre estados siguen el siguiente esquema: 
 
 \begin{center}
 \includegraphics{process-states-s.jpg}
@@ -139,14 +137,14 @@ Las trancisiones entre estados siguen el siguiente esquema:
 Estas transiciones serán en la mayoría de los casos generadas por la misma
 funcionalidad del programa, es decir cuando necesita abrir un archivo
 estará en estado S, cunado necesita ejecutarse estará en estado R, etc. 
-Es decir, el administrador de sistemas, en general no inverviene en las
+Es decir, el administrador de sistemas, en general no interviene en las
 transiciones de estados. Sin embargo, hay casos en los que esto ocurre. 
 
 \subsection*{Manipulación de procesos}
 
 En el uso cotidiano de un sistema de escritorio, el usuario interviene 
 en los estados de los procesos sin darse cuenta. Al pedirle a un programa
-que se cierre (por ejemplo apretando la ``X'' en la ventanita), el usuario
+que se cierre (por ejemplo apretando la ``X'' en la ventana), el usuario
 le esta pidiendo al proceso que termine y deje de existir. 
 
 El administrador de sistemas en ocasiones deberá manipular el estado de 
@@ -158,7 +156,7 @@ mismos a través del comando \texttt{kill}.
 {\bf Importante}: cada proceso tiene un usuario dueño (el nombre del
  usuario dueño se observa en la primer columna de la salida de 
 \texttt{ps -ef}). El envío de señales a un proceso mediante el 
-comando \texttt{kill} sólo pordá realizarlo el dueño o \textbf{root}
+comando \texttt{kill} sólo podrá realizarlo el dueño o \textbf{root}
 \vspace*{0.4cm} } }
 
 El comando \texttt{kill} (matar) tiene una funcionalidad predeterminada, 
@@ -188,7 +186,7 @@ una de ellas se puede encontrar en la sección siete de las paginas del
 manual online página ``signal'' (\texttt{man 7 signal}).  
 
 Cada señal tiene un número y un nombre en mayúsculas asociado, cualquiera
-de ellos puede utilizarce como argumento del comando \texttt{kill}  
+de ellos puede utilizarse como argumento del comando \texttt{kill}  
 En particular hablaremos de las señales mas frecuentemente utilizadas: 
 SIGSTOP (19), SIGCONT(18), SIGTERM (15) y  SIGKILL (9).  
 
@@ -215,7 +213,7 @@ Muchos administradores de sistemas utilizan esta señal como un estándar,
 esto además de incorrecto es riesgoso. La señal SIGKILL es equivalente en 
 intención a SIGTERM, es decir que si enviamos esta señal a un proceso, 
 nuestra intención es finalizar al mismo. Sin embargo, en este caso el
-cierre no es amable, al enviar la señal SIGKILL el proceo pierde la 
+cierre no es amable, al enviar la señal SIGKILL el proceso pierde la 
 posibilidad de finalizar correctamente y muchos de los recursos que 
 utilizaba pueden quedar retenidos por un cierto período de tiempo.  
 
@@ -251,7 +249,7 @@ estado detenido ``T''.
 \# ps -elf|grep iceweasel |grep -v grep \\
 0 T lechnerm 19308  3623 14  80   0 - 234269 -     23:49 ?    00:00:08 iceweasel \\
 }
-Observese el cambio de estado (segundo valor mostrado en la salida de ps), 
+Obsérvese el cambio de estado (segundo valor mostrado en la salida de ps), 
 de ``S'' a ``T''. 
 } \vspace*{0.5cm} } } 
 
@@ -275,7 +273,7 @@ kill -SIGCONT 19308 \\
 ps -elf|grep iceweasel |grep -v grep  \\
 0 S lechnerm 19308  3623 10  80   0 - 213762 -     23:49 ?    00:00:09 iceweasel \\
 }
-Observese el cambio de estado (segundo valor mostrado en la salida de ps), 
+Obsérvese el cambio de estado (segundo valor mostrado en la salida de ps), 
 de ``T'' a ``S''. 
 
 } \vspace*{0.5cm} } }
@@ -293,15 +291,12 @@ La utilidad de enviar un programa a
 segundo plano esta dada por el hecho de que existen tareas que no 
 requieren de nuestro control para que se ejecuten. Por ejemplo, bajar 
 algún archivo de Internet, compilar el kernel u otro programa. Estas son 
-tareas que pueden ser lanzadas tranquilamente en segundo plano. También 
-podemos querer realizar otra tarea en la misma terminal
+tareas que pueden ser lanzadas tranquilamente en segundo plano. 
 
-
-Para 
-lanzar un proceso en segundo plano, tendremos que poner a continuación 
-del comando el símbolo ``\&''. 
-
-En linux podemos ejecutar procesos en primer plano (foreground) o bien en segundo plano (background).
+También, cuando el número de terminales disponibles es reducido,  
+podemos querer suspender una tarea en la terminal, enviarla a 
+segundo plano y ejecutar otras tareas para luego volver a recuperar la 
+tarea que mandamos a segundo plano. 
 
 Un programa en foreground lanzado desde una terminal monopoliza dicha
 terminal, por lo que en principio, no podremos ejecutar ningún otro 
@@ -311,51 +306,94 @@ Por el contrario un programa en background una vez iniciado, deja de
 monopolizar la terminal desde el que se lanzo, y esta nos vuelve a 
 mostrar el prompt.
 
-{\bf ¿Cuándo lanzaremos un programa en background?}
+{\bf ¿Cómo ejecutamos un programa en segundo plano desde la terminal? }
 
-Por ejemplo, en una terminal gráfica lanzamos gimp y queremos realizar 
-otras operaciones desde la misma terminal, o bien vamos a lanzar un 
-programa que no necesita interacción con el usuario. 
+Para lanzar un proceso en segundo plano, tendremos que poner a continuación 
+del comando el símbolo ``\&''. 
 
 
-{\bf ¿Cuándo lanzaremos un programa en foreground?}
-
-Con un proceso que necesita interacción con el usuario, y esta 
-interacción se realiza a través del terminal.
-
-{\bf ¿Como podemos lanzar otro programa desde un terminal con otro programa 
-en ejecución en foreground?}
+{\bf ¿Cómo podemos ejecutar otro programa desde un terminal con otro
+ programa en ejecución en foreground?}
 
 Una vez ejecutado el programa que captura la terminal, pulsamos CTRL+z 
 en la misma, con lo que detenemos el programa en ejecución (equivalente
-a enviar la señal SIGSTOP). Ojo lo pausamos con lo cual dejará de 
-funcionar, y ya podremos lanzar otro programa p.e. ls
+a enviar la señal SIGSTOP). Tenga cuidado, al pausar el programa, este 
+dejará de funcionar (estado T, detenido). En este punto recuperamos 
+el prompt en la terminal y podemos ejecutar otro comando. 
 
-    Podemos hacer una prueba lanzamos gimp y comprobamos que podemos operar con el, luego pulsamos CTRL-z y vemos como dejamos de poder trabajar con gimp).
+ Podemos hacer una prueba lanzamos gimp y comprobamos que podemos operar con él, luego pulsamos CTRL-z y vemos como dejamos de poder trabajar con gimp, aunque permanezca abierto. En este momento el prompt en la terminal esta 
+esperando por nuevos comandos.  
 
-Ahora queremos volver a poner en funcionamiento a gimp y así poder volver a utilizar gimp
+Ahora queremos volver a poner en funcionamiento a gimp y así poder volver a utilizar gimp, hay dos modos de hacer esto: 
 
-    Si queremos devolverlo a foreground escribiremos fg.
-    Si queremos devolverlo a background escribiremos bg (esta sería la opción mas lógica)
+\begin{itemize}
+\item Si queremos ejecutarlo en foreground  (primer plano) escribiremos 
+\texttt{fg}.
+Esto hará que perdamos la posibilidad de escribir nuevos comandos en la 
+terminal, pues será gimp quien tenga capturada la misma. 
 
-En el caso de que tengamos mas de un programa detenido deberemos indicarle tanto a fg como a bg el ID de tarea sobre el que actuarán, este ID podemos obtenerlo con jobs que hemos visto en un apartado anterior
-¿Como lanzar un programa directamente en background - &?
+\item Si queremos ejecutarlo en background (segundo plano) escribiremos 
+\texttt{bg}. En este caso gimp quedará completamente funcional, saliendo 
+del estado ``T (detenido)'', pero no capturará la terminal, sino que 
+nos permitirá seguir ejecutando comandos en ella. Esto sería equivalente
+a ejecutar directamente ``\texttt{gimp \&}''
+\end{itemize}
 
-Siguiendo nuestro ejemplo con gimp seria gimp & . El & le indica a S.O. que ejecute el programa en segundo plano
+{\bf Más de un proceso en segundo plano: \texttt{jobs}}
 
-\subsection*{Atajos en la terminal}
- 
+Es posible ejecutar varios programas en una misma terminal y mandarlos a 
+segundo plano. El comando \texttt{jobs} nos permite saber cuáles son los 
+procesos en segundo plano asociados a la terminal. Los comando \texttt{bg}
+y \texttt{fg} pueden recibir como argumento los ID de trabajo mostrados
+por el comando \texttt{jobs}.
 
 
-\subsection*{Otros comandos}
+\colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} { 
+{\bf Ejemplo: múltiples procesos en background. }\\
+{\tt
+\$ sleep 200 \& \\
+{[}1{]} 23849 \\
+\$ sleep 300 \& \\
+{[}2{]} 23850\\
+\$ sleep 400 \& \\
+{[}3{]} 23851 \\
+\$ jobs \\
+{[}1{]}   Ejecutando              sleep 200 \& \\
+{[}2{]}-  Ejecutando              sleep 300 \& \\
+{[}3{]}+  Ejecutando              sleep 400 \& \\
+\$ kill \-SIGSTOP 23850 \\
+\$ jobs \\
+{[}1{]}   Ejecutando              sleep 200 \& \\
+{[}2{]}+  Detenido                sleep 300 \\
+{[}3{]}-  Ejecutando              sleep 400 \& \\
+}
+} \vspace*{0.5cm} } } 
 
 
-
+\colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} { 
+{\bf Ejemplo: múltiples procesos en background (continuación). }\\
+{\tt
+\$ fg 1 \\
+sleep 200 \\
+\texttt{\^}Z \\
+{[}1{]}+  Detenido                sleep 200 \\
+\$ bg \\
+{[}1{]}+ sleep 200 \& \\
+\$ fg \\
+sleep 300 \\
+\^Z\\
+{[}2{]}+  Detenido                sleep 300 \\
+\$ bg \\
+{[}2{]}+ sleep 300 \& \\
+\$ jobs\\
+{[}1{]}   Ejecutando              sleep 200 \& \\
+{[}2{]}-  Ejecutando              sleep 300 \& \\
+{[}3{]}+  Ejecutando              sleep 400 \& \\
+\$ \\
+}
+} \vspace*{0.5cm} } } 
 
 \section*{Referencias}
-
-[Intro] Tutuorial Introducción a la Administración de Sistemas GNU/Linux. Materia Introducción
-a la Administración de Sistemas. UNCOMA. TUASSL. 
 
 Señales: http://tldp.org/LDP/Bash-Beginners-Guide/html/sect\_12\_01.html
 
