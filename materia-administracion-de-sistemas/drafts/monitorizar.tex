@@ -114,6 +114,7 @@ Los cuatro recursos básicos de un sistema a monitorizar son :
 \item Memoria
 \item Ancho de Banda
 \item Almacenamiento
+\end{itemize}
 
 Lamentablemente, no es tan simple. Por ejemplo, considere una unidad de disco. ¿Qué cosas podría querer saber sobre su utilización?
 
@@ -131,52 +132,25 @@ Hay más formas de estudiar el rendimiento de una unidad de disco; estos puntos 
 
 
 
-2.4.1. Monitorizar el poder de CPU
+\section*{Monitorizar el CPU}
 En su forma más básica, monitorizar el poder de CPU significa determinar si la utilización del CPU alcanza alguna vez el 100%. Si la utilización del CPU se mantiene por debajo de 100%, sin importar lo que el sistema esté haciendo, hay poder de procesamiento adicional para más trabajo.
 
 Sin embargo, es raro que un sistema no alcance el 100% de utilización de CPU al menos una vez. En ese momento es importante examinar en más detalle los datos de utilización de CPU. Haciendo esto, se hace posible comenzar a determinar donde se consume la mayoría del poder de procesamiento. He aquí algunas de las estadísticas más populares de utilización de CPU:
 
-Usuario contra Sistema
 El porcentaje de tiempo consumido realizando procesamiento a nivel de usuario contra procesamiento a nivel de sistema, puede indicar si la carga de un sistema se debe principalmente a las aplicaciones que se están ejecutando o a la sobrecarga del sistema operativo. Altos porcentajes de procesamiento a nivel de usuario tiende a ser bueno (asumiendo que los usuarios están experimentando un rendimiento satisfactorio), mientras que altos porcentajes de procesamiento a nivel de sistema tiende a apuntar hacia problemas que requerirían mayor investigación.
 
-Cambios de contexto
-Un cambio de contexto ocurre cuando el CPU para de ejecutar un proceso y comienza a ejecutar otro. Debido a que cada contexto requiere que el sistema operativo tome el control del CPU, cambios excesivos de contexto y altos niveles de consumo de CPU a nivel de sistema, tienden a ir de la mano.
-
-Interrupciones
-Como su nombre lo implica, las interrupciones son situaciones donde el procesamiento realizado por el CPU se cambia abruptamente. Las interrupciones ocurren generalmente debido a actividad del hardware (tal como un dispositivo de E/S que termina una operación) o del software (tales como interrupciones de software que controlan el procesamiento de una aplicación).
-
-Procesos ejecutables
-Un proceso puede tener diferentes estados. Por ejemplo, puede estar:
-
-Esperando porque se termine una operación de E/S
-
-Esperando porque el subsistema de administración de memoria resuelva un fallo de página
-
-En estos casos, el proceso no tiene necesidad del CPU.
-
-Sin embargo, eventualmente el estado del proceso cambia y el proceso se vuelve ejecutable. Como su nombre lo implica, un proceso ejecutable es aquel capaz de realizar el trabajo tan pronto como reciba tiempo de CPU. Sin embargo, si hay más de un proceso ejecutable en un momento determinado, todos excepto uno[1] de los procesos deben esperar por su turno de CPU. Monitorizando el número de procesos ejecutables, es posible determinar cuan comprometido está el CPU en su sistema.
 
 Otras métricas de rendimiento que reflejan un impacto en la utilización del CPU tienden a incluir servicios diferentes que el sistema operativo proporciona a los procesos. Estas pueden incluir estadísticas sobre la administración de memoria, procesamiento de E/S, etc. Estas estadísticas también revelan que, cuando el rendimiento del sistema está siendo supervisado, no hay límites entre las diferentes estadísticas. En otras palabras, las estadísticas de utilización de CPU pueden terminar apuntando a un problema en el subsistema de E/S, o las estadísticas de utilización de memoria pueden revelar un defecto de una aplicación.
 
 Por lo tanto, cuando esté supervisando el funcionamiento del sistema, no es posible examinar una estadística de forma totalmente aislada; solamente mediante el exámen del cuadro completo es posible extraer información significativa de cualquier estadística de rendimiento que reuna.
 
-2.4.2. Monitorizar el ancho de banda
+\section*{Monitorizar el ancho de banda}
 Monitorizar el ancho de banda es más complicado que la supervisión de otros recursos descritos aquí. La razón de esto se debe al hecho de que las estadísticas de rendimiento tienden a estar basadas en dispositivos, mientras que la mayoría de los lugares en los que es importante el ancho de banda tienden a ser los buses que conectan dispositivos. En lo casos donde más de un dispositivo comparte un bus común, puede encontrar estadísticas razonables para cada dispositivo, pero la carga que esos dispositivos colocan en el bus es mucho mayor.
 
 Otro reto al monitorizar el ancho de banda es que pueden existir circunstancias donde las estadísticas para los dispositivos mismos no estén disponibles. Esto es particularmente verdadero para los buses de expansión del sistema y datapaths[2]. Sin embargo, aún cuando no siempre tendrá disponibles estadísticas relacionadas al ancho de banda 100% exactas, a menudo se encuentra información suficiente para hacer posible cierto nivel de análisis, particularmente cuando se toman en cuenta estadísticas relacionadas.
 
-Algunas de las estadísticas más comunes relacionadas al ancho de banda son:
 
-Bytes recibidos/enviados
-Las estadísticas de la interfaz de red proporcionan un indicativo de la utilización del ancho de banda de uno de los buses más visibles — la red.
-
-Cuentas y tasas de interfaz
-Estas estadísticas relacionadas a la red dan indicaciones de colisiones excesivas, errores de transmisión/recepción y más. Con el uso de estas estadísticas (particularmente si las estadísticas están disponibles para más de un sistema en su red), es posible realizar un fragmento de resolución de problemas de la red antes de utilizar las herramientas de diagnóstico de la red más comunes.
-
-Transferencias por segundo
-Normalmente reunida por dispositivos de E/S en bloques, tales como discos y unidades de cinta de alto rendimiento, esta estadística es una buena forma de determinar si se está alcanzando el límite del ancho de banda de un dispositivo particular. Debido a su naturaleza electromecánica, las unidades de disco y de cinta solamente pueden realizar ciertas operaciones de E/S cada segundo; su rendimiento se ve afectado rápidamente a medida que se alcanza a este límite.
-
-2.4.3. Monitorizar la memoria
+\section*{Monitorizar la memoria}
 Si existe un área en la que se puede encontrar gran cantidad de estadísticas de rendimiento, esta área es la utilización de la memoria. Debido a la complejidad inherente de los sistemas operativos con memoria virtual bajo demanda de hoy día, las estadísticas de utilización de memoria son muchas y variadas. Es aquí donde tiene lugar la mayoría del trabajo de un administrador de sistemas con la administración de recursos.
 
 Las estadísticas siguientes representan una descripción precipitada de las estadísticas de administración de memoria encontradas más a menudo:
@@ -195,12 +169,14 @@ Estas estadísticas muestran el comportamiento general de la memoria de intercam
 
 La supervisión exitosa de la utilización de la memoria requiere una buena comprensión de cómo funciona la memoria virtual bajo demanda de un sistema operativo. Mientras que esta materia puede tomar un libro completo, los conceptos básicos se discuten en el Capítulo 4. Este capítulo junto con tiempo invertido en monitorizar el sistema, le da los bloques de construcción necesarios para aprender más sobre este tópico.
 
-2.4.4. Monitorizar el almacenamiento
+\section*{Monitorizar el almacenamiento}
 El monitoreo del almacenamiento normalmente tiene lugar en dos niveles diferentes:
 
-Monitorizar insuficiente espacio en disco
+\begin{itemize}
+\item Monitorizar insuficiente espacio en disco
 
-Monitorizar problemas de rendimiento relacionados con el almacenamiento
+\item Monitorizar problemas de rendimiento relacionados con el almacenamiento
+\end{itemize}
 
 La razón de esto es que es posible tener problemas calamitosos en un área y ningún problema en otra. Por ejemplo, es posible causar que a la unidad de disco se le acabe el espacio sin causar ningún tipo de problemas relacionados al rendimiento. De la misma manera, es posible tener una unidad de disco que tiene 99% de espacio libre, pero que se ha puesto más allá de sus límites en términos de rendimiento.
 
@@ -208,17 +184,19 @@ Sin embargo, es más probable que el sistema promedio experimente diferentes gra
 
 En cualquier caso, las estadísticas siguientes son útiles para supervisar el almacenamiento:
 
-Espacio libre
+\begin{itemize}
+\item Espacio libre
 El espacio libre es probablemente el recurso que todos los administradores de sistemas vigilan más de cerca; sería raro el administrador que no verifica el espacio disponible (o que tiene una forma de hacerlo automáticamente).
 
-Estadísticas relacionadas al sistema de archivos
+\item Estadísticas relacionadas al sistema de archivos
 Estas estadísticas (tales como el número de archivos/directorios, tamaño promedio de los archivos, etc.) suministran detalles adicionales sobre un porcentaje de espacio libre. Como tal, estas estadísticas hacen posible para los administradores de sistemas configurar el sistema para que entregue el mejor rendimiento, pues la carga de E/S impuesta por un sistema de archivos lleno de muchos pequeños archivos no es la misma que la carga impuesta por un sistema de archivos lleno con un único archivo enorme.
 
-Transferencias por segundo
+\item Transferencias por segundo
 Esta estadística es una buena forma de determinar si se están alcanzando las limitaciones de ancho de banda de un dispositivo en particular.
 
-Lecturas/escrituras por segundo
+\item Lecturas/escrituras por segundo
 Con un desglose más detallado de las transferencias por segundo, estas estadísticas permiten al administrador de sistemas entender mejor la naturaleza de las cargas de E/S que está experimentando un dispositivo de almacenamiento. Esto puede ser crítico, ya que algunas tecnologías de almacenamiento tienen características de funcionamiento muy diferentes para operaciones de lecturas contra escrituras.
+\end{itemize}
 
 
 
