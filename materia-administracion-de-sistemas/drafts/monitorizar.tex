@@ -382,43 +382,17 @@ Con un desglose más detallado de las transferencias por segundo, estas estadís
 
 
 
-\subsection*{Estado de los procesos}
-
-El orden en que los procesos reciben la atención de el CPUs, es 
-
-\colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} { 
-{\bf }
-Ejecutar ``\texttt{kill 1232}'' es equivalente a ``\texttt{kill -SIGTERM 
-1232}'', y a ``\texttt{kill -15 1232}'' (asumiendo que 1232 es un PID 
-válido). 
-} \vspace*{0.5cm} } } 
-
-\textbf{SIGKILL (9) - Terminación abrupta}
-
-\fcolorbox{black}{grey}{
-\parbox[t]{1.0\linewidth}{ \vspace*{0.4cm}
-{\bf Lo importante:} La señal SIGKILL no puede ser desatendida por el 
-proceso, mientras que SIGTERM si (el proceso puede no hacer caso al 
-pedido de terminación). Es importante primero intentar finalizarlo 
-amablemente (SIGTERM) y luego si no responde aplicar SIGKILL. 
-\vspace*{0.4cm} } }
-
-
-
-
-
-\section*{Referencias}
-
-[Intro] Tutorial Introducción a la Administración de Sistemas GNU/Linux. Materia Introducción
-a la Administración de Sistemas. UNCOMA. TUASSL. 
-
-Señales: http://tldp.org/LDP/Bash-Beginners-Guide/html/sect\_12\_01.html
-
-http://www.ant.org.ar/cursos/curso\_intro/x1845.html
-
 \section*{Licencia}
 
-Este texto fue creado por Miriam Tamara Lechner y se encuentra bajo 
-Licencia Creative Commons Atribución-CompartirDerivadasIgual 3.0 Unported
+Este texto es una modificación del texto original 
+''Red Hat Enterprise Linux 4
+Introducción a la administración de sistemas'', realizada por Rafael Ignacio Zurita.
+
+\begin{verbatim}
+http://web.mit.edu/rhel-doc/4/RH-DOCS/rhel-isa-es-4/index.html
+\end{verbatim}
+
+Copyright © 2005 por Red Hat, Inc. Este material solamente se distribuye bajo los términos y condiciones establecidas en la Open Publication License, V1.0 o versiones posteriores (la última versión está disponible en http://www.opencontent.org/openpub/).
+
 
 \end{document}
