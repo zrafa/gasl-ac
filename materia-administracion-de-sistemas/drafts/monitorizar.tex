@@ -177,7 +177,7 @@ El programa mas interesante para iniciar el monitoreo del sistema, y en particul
  % redireccionamiento.gif: 502x248 pixel, 72dpi, 17.71x8.75 cm, bb=0 0 502 248
 \end{center}
 
-\subsubsection{Descripciones de los campos de top}
+\subsection{Descripciones de los campos de top}
        top  despliega  una variada información sobre el estado del procesador.
        La pantalla se actualiza cada 5 segundos de forma predeterminada,  pero
        esto se puede cambiar con la opción de la línea de órdenes d o la orden
@@ -257,17 +257,55 @@ El programa mas interesante para iniciar el monitoreo del sistema, y en particul
 \end{itemize}
 
 
-Los campos mas utilizados para analizar la CPU son los que indican los porcentajes de \bf{utilizado},
-y el porcentaje de \bf{ocioso}. Si los campos user+system están cercanos al 100\% puede indicar una falta de recurso de CPU.
+Los campos mas utilizados para analizar la CPU son los que indican los porcentajes de \textbf{utilizado},
+y el porcentaje de \textbf{ocioso}. Si los campos user+system están cercanos al 100\% puede indicar una falta de recurso de CPU.
 
 Para analizar qué procesos consumen mucha CPU puede leer 
-la sección de procesos, la cual está ordenada por \bf{utilización de CPU}. De mayor a menor.
+la sección de procesos, la cual está ordenada por \textbf{utilización de CPU}. De mayor a menor.
 
 \section*{Monitorizar el ancho de banda}
 Monitorizar el ancho de banda es más complicado que la supervisión de otros recursos descritos aquí. La razón de esto se debe al hecho de que las estadísticas de rendimiento tienden a estar basadas en dispositivos, mientras que la mayoría de los lugares en los que es importante el ancho de banda tienden a ser los buses que conectan dispositivos. En lo casos donde más de un dispositivo comparte un bus común, puede encontrar estadísticas razonables para cada dispositivo, pero la carga que esos dispositivos colocan en el bus es mucho mayor.
 
-Otro reto al monitorizar el ancho de banda es que pueden existir circunstancias donde las estadísticas para los dispositivos mismos no estén disponibles. Esto es particularmente verdadero para los buses de expansión del sistema y datapaths[2]. Sin embargo, aún cuando no siempre tendrá disponibles estadísticas relacionadas al ancho de banda 100% exactas, a menudo se encuentra información suficiente para hacer posible cierto nivel de análisis, particularmente cuando se toman en cuenta estadísticas relacionadas.
+Otro reto al monitorizar el ancho de banda es que pueden existir circunstancias donde las estadísticas para los dispositivos mismos no estén disponibles. Esto es particularmente verdadero para los buses de expansión del sistema y datapaths[2]. Sin embargo, aún cuando no siempre tendrá disponibles estadísticas relacionadas al ancho de banda 100\% exactas, a menudo se encuentra información suficiente para hacer posible cierto nivel de análisis, particularmente cuando se toman en cuenta estadísticas relacionadas.
 
+\subsection*{Ejemplo de monitoreo del ancho de banda}
+
+Usando vmstat, es posible determinar si es excesiva la actividad general de los dispositivos examinando los campos bi y bo; además, revisando los campos si y so le dará un poco más de conocimiento sobre cuánta actividad de disco se debe a E/S relacionada a swap.
+
+\begin{center}
+ \includegraphics{vmstat1.png}
+\end{center}
+
+        
+En este ejemplo, el campo bi muestra dos bloques/segundos escritos a los dispositivos en bloque (principalmente unidades de disco), mientras que el campo bo muestra seis bloques/segundos leído desde los dispositivos de bloque. Podemos determinar que ninguna de esta actividad se debe a intercambio de memoria (swap), ya que los campos si y so ambos muestran una tasa de E/S relacionada a swap de cero kilobytes/segundo.
+
+Usando iostat, es posible obtener un poco más de detalles sobre la actividad relacionada al disco:
+
+\begin{center}
+ \includegraphics{iostat1.png}
+\end{center}
+
+Esta salida nos muestra que el dispositivo con un número major de 8 (el cual es /dev/sda, el primer disco SCSI) tiene un promedio un poco mayor de una operación de E/S por segundo (el campo tsp). La mayoría de la actividad de E/S para este dispositivo fueron escrituras (el campo Blk\_wrtn), con un poco más de 25 bloques escritos cada segundo (el campo Blk\_wrtn/s).
+
+Si se necesitan más detalles, utilice la opción -x de iostat:
+
+\begin{center}
+ \includegraphics{iostat2.png}
+\end{center}
+
+        
+Más allá de las largas líneas conteniendo más campos, la primera cosa a tener en mente es que esta salida de iostat está mostrando ahora estadísticas a un nivel de partición. Usando df para asociar los puntos de montaje con los nombres de dispositivos, es posible utilizar este informe para determinar si, por ejemplo, la partición conteniendo /home/ está experimentando una sobrecarga excesiva.
+
+En realidad, cada línea de salida de iostat -x es más larga y contiene más información que esto; he aquí el resto de cada línea (agregando la columna del dispositivo para facilitar la lectura):
+
+\begin{center}
+ \includegraphics{iostat3.png}
+\end{center}
+
+        
+En este ejemplo, es interesante observar que /dev/sda2 es la partición swap del sistema; obviamente, a partir de los muchos campos de esta particiónque leen 0.00, el swapping no es un problema en el sistema.
+
+Otro punto interesante a tomar en cuenta es /dev/sda1. Las estadísticas para esta partición son inusuales; la actividad general parece baja, pero por qué el tamaño promedio de peticiones de E/S (el campo avgrq-sz), el tiempo promedio de espera (el campo await) y el tiempo promedio de servicio (el campo svctm) son mucho más grandes que en las otras particiones? La respuesta es que esta partición contiene el directorio /boot/, el cual es donde el kernel y el disco inicial ramdisk son almacenados. Cuando el sistema arranca, las lecturas de E/S (observe que solamente los campos rsec/s y rkB/s son diferentes de cero; no se hace ninguna escritura aquí de forma regular) usadas durante el proceso de arranque son para grandes números de bloques, resultando en despliegues iostat de esperas relativamente largas y tiempos de servicios.
 
 \section*{Monitorizar la memoria}
 Si existe un área en la que se puede encontrar gran cantidad de estadísticas de rendimiento, esta área es la utilización de la memoria. Debido a la complejidad inherente de los sistemas operativos con memoria virtual bajo demanda de hoy día, las estadísticas de utilización de memoria son muchas y variadas. Es aquí donde tiene lugar la mayoría del trabajo de un administrador de sistemas con la administración de recursos.
