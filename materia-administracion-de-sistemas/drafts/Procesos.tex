@@ -15,8 +15,8 @@
 % Titulo 
  \makeatletter
  {\color{bl} \centering \huge \sc \textbf{
- Monitoreo de recursos \\ 
-\large \vspace*{-8pt} \color{black} Guía básica de monitoreo de recursos. 
+ Procesos \\ 
+\large \vspace*{-8pt} \color{black} Guía básica administración de procesos. 
  \vspace*{8pt} }\par}
  \makeatother
 
@@ -35,7 +35,7 @@
 \fancyhf{} % clear all header and footer fields
 \fancypagestyle{plain}{\fancyhf{}}
   	\pagestyle{fancy}
- 	\lhead{\footnotesize Reconocimiento y monitoreo de recursos - Departamento de Ingeniería de Computadoras}
+ 	\lhead{\footnotesize Administración de procesos - Departamento de Ingeniería de Computadoras}
  	\rhead{\footnotesize \thepage\ }	% ''Page 1 of 2''
 
 \def\ti#1#2{\texttt{#1} & #2 \\ }
@@ -153,6 +153,14 @@ El administrador de sistemas en ocasiones deberá manipular el estado de
 los procesos con diferentes fines. Para ello, enviará señales a los 
 mismos a través del comando \texttt{kill}. 
 
+\fcolorbox{black}{grey}{
+\parbox[t]{1.0\linewidth}{ \vspace*{0.4cm}
+{\bf Importante}: cada proceso tiene un usuario dueño (el nombre del
+ usuario dueño se observa en la primer columna de la salida de 
+\texttt{ps -ef}). El envío de señales a un proceso mediante el 
+comando \texttt{kill} sólo pordá realizarlo el dueño o \textbf{root}
+\vspace*{0.4cm} } }
+
 El comando \texttt{kill} (matar) tiene una funcionalidad predeterminada, 
 equivalente a cerrar un programa desde la interfase gráfica, esto es envía
 al proceso la señal SIGTERM (15). El comando 
@@ -172,98 +180,176 @@ Si, observando la salida anterior, ejecutamos ``\texttt{kill 10725}'',
 estaremos pidiéndole al programa apache2 que termine su ejecución. 
 } \vspace*{0.5cm} } } 
 	
-
 El comando \texttt{kill} permite, además de su funcionalidad predeterminada,
 enviar otras señales que generan otros cambios de estado diferentes al de 
 terminar. La lista de señales posibles se pueden listar observando la 
-salida del comando \texttt{kill -l}. 
+salida del comando \texttt{kill -l}. La explicación particular de cada 
+una de ellas se puede encontrar en la sección siete de las paginas del 
+manual online página ``signal'' (\texttt{man 7 signal}).  
+
 Cada señal tiene un número y un nombre en mayúsculas asociado, cualquiera
 de ellos puede utilizarce como argumento del comando \texttt{kill}  
-
 En particular hablaremos de las señales mas frecuentemente utilizadas: 
-SIGHUP (1), SIGSTOP (19), SIGCONT(18), SIGTERM (15) y  SIGKILL (9).  
+SIGSTOP (19), SIGCONT(18), SIGTERM (15) y  SIGKILL (9).  
 
+\textbf{SIGTERM (15) - Predeterminada}
 
-\colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} { 
-{\bf Importante}: cada proceso tiene un usuario dueño (el nombre del
- usuario dueño se observa en la primer columna de la salida de 
-\texttt{ps -ef}). El envío de señales a un proceso mediante el 
-comando \texttt{kill} sólo pordá realizarlo el dueño o \textbf{root}
-} \vspace*{0.5cm} } } 
- 
-
-
-\subsection*{Utilización del CPU}
-
-El CPU es utilizado por cada proceso por períodos cortos de tiempo. Dando 
-al usuario, la senación de que todos los procesos corren simultáneamente.
-El punto de interés en este caso, es averiguar cuán cargado se encuentra
-el o los procesadores de una computadora en un momento particular. El 
-primer comando que observaremos es \texttt{uptime}:
-
+La señal SIGTERM es la predeterminada al utilizar el comando kill. Esto 
+es, si ejecutamos el comando kill utilizando sólo como argumento el PID 
+de un proceso, le estaremos enviando SIGTERM. Esto significa que le estamos
+pidiendo \textit{amablemente} al proceso que finalice su ejecución. 
+Si el proceso puede responder a esta señal, ejecutará instrucciones de 
+cierre (como por ejemplo cerrar archivos abiertos) y finalizará su 
+ejecución correctamente liberando los recursos que estaba consumiendo. 
 
 \colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} { 
-{\bf Ejemplo de salida de \texttt{uptime}:} \\
-{\tt
-\# uptime \\
- 22:28:41 up 1 day, 22:13, 10 users,  load average: 0,56, 0,65, 0,68
-}
+{\bf }
+Ejecutar ``\texttt{kill 1232}'' es equivalente a ``\texttt{kill -SIGTERM 
+1232}'', y a ``\texttt{kill -15 1232}'' (asumiendo que 1232 es un PID 
+válido). 
 } \vspace*{0.5cm} } } 
 
-Este comando muestra la hora actual, el tiempo que hace que el sistema se 
-ha iniciado, la cantidad de sesiones iniciadas por usuarios, y la carga 
-promedio del sistema en los últimos 1, 5 y 15 minutos. Estos últimos valores
-son los de interés en esta sección. 
+\textbf{SIGKILL (9) - Terminación abrupta}
 
-La carga promedio (load average) representa el número promedio de procesos
-que se encuentran ya sea en estado ``ejecutable'' o ``ininterrumpible'' 
-(estado ``D'').  Estado ``ejecutable'' puede ser tanto un proceso que se 
-encuentra efectivamente ejecutándose en CPU o en cola de ejecución 
-(listo para ser ejectudado en CPU).  Se debe tener en cuenta que el valor 
-mostrado no se encuentra normalizado por el número de CPUs presentes en 
-el sistema, es por esto que un load average de 1 (uno) en un sistema con 
-un solo CPU significa que el mismo está cargado todo el tiempo, mientras 
-que en un sistema con cuatro CPUs el mismo valor indica que estuvo oscioso
-el 75\% del tiempo. 
-
-
-\begin{center}
- \includegraphics{top.jpg}
-\end{center}
-
+Muchos administradores de sistemas utilizan esta señal como un estándar, 
+esto además de incorrecto es riesgoso. La señal SIGKILL es equivalente en 
+intención a SIGTERM, es decir que si enviamos esta señal a un proceso, 
+nuestra intención es finalizar al mismo. Sin embargo, en este caso el
+cierre no es amable, al enviar la señal SIGKILL el proceo pierde la 
+posibilidad de finalizar correctamente y muchos de los recursos que 
+utilizaba pueden quedar retenidos por un cierto período de tiempo.  
 
 
 \fcolorbox{black}{grey}{
-\parbox[t]{1.0 \linewidth}{ \vspace*{0.4cm}
-{\bf Lo importante :} Incorporar el hábito de consultar los archivos de log e
-identificar la información de interés para el recurso a identificar, o bien la ausencia de la misma.
+\parbox[t]{1.0\linewidth}{ \vspace*{0.4cm}
+{\bf Lo importante:} La señal SIGKILL no puede ser desatendida por el 
+proceso, mientras que SIGTERM si (el proceso puede no hacer caso al 
+pedido de terminación). Es importante primero intentar finalizarlo 
+amablemente (SIGTERM) y luego si no responde aplicar SIGKILL. 
 \vspace*{0.4cm} } }
 
+
+\textbf{SIGSTOP (19) - Deteniendo un proceso}
+
+A veces, el administrador no quiere terminar un proceso, pero necesita
+que éste detenga su ejecución temporalmente. La señal SIGSTOP, no puede
+ser ignorada por los procesos, y realiza exactamente esta función de 
+detener la ejecución del mismo. 
+
+Una vez que enviamos esta señal a un proceso, el proceso se encontrará en 
+estado detenido ``T''.
+
+
 \colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} { 
-{\bf Ejemplo : Utilizando lscpu }
-\\ \\
-{\tt \small
-\# lscpu \\
-Architecture:          i686\\
-CPU op-mode(s):        32-bit, 64-bit\\
-Byte Order:            Little Endian\\
-CPU(s):                2\\
-On-line CPU(s) list:   0,1\\
-Thread(s) per core:    1\\
-Core(s) per socket:    2\\
-Socket(s):             1\\
-Vendor ID:             AuthenticAMD\\
-CPU family:            16\\
-Model:                 6\\
-Stepping:              3\\
-CPU MHz:               800.000\\
-BogoMIPS:              5586.01\\
-Virtualization:        AMD-V\\
-L1d cache:             64K\\
-L1i cache:             64K\\
-L2 cache:              1024K\\
+{\bf Ejemplo:} deteniendo al navegador web iceweasel. \\
+{\tt
+\# ps -elf|grep iceweasel |grep -v grep \\
+0 S lechnerm 19308  3623 10  80   0 - 213762 -     23:49 ?    00:00:06 iceweasel \\
+
+\# kill -SIGSTOP 19308 \\
+
+\# ps -elf|grep iceweasel |grep -v grep \\
+0 T lechnerm 19308  3623 14  80   0 - 234269 -     23:49 ?    00:00:08 iceweasel \\
 }
+Observese el cambio de estado (segundo valor mostrado en la salida de ps), 
+de ``S'' a ``T''. 
 } \vspace*{0.5cm} } } 
+
+
+\textbf{SIGCONT (18) - Reactivando un proceso}
+
+La señal SIGCONT permite al administrador indicarle al proceso que debe 
+continuar su ejecución. Esta señal tiene sentido luego de haber enviado 
+SIGSTOP al proceso. Siguiendo el ejemplo anterior, enviaremos la señal de
+continuación, SIGCONT, al navegador web previamente detenido.  
+
+
+\colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} { 
+{\bf Ejemplo:} reactivando el navegador web. \\
+{\tt
+\# ps -elf|grep iceweasel |grep -v grep  \\
+0 T lechnerm 19308  3623 14  80   0 - 234269 -     23:49 ?    00:00:08 iceweasel \\
+
+kill -SIGCONT 19308 \\
+
+ps -elf|grep iceweasel |grep -v grep  \\
+0 S lechnerm 19308  3623 10  80   0 - 213762 -     23:49 ?    00:00:09 iceweasel \\
+}
+Observese el cambio de estado (segundo valor mostrado en la salida de ps), 
+de ``T'' a ``S''. 
+
+} \vspace*{0.5cm} } }
+
+\subsection*{Ejecución en primer y segundo plano}
+
+En Linux proceso puede estar en primer (foreground) o segundo plano
+(background). Solo un proceso estará en primer plano al mismo tiempo en
+una terminal, y es con el que estemos trabajando e interactuando en ese 
+momento. Un proceso que este en segundo plano no recibirá interacción  
+de parte nuestra, es decir que no nos podemos comunicar con él 
+a través, por ejemplo, del teclado. 
+
+La utilidad de enviar un programa a 
+segundo plano esta dada por el hecho de que existen tareas que no 
+requieren de nuestro control para que se ejecuten. Por ejemplo, bajar 
+algún archivo de Internet, compilar el kernel u otro programa. Estas son 
+tareas que pueden ser lanzadas tranquilamente en segundo plano. También 
+podemos querer realizar otra tarea en la misma terminal
+
+
+Para 
+lanzar un proceso en segundo plano, tendremos que poner a continuación 
+del comando el símbolo ``\&''. 
+
+En linux podemos ejecutar procesos en primer plano (foreground) o bien en segundo plano (background).
+
+Un programa en foreground lanzado desde una terminal monopoliza dicha
+terminal, por lo que en principio, no podremos ejecutar ningún otro 
+programa a la vez. 
+
+Por el contrario un programa en background una vez iniciado, deja de 
+monopolizar la terminal desde el que se lanzo, y esta nos vuelve a 
+mostrar el prompt.
+
+{\bf ¿Cuándo lanzaremos un programa en background?}
+
+Por ejemplo, en una terminal gráfica lanzamos gimp y queremos realizar 
+otras operaciones desde la misma terminal, o bien vamos a lanzar un 
+programa que no necesita interacción con el usuario. 
+
+
+{\bf ¿Cuándo lanzaremos un programa en foreground?}
+
+Con un proceso que necesita interacción con el usuario, y esta 
+interacción se realiza a través del terminal.
+
+{\bf ¿Como podemos lanzar otro programa desde un terminal con otro programa 
+en ejecución en foreground?}
+
+Una vez ejecutado el programa que captura la terminal, pulsamos CTRL+z 
+en la misma, con lo que detenemos el programa en ejecución (equivalente
+a enviar la señal SIGSTOP). Ojo lo pausamos con lo cual dejará de 
+funcionar, y ya podremos lanzar otro programa p.e. ls
+
+    Podemos hacer una prueba lanzamos gimp y comprobamos que podemos operar con el, luego pulsamos CTRL-z y vemos como dejamos de poder trabajar con gimp).
+
+Ahora queremos volver a poner en funcionamiento a gimp y así poder volver a utilizar gimp
+
+    Si queremos devolverlo a foreground escribiremos fg.
+    Si queremos devolverlo a background escribiremos bg (esta sería la opción mas lógica)
+
+En el caso de que tengamos mas de un programa detenido deberemos indicarle tanto a fg como a bg el ID de tarea sobre el que actuarán, este ID podemos obtenerlo con jobs que hemos visto en un apartado anterior
+¿Como lanzar un programa directamente en background - &?
+
+Siguiendo nuestro ejemplo con gimp seria gimp & . El & le indica a S.O. que ejecute el programa en segundo plano
+
+\subsection*{Atajos en la terminal}
+ 
+
+
+\subsection*{Otros comandos}
+
+
 
 
 \section*{Referencias}
@@ -271,8 +357,9 @@ L2 cache:              1024K\\
 [Intro] Tutuorial Introducción a la Administración de Sistemas GNU/Linux. Materia Introducción
 a la Administración de Sistemas. UNCOMA. TUASSL. 
 
-http://www.linuxjournal.com/article/9001
+Señales: http://tldp.org/LDP/Bash-Beginners-Guide/html/sect\_12\_01.html
 
+http://www.ant.org.ar/cursos/curso\_intro/x1845.html
 
 \section*{Licencia}
 
