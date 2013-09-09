@@ -1,0 +1,267 @@
+%%% LaTeX Template: Article/Thesis/etc. with colored headings and special fonts
+%%%
+%%% Source: http://www.howtotex.com/
+
+\documentclass[12pt]{article}
+
+
+\usepackage{apuntes-estilo}
+\usepackage{fancyhdr,lastpage}
+\usepackage{color,colortbl}
+\usepackage{verbatim}
+
+\def\maketitle{
+
+% Titulo 
+ \makeatletter
+ {\color{bl} \centering \huge \sc \textbf{
+ Procesos \\ 
+\large \vspace*{-8pt} \color{black} Guía básica de Monitoreo de Recursos 
+ \vspace*{8pt} }\par}
+ \makeatother
+
+
+% Autor
+ \makeatletter
+ {\centering \small 
+ 	Departamento de Ingeniería de Computadoras \\
+ 	Facultad de Informática - Universidad Nacional del Comahue \\
+ 	\vspace{20pt} }
+ \makeatother
+
+}
+
+% Custom headers and footers
+\fancyhf{} % clear all header and footer fields
+\fancypagestyle{plain}{\fancyhf{}}
+  	\pagestyle{fancy}
+ 	\lhead{\footnotesize Monitoreo de Recursos - Departamento de Ingeniería de Computadoras}
+ 	\rhead{\footnotesize \thepage\ }	% ''Page 1 of 2''
+
+\def\ti#1#2{\texttt{#1} & #2 \\ }
+
+
+
+\begin{document}
+
+\thispagestyle{empty}
+\maketitle
+\setlength{\parindent}{0pt}
+
+\section*{Introducción}
+
+La administración de sistemas es mayormente un asunto de balancear los recursos disponibles con 
+los usuarios y los programas que utilizan esos recursos. Por lo tanto, su carrera como administrador de sistemas será corta y completa de stress a menos que entienda completamente los recursos que tiene a su disposición.
+
+Antes de poder supervisar recursos, primero tiene que conocer que recursos hay que monitorizar.
+Todos los sistemas tienen disponibles los siguientes recursos:
+
+\begin{itemize}
+\item CPU
+
+\item Ancho de banda
+
+\item Memoria
+
+\item Almacenamiento
+\end{itemize}
+
+Estos recursos tienen un impacto directo en el rendimiento del sistema y, por lo tanto, en la productividad y percepción de sus usuarios.
+
+En su aspecto más simple, monitorizar recursos no es más que obtener información concerniente a la utilización de uno o más recursos del sistema. Sin embargo, raramente esto es tan simple. Primero, debe tomar en cuenta los recursos a controlar. Luego es necesario examinar cada sistema a monitorizar, prestando especial atención a la situación de cada sistema.
+
+Existen al menos dos objetivo por el cual debemos verificar un sistema :
+
+\begin{itemize}
+\item El sistema está actualmente experimentando problemas de rendimiento al menos parte del tiempo y a usted le gustaría mejorar su rendimiento.
+
+\item El sistema está funcionando bien y le gustaría que se mantenga de esa manera.
+\end{itemize}
+La primera categoría indica que debería supervisar el sistema desde la perspectiva del rendimiento del sistema, mientras que la segunda categoría significa que debe supervisar los recursos del sistema desde la perspectiva de planificación de la capacidad del mismo.
+
+
+
+\section*{Monitorizar el rendimiento del sistema}
+
+La supervisión del rendimiento del sistema se realiza normalmente como el primer y el último paso del siguiente proceso :
+
+\begin{enumerate}
+\item Monitorizar para identificar la naturaleza y ámbito de la escasez de recursos que están causando los problemas de rendimiento
+
+\item Se analizan los datos producidos a partir de la supervisión y se toma un curso de acción (normalmente optimización del rendimiento o la adquisición de hardware adicional)
+
+\item Monitorizar para asegurarse de que se ha solucionado el problema de rendimiento
+
+\end{enumerate}
+
+ 	
+\fcolorbox{black}{grey}{
+\parbox[t]{1.0\linewidth}{ \vspace*{0.4cm}
+{\bf Lo importante:} 
+Monitorizar el rendimiento del sistema a menudo es un proceso iterativo, repitiendo estos pasos varias veces para llegar al mejor rendimiento posible para el sistema. La razón principal para esto es que los recursos del sistema y su utilización tienden a estar estrechamente relacionados, lo que significa que a menudo la eliminación de un cuello de botella descubre otro más.
+\vspace*{0.4cm} } }
+
+
+
+
+
+\section*{¿Qué monitorizar?}
+
+Los cuatro recursos básicos de un sistema a monitorizar son :
+
+\begin{itemize}
+\item CPU
+\item Memoria
+\item Ancho de Banda
+\item Almacenamiento
+
+Lamentablemente, no es tan simple. Por ejemplo, considere una unidad de disco. ¿Qué cosas podría querer saber sobre su utilización?
+
+¿Cuánto espacio libre está disponible?
+
+¿Cuántas operaciones de E/S realiza en promedio por segundo?
+
+¿Cuánto tiempo en promedio toma en completarse cada operación de E/S?
+
+¿Cuántas de esas operaciones de E/S son lecturas? ¿Cuántas son escrituras?
+
+¿Cuál es la cantidad promedio de datos leídos/escritos con cada E/S?
+
+Hay más formas de estudiar el rendimiento de una unidad de disco; estos puntos solamente tocan la superficie. El concepto principal a tener en mente es que hay muchos tipos diferentes de datos para cada recurso.
+
+
+
+2.4.1. Monitorizar el poder de CPU
+En su forma más básica, monitorizar el poder de CPU significa determinar si la utilización del CPU alcanza alguna vez el 100%. Si la utilización del CPU se mantiene por debajo de 100%, sin importar lo que el sistema esté haciendo, hay poder de procesamiento adicional para más trabajo.
+
+Sin embargo, es raro que un sistema no alcance el 100% de utilización de CPU al menos una vez. En ese momento es importante examinar en más detalle los datos de utilización de CPU. Haciendo esto, se hace posible comenzar a determinar donde se consume la mayoría del poder de procesamiento. He aquí algunas de las estadísticas más populares de utilización de CPU:
+
+Usuario contra Sistema
+El porcentaje de tiempo consumido realizando procesamiento a nivel de usuario contra procesamiento a nivel de sistema, puede indicar si la carga de un sistema se debe principalmente a las aplicaciones que se están ejecutando o a la sobrecarga del sistema operativo. Altos porcentajes de procesamiento a nivel de usuario tiende a ser bueno (asumiendo que los usuarios están experimentando un rendimiento satisfactorio), mientras que altos porcentajes de procesamiento a nivel de sistema tiende a apuntar hacia problemas que requerirían mayor investigación.
+
+Cambios de contexto
+Un cambio de contexto ocurre cuando el CPU para de ejecutar un proceso y comienza a ejecutar otro. Debido a que cada contexto requiere que el sistema operativo tome el control del CPU, cambios excesivos de contexto y altos niveles de consumo de CPU a nivel de sistema, tienden a ir de la mano.
+
+Interrupciones
+Como su nombre lo implica, las interrupciones son situaciones donde el procesamiento realizado por el CPU se cambia abruptamente. Las interrupciones ocurren generalmente debido a actividad del hardware (tal como un dispositivo de E/S que termina una operación) o del software (tales como interrupciones de software que controlan el procesamiento de una aplicación).
+
+Procesos ejecutables
+Un proceso puede tener diferentes estados. Por ejemplo, puede estar:
+
+Esperando porque se termine una operación de E/S
+
+Esperando porque el subsistema de administración de memoria resuelva un fallo de página
+
+En estos casos, el proceso no tiene necesidad del CPU.
+
+Sin embargo, eventualmente el estado del proceso cambia y el proceso se vuelve ejecutable. Como su nombre lo implica, un proceso ejecutable es aquel capaz de realizar el trabajo tan pronto como reciba tiempo de CPU. Sin embargo, si hay más de un proceso ejecutable en un momento determinado, todos excepto uno[1] de los procesos deben esperar por su turno de CPU. Monitorizando el número de procesos ejecutables, es posible determinar cuan comprometido está el CPU en su sistema.
+
+Otras métricas de rendimiento que reflejan un impacto en la utilización del CPU tienden a incluir servicios diferentes que el sistema operativo proporciona a los procesos. Estas pueden incluir estadísticas sobre la administración de memoria, procesamiento de E/S, etc. Estas estadísticas también revelan que, cuando el rendimiento del sistema está siendo supervisado, no hay límites entre las diferentes estadísticas. En otras palabras, las estadísticas de utilización de CPU pueden terminar apuntando a un problema en el subsistema de E/S, o las estadísticas de utilización de memoria pueden revelar un defecto de una aplicación.
+
+Por lo tanto, cuando esté supervisando el funcionamiento del sistema, no es posible examinar una estadística de forma totalmente aislada; solamente mediante el exámen del cuadro completo es posible extraer información significativa de cualquier estadística de rendimiento que reuna.
+
+2.4.2. Monitorizar el ancho de banda
+Monitorizar el ancho de banda es más complicado que la supervisión de otros recursos descritos aquí. La razón de esto se debe al hecho de que las estadísticas de rendimiento tienden a estar basadas en dispositivos, mientras que la mayoría de los lugares en los que es importante el ancho de banda tienden a ser los buses que conectan dispositivos. En lo casos donde más de un dispositivo comparte un bus común, puede encontrar estadísticas razonables para cada dispositivo, pero la carga que esos dispositivos colocan en el bus es mucho mayor.
+
+Otro reto al monitorizar el ancho de banda es que pueden existir circunstancias donde las estadísticas para los dispositivos mismos no estén disponibles. Esto es particularmente verdadero para los buses de expansión del sistema y datapaths[2]. Sin embargo, aún cuando no siempre tendrá disponibles estadísticas relacionadas al ancho de banda 100% exactas, a menudo se encuentra información suficiente para hacer posible cierto nivel de análisis, particularmente cuando se toman en cuenta estadísticas relacionadas.
+
+Algunas de las estadísticas más comunes relacionadas al ancho de banda son:
+
+Bytes recibidos/enviados
+Las estadísticas de la interfaz de red proporcionan un indicativo de la utilización del ancho de banda de uno de los buses más visibles — la red.
+
+Cuentas y tasas de interfaz
+Estas estadísticas relacionadas a la red dan indicaciones de colisiones excesivas, errores de transmisión/recepción y más. Con el uso de estas estadísticas (particularmente si las estadísticas están disponibles para más de un sistema en su red), es posible realizar un fragmento de resolución de problemas de la red antes de utilizar las herramientas de diagnóstico de la red más comunes.
+
+Transferencias por segundo
+Normalmente reunida por dispositivos de E/S en bloques, tales como discos y unidades de cinta de alto rendimiento, esta estadística es una buena forma de determinar si se está alcanzando el límite del ancho de banda de un dispositivo particular. Debido a su naturaleza electromecánica, las unidades de disco y de cinta solamente pueden realizar ciertas operaciones de E/S cada segundo; su rendimiento se ve afectado rápidamente a medida que se alcanza a este límite.
+
+2.4.3. Monitorizar la memoria
+Si existe un área en la que se puede encontrar gran cantidad de estadísticas de rendimiento, esta área es la utilización de la memoria. Debido a la complejidad inherente de los sistemas operativos con memoria virtual bajo demanda de hoy día, las estadísticas de utilización de memoria son muchas y variadas. Es aquí donde tiene lugar la mayoría del trabajo de un administrador de sistemas con la administración de recursos.
+
+Las estadísticas siguientes representan una descripción precipitada de las estadísticas de administración de memoria encontradas más a menudo:
+
+Páginas dentro/fuera
+Estas estadísticas hacen posible medir el flujo de páginas desde la memoria del sistema a los dispositivos de almacenamiento masivo (usualmente unidades de disco). Altas tasas de estas estadísticas pueden representar que el sistema está corto de memoria física y que está haciendo thrashing o consumiendo más recursos del sistema en mover las páginas dentro y fuera de memoria que en ejecutando aplicaciones.
+
+Páginas activas/inactivas
+Estas estaditicas muestran qué tanto se están utilizando las páginas residentes en memoria. Una falta de páginas inactivas puede estar apuntando hacia una escasez de memoria física.
+
+Páginas libres, compartidas, en memoria intermedia o en caché
+Estas estadísticas proporcionan detalles adicionales sobre las estadísticas más simples de páginas activas/inactivas. Usando estas estadísticas es posible determinar la mezcla general de utilización de memoria.
+
+Intercambio dentro/fuera
+Estas estadísticas muestran el comportamiento general de la memoria de intercambio del sistema. Tasas excesivas pueden estar apuntando a una escasez de memoria física.
+
+La supervisión exitosa de la utilización de la memoria requiere una buena comprensión de cómo funciona la memoria virtual bajo demanda de un sistema operativo. Mientras que esta materia puede tomar un libro completo, los conceptos básicos se discuten en el Capítulo 4. Este capítulo junto con tiempo invertido en monitorizar el sistema, le da los bloques de construcción necesarios para aprender más sobre este tópico.
+
+2.4.4. Monitorizar el almacenamiento
+El monitoreo del almacenamiento normalmente tiene lugar en dos niveles diferentes:
+
+Monitorizar insuficiente espacio en disco
+
+Monitorizar problemas de rendimiento relacionados con el almacenamiento
+
+La razón de esto es que es posible tener problemas calamitosos en un área y ningún problema en otra. Por ejemplo, es posible causar que a la unidad de disco se le acabe el espacio sin causar ningún tipo de problemas relacionados al rendimiento. De la misma manera, es posible tener una unidad de disco que tiene 99% de espacio libre, pero que se ha puesto más allá de sus límites en términos de rendimiento.
+
+Sin embargo, es más probable que el sistema promedio experimente diferentes grados de escasez de recursos en ambas áreas. Debido a esto, es probable que — hasta cierto punto — los problemas en un área impacten a la otra. La mayoría de las veces este tipo de interacción toma la forma de funcionamientos de E/S más y más pobres cuando el sistema se acerca al 0% de espacio libre, en casos de cargas de E/S extremas, es posible reducir las salidas de E/S a tal nivel que las aplicaciones no se ejecutan adecuadamente.
+
+En cualquier caso, las estadísticas siguientes son útiles para supervisar el almacenamiento:
+
+Espacio libre
+El espacio libre es probablemente el recurso que todos los administradores de sistemas vigilan más de cerca; sería raro el administrador que no verifica el espacio disponible (o que tiene una forma de hacerlo automáticamente).
+
+Estadísticas relacionadas al sistema de archivos
+Estas estadísticas (tales como el número de archivos/directorios, tamaño promedio de los archivos, etc.) suministran detalles adicionales sobre un porcentaje de espacio libre. Como tal, estas estadísticas hacen posible para los administradores de sistemas configurar el sistema para que entregue el mejor rendimiento, pues la carga de E/S impuesta por un sistema de archivos lleno de muchos pequeños archivos no es la misma que la carga impuesta por un sistema de archivos lleno con un único archivo enorme.
+
+Transferencias por segundo
+Esta estadística es una buena forma de determinar si se están alcanzando las limitaciones de ancho de banda de un dispositivo en particular.
+
+Lecturas/escrituras por segundo
+Con un desglose más detallado de las transferencias por segundo, estas estadísticas permiten al administrador de sistemas entender mejor la naturaleza de las cargas de E/S que está experimentando un dispositivo de almacenamiento. Esto puede ser crítico, ya que algunas tecnologías de almacenamiento tienen características de funcionamiento muy diferentes para operaciones de lecturas contra escrituras.
+
+
+
+
+
+
+\subsection*{Estado de los procesos}
+
+El orden en que los procesos reciben la atención de el CPUs, es 
+
+\colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} { 
+{\bf }
+Ejecutar ``\texttt{kill 1232}'' es equivalente a ``\texttt{kill -SIGTERM 
+1232}'', y a ``\texttt{kill -15 1232}'' (asumiendo que 1232 es un PID 
+válido). 
+} \vspace*{0.5cm} } } 
+
+\textbf{SIGKILL (9) - Terminación abrupta}
+
+\fcolorbox{black}{grey}{
+\parbox[t]{1.0\linewidth}{ \vspace*{0.4cm}
+{\bf Lo importante:} La señal SIGKILL no puede ser desatendida por el 
+proceso, mientras que SIGTERM si (el proceso puede no hacer caso al 
+pedido de terminación). Es importante primero intentar finalizarlo 
+amablemente (SIGTERM) y luego si no responde aplicar SIGKILL. 
+\vspace*{0.4cm} } }
+
+
+
+
+
+\section*{Referencias}
+
+[Intro] Tutorial Introducción a la Administración de Sistemas GNU/Linux. Materia Introducción
+a la Administración de Sistemas. UNCOMA. TUASSL. 
+
+Señales: http://tldp.org/LDP/Bash-Beginners-Guide/html/sect\_12\_01.html
+
+http://www.ant.org.ar/cursos/curso\_intro/x1845.html
+
+\section*{Licencia}
+
+Este texto fue creado por Miriam Tamara Lechner y se encuentra bajo 
+Licencia Creative Commons Atribución-CompartirDerivadasIgual 3.0 Unported
+
+\end{document}
