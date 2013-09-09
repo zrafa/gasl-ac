@@ -131,8 +131,9 @@ padre.
 \end{itemize}
 
 Las trancisiones entre estados siguen el siguiente esquema: 
+
 \begin{center}
- \includegraphics{process-states-s.jpg}
+\includegraphics{process-states-s.jpg}
 \end{center}
  
 Estas transiciones serán en la mayoría de los casos generadas por la misma
@@ -141,7 +142,7 @@ estará en estado S, cunado necesita ejecutarse estará en estado R, etc.
 Es decir, el administrador de sistemas, en general no inverviene en las
 transiciones de estados. Sin embargo, hay casos en los que esto ocurre. 
 
-\subsection{Manipulación de procesos}
+\subsection*{Manipulación de procesos}
 
 En el uso cotidiano de un sistema de escritorio, el usuario interviene 
 en los estados de los procesos sin darse cuenta. Al pedirle a un programa
@@ -153,9 +154,10 @@ los procesos con diferentes fines. Para ello, enviará señales a los
 mismos a través del comando \texttt{kill}. 
 
 El comando \texttt{kill} (matar) tiene una funcionalidad predeterminada, 
-equivalente a cerrar un programa desde la interfase gráfica. El comando 
-recibe como argumento un PID, y le envía una señal pidiéndole al mismo 
-que se cierre. 
+equivalente a cerrar un programa desde la interfase gráfica, esto es envía
+al proceso la señal SIGTERM (15). El comando 
+recibe como argumento una señal y un identificador de proceso (PID) al 
+cual enviarle la señal. 
 
 \colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} { 
 {\bf Ejemplo de uso de kill :} \\
@@ -174,34 +176,19 @@ estaremos pidiéndole al programa apache2 que termine su ejecución.
 El comando \texttt{kill} permite, además de su funcionalidad predeterminada,
 enviar otras señales que generan otros cambios de estado diferentes al de 
 terminar. La lista de señales posibles se pueden listar observando la 
-salida del comando \texttt{kill -l}, y su explicación particular en la 
-página del manual respectiva: 
+salida del comando \texttt{kill -l}. 
+Cada señal tiene un número y un nombre en mayúsculas asociado, cualquiera
+de ellos puede utilizarce como argumento del comando \texttt{kill}  
+
+En particular hablaremos de las señales mas frecuentemente utilizadas: 
+SIGHUP (1), SIGSTOP (19), SIGCONT(18), SIGTERM (15) y  SIGKILL (9).  
+
 
 \colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} { 
-{\tt
- 1) SIGHUP	 2) SIGINT	 3) SIGQUIT	 4) SIGILL	 5) SIGTRAP\\
- 6) SIGABRT	 7) SIGBUS	 8) SIGFPE	 9) SIGKILL	10) SIGUSR1\\
-11) SIGSEGV	12) SIGUSR2	13) SIGPIPE	14) SIGALRM	15) SIGTERM\\
-16) SIGSTKFLT	17) SIGCHLD	18) SIGCONT	19) SIGSTOP	20) SIGTSTP\\
-21) SIGTTIN	22) SIGTTOU	23) SIGURG	24) SIGXCPU	25) SIGXFSZ\\
-26) SIGVTALRM	27) SIGPROF	28) SIGWINCH	29) SIGIO	30) SIGPWR\\
-31) SIGSYS	34) SIGRTMIN	35) SIGRTMIN+1	36) SIGRTMIN+2	37) SIGRTMIN+3\\
-38) SIGRTMIN+4	39) SIGRTMIN+5	40) SIGRTMIN+6	41) SIGRTMIN+7	42) SIGRTMIN+8\\
-43) SIGRTMIN+9	44) SIGRTMIN+10	45) SIGRTMIN+11	46) SIGRTMIN+12	47) SIGRTMIN+13\\
-48) SIGRTMIN+14	49) SIGRTMIN+15	50) SIGRTMAX-14	51) SIGRTMAX-13	52) SIGRTMAX-12\\
-53) SIGRTMAX-11	54) SIGRTMAX-10	55) SIGRTMAX-9	56) SIGRTMAX-8	57) SIGRTMAX-7\\
-58) SIGRTMAX-6	59) SIGRTMAX-5	60) SIGRTMAX-4	61) SIGRTMAX-3	62) SIGRTMAX-2\\
-63) SIGRTMAX-1	64) SIGRTMAX	\\
-}
-} \vspace*{0.5cm} } } 
-
-
-
-\coloox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} { 
-{\bf Importante}: cada proceso tiene un usuario dueño (el nombre del usuario
-dueño se observa en la primer columna de la salida de \texttt{ps -ef}). El
-envío de señales a un proceso mediante el comando \texttt{kill} sólo 
-pordá realizarlo el dueño o \textbf{root}}
+{\bf Importante}: cada proceso tiene un usuario dueño (el nombre del
+ usuario dueño se observa en la primer columna de la salida de 
+\texttt{ps -ef}). El envío de señales a un proceso mediante el 
+comando \texttt{kill} sólo pordá realizarlo el dueño o \textbf{root}
 } \vspace*{0.5cm} } } 
  
 
@@ -218,7 +205,7 @@ primer comando que observaremos es \texttt{uptime}:
 \colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} { 
 {\bf Ejemplo de salida de \texttt{uptime}:} \\
 {\tt
-# uptime \\
+\# uptime \\
  22:28:41 up 1 day, 22:13, 10 users,  load average: 0,56, 0,65, 0,68
 }
 } \vspace*{0.5cm} } } 
@@ -247,7 +234,7 @@ el 75\% del tiempo.
 
 
 \fcolorbox{black}{grey}{
-\parbox[t]{1.0\linewidth}{ \vspace*{0.4cm}
+\parbox[t]{1.0 \linewidth}{ \vspace*{0.4cm}
 {\bf Lo importante :} Incorporar el hábito de consultar los archivos de log e
 identificar la información de interés para el recurso a identificar, o bien la ausencia de la misma.
 \vspace*{0.4cm} } }
