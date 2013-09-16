@@ -50,59 +50,79 @@
 
 \section*{Introducción}
 
-La administración de sistemas es mayormente un asunto de balancear los recursos disponibles con 
-los usuarios y los programas que utilizan esos recursos. Por lo tanto, su carrera como administrador de sistemas será corta y completa de stress a menos que entienda completamente los recursos que tiene a su disposición.
+La administración de sistemas es mayormente un asunto de balancear los 
+recursos disponibles con los usuarios y los programas que utilizan esos 
+recursos. Por lo tanto, su carrera como administrador de sistemas será 
+corta y completa de stress a menos que entienda completamente los recursos 
+que tiene a su disposición.
 
-Antes de poder supervisar recursos, primero tiene que conocer que recursos hay que monitorizar.
-Todos los sistemas tienen disponibles los siguientes recursos:
+Antes de poder supervisar recursos, primero tiene que conocer que recursos 
+hay que monitorizar. En un apunte anterior hemos hablado de identificación 
+de recursos. En general, todos los sistemas tienen disponibles los 
+siguientes recursos:
 
 \begin{itemize}
 \item CPU
-
-\item Ancho de banda
-
 \item Memoria
-
 \item Almacenamiento
+\item Ancho de banda
 \end{itemize}
 
-Estos recursos tienen un impacto directo en el rendimiento del sistema y, por lo tanto, en la productividad y percepción de sus usuarios.
+Estos recursos tienen un impacto directo en el rendimiento del sistema y, 
+por lo tanto, en la productividad y percepción de sus usuarios. Por ejemplo,
+es clásico escuchar usuarios decir ``la computadora está lenta'', cuando 
+en realidad lo que sucede es que el \textit{el ancho de banda} de
+navegación por Internet no cumple las expectativas del usuario. 
 
-En su aspecto más simple, monitorizar recursos no es más que obtener información concerniente a la utilización de uno o más recursos del sistema. Sin embargo, raramente esto es tan simple. Primero, debe tomar en cuenta los recursos a controlar. Luego es necesario examinar cada sistema a monitorizar, prestando especial atención a la situación de cada sistema.
+En su aspecto más simple, monitorizar recursos no es más que obtener 
+información concerniente a la utilización de uno o más recursos del sistema.
+Sin embargo, esto raramente suele ser tan simple. Primero, debe tomar en 
+cuenta los recursos a controlar. Luego es necesario examinar cada sistema 
+a monitorizar, prestando especial atención a la situación de cada sistema.
 
-Existen al menos dos objetivo por el cual debemos verificar un sistema :
+Existen al menos dos objetivo por el cual es importante monitorizar un
+sistema :
 
 \begin{itemize}
-\item El sistema está actualmente experimentando problemas de rendimiento al menos parte del tiempo y a usted le gustaría mejorar su rendimiento.
+\item El sistema está actualmente experimentando problemas de rendimiento
+al menos parte del tiempo y a usted le gustaría mejorar su rendimiento. 
+Comportamiento reactivo. 
 
-\item El sistema está funcionando bien y le gustaría que se mantenga de esa manera.
+\item El sistema está funcionando bien y le gustaría que se mantenga de esa 
+manera. Comportamiento proactivo. 
 \end{itemize}
-La primera categoría indica que debería supervisar el sistema desde la perspectiva del rendimiento del sistema, mientras que la segunda categoría significa que debe supervisar los recursos del sistema desde la perspectiva de planificación de la capacidad del mismo.
 
-
+La primera categoría indica que debería supervisar el sistema desde la 
+perspectiva del rendimiento del sistema, mientras que la segunda categoría 
+significa que debe supervisar los recursos del sistema desde la perspectiva
+de planificación de la capacidad del mismo.
 
 \section*{Monitorizar el rendimiento del sistema}
 
-La supervisión del rendimiento del sistema se realiza normalmente como el primer y el último paso del siguiente proceso :
+La supervisión del rendimiento del sistema se realiza normalmente como el 
+primer y el último paso del siguiente proceso :
 
 \begin{enumerate}
-\item Monitorizar para identificar la naturaleza y ámbito de la escasez de recursos que están causando los problemas de rendimiento
-
-\item Se analizan los datos producidos a partir de la supervisión y se toma un curso de acción (normalmente optimización del rendimiento o la adquisición de hardware adicional)
-
-\item Monitorizar para asegurarse de que se ha solucionado el problema de rendimiento
-
+\item Monitorizar para identificar la naturaleza y ámbito de la escasez de 
+recursos que están causando los problemas de rendimiento. 
+\item Se analizan los datos producidos a partir de la supervisión y se toma
+un curso de acción (normalmente optimización del rendimiento o la 
+adquisición de hardware adicional)
+\item Monitorizar para asegurarse de que se ha solucionado el problema de 
+rendimiento. 
 \end{enumerate}
 
  	
 \fcolorbox{black}{grey}{
 \parbox[t]{1.0\linewidth}{ \vspace*{0.4cm}
 {\bf Lo importante:} 
-Monitorizar el rendimiento del sistema a menudo es un proceso iterativo, repitiendo estos pasos varias veces para llegar al mejor rendimiento posible para el sistema. La razón principal para esto es que los recursos del sistema y su utilización tienden a estar estrechamente relacionados, lo que significa que a menudo la eliminación de un cuello de botella descubre otro más.
+Monitorizar el rendimiento del sistema a menudo es un proceso iterativo, 
+repitiendo estos pasos varias veces para llegar al mejor rendimiento 
+posible para el sistema. La razón principal para esto es que los recursos 
+del sistema y su utilización tienden a estar estrechamente relacionados, 
+lo que significa que a menudo la eliminación de un cuello de botella 
+descubre otro más.
 \vspace*{0.4cm} } }
-
-
-
 
 
 \section*{¿Qué monitorizar?}
@@ -112,15 +132,18 @@ Los cuatro recursos básicos de un sistema a monitorizar son :
 \begin{itemize}
 \item CPU
 \item Memoria
-\item Ancho de Banda
 \item Almacenamiento
+\item Ancho de Banda
 \end{itemize}
 
-Lamentablemente, no es tan simple. Por ejemplo, considere una unidad de disco. ¿Qué cosas podría querer saber sobre su utilización?
+Lamentablemente, no es tan simple. Por ejemplo, considere una unidad de 
+disco. ¿Qué cosas podría querer saber sobre su utilización? Algunas posibles
+preguntas: 
 
 ¿Cuánto espacio libre está disponible?
 
-¿Cuántas operaciones de E/S realiza en promedio por segundo?
+¿Cuántas operaciones de E/S (entrada/salida) realiza en promedio por
+segundo?
 
 ¿Cuánto tiempo en promedio toma en completarse cada operación de E/S?
 
@@ -128,132 +151,177 @@ Lamentablemente, no es tan simple. Por ejemplo, considere una unidad de disco. �
 
 ¿Cuál es la cantidad promedio de datos leídos/escritos con cada E/S?
 
-Hay más formas de estudiar el rendimiento de una unidad de disco; estos puntos solamente tocan la superficie. El concepto principal a tener en mente es que hay muchos tipos diferentes de datos para cada recurso.
+Hay más formas de estudiar el rendimiento de una unidad de disco; estos 
+puntos solamente tocan la superficie. El concepto principal a tener en 
+mente es que hay muchos tipos diferentes de datos para cada recurso.
 
 
 \subsection*{¿Qué herramientas utilizar para monitorizar?}
 
 Las herramientas básicas utilizadas para verificar los recursos son :
-
 \begin{itemize}
 \item free
-
 \item top
-
 \item vmstat
-
-\item La suite de herramientas de supervisión de recursos de \texttt{sysstat}
+\item df y du 
+\item La suite de herramientas de supervisión de recursos de 
+\texttt{sysstat} (incluye iostat, sar, entre otros). 
 \end{itemize}
 
 
-\section*{Monitorizar el CPU}
-En su forma más básica, monitorizar el poder de CPU significa determinar si la utilización del CPU alcanza alguna vez el 100%. Si la utilización del CPU se mantiene por debajo de 100%, sin importar lo que el sistema esté haciendo, hay poder de procesamiento adicional para más trabajo.
+\section*{Monitorizar la CPU}
+En su forma más básica, monitorizar el poder de CPU significa determinar si
+ la utilización de la CPU alcanza alguna vez el 100\%. Si la utilización 
+de la CPU se mantiene por debajo de 100\%, sin importar lo que el sistema 
+esté haciendo, hay poder de procesamiento adicional para más trabajo.
 
-Sin embargo, es raro que un sistema no alcance el 100% de utilización de CPU al menos una vez. En ese momento es importante examinar en más detalle los datos de utilización de CPU. Haciendo esto, se hace posible comenzar a determinar donde se consume la mayoría del poder de procesamiento. He aquí algunas de las estadísticas más populares de utilización de CPU:
+Sin embargo, es raro que un sistema no alcance el 100\% de utilización de 
+CPU al menos una vez. En ese momento es importante examinar en más detalle 
+los datos de utilización de CPU. Haciendo esto, se hace posible comenzar a 
+determinar dónde se consume la mayoría del poder de procesamiento. A 
+continuación mencionamos algunas de las estadísticas más populares de 
+utilización de CPU.
 
-El porcentaje de tiempo consumido realizando procesamiento a nivel de usuario contra procesamiento a nivel de sistema, puede indicar si la carga de un sistema se debe principalmente a las aplicaciones que se están ejecutando o a la sobrecarga del sistema operativo. Altos porcentajes de procesamiento a nivel de usuario tiende a ser bueno (asumiendo que los usuarios están experimentando un rendimiento satisfactorio), mientras que altos porcentajes de procesamiento a nivel de sistema tiende a apuntar hacia problemas que requerirían mayor investigación.
+Usuarios vs sistema: el porcentaje de tiempo consumido realizando 
+procesamiento a nivel de usuario contra procesamiento a nivel de sistema, 
+puede indicar si la carga de un sistema se debe principalmente a las 
+aplicaciones que se están ejecutando o a la sobrecarga del sistema 
+operativo. Altos porcentajes de procesamiento a nivel de usuario tiende a 
+ser bueno (asumiendo que los usuarios están experimentando un rendimiento
+satisfactorio), mientras que altos porcentajes de procesamiento a nivel de 
+sistema tiende a apuntar hacia problemas que requerirían mayor 
+investigación.
 
+Procesos ejecutables: como vimos en el apunte anterior, un proceso puede 
+tener diferentes estados. Por ejemplo, puede estar:
+\begin{itemize}
+\item Esperando porque se termine una operación de E/S.
+\item Esperando porque el subsistema de administración de memoria 
+resuelva un fallo de página.
+\end{itemize}
+En estos casos, el proceso no tiene necesidad de la CPU y se encuentra en
+estado ``S, sleeping'' (durmiendo).  
 
-Otras métricas de rendimiento que reflejan un impacto en la utilización del CPU tienden a incluir servicios diferentes que el sistema operativo proporciona a los procesos. Estas pueden incluir estadísticas sobre la administración de memoria, procesamiento de E/S, etc. Estas estadísticas también revelan que, cuando el rendimiento del sistema está siendo supervisado, no hay límites entre las diferentes estadísticas. En otras palabras, las estadísticas de utilización de CPU pueden terminar apuntando a un problema en el subsistema de E/S, o las estadísticas de utilización de memoria pueden revelar un defecto de una aplicación.
+Sin embargo, eventualmente el estado del proceso cambia y el proceso se 
+vuelve ejecutable (``R, running''). Como su nombre lo implica, un proceso 
+ejecutable es aquel capaz de realizar el trabajo tan pronto como reciba 
+tiempo de CPU. Sin embargo, si hay más de un proceso ejecutable en un 
+momento determinado, todos excepto uno de los procesos deben esperar por su 
+turno de CPU (asumiendo que tenemos un solo CPU). Monitorizando el
+número de procesos ejecutables, es posible determinar cuan comprometido 
+está cada CPU en su sistema.
 
-Por lo tanto, cuando esté supervisando el funcionamiento del sistema, no es posible examinar una estadística de forma totalmente aislada; solamente mediante el exámen del cuadro completo es posible extraer información significativa de cualquier estadística de rendimiento que reuna.
+Otras métricas de rendimiento que reflejan un impacto en la utilización 
+de la CPU tienden a incluir servicios diferentes que el sistema operativo 
+proporciona a los procesos. Estas pueden incluir estadísticas sobre la 
+administración de memoria, procesamiento de E/S, etc. Estas estadísticas 
+también revelan que, cuando el rendimiento del sistema está siendo 
+supervisado, no hay límites entre las diferentes estadísticas. En otras 
+palabras, las estadísticas de utilización de CPU pueden terminar apuntando 
+a un problema en el subsistema de E/S, o las estadísticas de utilización 
+de memoria pueden revelar un defecto de una aplicación.
+
+Por lo tanto, cuando esté supervisando el funcionamiento del sistema, no 
+es posible examinar una estadística de forma totalmente aislada; solamente
+mediante el exámen del cuadro completo es posible extraer información 
+significativa de cualquier estadística de rendimiento que reuna.
 
 \subsection*{Ejemplo de monitoreo de la CPU}
 
-El programa mas interesante para iniciar el monitoreo del sistema, y en particular de la CPU, es \textbf{top}.
+El programa mas interesante para iniciar el monitoreo del sistema, y en 
+particular de la CPU, es \textbf{top}.
 
 \fcolorbox{black}{grey}{
 \parbox[t]{1.0\linewidth}{ \vspace*{0.4cm}
-{\bf top} 
-       proporciona una visión continuada de la actividad del procesador en
-       tiempo real. Muestra un listado de las tareas  que  hacen  un  uso  más
-       intensivo  de  la  CPU en el sistema, y puede proporcionar una interfaz
-       interactiva para manipular procesos. Puede clasificar  las  tareas  por
-       empleo   de   CPU,  uso  de  memoria  y  tiempo  de  ejecución.
+{\bf top} proporciona una visión continuada de la actividad del procesador 
+en tiempo real. Muestra un listado de las tareas  que  hacen  un  uso  
+más intensivo  de  la  CPU en el sistema, y puede proporcionar una 
+interfaz interactiva para manipular procesos. Puede clasificar  las  
+tareas  por empleo  de CPU,  uso  de  memoria  y  tiempo  de  ejecución.
 \vspace*{0.4cm} } }
 
 \begin{center}
- \includegraphics{top.png}
+ \includegraphics{top1.png}
  % redireccionamiento.gif: 502x248 pixel, 72dpi, 17.71x8.75 cm, bb=0 0 502 248
 \end{center}
 
-\subsubsection*{Descripciones de los campos de top}
-       top  despliega  una variada información sobre el estado del procesador.
-       La pantalla se actualiza cada 5 segundos de forma predeterminada,  pero
-       esto se puede cambiar con la opción de la línea de órdenes d o la orden
-       interactiva s.
+\subsubsection*{Descripciones de algunos campos de top}
+\texttt{top} despliega  una variada información sobre el estado del 
+procesador. La pantalla se actualiza cada tres segundos de forma 
+predeterminada, pero esto se puede cambiar con la opción en la línea de 
+comandos ``d'' o la orden interactiva ``d'' o ``s''.
+
+Top muestra una sección de resúmen, un encabezado con la enumeración de
+campos por tarea y luego un listado de tareas. Dentro de la sección de
+resúmen encontramos la siguiente información:  
 
 \begin{itemize}
-\item       uptime
-            Esta línea muestra el tiempo que el sistema ha  estado  activo,  y
-            las  tres medias de carga para el sistema. Las medias de carga son
-            el número medio de procesos listos  para  ejecutarse  durante  los
-            últimos  1,  5  y  15  minutos.  Esta línea es simplemente como la
-            salida de uptime(1).  La línea de uptime puede quitarse o  ponerse
-            con la orden interactiva l (ele minúscula).
+\item \texttt{uptime}: la primer línea muestra el tiempo
+ que el sistema ha  estado  activo,  y  las  tres medias de carga para el 
+sistema. Las medias de carga son  el número medio de procesos listos  para
+ejecutarse  o en estado durmiendo ininterrumpible, durante  los  últimos
+1,  5  y  15  minutos.  La línea coinicide con la salida del comando 
+\texttt{uptime} y puede quitarse o agregarse con la orden interactiva 
+``l'' (ele minúscula).
+\item  Tasks: el  número  total  de  procesos ejecutándose durante  la  
+última actualización. Este número también  se  divide  en  el  número 
+de  tareas  que  están  ejecutándose, durmiendo, paradas o no-muertas 
+(zombie).  Las líneas de procesos y estados pueden quitarse o ponerse con 
+la orden interactiva ``t''.
+\item  \%CPU: muestra el porcentaje de tiempo de CPU en modo de usuario 
+(us), en modo  de sistema (sy), en tareas con la prioridad alterada por
+ nice (ni) (ver página del manual para el comando \texttt{nice}), y el 
+ tiempo  de  inactividad (id).  Las tareas con la prioridad alterada por 
+nice son solamente aquéllas cuyo  valor  nice  es  negativo. El tiempo  
+transcurrido  en  las tareas con la prioridad alterada por nice también 
+se contará en el tiempo de sistema y de usuario,  así que  el  total  
+será  superior  al  100\%. Las líneas de procesos y estados y tiempos
+ de CPU pueden quitarse o agregarse  con  la  orden interactiva ``t''.
+Si estamos en un sistema con más de una CPU, la orden interactiva ``1'' 
+uno, desgloza la misma información por cada una de las CPU del sistema.
+\item Mem: datos sobre el empleo de memoria principal, incluyendo la 
+memoria disponible en total,  la  memoria  libre,  la  usada, y  la
+utilizada  para  búferes.  La  línea  de la información de memoria puede 
+agregarse o quitarse con la orden interactiva ``m''.
+\item Swap: datos sobre el  espacio  de  intercambio,  incluyendo  el  
+total,  el utilizado, el disponible  y  el ``cached''. Esto y Mem son 
+sencillamente como la salida del comando \texttt{free}.
+\end{itemize}
 
-\item       processes
-            El   número  total  de  procesos  ejecutándose  cuando  la  última
-            actualización. Este número también  se  divide  en  el  número  de
-            tareas  que  están  ejecutándose, durmiendo, paradas o no-muertas.
-            Las líneas de procesos y estados pueden quitarse o ponerse con  la
-            orden interactiva t.
+De manera predeterminada, en la sección de encabezado y tareas encontramos
+la siguiente información (puede ampliarse o modificarse a conveniencia del
+administrador, vea ``\texttt{man top}''):
 
-\item       CPU states
-            Muestra el porcentaje de tiempo de CPU en modo de usuario, en modo
-            de sistema , en tareas con la prioridad alterada por  nice,  y  el
-            tiempo  de  inactividad. (Las tareas con la prioridad alterada por
-            nice son solamente aquéllas cuyo  valor  nice  es  negativo.)   El
-            tiempo  transcurrido  en  las tareas con la prioridad alterada por
-            nice también se contará en el tiempo de sistema y de usuario,  así
-            que  el  total  será  superior  al  100%. Las líneas de procesos y
-            estados y tiempos de CPU pueden quitarse o ponerse  con  la  orden
-            interactiva t.
-
-\item       Mem  Datos sobre el empleo de memoria, incluyendo la memoria disponible
-            en total,  la  memoria  libre,  la  usada,  la  compartida,  y  la
-            utilizada  para  búferes.  La  línea  de la información de memoria
-            puede ponerse o quitarse con la orden interactiva m.
-
-\item       Swap Datos sobre el  espacio  de  trasiego,  incluyendo  el  total,  el
-            disponible  y  el  empleado.  Esto y Mem son sencillamente como la
-            salida de free(1).
-
-
-\item       SIZE Se  muestra  aquí  el  tamaño del código de la tarea más datos más
-            espacio de pila, en kB.
-
-
-\item       RSS  Se muestra aquí la cantidad total de memoria física utilizada  por
-            la  tarea,  en  kilobytes.  Para  procesos ELF se cuentan aquí las
-            páginas de biblioteca usadas, para procesos a.out no.
-
-\item       SHARE
-            Se muestra en esta  columna  la  cantidad  de  memoria  compartida
-            empleada por la tarea.
-
-\item       STAT Aquí  se  ve  el  estado  de  la tarea. El estado puede ser S para
-            durmiente, D para sueño no interrumpible, R para ejecución, Z para
-            zombies,  o  T para parados o trazados. Estos estados se modifican
-            por un < al final para procesos con valor de nice negativo, N para
-            un  proceso  con  valor  de  nice positivo, o W para un proceso en
-            espacio de trasiego (esto no funciona correctamente para  procesos
-            del núcleo).
-
-\item       TIME El tiempo total de CPU que la tarea ha usado desde que empezó.  Si
-            el  modo  acumulativo  está activado, también incluye el tiempo de
-            CPU empleado por los hijos del proceso que hayan muerto. Uno puede
-            establecer  el  modo  acumulativo  con  la  opción  de la línea de
-            órdenes S o cambiarlo con la orden interactiva  S.   La  línea  de
-            cabecera se cambiará entonces a CTIME.
-
-\item       \%CPU La  porción  del  tiempo  de  CPU  consumido por la tarea desde la
-            última actualización de la pantalla, expresada como un  porcentaje
-            del tiempo de CPU total.
-
-
-\item       \%MEM La porción de la memoria física ocupada por la tarea.
-
+\begin{itemize}
+\item PID: autodescriptivo. 
+\item USER: usuario dueño de la tarea.
+\item PR: indica la prioridad con la que se ejecuta el proceso. 
+\item NI: valor ``nice'', un valor negativo indica mayor prioridad mientras
+que un valor positivo indica menor prioridad. Un valor de cero significa
+que la prioridad no será ajustada basada en este campo. 
+\item VIRT: indica el monto total de memoria virtual (pricipal mas espacio
+de intercambio) utilizada por el proceso. Incluye su código, datos y 
+bibliotecas compartidas con otros procesos.  
+\item RES: Se muestra aquí la cantidad total de memoria principal (física)
+ utilizada  por el proceso.  
+\item SHR: indica cantidad  de  memoria potencialmente compartida con otros
+procesos.
+\item S: indica el estado  de  la tarea. El estado puede ser S para 
+durmiente, D para sueño no interrumpible, R para ejecución, Z para zombies,
+o  T para detenidos o trazados (ver apunte anterior sobre Procesos). 
+\item \%CPU La  porción  del  tiempo  de  CPU  consumido por la tarea desde
+la última actualización de la pantalla, expresada como un  porcentaje del 
+tiempo de CPU total. De manera predeterminada el valor mostrado no esta
+normalizado por el número total de CPUs, esto es conocido como 
+``modo Irix''. Si necesitamos el valor normalizado por la canitdad de CPUs,
+es decir que se divida el porcentaje por el número de CPUs presentes, 
+entonces requerimos lo que se conoce como ``modo Solaris''. Puede alternarse
+entre modo Irix o Solaris mediante la órden interactiva ``I''. 
+\item TIME+: indica el tiempo total de CPU que la tarea ha usado desde que 
+empezó. Si el  modo  acumulativo está activado, también incluye el tiempo
+de  CPU empleado por los hijos del proceso que hayan muerto. Uno puede
+establecer  el  modo  acumulativo  con la orden interactiva  S.  
+\item \%MEM: indica el porcentaje de la memoria física ocupada por la tarea.
 \end{itemize}
 
 
