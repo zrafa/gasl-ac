@@ -1,18 +1,36 @@
+******************************************************************
+        Administración de Sistemas
+        Departamento Ingeniería de Computadoras
+        Facultad de Informática - Universidad Nacional del Comahue
+******************************************************************
 
-Obtener un listado de procesos del sistema cuyo UID sea
-unicamente del usuario "www-data"
-(Ayuda: el programa ps tiene una opción para seleccionar el usuario)
-El listado debe proporcionar información detallada de cada proceso.
+TP N 4 - Administración de Procesos
+-----------------------------------
 
-¿Cuántos procesos hay su sistema?
+
+ NOTA : Los siguientes ejercicios se realizan en su totalidad desde una
+        terminal en un sistema GNU/Linux .
+        Para cada pregunte indique el comando o los comandos que utilizó
+        para obtener la respuesta.
+
+
+
+Ejercicio 1:
+
+- Obtener un listado de procesos del sistema cuyo UID sea
+  unicamente del usuario "www-data"
+  Ayuda: el programa ps tiene una opción para seleccionar el usuario)
+  El listado debe proporcionar información detallada de cada proceso.
+
+- ¿Cuántos procesos hay su sistema?
 
 
 Ejercicio 2:
 
 - Lea la sección "Manipulación de procesos" del apunte de cátedra.
 - Lea la página de manual de las señales permitidas en Linux, y obtenga
-  de esa página la tabla del listado de señales con su Valor, Acción y
-Comentario. (coloque aquí debajo la tabla mencionada)
+  de esa página de manual la tabla del listado de señales con su Valor, Acción y
+  Comentario. (coloque aquí debajo la tabla mencionada)
 
 
 Ejercicio 3:
@@ -20,34 +38,38 @@ Ejercicio 3:
 a- Realice dos conexiones ssh a la MV asignada.
 
 b- En la primera conexión ejecute el siguiente comando find que lista
-todos los archivos del sistema con información detallada :
+   todos los archivos del sistema con información detallada :
 
-# find / -ls
+   # find / -ls
 
-c- En la segunda conexion activa realize una pausa a la ejecución
-del comando find (Ayuda: debe encontrar el ID del proceso,
-y luego enviar una señal de STOP al proceso).
+c- En la segunda conexion activa realice una pausa a la ejecución
+   del comando find 
 
-Nota: debe ser lo suficientemente rapido en la segunda conexion
-para obtener el id del proceso del programa find, y luego para
-enviarle la señal de pausa. Si no logra realizar la pausa antes
-que finalice find, entonces vuelva a repetir el ejercicio.
+  Ayuda: debe encontrar el ID del proceso, y luego enviar una señal
+  de STOP al proceso.
+
+  Nota: debe ser lo suficientemente rapido en la segunda conexion
+  para obtener el id del proceso del programa find, y luego para
+  enviarle la señal de pausa. Si no logra realizar la pausa antes
+  que finalice find, entonces vuelva a repetir el ejercicio.
 
 
 d- Obtenga información del proceso find y observe en que estado se encuentra.
-¿Cuál es el estado del proceso? ¿Qué letra indica el estado en la salida
-obtenida del programa ps?
+ - ¿Cuál es el estado del proceso? 
+ - ¿Qué letra indica el estado en la salida obtenida del programa ps?
+
 
 e- En la segunda conexión vuelva a indicarle al proceso
-find que se encuentra en pausa, que debe continuar
-(Ayuda: señal SIGCONT)
+   find que se encuentra en pausa, que debe continuar
+
+   Ayuda: señal SIGCONT
 
 f- Antes que finalice la ejecución del programa find, envíe
-la señal explicita para que finalice, utilizando el programa kill.
-¿Qué señal se debe enviar para que el programa finalice por sus propios medios?
-¿Qué señal se puede enviar a un programa en ejecución para que
-finalice su ejecución sin importar si el programa acepta o no una señal
-de finalización?
+   la señal explicita para que finalice, utilizando el programa kill.
+ - ¿Qué señal se debe enviar para que el programa finalice por sus propios medios?
+ - ¿Qué señal se puede enviar a un programa en ejecución para que
+    finalice su ejecución sin importar si el programa acepta o no una señal
+    de finalización?
 
 Ejercicio 5:
 
@@ -56,31 +78,24 @@ a- Realice dos conexiones ssh a la MV asignada.
 b- En la primera conexión ejecute el programa top.
 
 c- Realice una pausa del proceso de top desde la terminal en donde se
-ejecutó, realizando la combinación de teclas CTRL+z.
+   ejecutó, realizando la combinación de teclas CTRL+z.
 
 d- Obtenga información del proceso top y observe en que estado se encuentra.
-¿Cuál es el estado del proceso? ¿Qué letra indica el estado en la salida
-obtenida del programa ps?
+ - ¿Cuál es el estado del proceso? 
+ - ¿Qué letra indica el estado en la salida obtenida del programa ps?
+
 
 e- Desde la terminal en donde se encuentra detenido top ejecute
-el comando del shell "fg", y observe que top vuelve a continuar
-su ejecución.
+   el comando del shell "fg", y observe que top vuelve a continuar
+   su ejecución.
 
 f- Instale en su maquina virtual el paquete Debian llamado manpages-es-extra
 
 g- Lea la sección llamada "CONTROL DE TRABAJOS" de la página de manual 
-de bash, y conteste :
- - ¿ Que accion produce presionar Control-z cuando un programa se está
+   de bash, y conteste :
+ - ¿Que accion produce presionar Control-z cuando un programa se está
      ejecutando en la terminal?
- - ¿ Para qué se utiliza la orden de bash "fg"?
- - ¿ Para qué se utiliza la orden de bash "jobs"?
-realice la
-combinación de teclas 
-
-En la segunda ejModifique 
+ - ¿Para qué se utiliza la orden de bash "fg"?
+ - ¿Para qué se utiliza la orden de bash "jobs"?
 
 
-Ejercicio 4:
-
-
-- Realice 
