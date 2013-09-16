@@ -1,0 +1,24 @@
+
+Obtener un listado de procesos del sistema cuyo UID sea
+unicamente del usuario "www-data"
+(Ayuda: el programa ps tiene una opción para seleccionar el usuario)
+El listado debe proporcionar información detallada de cada proceso.
+
+¿Cuántos procesos hay su sistema?
+
+
+Ejercicio 2:
+
+- Lea la sección "Manipulación de procesos" del apunte de cátedra.
+- Lea la página de manual de las señales permitidas en Linux, y obtenga
+  de esa página la tabla del listado de señales con su Valor, Acción y
+Comentario. (coloque aquí debajo la tabla mencionada)
+
+Ejercicio 3:
+- Realice dos conexiones ssh a la MV asignada.
+- En la primera conexión ejecute el siguiente comando find que lista
+todos los archivos del sistema con información detallada :
+
+# find / -ls
+
+- En la segunda conexion activa realize un STOP 
