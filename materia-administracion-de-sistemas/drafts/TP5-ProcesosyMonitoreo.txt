@@ -85,6 +85,13 @@ g) ¿Qué tipo de recursos fue el analizado durante este ejercicio?
 
 Ejercicio 3
 ***********
+a) En una terminal ejecute el programa "gloton"
+b) En otra terminal ejecute top y ordene la salida por el campo VIRT. Observe 
+   el comportamiento de gloton referente al uso de memoria. Observando la salida
+   de gloton y de top responda: 
+	b.1) ¿Qué función realiza el programa gloton? 
+ 	b.2) Observe el cambio en los valores globales para la memoria libre y 
+	     utilizada. ¿Coincide con lo que glotón dice hacer?
 
 Ejercicio 4
 ***********
