@@ -15,21 +15,26 @@ TP N 5 - Administración de Procesos y Monitorización
         para obtener la respuesta.
 
 Ejercicio 1
+***********
 Cree un archivo llamado "fecha" con el siguiente script: 
 
 #---------------------------------------
 #!/bin/bash 
 while true ;do 
-   printf "La fecha es: `date` \n"
+   printf "La fecha y hora LOCAL es: `date` \n"
+   printf "La fecha y hora UTC es  : `date -u` \n"
 done 
 #---------------------------------------
 
 a) Modifique los permisos tal que sólo root tenga permisos rwx sobre el 
    archivo fecha. 
+
 b) Observe en qué terminal se encuentra (tty) y luego ejecute el script fecha 
+
 c) Inicie el programa de monitorización, top. Utilizando la orden 
    interactiva F agregue la TTY de control para que sea mostrada en la 
    salida. 
+
 d) Utilizando top identifique el PID proceso que se encuentra ejecutando el 
    script fecha. Responda:
 	d.1) ¿Por qué campo esta ordenada la salida de la sección de tareas
@@ -39,6 +44,7 @@ d) Utilizando top identifique el PID proceso que se encuentra ejecutando el
 	indica esto sobre el consumo de CPU del proceso fecha? 
 	d.3) Utilizando la orden interactiva k, envíe la señal de 
 	terminación (amable) al proceso fecha. Verifique. 
+
 e) Mueva (estos es mueva, no copie) el script fecha de su directorio home
    al directorio /usr/local/bin. 
 	e.1) Vuelva a ejecutar fecha pero esta vez sin './' o camino 
@@ -50,93 +56,26 @@ e) Mueva (estos es mueva, no copie) el script fecha de su directorio home
 	e.4) Utilice top para ubicar nuevamente el proceso que corresponde
 	a la ejecución de fecha y termínelo (amablemente). 
 
+f) Explique con sus palabras qué hace el script fecha. 
 
 
+Ejercicio 3
+***********
+a) Indiqué la definición de los comandos df y du según su página del manual. 
 
-
----------------------------------------------------------
-Ejercicio 1:
-
-- Obtener un listado de procesos del sistema cuyo UID sea
-  unicamente del usuario "www-data"
-  Ayuda: el programa ps tiene una opción para seleccionar el usuario)
-  El listado debe proporcionar información detallada de cada proceso.
-
-- ¿Cuántos procesos hay su sistema?
-
-
-Ejercicio 2:
-
-- Lea la sección "Manipulación de procesos" del apunte de cátedra.
-- Lea la página de manual de las señales permitidas en Linux, y obtenga
-  de esa página de manual la tabla del listado de señales con su Valor, Acción y
-  Comentario. (coloque aquí debajo la tabla mencionada)
-
-
-Ejercicio 3:
-
-a- Realice dos conexiones ssh a la MV asignada.
-
-b- En la primera conexión ejecute el siguiente comando find que lista
-   todos los archivos del sistema con información detallada :
-
-   # find / -ls
-
-c- En la segunda conexion activa realice una pausa a la ejecución
-   del comando find 
-
-  Ayuda: debe encontrar el ID del proceso, y luego enviar una señal
-  de STOP al proceso.
-
-  Nota: debe ser lo suficientemente rapido en la segunda conexion
-  para obtener el id del proceso del programa find, y luego para
-  enviarle la señal de pausa. Si no logra realizar la pausa antes
-  que finalice find, entonces vuelva a repetir el ejercicio.
-
-
-d- Obtenga información del proceso find y observe en que estado se encuentra.
- - ¿Cuál es el estado del proceso? 
- - ¿Qué letra indica el estado en la salida obtenida del programa ps?
-
-
-e- En la segunda conexión vuelva a indicarle al proceso
-   find que se encuentra en pausa, que debe continuar
-
-   Ayuda: señal SIGCONT
-
-f- Antes que finalice la ejecución del programa find, envíe
-   la señal explicita para que finalice, utilizando el programa kill.
- - ¿Qué señal se debe enviar para que el programa finalice por sus propios medios?
- - ¿Qué señal se puede enviar a un programa en ejecución para que
-    finalice su ejecución sin importar si el programa acepta o no una señal
-    de finalización?
-
-Ejercicio 5:
-
-a- Realice dos conexiones ssh a la MV asignada.
-
-b- En la primera conexión ejecute el programa top.
-
-c- Realice una pausa del proceso de top desde la terminal en donde se
-   ejecutó, realizando la combinación de teclas CTRL+z.
-
-d- Obtenga información del proceso top y observe en que estado se encuentra.
- - ¿Cuál es el estado del proceso? 
- - ¿Qué letra indica el estado en la salida obtenida del programa ps?
-
-
-e- Desde la terminal en donde se encuentra detenido top ejecute
-   el comando del shell "fg", y observe que top vuelve a continuar
-   su ejecución.
-
-f- Instale en su maquina virtual el paquete Debian llamado manpages-es-extra
-
-g- Lea la sección llamada "CONTROL DE TRABAJOS" de la página de manual 
-   de bash, y conteste :
- - ¿Que accion produce presionar Control-z cuando un programa se está
-     ejecutando en la terminal?
- - ¿Para qué se utiliza la orden de bash "fg"?
- - ¿Para qué se utiliza la orden de bash "bg"?
- - ¿Para qué se utiliza la orden de bash "jobs"?
+b) Lea el ejemplo de uso de df y du en el apunte correspondiente. Utilice esta 
+   misma estrategia para responder:
+	b.1) ¿Cuál es el porcentaje de utilización del sistema de archivos 
+	montado en / ? ¿Cuánto espacio disponible queda en dicho sistema de 
+	archivos? ¿Le parece alarmante? ¿Qué limitaciones cree que podría 
+	tener un sistema con este estado?
+	b.2) Determine cuál de los subdirectorios (de primer nivel) de / 
+	ocupan mayor cantidad de espacio. 
+	b.3) Ingrese al directorio que más espacio consume en b.2) y repita la
+	operación para obtener que subdirectorios consumen más espacio. Indique
+	la lista ordenada y completa debajo de esta línea. 
+	b.4) Utilizando la página del manual que define la jerarquía de 
+	directorios, defina qué tipo de contenido tienen los tres directorios
+	que ocupan mayor espacio en el inciso b.3)
 
 
