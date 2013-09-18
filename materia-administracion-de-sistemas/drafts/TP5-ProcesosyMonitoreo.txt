@@ -85,7 +85,7 @@ b) Lea el ejemplo de uso de df y du en el apunte correspondiente. Utilice esta
 	directorios, defina qué tipo de contenido tienen los tres directorios
 	que ocupan mayor espacio en el inciso b.3)
 
-c) ¿Qué tipo de raecursos fue el analizado durante este ejercicio? 
+c) ¿Qué tipo de recursos fue el analizado durante este ejercicio? 
 
 
 Ejercicio 4
@@ -100,7 +100,7 @@ c) Obtenga el tamaño que ocupa en disco el directorio /home/root ¿varía con
    puede sacar de esto?
 
 d) Revise el manual de du y obtenga una opción que le permita obtener el espacio
-   ocupado por /home/root sin contar lo ocupado por el direcotrio montado por 
+   ocupado por /home/root sin contar lo ocupado por el directorio montado por 
    NFS. 
 
 f) Obtenga la salida de df -hP y responda:
@@ -108,7 +108,7 @@ f) Obtenga la salida de df -hP y responda:
 	NFS?
 	f.2) ¿Cuál es el porcentaje de uso del directorio montado por NFS? 
 
-g) desmonte el directorio /mnt/compartido
+g) Desmonte el directorio /mnt/compartido
 	
  
 
