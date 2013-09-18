@@ -42,7 +42,10 @@ d) Utilizando top identifique el PID proceso que se encuentra ejecutando el
 	d.2) ¿En qué posición se encuentra el proceso que ejecuta fecha? 
 	¿Cuál es el porcentaje de CPU utilizado por este proceso? ¿Qué le 
 	indica esto sobre el consumo de CPU del proceso fecha? 
-	d.3) Utilizando la orden interactiva k, envíe la señal de 
+	d.3) ¿Cómo afecta la ejecución de fecha, a las estadísticas globales 
+	de utilización de CPU? ¿Hay mayor consumo por parte de procesos de 
+	usuario o de sistema? 
+	d.4) Utilizando la orden interactiva k, envíe la señal de 
 	terminación (amable) al proceso fecha. Verifique. 
 
 e) Mueva (estos es mueva, no copie) el script fecha de su directorio home
@@ -56,7 +59,8 @@ e) Mueva (estos es mueva, no copie) el script fecha de su directorio home
 	e.4) Utilice top para ubicar nuevamente el proceso que corresponde
 	a la ejecución de fecha y termínelo (amablemente). 
 
-f) Explique con sus palabras qué hace el script fecha. 
+f) Explique con sus palabras qué hace el script fecha. Mire el código y 
+   explique qué hace cada sentencia en él.  
 
 g) ¿Qué tipo de recursos fue el analizado durante este ejercicio? 
 
@@ -81,4 +85,30 @@ b) Lea el ejemplo de uso de df y du en el apunte correspondiente. Utilice esta
 	directorios, defina qué tipo de contenido tienen los tres directorios
 	que ocupan mayor espacio en el inciso b.3)
 
-c) ¿Qué tipo de recursos fue el analizado durante este ejercicio? 
+c) ¿Qué tipo de raecursos fue el analizado durante este ejercicio? 
+
+
+Ejercicio 4
+***********
+a) Obtenga el tamaño que ocupa en disco el directorio /home/root 
+ 
+b) monte por NFS el directorio /mnt/compartido de la computadora cuya IP es 
+   10.0.15.7 en el directorio /home/root/nfs
+	
+c) Obtenga el tamaño que ocupa en disco el directorio /home/root ¿varía con 
+   respecto a lo que obtuvo en a)? ¿A qué cree que se debe? ¿Qué conclusión 
+   puede sacar de esto?
+
+d) Revise el manual de du y obtenga una opción que le permita obtener el espacio
+   ocupado por /home/root sin contar lo ocupado por el direcotrio montado por 
+   NFS. 
+
+f) Obtenga la salida de df -hP y responda:
+	f.1) ¿Cuál es el tamaño total mostrado para el directorio montado por 
+	NFS?
+	f.2) ¿Cuál es el porcentaje de uso del directorio montado por NFS? 
+
+g) desmonte el directorio /mnt/compartido
+	
+ 
+
