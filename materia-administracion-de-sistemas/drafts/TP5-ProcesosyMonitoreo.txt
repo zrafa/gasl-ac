@@ -16,6 +16,24 @@ TP N 5 - Administración de Procesos y Monitorización
 
 Ejercicio 1
 ***********
+a) Ejecute top y observe el consumo actual de memoria y CPU, tanto a
+nivel global cómo a nivel de procesos individuales. Responda: 
+	a.1) ¿Cuántos procesadores tiene su máquina? Indique los porcentajes
+	     de utilización en este momento. 
+	a.2) ¿Hay más consumo de CPU por parte de procesos de usuario o de 
+	sistema?
+	a.3) Indique los valores globales de consumo de memoria virtual (física
+	 y swap)
+	a.4) ¿Hay memoria de intercambio en su equipo? 
+	a.5) Cambie la frecuencia de muestreo de top a 10 segundos. 
+	a.6) Indique los dos procesos que consumen mas CPU para una de las 
+	muestras de top.
+	a.7) Indique los dos procesos que consumen mas memoria residente para 
+	una de las muestras de top (ayuda con F para seleccionar el campo de 
+	ordenamiento).
+
+Ejercicio 1
+***********
 Cree un archivo llamado "fecha" con el siguiente script: 
 
 #---------------------------------------
@@ -65,6 +83,8 @@ f) Explique con sus palabras qué hace el script fecha. Mire el código y
 g) ¿Qué tipo de recursos fue el analizado durante este ejercicio? 
 
 
+Ejercicio 2
+***********
 
 Ejercicio 3
 ***********
@@ -110,5 +130,5 @@ f) Obtenga la salida de df -hP y responda:
 
 g) Desmonte el directorio /mnt/compartido
 	
- 
+h) ¿Qué tipo de recursos fue el analizado durante este ejercicio? 
 
