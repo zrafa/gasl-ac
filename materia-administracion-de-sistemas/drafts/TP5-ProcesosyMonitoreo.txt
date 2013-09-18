@@ -26,13 +26,13 @@ nivel global cómo a nivel de procesos individuales. Responda:
 	 y swap)
 	a.4) ¿Hay memoria de intercambio en su equipo? 
 	a.5) Cambie la frecuencia de muestreo de top a 10 segundos. 
-	a.6) Indique los dos procesos que consumen mas CPU para una de las 
-	muestras de top.
-	a.7) Indique los dos procesos que consumen mas memoria residente para 
+	a.6) Indique los dos procesos que consumen mas memoria residente para 
 	una de las muestras de top (ayuda con F para seleccionar el campo de 
 	ordenamiento).
+	a.7) Indique los dos procesos que consumen mas CPU para una de las 
+	muestras de top (vuelva a cambiar el ordenamiento a %CPU).
 
-Ejercicio 1
+Ejercicio 2
 ***********
 Cree un archivo llamado "fecha" con el siguiente script: 
 
@@ -83,10 +83,10 @@ f) Explique con sus palabras qué hace el script fecha. Mire el código y
 g) ¿Qué tipo de recursos fue el analizado durante este ejercicio? 
 
 
-Ejercicio 2
+Ejercicio 3
 ***********
 
-Ejercicio 3
+Ejercicio 4
 ***********
 a) Indiqué la definición de los comandos df y du según su página del manual. 
 
@@ -108,7 +108,7 @@ b) Lea el ejemplo de uso de df y du en el apunte correspondiente. Utilice esta
 c) ¿Qué tipo de recursos fue el analizado durante este ejercicio? 
 
 
-Ejercicio 4
+Ejercicio 5
 ***********
 a) Obtenga el tamaño que ocupa en disco el directorio /home/root 
  
