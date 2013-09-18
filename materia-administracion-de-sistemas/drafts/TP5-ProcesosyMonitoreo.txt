@@ -58,6 +58,9 @@ e) Mueva (estos es mueva, no copie) el script fecha de su directorio home
 
 f) Explique con sus palabras qué hace el script fecha. 
 
+g) ¿Qué tipo de recursos fue el analizado durante este ejercicio? 
+
+
 
 Ejercicio 3
 ***********
@@ -78,4 +81,4 @@ b) Lea el ejemplo de uso de df y du en el apunte correspondiente. Utilice esta
 	directorios, defina qué tipo de contenido tienen los tres directorios
 	que ocupan mayor espacio en el inciso b.3)
 
-
+c) ¿Qué tipo de recursos fue el analizado durante este ejercicio? 
