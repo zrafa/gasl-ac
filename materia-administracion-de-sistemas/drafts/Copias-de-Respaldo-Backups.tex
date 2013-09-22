@@ -70,281 +70,217 @@ almacenar datos es el disco rígido, ya que se encuentra compuesto de
 pequeñísimos campos magnéticos que deben mantenerse intactos en un mundo 
 lleno de interferencias electromagnéticas.  
 Por otra parte el software moderno tiende a ser no confiable; un programa 
-sólido como una roca es una excepción, no una regla. Como si esto fuera 
-poco, las personas son completamente no confiables, suelen confundirse o 
-equivocarse, o pueden ser maliciosos y destruir los datos de forma 
-intencional. La naturaleza no puede ser malvada, pero podría llegar a 
-realizar estragos. 
+sólido como una roca es una excepción, no una regla. Debemos tener siempre
+presente que el software está desarrollado por seres humanos y como tal, es
+imperfecto. Las personas son completamente no confiables, suelen confundirse
+o equivocarse, o pueden ser maliciosos y destruir los datos de forma 
+intencional. Y como si esto fuera poco, existen catástrofes naturales y
+humanas, como incendios, inundaciones, erupciones volcánicas, etc. 
+que pueden causar estragos en lo referente a pérdida de datos.  
 
-Resumiendo: en computación, es un pequeño milagro que algo trabaje del todo bien.
+\fcolorbox{black}{grey}{
+\parbox[t]{1.0\linewidth}{ \vspace*{0.4cm}
+{\bf En resumen}: en computación, es un pequeño milagro que las cosas 
+funcionen bien y sin interrupción. Por lo que, es imperioso tomar medidas
+ para minimizar las pérdidas de datos y los costos asociados a las mismas. 
+\vspace*{0.4cm} } }
 
-	
-
-Las copias de seguridad son una manera de proteger la inversión realizada en 
-los datos. Las pérdidas de información no es tan importante si existen varias
-copias resguardadas (existe solo el costo que conlleve recuperar los datos 
-perdidos desde las copias).
-
-	
+Las copias de seguridad son una manera de proteger la inversión realizada 
+en los datos. Las pérdidas de información tienen menor impacto si existen 
+varias copias resguardadas, en tal caso existirá solo el costo que conlleve
+recuperar los datos perdidos desde las copias, que en muchos casos, 
+dependiendo de la criticidad de la información puede ser un costo 
+considerable. 
 
 Es importante realizar copias de seguridad correctamente. Como todo lo 
 relacionado con el mundo físico, se dañarán tarde o temprano. Parte del
-trabajo
-al realizar copias de seguridad es estar seguro de que estas funcionan; 
-ya que no desea 
-enterarse tiempo después que las copias no son útiles.\footnote{No reírse. Esto le sucede a muchas personas.
-} Además, piense
-en estos dos casos: sus datos podrían dañarse justo en el momento en que
-esta realizando copias de respaldo; o, si solamente tiene un medio para
-copias de seguridad, se podría llegar a romper también, 
-dejándolo solo con las cenizas de todo lo fumado mientras realizaba el 
-trabajo duro.
-	
-		\footnote{Been there, done that...}
-		
+trabajo al realizar copias de seguridad es estar seguro de que estas 
+funcionan; ya que no desea enterarse tiempo después que las copias no son 
+útiles.\footnote{No reírse. Esto le sucede a muchas personas.} Además,
+ piense en estos dos casos: sus datos podrían dañarse justo en el momento 
+en que esta realizando copias de respaldo; o, si solamente tiene un medio 
+para copias de respaldo, se podría llegar a romperse también. 
 
-O se entera, cuando intenta recuperar, 
-que olvidó'o respaldar algo importante, como la 
-base de datos de los usuarios en un sitio con 15000. Finalmente, el mejor 
-de todos los casos:
-las copias de seguridad trabajan perfectamente, pero la 
-última unidad sobre la faz de la Tierra que lee el tipo de cinta que 
-usted utilizaba, está llena de agua y se ha dañado irreparablemente.
+O se entera, cuando intenta recuperar, que olvidó respaldar algo importante,
+como la base de datos de los usuarios en un sitio con miles de usuarios. 
+Finalmente, el mejor de todos los casos: las copias de seguridad trabajan 
+perfectamente, pero la última unidad sobre la faz de la Tierra que lee el 
+tipo de cinta que usted utilizaba, está llena de agua y se ha dañado 
+irreparablemente.
 
-	 
+Cuando de copias de seguridad se trata, la paranoia está en la descripción 
+de la tarea.
 
-Cuando de copias de seguridad se trata, la paranoia está en la descripción de 
-la tarea.
-
-
-
-
-\section{
-
-Seleccionando el medio de backup}
-
-	
+\section{ Seleccionando el medio de backup}
 
 La decisión mas importante al pensar en hacer copias de seguridad es la 
-selección del medio a utilizar. Necesita considerar el costo, confiabilidad, velocidad, 
-disponibilidad y usabilidad.
+selección del medio a utilizar. Necesita considerar el costo, 
+confiabilidad, velocidad, disponibilidad y usabilidad.
 
-	
+El \texttt{costo} es importante, porque preferentemente desea contar con 
+mayor 
+capacidad de almacenamiento para los backups de lo que necesita para los 
+datos existentes. Un medio económico es usualmente casi una obligación.
 
-El costo es importante, porque preferentemente desea contar con mayor capacidad
-de almacenamiento para los backups de lo que necesita para los datos existentes.
-Un medio barato es usualmente casi una obligación.
+La \texttt{confiabilidad} es una característica de extrema importancia, 
+ya que una 
+copia de respaldo dañada puede hacer llorar a un gigante. Un medio para 
+copias de seguridad debe ser capaz de mantener los datos en perfecto 
+estado durante años. Además, la forma en que se utiliza el medio afecta 
+a su confiabilidad. Un disco rígido es típicamente muy confiable, pero 
+no como medio para copias de seguridad en caso de que se encuentre en 
+la misma computadora en donde están los discos al que se les realiza la 
+copia.
 
-	
-
-La confiabilidad es un ítem de extrema importancia, ya que una copia de respaldo 
-dañada puede hacer llorar a un gigante. Un medio para copias de seguridad 
-debe ser capaz de mantener los datos en perfecto estado durante años. 
-Además, la forma en que se utiliza el medio afecta a su confiabilidad.
-Un disco rígido es típicamente muy confiable, pero no como 
-medio para copias de seguridad en caso de que se encuentre en la misma computadora 
-en donde están los disco al que se les realiza la copia.
-
-	
-
-La velocidad usualmente no muy importante, 
-en caso de que la copia pueda ser
+La \texttt{velocidad} usualmente no muy importante, en caso de que la 
+copia pueda ser
 realizada sin interacción. No importa que el backup demore unas 
 dos horas, o lo que fuese necesario si no necesita atención. En cambio, si 
 la copia no puede ser realizada cuando la computadora se encuentre ociosa, 
 considere a la velocidad del medio al momento de la elección.
 
-	
-
-La disponibilidad es obviamente necesaria, debido a que no se puede utilizar 
+La \texttt{disponibilidad} es obviamente necesaria, debido a que no se 
+puede utilizar
 un medio para copias de seguridad si no existe. Menos obvio es la 
-disponibilidad futura, y en otras
-computadoras diferentes a las que se utilizaron para generar las copias.
+disponibilidad futura, y en otras computadoras diferentes a las que se 
+utilizaron para generar las copias.
 Si este caso sucede, puede no ser posible realizar una recuperación de la 
 información luego de un desastre.
 
+Las alternativas típicas son los discos ópticos (CD, DVD, BluRay) y las
+cintas. Los discos ópticos son baratos, relativamente confiables, no muy 
+rápidos, muy disponibles, pero no muy útiles para grandes cantidades de 
+información (Blu-ray almacena alrededor de 25G de datos). Las 
+cintas varían en cuanto a su valor, generalmente son baratas aunque algunos
+tipos no lo son tanto, relativamente confiables y veloces, muy disponibles, 
+y generalmente (aunque depende de su capacidad) son útiles para almacenar 
+mucha información (en el orden de los cientos de giga a tera byte). Hoy 
+en día también. 
+
+Para copias de respaldo de datos de computadora y transferencia de datos 
+física, los discos ópticos como el CD y el DVD están siendo reemplazados 
+gradualmente por dispositivos de estado sólido más rápidos, pequeños y 
+confiables, especialmente la memoria USB. Se espera que esta tendencia 
+continúe a medida que las memorias USB sigan creciendo en capacidad y 
+disminuyendo sus precios. 
 	
+\section{Seleccionando la herramienta de backup}
 
-La practicidad es un gran factor que se relaciona con la frecuencia en que
-las copias son realizadas. 
-Cuanto mas fácil de usar sea el medio para realizar las copias, mejor.
-Un medio 
-para copias de seguridad no debe ser difícil, o aburrido de 
-utilizar.
+Existen muchas herramientas que pueden ser utilizadas para realizar las 
+copias de respaldo.  Las herramientas tradicionales en entornos UNIX 
+son \texttt{\textbf{tar}}, \texttt{\textbf{cpio}} y \texttt{\textbf{dump}}.
+ Además, existe un gran 
+número de software de terceros (comerciales y libres) que pueden ser 
+utilizados. La selección del medio para copias de seguridad puede afectar 
+a la selección de la herramienta a utilizar.
 
-	
-
-Las alternativas típicas son los discos flexibles y las cintas. Los discos 
-flexibles son muy baratos, relativamente confiables, no muy rápidos, muy 
-disponibles, pero no muy útiles para grandes cantidades de información. Las 
-cintas varían en cuanto a su valor, generalmente son baratas aunque algunos tipos
-no lo son tanto,
-relativamente confiables y veloces, muy disponibles, y generalmente (aunque depende de 
-su capacidad) son útiles para almacenar mucha información.
-
-	
-
-Existen otras alternativas. Usualmente no son muy comunes,
-pero si la disponibilidad no es un problema, pueden ser una mejor opción en muchos 
-casos. Por ejemplo, los discos magneto-ópticos, ya que pueden tener las ventajas 
-de los discos flexibles (acceso aleatorio, rápida recuperación de un único archivo)
-y las ventajas de las cintas (gran capacidad de almacenamiento).
-
-
-
-\section{
-
-Seleccionando la herramienta de backup}
-
-	
-
-Existen muchas herramientas que pueden ser utilizadas para realizar las copias 
-de seguridad. Las herramientas tradicionales en entornos UNIX 
-son \texttt{\textbf{tar}}, \texttt{\textbf{cpio}}, y
-	\texttt{\textbf{dump}}.. Además, existe un gran número de paquetes de terceros 
-(comerciales y libres) que pueden ser utilizados. La selección del medio para 
-copias de seguridad puede afectar a la selección de la herramienta a utilizar.
-
-	 \texttt{\textbf{tar}} y \texttt{\textbf{cpio}}
+Los comandos \texttt{\textbf{tar}} y \texttt{\textbf{cpio}}
 son similares, y casi completamente equivalentes desde el punto de 
 vista de los backups. Ambas son capaces de almacenar y recuperar 
 archivos en cintas. También son capaces de utilizar 
-prácticamente cualquier medio, debido a que los controladores de dispositivos del kernel son 
-los que se encargan del acceso al hardware a bajo nivel; por lo que todos los dispositivos
+prácticamente cualquier medio, debido a que los controladores de 
+dispositivos del kernel son los que se encargan del acceso al hardware a 
+bajo nivel; por lo que todos los dispositivos
 tienden a verse de la misma manera para los programas en espacio de usuario.
-Algunas versiones UNIX de \texttt{\textbf{tar}}
-	y \texttt{\textbf{cpio}}
-pueden tener dificultades con archivos inusuales 
+Algunas versiones  UNIX antiguas de \texttt{\textbf{tar}} y 
+\texttt{\textbf{cpio}} pueden tener dificultades con archivos inusuales 
 (enlaces simbólicos, archivos de dispositivos, archivos con nombres
-muy largos, etc.), pero las versiones GNU/Linux de estas herramientas deberían 
-manejar toda clase de archivos correctamente.
+muy largos, etc.), pero las versiones GNU/Linux de estas herramientas 
+deberían manejar toda clase de archivos correctamente.
 
-	 \texttt{\textbf{dump}}
-es diferente a las dos herramientas anteriores, debido a que lee el 
-sistema de archivos directamente, y no a través del sistema de archivos. 
-Además, fue desarrollado específicamente para generar copias de seguridad;
- \texttt{\textbf{tar}}
-	y \texttt{\textbf{cpio}} son empaquetadores de archivos (a pesar de que también trabajan como 
-herramientas para backups).
+El comando \texttt{\textbf{dump}} es diferente a las dos herramientas 
+anteriores, debido a que lee el sistema de archivos directamente, y no a 
+través del sistema de archivos.  Además, fue desarrollado específicamente 
+para generar copias de seguridad; \texttt{\textbf{tar}} y 
+\texttt{\textbf{cpio}} son empaquetadores de archivos 
+(a pesar de que también trabajan como herramientas para backups).
 
-	
-
-Leer el sistema de archivos directamente tiene algunas ventajas. Es posible 
-realizar copias sin afectar las marcas de tiempo de los archivos; 
-en cambio, para \texttt{\textbf{tar}} y \texttt{\textbf{cpio}}, es necesario primero montar el 
-sistema de archivos con permisos de solo-lectura. Si es necesario copiar 
-todo el sistema de archivos, entonces la lectura directa también es mas efectiva,
-debido a que se realizan 
-muchos menos movimientos de la cabeza lecto-escritora del disco. La mayor desventaja
-es que dump es un programa de copia específico para solamente un tipo de sistemas
-de archivos;
-el programa \texttt{\textbf{dump}}de GNU/Linux puede leer únicamente el sistema
-de archivos ext2.
-
-	 \texttt{\textbf{dump}}
-también soporta distintos niveles de copias (tema que se encuentra
-explicado en páginas posteriores)
-; con \texttt{\textbf{tar}} y \texttt{\textbf{cpio}} los niveles de copia de respaldo debe 
-ser implementado utilizando otras herramientas.
-
-	
+Leer el sistema de archivos directamente tiene algunas ventajas.
+Si es necesario copiar todo el sistema de archivos, entonces la lectura 
+directa es mas efectiva, debido a que se realizan muchos menos movimientos 
+de la cabeza lecto-escritora del disco. La mayor desventaja es que dump es 
+un programa de copia específico para solamente un tipo de sistemas de 
+archivos; el programa \texttt{\textbf{dump}}de GNU/Linux puede leer 
+únicamente los sistema de archivos ext2/3/4. Al ser diseñado para copias
+de respaldo, \texttt{\textbf{dump}} soporta distintos niveles de copias
+ (tema que se encuentra explicado en páginas posteriores); con 
+\texttt{\textbf{tar}} y \texttt{\textbf{cpio}} los niveles de copia de 
+respaldo debe ser implementado utilizando otras herramientas.
 
 Una comparación con herramientas de terceros para copias de seguridad se 
-encuentra fuera del alcance de este libro. El Mapa de Software para GNU/Linux 
-lista muchos de ellos que son gratuitos.
+encuentra fuera del alcance de este apunte. Existen diversas soluciones, 
+cada una se adapta a una necesidad particular y deberán ser evaluadas 
+cuando las herramientas presentadas no repondan a las necesidades. 
 
+\section{Copias de respaldo simples}
 
-
-\section{
-
-Copias de respaldo simples}
-
-	
-
-Un esquema simple de copias de seguridad es respaldar todo una única vez, y 
-luego, copiar solamente los archivos que fueron modificados después de la copia inicial.
-La primera copia se denomina \textit{copia total (full
-	backup)}, y las 
-siguientes son \textit{copias incrementales (incremental
-	backups)}. Una copia total frecuentemente
-necesita de mayor esfuerzo para ser generada, debido a que hay mas datos a escribir,
-y eventualmente (o frecuentemente []) puede no caber en una única cinta, o cualquiera
-que sea el medio utilizado.
+Un esquema simple de copias de seguridad es respaldar todo una única vez, 
+y luego, copiar solamente los archivos que fueron modificados después de 
+la copia inicial. La primera copia se denomina \textit{copia total (full 
+backup)}, y las siguientes son \textit{copias incrementales 
+(incremental backups)}. Una copia total frecuentemente necesita de mayor 
+esfuerzo para ser generada, debido a que hay mas datos a escribir,
+y eventualmente (o frecuentemente) puede no caber en una única cinta, o 
+cualquiera que sea el medio utilizado.
 De manera opuesta, recuperar información desde las copias
 incrementales necesita muchas veces mas empeño que hacerlo desde una copia 
-total. La recuperación puede ser optimizada si cada copia incremental se realiza 
-con respecto a la copia total previa. De esta manera, las copias pueden 
-necesitar un poquito mas de esfuerzo (y demorar mas también), pero nunca será
-necesario recuperar mas que dos copias (una total y una incremental).
+total. La recuperación puede ser optimizada si cada copia incremental se 
+realiza con respecto a la copia total previa. De esta manera, las copias 
+pueden necesitar un poquito mas de esfuerzo (y demorar mas también), 
+pero nunca será necesario recuperar mas que dos copias (una total y una 
+incremental).
 
-	
+El siguiente es un ejemplo simplificadoe basado en cintas, lo mismo podría 
+pensarse utilizando otros medios. 
+En caso de que desee realizar copias todos los días y tenga seis cintas, 
+puede utilizar la cinta 1 para la primera copia completa (digamos, un 
+viernes), y utiliza las cintas 2 a 5 para las copias incrementales 
+(lunes a jueves). El segundo viernes, realiza una nueva copia total en la 
+cinta 6, y reinicia nuevamente el ciclo de copias incrementales con las 
+cintas 2 a 5. No es conveniente sobreescribir la cinta 1 hasta que una 
+nueva copia completa haya sido generada. Después del segundo viernes, debe
+mantener la cinta 1 en un lugar físico distinto del resto. De esta manera, 
+si el conjunto de cintas 2 a 6 se dañan en un incendio, tiene al menos una 
+copia completa en un lugar seguro (esta copia tiene una semana de 
+antigüedad, pero es mejor que nada).  Cuando necesite realizar la próxima 
+copia total, utilice la cinta 1 y coloque la cinta 6 el el lugar seguro.
 
-En caso de que desee realizar copias todos los días y tenga seis cintas, puede utilizar 
-la cinta 1 para la primera copia completa (digamos, un Viernes), y utiliza
-las cintas 2 a 5 para las copias incrementales (Lunes a Jueves). El segundo Viernes,
-realiza una nueva copia total en la cinta 6, y reinicia nuevamente el ciclo de copias incrementales
-con las cintas 2 a 5. No es conveniente sobreescribir la cinta 1 hasta que una nueva
-copia completa haya sido generada. Después del segundo Viernes, debe mantener la cinta 1
-en otro lugar distinto al del resto. De esta manera, si el conjunto de cintas 2 a 6 
-se dañan en un incendio, tiene al menos una copia completa en un lugar seguro (esta
-copia tiene una semana de antigüedad, pero es mejor que nada).
-Cuando 
-necesite realizar la próxima copia total, utilice la cinta 1 y coloque la cinta 6
-el el lugar seguro.
-
-	
-
-En caso de que disponga con mas de 6 cintas, puede utilizar las cintas extras
-para las copias completas. Y cada vez que realice una copia total utilizará la 
-cinta mas antigua. De esta manera puede almacenar copias
+En caso de que disponga con mas de 6 cintas, puede utilizar las cintas 
+extras para las copias completas. Y cada vez que realice una copia total 
+utilizará la cinta mas antigua. De esta manera puede almacenar copias
 completas de varias semanas previas, lo cual es útil en caso de que necesite
-encontrar un archivo que ha sido borrado, o desea recuperar una vieja versión de
-algún otro.
+encontrar un archivo que ha sido borrado, o desea recuperar una vieja 
+versión de algún otro.
 
-\subsection{
-
-Realizando copias de seguridad con tar}
-
-	
+\subsection{ Realizando copias de seguridad con tar}
 
 Una copia completa puede realizarse fácilmente con \texttt{\textbf{tar}}:
 
+\fcolorbox{black}{grey}{
+\parbox[t]{1.0\linewidth}{ \vspace*{0.4cm}
+{\tt
+\# tar --create --file /dev/st0 /home 
+}
+El dispositivo {\tt /dev/st0} representa a la primer cinta magnética del
+sistema. El comando anterior creará un backup del directorio /home en dicha
+cinta.  
+\vspace*{0.4cm} } }
 
-<prompt>#</prompt> <userinput>tar --create --file /dev/ftape 
-/usr/src</userinput>
-\colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} {\tt tar: Removing leading / from absolute path names in 
-the archive } \vspace*{0.5cm} } } 
-<prompt>#</prompt>
-
-
-El ejemplo anterior utiliza la versión GNU de \texttt{\textbf{tar}} y sus nombres de opciones 
-largos. La versión tradicional de \texttt{\textbf{tar}} solo comprende opciones de un único caracter.
-Además, la versión GNU puede manejar 
-copias que no quepan completamente en una cinta (o medio utilizado), y con caminos de
+El ejemplo anterior utiliza la versión GNU de \texttt{\textbf{tar}} y sus 
+nombres de opciones largos a modo explicativo. Normalmente utilizaremos 
+\texttt{\textbf{tar}} con opciones de un único caracter. Por ejemplo el 
+comando anterior es equivalente a {\tt tar -cf /dev/st0 /home}. 
+Además, la versión GNU puede manejar copias que no quepan completamente 
+en una cinta (o medio utilizado), y con caminos de
 directorios muy largos; no todas las versiones de tar pueden hacer eso. 
 (GNU/Linux solo utiliza GNU \texttt{\textbf{tar}}.)  
 
-En caso de que la copia no quepa en una única cinta, es necesario activar la opción
-<option>--multi-volume</option> (<option>-M</option>):
+En caso de que la copia no quepa en una única cinta, es necesario activar la
+ opción ``{\tt --multi-volume}'' o ``{\tt -M}''. 
 
-
-<prompt>#</prompt> <userinput>tar -cMf /dev/fd0H1440 
-/usr/src</userinput>
-\colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} {\tt tar: Removing leading / from absolute path names in 
-the archive
-Prepare volume #2 for /dev/fd0H1440 and hit return: } \vspace*{0.5cm} } } 
-<prompt>#</prompt>
-
-
-
-Observe que debe dar formato a todos los disquetes a utilizar antes de comenzar 
-la copia de respaldo, o utilice otra ventana o terminal virtual y dele 
-formato al disquete cuando \texttt{\textbf{tar}} le solicite uno nuevo.
-
-	
-
-Después de realizar una copia, debe verificar si todo se encuentra en correctas condiciones
-utilizando la opción <option>--compare</option> (<option>-d</option>):
+Después de realizar una copia, debe verificar si todo se encuentra en 
+correctas condiciones utilizando la opción ``{\tt --compare}, ``{\tt -d} ó 
+``{\tt --diff}. 
 
 
 <prompt>#</prompt> <userinput>tar --compare --verbose -f 
