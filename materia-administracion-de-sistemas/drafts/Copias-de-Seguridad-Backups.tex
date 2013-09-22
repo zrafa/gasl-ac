@@ -1,46 +1,81 @@
-﻿<chapter id="backups">
-Copias de seguridad (Backups)}
-	<blockquote><literallayout>
-El hardware es indeterminísticamente confiable.
-El software es determinísticamente no confiable.
-Las personas son indeterminísticamente no confiable.
-La naturaleza es determinísticamente confiable.
-</literallayout></blockquote>
- TEn este capítulo se explica cuando, como y  porque hacer copias de 
-seguridad (backups), y de como recuperar información de las 
+﻿\documentclass[12pt]{article}
+
+
+\usepackage{apuntes-estilo}
+\usepackage{fancyhdr,lastpage}
+\usepackage{color,colortbl}
+\usepackage{verbatim}
+
+\def\maketitle{
+
+% Titulo 
+ \makeatletter
+ {\color{bl} \centering \huge \sc \textbf{
+ Copias de respaldo (backup)\\ 
+\large \vspace*{-8pt} \color{black} Guía básica de copias de respaldo (backup)
+ \vspace*{8pt} }\par}
+ \makeatother
+
+
+% Autor
+ \makeatletter
+ {\centering \small 
+ 	Departamento de Ingeniería de Computadoras \\
+ 	Facultad de Informática - Universidad Nacional del Comahue \\
+ 	\vspace{20pt} }
+ \makeatother
+
+}
+
+% Custom headers and footers
+\fancyhf{} % clear all header and footer fields
+\fancypagestyle{plain}{\fancyhf{}}
+  	\pagestyle{fancy}
+ 	\lhead{\footnotesize Copia de respaldo - Departamento de Ingeniería de Computadoras}
+ 	\rhead{\footnotesize \thepage\ }	% ''Page 1 of 2''
+
+\def\ti#1#2{\texttt{#1} & #2 \\ }
+
+
+
+\begin{document}
+
+\thispagestyle{empty}
+\maketitle
+\setlength{\parindent}{0pt}
+
+
+\section{Importancia de las copias de seguridad}
+ En este apunte se explica cuándo, cómo y  por qué hacer copias de 
+seguridad (backups), y de cómo recuperar información de las 
 copias realizadas.
 
-\section{
-
-
-
-Importancia de las copias de seguridad}
-
-	 
-
-Sus datos son valiosos. Tomara tiempo y esfuerzo -si fuese necesario-
+Sus datos son valiosos. Tomara tiempo y esfuerzo, si fuese necesario,
 re-crearlos, y esto cuesta dinero o al menos esfuerzo extra del personal.
-Algunas 
-veces los datos no pueden ser re-creados, si por ejemplo son el 
+Algunas veces los datos no pueden ser re-creados, si por ejemplo son el 
 resultado de algunos experimentos. Debido a que los datos elaborados son una 
 inversión, debe protegerlos y tomar medidas para evitar pérdidas.
 
-	
+Existen al menos cuatro razones por la que puede perder datos: 
+\begin{itemize}
+\item Fallas de hardware.
+\item Errores en el software. 
+\item Acción humana (accidental o intencional). 
+\item Desastres (incendios, inundaciones, etc). 
+\end{itemize}
 
-Existen básicamente cuatro razones por la que puede perder datos: fallas de 
-hardware, errores en el software, mala o equivocada acción humana o desastres 
-naturales.
-\footnote{La quinta razón es \textit{something
-		else}.}
- Aunque si bien el hardware moderno tiende a ser confiable, puede 
-llegar a dañarse aparentemente de manera espontánea. La pieza más crítica para 
+ Si bien el hardware moderno tiende a ser confiable, puede llegar a dañarse
+aparentemente de manera espontánea. La pieza más crítica para 
 almacenar datos es el disco rígido, ya que se encuentra compuesto de 
-pequeñísimos campos magnéticos que deben mantenerse intactos en un mundo lleno 
-de interferencias electromagnéticas. El software moderno no tiende a ser 
-confiable; un programa sólido como una roca es una excepción, no una regla. 
-Las personas son completamente no confiables, suelen confundirse o 
-equivocarse, o pueden ser maliciosos y destruir los datos de forma adrede. La 
-naturaleza no puede ser malvada, pero podría llegar a realizar estragos. 
+pequeñísimos campos magnéticos que deben mantenerse intactos en un mundo 
+lleno de interferencias electromagnéticas.  
+Por otra parte el software moderno tiende a ser no confiable; un programa 
+sólido como una roca es una excepción, no una regla. Como si esto fuera 
+poco, las personas son completamente no confiables, suelen confundirse o 
+equivocarse, o pueden ser maliciosos y destruir los datos de forma 
+intencional. La naturaleza no puede ser malvada, pero podría llegar a 
+realizar estragos. 
+
 Resumiendo: en computación, es un pequeño milagro que algo trabaje del todo bien.
 
 	
@@ -327,7 +362,7 @@ son útiles hasta que estas sean necesarias.
 	
 	
 
-Una copia de seguridad incremental puede ser realizada utilizando la opción 
+Una copia de respaldo incremental puede ser realizada utilizando la opción 
 <option>--newer</option>
 	(<option>-N</option>) de \texttt{\textbf{tar}}:
 
@@ -417,7 +452,7 @@ usr/src/linux-1.2.10-includes/include/linux/kernel.h
 
 
 
-Note que \texttt{\textbf{tar}} siempre lee el volumen de la copia de seguridad secuencialmente, 
+Note que \texttt{\textbf{tar}} siempre lee el volumen de la copia de respaldo secuencialmente, 
 lo que puede llegar a ser lento para grandes volúmenes. 
 De cualquier manera, si utiliza medios secuenciales como cintas, no 
 es posible el acceso aleatorio.
