@@ -153,8 +153,7 @@ información (Blu-ray almacena alrededor de 25G de datos). Las
 cintas varían en cuanto a su valor, generalmente son baratas aunque algunos
 tipos no lo son tanto, relativamente confiables y veloces, muy disponibles, 
 y generalmente (aunque depende de su capacidad) son útiles para almacenar 
-mucha información (en el orden de los cientos de giga a tera byte). Hoy 
-en día también. 
+mucha información (en el orden de los cientos de giga a tera byte). 
 
 Para copias de seguridad de datos de computadora y transferencia de datos 
 física, los discos ópticos como el CD y el DVD están siendo reemplazados 
@@ -210,7 +209,7 @@ seguridad debe ser implementado utilizando otras herramientas.
 Una comparación con herramientas de terceros para copias de seguridad se 
 encuentra fuera del alcance de este apunte. Existen diversas soluciones, 
 cada una se adapta a una necesidad particular y deberán ser evaluadas 
-cuando las herramientas presentadas no repondan a las necesidades. 
+cuando las herramientas presentadas no respondan a las necesidades. 
 
 \section*{Modelos de copias de seguridad}
 Desde los primeros años de uso de copias de seguridad, se han desarrollado 
@@ -256,7 +255,7 @@ sufrido cambio o no desde la última vez que se realizó la copia anterior.
 
 Es la forma de copia de seguridad de más tiempo y recursos (léase espacio 
 de almacenamiento) consume, pero la más rápida y segura a la hora de 
-recupear datos de ella. 
+recuperar datos de ella. 
 
 \subsection*{Copia diferencial}
 La copia diferencial supone la existencia de una copia total existente, y
@@ -290,7 +289,7 @@ pueden necesitar un poquito mas de esfuerzo (y demorar mas también),
 pero nunca será necesario recuperar mas que dos copias (una total y una 
 incremental).
 
-El siguiente es un ejemplo simplificadoe basado en cintas, lo mismo podría 
+El siguiente es un ejemplo simplificado basado en cintas, lo mismo podría 
 pensarse utilizando otros medios. 
 En caso de que desee realizar copias todos los días y tenga seis cintas, 
 puede utilizar la cinta 1 para la primera copia completa (digamos, un 
@@ -399,7 +398,7 @@ Turnos\_1er\_parcial.pdf\\
 \$ cd \\
 \$ tar -df tsl.tar TSL/\\
 tar: TSL/AdminSis2013/Turnos\_1er\_parcial.pdf: Atención: No se puede stat:
-No existe el fichero o el direcotrio\\
+No existe el fichero o el directorio\\
 }
 Nótese que en este ejemplo sólo se está creando un  archivo {\tt tsl.tar} 
 en el mismo sistema de archivos que el original. Para que efectivamente 
@@ -484,11 +483,11 @@ están siendo modificados se escriben sin ningún problema, y no corrompen
 todo el archivo.)
 
 A menos que el sistema de archivos que se está volcando quepa en un solo 
-volúmen, tendrá que utilizar la opción ``{\tt --multi-volume}'' 
+volumen, tendrá que utilizar la opción ``{\tt --multi-volume}'' 
 (``{\tt -D}'') para varios volúmenes.  Asegúrese de tener suficientes 
 cintas (u otro medio) a mano para completar la copia de seguridad.
 
-Considerando que pueden exisitr múltiples sistemas de archivos montado a lo
+Considerando que pueden existir múltiples sistemas de archivos montado a lo
 largo de la jerarquía de directorios, si se desea crear copias de seguridad,
 de cada sistema de archivos por separado, se deberá utilizar la opción 
 ``{\tt --one-file-system}'' para evitar que tar cruce los límites
@@ -536,7 +535,7 @@ archivo {\tt /var/log/usr.snar}. Si este archivo no existe, se creará.
 
 El archivo creado en el ejemplo será una copia de seguridad de nivel cero, 
 copia completa la primera vez que lo realizamos. Luego, si el archivo
-{\tt /var/log/usr.snar} existe, tar determinrá cuáles de los archivos 
+{\tt /var/log/usr.snar} existe, tar determinará cuáles de los archivos 
 listados fueron modificados. En cuyo caso, sólo estos últimos serán 
 almacenados en el archivo. 
 
@@ -559,9 +558,9 @@ usr/local/db/\\
 usr/local/db/data\\
 usr/local/db/index\\
 }
-Notese que copiamos el archivo de instantanea antes de crear una nueva 
-copia de seguirdad, dado que podríamos querer crear más de una copia 
-de nivel uno a partir de la primera copia de nivel cero. Si utilizaramos 
+Nótese que copiamos el archivo de instantánea antes de crear una nueva 
+copia de seguridad, dado que podríamos querer crear más de una copia 
+de nivel uno a partir de la primera copia de nivel cero. Si utilizáramos 
 el mismo archivo, este se actualizaría a partir de la última copia 
 incremental. 
 } \vspace*{0.5cm} } } 
@@ -596,9 +595,9 @@ buena idea. Una manera alternativa es comprimir cada uno de los archivos
 separadamente. El problema mencionado anteriormente aún persiste, pero si 
 un archivo en el backup se encuentra dañado, al menos los demás no sufren 
 los efectos colaterales. También se debe tener en cuenta que no todos los 
-datos son suceptibles de ser comprimidos; mientras que un archivo de 
+datos son susceptibles de ser comprimidos; mientras que un archivo de 
 texto reduce considerablemente su tamaño al ser comprimido por gzip, un
-archivo de imágen puede diferir en muy poco de su versión original a menos
+archivo de imagen puede diferir en muy poco de su versión original a menos
 que se utilice software de compresión de imágenes especifico. 
 
 Por otro lado, la compresión lleva también lleva tiempo y alto consumo 
