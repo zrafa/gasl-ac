@@ -1,5 +1,4 @@
-﻿\documentclass[12pt]{article}
-
+\documentclass[12pt]{article}
 
 \usepackage{apuntes-estilo}
 \usepackage{fancyhdr,lastpage}
@@ -11,8 +10,8 @@
 % Titulo 
  \makeatletter
  {\color{bl} \centering \huge \sc \textbf{
- Copias de respaldo (backup)\\ 
-\large \vspace*{-8pt} \color{black} Guía básica de copias de respaldo (backup)
+ Copias de seguridad (backup)\\ 
+\large \vspace*{-8pt} \color{black} Guía básica de copias de seguridad (backup)
  \vspace*{8pt} }\par}
  \makeatother
 
@@ -31,7 +30,7 @@
 \fancyhf{} % clear all header and footer fields
 \fancypagestyle{plain}{\fancyhf{}}
   	\pagestyle{fancy}
- 	\lhead{\footnotesize Copia de respaldo - Departamento de Ingeniería de Computadoras}
+ 	\lhead{\footnotesize Copia de seguridad - Departamento de Ingeniería de Computadoras}
  	\rhead{\footnotesize \thepage\ }	% ''Page 1 of 2''
 
 \def\ti#1#2{\texttt{#1} & #2 \\ }
@@ -45,7 +44,7 @@
 \setlength{\parindent}{0pt}
 
 
-\section{Importancia de las copias de seguridad}
+\section*{Importancia de las copias de seguridad}
  En este apunte se explica cuándo, cómo y  por qué hacer copias de 
 seguridad (backups), y de cómo recuperar información de las 
 copias realizadas.
@@ -64,7 +63,7 @@ Existen al menos cuatro razones por la que puede perder datos:
 \item Desastres (incendios, inundaciones, etc). 
 \end{itemize}
 
- Si bien el hardware moderno tiende a ser confiable, puede llegar a dañarse
+Si bien el hardware moderno tiende a ser confiable, puede llegar a dañarse
 aparentemente de manera espontánea. La pieza más crítica para 
 almacenar datos es el disco rígido, ya que se encuentra compuesto de 
 pequeñísimos campos magnéticos que deben mantenerse intactos en un mundo 
@@ -98,8 +97,8 @@ trabajo al realizar copias de seguridad es estar seguro de que estas
 funcionan; ya que no desea enterarse tiempo después que las copias no son 
 útiles.\footnote{No reírse. Esto le sucede a muchas personas.} Además,
  piense en estos dos casos: sus datos podrían dañarse justo en el momento 
-en que esta realizando copias de respaldo; o, si solamente tiene un medio 
-para copias de respaldo, se podría llegar a romperse también. 
+en que esta realizando copias de seguridad; o, si solamente tiene un medio 
+para copias de seguridad, se podría llegar a romperse también. 
 
 O se entera, cuando intenta recuperar, que olvidó respaldar algo importante,
 como la base de datos de los usuarios en un sitio con miles de usuarios. 
@@ -111,7 +110,7 @@ irreparablemente.
 Cuando de copias de seguridad se trata, la paranoia está en la descripción 
 de la tarea.
 
-\section{ Seleccionando el medio de backup}
+\section*{ Seleccionando el medio de backup}
 
 La decisión mas importante al pensar en hacer copias de seguridad es la 
 selección del medio a utilizar. Necesita considerar el costo, 
@@ -124,7 +123,7 @@ datos existentes. Un medio económico es usualmente casi una obligación.
 
 La \texttt{confiabilidad} es una característica de extrema importancia, 
 ya que una 
-copia de respaldo dañada puede hacer llorar a un gigante. Un medio para 
+copia de seguridad dañada puede hacer llorar a un gigante. Un medio para 
 copias de seguridad debe ser capaz de mantener los datos en perfecto 
 estado durante años. Además, la forma en que se utiliza el medio afecta 
 a su confiabilidad. Un disco rígido es típicamente muy confiable, pero 
@@ -157,20 +156,21 @@ y generalmente (aunque depende de su capacidad) son útiles para almacenar
 mucha información (en el orden de los cientos de giga a tera byte). Hoy 
 en día también. 
 
-Para copias de respaldo de datos de computadora y transferencia de datos 
+Para copias de seguridad de datos de computadora y transferencia de datos 
 física, los discos ópticos como el CD y el DVD están siendo reemplazados 
 gradualmente por dispositivos de estado sólido más rápidos, pequeños y 
 confiables, especialmente la memoria USB. Se espera que esta tendencia 
 continúe a medida que las memorias USB sigan creciendo en capacidad y 
 disminuyendo sus precios. 
 	
-\section{Seleccionando la herramienta de backup}
+\section*{Seleccionando la herramienta de backup}
 
 Existen muchas herramientas que pueden ser utilizadas para realizar las 
-copias de respaldo.  Las herramientas tradicionales en entornos UNIX 
+copias de seguridad.  Las herramientas tradicionales en entornos UNIX 
 son \texttt{\textbf{tar}}, \texttt{\textbf{cpio}} y \texttt{\textbf{dump}}.
  Además, existe un gran 
-número de software de terceros (comerciales y libres) que pueden ser 
+número de software de terceros (comerciales y libres como
+ Amanda\footnote{http://www.amanda.org/}) que pueden ser 
 utilizados. La selección del medio para copias de seguridad puede afectar 
 a la selección de la herramienta a utilizar.
 
@@ -202,17 +202,77 @@ de la cabeza lecto-escritora del disco. La mayor desventaja es que dump es
 un programa de copia específico para solamente un tipo de sistemas de 
 archivos; el programa \texttt{\textbf{dump}}de GNU/Linux puede leer 
 únicamente los sistema de archivos ext2/3/4. Al ser diseñado para copias
-de respaldo, \texttt{\textbf{dump}} soporta distintos niveles de copias
+de seguridad, \texttt{\textbf{dump}} soporta distintos niveles de copias
  (tema que se encuentra explicado en páginas posteriores); con 
 \texttt{\textbf{tar}} y \texttt{\textbf{cpio}} los niveles de copia de 
-respaldo debe ser implementado utilizando otras herramientas.
+seguridad debe ser implementado utilizando otras herramientas.
 
 Una comparación con herramientas de terceros para copias de seguridad se 
 encuentra fuera del alcance de este apunte. Existen diversas soluciones, 
 cada una se adapta a una necesidad particular y deberán ser evaluadas 
 cuando las herramientas presentadas no repondan a las necesidades. 
 
-\section{Copias de respaldo simples}
+\section*{Modelos de copias de seguridad}
+Desde los primeros años de uso de copias de seguridad, se han desarrollado 
+nuevas tecnologías que han intentado minimizar en la medida de lo posible 
+el tamaño de los datos almacenados, el tiempo de copia y el tiempo de 
+restauración de los mismos.
+
+Fruto de estas investigaciones son los cuatro modelos básicos que hoy 
+día se utilizan en los procesos de generación de copias de seguridad:
+\begin{itemize}
+\item Copia total o completa (full backup).
+\item Copia diferencial.
+\item Copia incremental.
+\end{itemize}
+
+La decisión de cuál de los métodos anteriormente citados se ha de 
+utilizar cambia con las circunstancias particulares de cada situación 
+y en la mayoría de los casos depende fundamentalmente de cuatro factores:
+
+\begin{itemize}
+\item La capacidad de los soportes sobre los que se va a gravar la 
+información.
+\item El período de tiempo disponible para hacer la copia.
+\item El medio en el que se desarrolla el trabajo (local, intranet, 
+internet, etc.).
+\item El nivel de urgencia a la hora de necesitar restaurar los datos.
+\end{itemize}
+
+Independientemente de los factores que determinen el tipo de copia a 
+realizar, en la práctica, una buena política de gestión de copias de 
+seguridad incluirá la conjunción de varios de los modelos expuestos. Una 
+buena política de cooperación entre modelos de copias de seguridad 
+garantizará un buen resultado final y la obtención de un seguridad
+de datos fiable, robusto y rápido.
+
+\subsection*{Copia total o completa}
+Es el tipo básico e ideal de copia de seguridad ya que es el más 
+exhaustivo y autónomo, y en el que se basan el resto de modalidades.
+
+Una copia total incluye todos y cada uno de los archivos seleccionados
+para ser incluidos en el proceso de copia, sin importar si han 
+sufrido cambio o no desde la última vez que se realizó la copia anterior.
+
+Es la forma de copia de seguridad de más tiempo y recursos (léase espacio 
+de almacenamiento) consume, pero la más rápida y segura a la hora de 
+recupear datos de ella. 
+
+\subsection*{Copia diferencial}
+La copia diferencial supone la existencia de una copia total existente, y
+contiene todos los archivos que han cambiado desde la última
+copia completa. Las copias diferenciales son acumulativas entre sí, es 
+decir, si se tienen programadas varias copias diferenciales entre copias
+ totales, cada una de ellas no tendrá en cuenta la anterior e irá 
+acumulando los cambios desde la última total.
+
+\subsection*{Copia Incremental}
+Las copias de tipo incremental contienen únicamente los archivos que fueron
+modificados o creados desde la última copia total, o incremental. La 
+diferencia fundamental respecto a las copias diferenciales, es que no son 
+redundantes (la información no se repite de una copia a la siguiente).
+
+\subsection{Un esquema sencillo}
 
 Un esquema simple de copias de seguridad es respaldar todo una única vez, 
 y luego, copiar solamente los archivos que fueron modificados después de 
@@ -252,14 +312,14 @@ completas de varias semanas previas, lo cual es útil en caso de que necesite
 encontrar un archivo que ha sido borrado, o desea recuperar una vieja 
 versión de algún otro.
 
-\subsection{ Realizando copias de seguridad con tar}
+\subsection*{Realizando copias de seguridad con tar}
 
 Una copia completa puede realizarse fácilmente con \texttt{\textbf{tar}}:
 
 \fcolorbox{black}{grey}{
 \parbox[t]{1.0\linewidth}{ \vspace*{0.4cm}
 {\tt
-\# tar --create --file /dev/st0 /home 
+\# tar --create --file /dev/st0 /home \\
 }
 El dispositivo {\tt /dev/st0} representa a la primer cinta magnética del
 sistema. El comando anterior creará un backup del directorio /home en dicha
@@ -282,357 +342,227 @@ Después de realizar una copia, debe verificar si todo se encuentra en
 correctas condiciones utilizando la opción ``{\tt --compare}, ``{\tt -d} ó 
 ``{\tt --diff}. 
 
+\colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} { 
+{\bf Ejemplo:} en la siguiente secuencia se ve el uso de la opción ``-d'',
+y como el comando \texttt{tar} reporta una diferencia luego de eliminar 
+un archivo.\\ 
+{\tt
+\$ tar -cf tsl.tar TSL/\\
+\$ tar -df tsl.tar TSL/\\
+\$ cd TSL/\\
+\$ ls\\
+AdminSis2013  gasl-ac  Primer\_Parcial\_Admin\_2013.ods\\
+\$ cd AdminSis2013/\\
+\$ ls\\
+BD\_alumnos\_2013\_Admin\_-22\_records-20130824\_2341-comma\_separated.csv\\
+BD\_alumnos\_2013\_Admin\_-27\_records-20130910\_1426-comma\_separated.csv\\
+BD\_alumnos\_2013\_Admin\_-29\_records-20130914\_2109-comma\_separated.csv\\
+examen1\\
+ProgramaAdministraciónSistemas.odt\\
+ProgramaAdministraciónSistemas.pdf\\
+Turnos\_1er\_parcial.pdf\\
+\$ rm Turnos\_1er\_parcial.pdf \\
+\$ cd \\
+\$ tar -df tsl.tar TSL/\\
+tar: TSL/AdminSis2013/Turnos\_1er\_parcial.pdf: Atención: No se puede stat:
+No existe el fichero o el direcotrio\\
+}
+Nótese que en este ejemplo sólo se está creando un  archivo {\tt tsl.tar} 
+en el mismo sistema de archivos que el original. Para que efectivamente 
+este archivo constituya una copia de seguridad sería prudente guardarlo 
+en otro medio de almacenamiento. 
+} \vspace*{0.5cm} } } 
 
-<prompt>#</prompt> <userinput>tar --compare --verbose -f 
-/dev/ftape</userinput>
-\colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} {\tt usr/src/
-usr/src/linux
-usr/src/linux-1.2.10-includes/
-.... } \vspace*{0.5cm} } } 
-<prompt>#</prompt>
+El comando {\tt tar} posee muchas opciones para seleccionar un subconjunto
+de archivos, por ejemplo la opción ``{\tt --newer}'' o ``{\tt -N} nos 
+permite archivar sólo archivos creados luego de una cierta fecha.  
 
+El comportamiento predeterminado de \texttt{tar} es sólo de archivar, esto
+es crear un sólo archivo o salida que contenga todos los archivos a
+respaldar, no aplica ningún tipo de compresión en el proceso. Por tal motivo
+el tamaño resultante de la copia de seguridad será igual a la suma de los 
+tamaños de los archivos respaldados. El proceso de compresión lentifica el 
+proceso de copia de seguridad, pero en muchos casos se paga este precio en 
+pos de reducir el tamaño de las copias de seguridad. El comando {\tt tar} provee
+opciones de compresión, como ``{\tt -z}'' que permiten reducir el tamaño 
+resultante de la copia de seguridad (clásica extensión ``tar.gz'' utilizada
+para referenciar archivos producidos por tar y que además están comprimidos.
+Recuerde que las extensiones en UNIX son meramente informativas). 
 
+\subsection*{ Recuperando archivos con \texttt{\textbf{tar}}}
 
-Si no verifica las copias, entonces no percibirá que las copias de respaldo no 
-son útiles hasta que estas sean necesarias.
+Para recuperar archivos desde una copia de seguridad creada con {\tt tar} se
+debe utilizar la opción ``{\tt --extract}'' o, su forma corta ``{\tt -x}''. 
+
+\colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} { 
+{\bf Ejemplo:} restaurando archivos desde una cinta magnética. \\
+{\tt
+\#tar --extract --same-permissions --verbose --file /dev/st0\\
+usr/src/\\
+usr/src/linux\\
+usr/src/linux-1.2.10-includes/\\
+usr/src/linux-1.2.10-includes/include/\\
+usr/src/linux-1.2.10-includes/include/linux/\\
+usr/src/linux-1.2.10-includes/include/linux/hdreg.h\\
+usr/src/linux-1.2.10-includes/include/linux/kernel.h\\
+\#\\
+}
+} \vspace*{0.5cm} } } 
+
+También puede extraer archivos y directorios específicos (los cuales 
+incluyen todos sus archivos y subdirectorios). Basta con mencionarlos en 
+la línea de comandos:
+
+\colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} { 
+{\bf Ejemplo:} continuando con el ejemplo del archivado en el archivo 
+{\tt tsl.tar}, vemos como recuperar desde la copia de seguridad un archivo
+que fue eliminado por error: \\
+{\tt
+\$ rm TSL/Primer\_Parcial\_Admin\_2013.ods \\
+\$ tar xvf tsl.tar TSL/Primer\_Parcial\_Admin\_2013.ods \\
+\\TSL/Primer\_Parcial\_Admin\_2013.ods\\
+\$ ls -l TSL/Primer\_Parcial\_Admin\_2013.ods\\
+\-rw-r--r-- 1 lechnerm lechnerm 21804 sep 16 08:04 TSL/Primer\_Parcial\_Admin\_2013.ods\\
+\$ \\
+}
+} \vspace*{0.5cm} } } 
+
+Utilice la opción ``{\tt --list}'' (o su forma corta ``{\tt -t}'') para 
+es son los archivos presentes en un volumen de backup, sin efectivamente 
+extraerlos del mismo:
+
+\colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} { 
+{\bf Ejemplo:} continuando con el contenido de la cinta magnética, el 
+siguiente comando listará pero no extraerá los datos de la cinta.\\  
+{\tt
+\#tar --list --file /dev/st0\\
+usr/src/\\
+usr/src/linux\\
+usr/src/linux-1.2.10-includes/\\
+usr/src/linux-1.2.10-includes/include/\\
+usr/src/linux-1.2.10-includes/include/linux/\\
+usr/src/linux-1.2.10-includes/include/linux/hdreg.h\\
+usr/src/linux-1.2.10-includes/include/linux/kernel.h\\
+\#\\
+}
+} \vspace*{0.5cm} } } 
+
+Note que \texttt{\textbf{tar}} siempre lee el volumen de la copia de 
+seguridad secuencialmente, lo que puede llegar a ser lento para grandes 
+volúmenes.  De cualquier manera, si utiliza medios secuenciales como 
+cintas, no es posible el acceso aleatorio.
 	
+\section*{Qué copiar}
+
+Establecer con claridad cuál es la información a respaldar es una tarea 
+compleja que requiere un profundo conocimiento del entorno de trabajo. 
+Usualmente requerirá de un análisis de las políticas de almacenamiento 
+de datos de la empresa y de las conductas propias de los usuarios, acotado
+por los medios y sistemas de copia de seguridad disponibles.  
+
+Es necesario crear un inventario (existe software dedicado a este fin), que
+permita listar todos los equipos de la empresa y sus características de 
+configuración mínimas, como ser: cantidad de discos conectados, tabla de
+particiones de cada disco e información de manejador de volúmenes si los 
+hubiera, función del equipo, tipo de hardware, listado de sistema de 
+archivos, etc. El inventario nos permite tener una visión de la magnitud
+del esfuerzo necesario para establecer copias de seguridad, así como 
+también determinar y priorizar las tareas de recuperación ante un eventual
+desastre. 
+
+En principio uno debe respaldar la mayor cantidad de información posible, 
+tal que ante una eventual pérdida de datos, permita restituir los mismos 
+con la celeridad necesaria para minimizar las pérdidas económicas y 
+continuar con la operación del negocio. 
+
+La mayor excepción en general es el software (aunque pueden existir 
+excepciones), ya que puede ser fácilmente reinstalado. Aunque la 
+re-instalación puede tomar tiempo, por lo que la velocidad de recuperación
+es un factor a considerar. 
+Tenga en cuenta que los programas muchas veces están configurados 
+manualmente para sus sistemas, por lo que es importante respaldar a los 
+archivos de configuración, y evitar así la tarea de reconfigurarlos 
+nuevamente. En el caso particular de GNU/Linux, hacer una copia de
+seguridad del directorio {\tt /etc/} es imperioso en este sentido.
+
+Otra gran excepción son los sistemas de archivos temporales, creados por 
+el sistema operativo durante su ejecución, como ser el montado en 
+\texttt{/proc}, debido a que solamente contiene información que el kernel
+genera automáticamente. Por lo que nunca es buena idea copiarlo, 
+especialmente el archivo \texttt{/proc/kcore} es innecesario, ya que 
+solamente es una imagen de la memoria física, y nunca suele ser muy útil 
+dentro de un backup (solo ocupa bastante espacio).
 	
-
-Una copia de respaldo incremental puede ser realizada utilizando la opción 
-<option>--newer</option>
-	(<option>-N</option>) de \texttt{\textbf{tar}}:
-
-
-<prompt>#</prompt> <userinput>tar --create --newer '8 Sep 1995' 
---file /dev/ftape /usr/src 
---verbose</userinput>
-\colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} {\tt tar: Removing leading / from absolute path names in 
-the archive
-usr/src/
-usr/src/linux-1.2.10-includes/
-usr/src/linux-1.2.10-includes/include/
-usr/src/linux-1.2.10-includes/include/linux/
-usr/src/linux-1.2.10-includes/include/linux/modules/
-usr/src/linux-1.2.10-includes/include/asm-generic/
-usr/src/linux-1.2.10-includes/include/asm-i386/
-usr/src/linux-1.2.10-includes/include/asm-mips/
-usr/src/linux-1.2.10-includes/include/asm-alpha/
-usr/src/linux-1.2.10-includes/include/asm-m68k/
-usr/src/linux-1.2.10-includes/include/asm-sparc/
-usr/src/patch-1.2.11.gz } \vspace*{0.5cm} } } 
-<prompt>#</prompt>
-
-
-
-Desafortunadamente, \texttt{\textbf{tar}} no puede conocer cuando la información en los inodos
-de los archivos
-ha cambiado, como por ejemplo, si sus permisos o nombre ha sido modificado. 
-Puede solucionar este inconveniente utilizando \texttt{\textbf{find}}, y comparar el estado del sistema de 
-archivos actual con una lista de archivos que fueron respaldados previamente. Los 
-scripts y programas que realizan esta tarea pueden ser encontrados en los sitios ftp de 
-GNU/Linux.
-	
-
-
-\subsection{
-
-Recuperando archivos con \texttt{\textbf{tar}}}
-
-	
-
-Debe utilizar la opción  <option>--extract</option> (<option>-x</option>) para recuperar archivos que fueron 
-previamente respaldados con \texttt{\textbf{tar}}:
-
-
-<prompt>#</prompt> <userinput>tar --extract --same-permissions 
---verbose --file 
-/dev/fd0H1440</userinput>
-\colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} {\tt usr/src/
-usr/src/linux
-usr/src/linux-1.2.10-includes/
-usr/src/linux-1.2.10-includes/include/
-usr/src/linux-1.2.10-includes/include/linux/
-usr/src/linux-1.2.10-includes/include/linux/hdreg.h
-usr/src/linux-1.2.10-includes/include/linux/kernel.h
-... } \vspace*{0.5cm} } } 
-<prompt>#</prompt>
-
-
-
-También puede extraer archivos y directorios específicos (los cuales incluyen 
-todos sus archivos y subdirectorios). Basta con mencionarlos en la línea de comandos:
-
-
-<prompt>#</prompt> <userinput>tar xpvf /dev/fd0H1440 
-usr/src/linux-1.2.10-includes/include/linux/hdreg.h</userinput>
-\colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} {\tt usr/src/linux-1.2.10-includes/include/linux/hdreg.h } \vspace*{0.5cm} } } 
-<prompt>#</prompt>
-
-
-
-Utilice la opción <option>--list</option> (<option>-t</option>) para conocer cuales son los archivos presentes en un 
-volumen de backup:
-
-
-<prompt>#</prompt> <userinput>tar --list --file 
-/dev/fd0H1440</userinput>
-\colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} {\tt usr/src/
-usr/src/linux
-usr/src/linux-1.2.10-includes/
-usr/src/linux-1.2.10-includes/include/
-usr/src/linux-1.2.10-includes/include/linux/
-usr/src/linux-1.2.10-includes/include/linux/hdreg.h
-usr/src/linux-1.2.10-includes/include/linux/kernel.h
-... } \vspace*{0.5cm} } } 
-<prompt>#</prompt>
-
-
-
-Note que \texttt{\textbf{tar}} siempre lee el volumen de la copia de respaldo secuencialmente, 
-lo que puede llegar a ser lento para grandes volúmenes. 
-De cualquier manera, si utiliza medios secuenciales como cintas, no 
-es posible el acceso aleatorio.
-	
-	 \texttt{\textbf{tar}}
-no maneja correctamente archivos eliminados. En caso de que se necesite recuperar un 
-sistema de archivos desde una copia completa y otra incremental, y se han 
-eliminado archivos entre las dos copias, estos archivos existirán luego de
-la recuperación. Este tipo de casos puede llegar a ser un gran problema si los archivos 
-tienen datos sensibles que no deberían existir más.
-
-
-
-
-
-\section{
-
-Copias de seguridad de múltiples niveles}
-
-	
-
-Las copias de respaldo simples que están explicadas en las secciones previas son 
-frecuentemente adecuadas para uso personal o de pequeñas corporaciones. Para
-tareas mas complejas puede ser apropiado el uso de copias de seguridad
-de múltiples niveles.
-
-	
-
-El método simple tiene dos niveles de copias: total e incremental. Es
-posible generalizar este método para cualquier número de niveles. Una copia completa
-sería el nivel 0, y los niveles diferentes de copias incrementales 1, 2, 
-3, etc. Por cada nivel de copia incremental se copia todo lo que haya sido 
-modificado desde la copia previa del mismo nivel o de uno menor.
-
-	
-
-El propósito de este procedimiento es mantener un \textit{histórico de copias (backup history)}
-amplio de manera económica.
-En el ejemplo de la sección previa, el histórico del backup
-se remonta a la copia de respaldo completa previa (una semana).
-Si agrega mas cintas este tiempo puede ser extendido, aunque 
-el costo (monetario) es bastante alto, y solo puede ampliar 
-el histórico en una semana por cada cinta nueva.
-Aún así, un histórico mas amplio es
-muy útil, ya que los archivos que se dañan o son borrados pueden pasar desapercibidos
-por un largo período de tiempo.
-Por lo que recuperar al menos una versión no muy 
-actual de un archivo es mejor que nada.
-
-	
-
-
-El histórico de copias de seguridad multiniveles puede ser extendido de una 
-forma más económica.
-Por ejemplo, en caso de que contemos con 10 cintas disponibles, podemos 
-utilizar las cintas 1 y 2 para las copias mensuales (primer Viernes de cada mes), 
-las cintas 3 a 6 para las copias semanales (otros Viernes del mes; note que 
-utilizamos 4 cintas debido a que pueden existir cinco Viernes en un mes),
-y las cintas 7 a 10 para las copias diarias (Lunes a Jueves). Con solo 
-cuatro cintas más que el caso anterior, estamos en condiciones de extender 
-de dos semanas a dos meses el histórico de los backups.
-Es cierto que no podemos recuperar todas las 
-versiones de cada archivo durante esos dos meses, pero 
-que sea posible recuperarlo es normalmente suficiente.
-
-	La <xref linkend="backup-history-timeline"/>
-
-muestra el nivel de backup que es utilizado cada día, 
-y desde cuales copias se pueden recuperar archivos.
-
-		<figure id="backup-history-timeline" float="1">
-		A sample multilevel backup schedule.}
-		<graphic fileref="backup-timeline.png"/>
-		</figure>
-
-	
-
-Los niveles de backups pueden también ser utilizados para minimizar el tiempo de
-restauración de los sistemas de archivos.
-En caso de que existan muchas copias incrementales con números de niveles
-de crecimiento muy grande, es muy probable que necesite recuperar de todas 
-ellas para reconstruir el sistema de archivos entero.
-Sin embargo, puede utilizar números de niveles que no sean monótonos, y mantener
-bajo el número de copias que debe utilizar en cada restauración.
-
-	
-
-Para minimizar el número de cintas necesarias en cada recuperación, puede utilizar un 
-un número de nivel mas chico por cada cinta incremental.
-Sin embargo, el tiempo necesario para realizar las copias crece (en cada backup se debe
-copiar todo lo que ha sido modificado desde la última copia total).
-Existe un mejor esquema sugerido por
-la página de manual de \texttt{\textbf{dump}}, el cual es presentado en la tabla
-(niveles-de-copias-de-respaldo-eficientes). Utilizar la siguiente sucesión de 
-niveles de copias de seguridad: 3, 2, 5, 4, 7, 6, 9, 8, 9, etc. Este esquema mantiene
-bajo los tiempos de copia y de recuperación, y note que lo máximo que se copia son 
-dos días.
-El número de cintas a ser restauradas depende del intervalo entre las copias completas,
-pero ciertamente será menor que el de los esquemas mas simples.
-
-<table id="efficient-backup-levels">
-Efficient backup scheme using many backup levels}
-<tgroup cols="4">
-<thead>
-<row><entry>Tape</entry> <entry>Level</entry> <entry>Backup 
-(days)</entry> <entry>Restore 
-tapes</entry></row>
-</thead>
-<tbody>
-<row><entry>1</entry> <entry>0</entry> <entry>n/a</entry> 
-<entry>1</entry></row>
-<row><entry>2</entry> <entry>3</entry> <entry>1</entry> <entry>1, 
-2</entry></row>
-<row><entry>3</entry> <entry>2</entry> <entry>2</entry> <entry>1, 
-3</entry></row>
-<row><entry>4</entry> <entry>5</entry> <entry>1</entry> <entry>1, 2, 
-4</entry></row>
-<row><entry>5</entry> <entry>4</entry> <entry>2</entry> <entry>1, 2, 
-5</entry></row>
-<row><entry>6</entry> <entry>7</entry> <entry>1</entry> <entry>1, 2, 
-5, 6</entry></row>
-<row><entry>7</entry> <entry>6</entry> <entry>2</entry> <entry>1, 2, 
-5, 7</entry></row>
-<row><entry>8</entry> <entry>9</entry> <entry>1</entry> <entry>1, 2, 
-5, 7, 8</entry></row>
-<row><entry>9</entry> <entry>8</entry> <entry>2</entry> <entry>1, 2, 
-5, 7, 9</entry></row>
-<row><entry>10</entry> <entry>9</entry> <entry>1</entry> <entry>1, 2, 
-5, 7, 9, 10</entry></row>
-<row><entry>11</entry> <entry>9</entry> <entry>1</entry> <entry>1, 2, 
-5, 7, 9, 10, 
-11</entry></row>
-<row><entry>...</entry> <entry>9</entry> <entry>1</entry> <entry>1, 
-2, 5, 7, 9, 10, 11, 
-...</entry></row>
-</tbody>
-</tgroup>
-</table>
-			
-	
-
-Un esquema elegante puede reducir la cantidad de trabajo necesaria, pero esto 
-no significa que existan menos cosas a seguir. Usted decide si vale o no la pena.
-
-	 \texttt{\textbf{dump}}
-tiene soporte para copias multiniveles, pero para \texttt{\textbf{tar}} y \texttt{\textbf{cpio}}
-debe ser implementado con scripts del shell.
-
-
-
-\section{
-
-Que copiar}
-
-	
-
-Debe respaldar la mayor cantidad de información posible. La mayor excepción es el
-software, ya que puede ser fácilmente reinstalado.
-\footnote{You get to decide what's easy.
-		Some people consider installing from dozens of floppies
-		easy.}
-Tenga en cuenta que los programas muchas veces están configurados manualmente
-para sus sistemas,
-por lo que es importante respaldar a los archivos de configuración, y evitar así
-la tarea de reconfigurarlos nuevamente.
-Otra gran excepción es el sistemas de archivos \texttt{/proc}, debido a 
-que solamente contiene información que el kernel genera automáticamente. Por lo
-que nunca es buena idea copiarlo, especialmente
-el archivo \texttt{/proc/kcore} es innecesario, ya que solamente es una imagen 
-de la memoria física, y nunca suele ser muy útil dentro de un backup (solo ocupa 
-bastante espacio).
-
-	
-
-Hay algunas otras partes de un sistema Linux que deben ser analizadas antes de 
-ser incluidas en sus copias de respaldo. Por ej., los archivos de log, las colas de los
-archivos de impresión, las news y muchas otras cosas que se encuentran bajo \texttt{/var}. 
-Debe decidir que considera importante y que no.
-
-	
-
-Lo obvio al momento de respaldar son los archivos de los usuarios (\texttt{/home}) y 
-los archivos de configuración del sistema (\texttt{/etc}, y posiblemente otros archivos
-y directorios que se encuentren dispersos en el sistema de archivos).
-
-
-
-\section{
-
-Copias de seguridad comprimidas}
-
-	
-
-Las copias de seguridad ocupan una gran cantidad de espacio, por lo que
-puede ser costoso al momento de invertir en el medio a utilizar.
-Para reducir el espacio necesario la copias de seguridad pueden ser comprimidas. Existen varias 
-formas de hacerlo, pero una de la mas práctica es utilizar directamente programas con soporte para compresión.
-Por ejemplo GNU \texttt{\textbf{tar}}, cuya opción <option>--gzip</option> (<option>-z</option>) 
-hace que la información resguardada sea procesada por el programa de compresión 
-\texttt{\textbf{gzip}} antes de ser copiada al medio para backups.
-	
-	
-
-Desafortunadamente las copias de respaldo comprimidas pueden causar 
-problemas. Debido a la naturaleza de como la compresión funciona, si un simple 
-bit es incorrecto, todo el resto de los datos comprimidos son 
-inutilizables. Algunos programas para backups pueden corregir algunos de 
-estos errores, pero ningún método de los implementados 
-pueden manejar un gran número de errores. Esto significa que si la copia de 
-seguridad es comprimida en la manera en que GNU \texttt{\textbf{tar}} lo hace (la salida
-de la copia comprimida es una única unidad), el backup completo puede 
-ser inútil si tan solo existe un simple error.
-Las copias deben ser 
-confiables, y este método de compresión no es una buena idea.
-	
-	
-
-Una manera alternativa es comprimir cada uno de los archivos separadamente. 
-El problema mencionado anteriormente aún persiste, pero si un archivo en el backup se 
-encuentra dañado, al menos los demás no sufren los efectos colaterales.
-El archivo perdido podría de cualquier forma tener algún otro tipo de error (en su versión original), por 
-lo que esta situación no parece ser menos favorable para decidir no utilizar ningún tipo de compresión.
-El programa \texttt{\textbf{afio}} (una variante del programa \texttt{\textbf{cpio}}) es capaz de trabajar de esta manera.
-	
-	
-
-La compresión lleva tiempo, por lo que el programa para backups puede 
-no ser capaz de escribir lo suficientemente rápido a una unidad de cinta..
-	
-		\footnote{If a tape drive doesn't data fast enough,
-		it has to stop; this makes backups even slower, and can
-		be bad for the tape and the drive.}
-		
-
-Puede evitar este problema si la
-salida es mantenida en un buffer (implementado internamente si el programa es 
-un poco inteligente, o utilizando algún otro programa), pero aún puede no llegar a 
-trabajar lo suficientemente bien. Bajo este panorama es importante que controle
-el estado de la finalización de las tareas de respaldo, y note que este último problema
-solo puede suceder en computadoras lentas (o en computadoras muy fuertemente utilizadas,
-en donde el programa de compresión no tenga muchas chances de utilizar la CPU a tiempo).
-
-
-
-
-
-
+Hay algunas otras partes de un sistema GNU/Linux que deben ser analizadas
+ antes de ser incluidas en sus copias de seguridad. Por ej., los archivos 
+de log, las colas de los archivos de impresión, las news y muchas otras 
+cosas que se encuentran bajo \texttt{/var}. 
+
+Debe decidir que considera importante y que no.  Lo obvio al momento de 
+respaldar son los archivos de los usuarios (\texttt{/home}) y los archivos
+de configuración del sistema (\texttt{/etc}, y posiblemente otros archivos
+y directorios que se encuentren dispersos en el sistema de archivos que, 
+por ejemplo contengan información producida por el uso de las aplicaciones
+del sistema.
+
+\section{Copias de seguridad comprimidas}
+
+%Las copias de seguridad ocupan una gran cantidad de espacio, por lo que
+%puede ser costoso al momento de invertir en el medio a utilizar.
+%Para reducir el espacio necesario la copias de seguridad pueden ser comprimidas. Existen varias 
+%formas de hacerlo, pero una de la mas práctica es utilizar directamente programas con soporte para compresión.
+%Por ejemplo GNU \texttt{\textbf{tar}}, cuya opción <>--gzip</> (<>-z</>) 
+%hace que la información resguardada sea procesada por el programa de compresión 
+%\texttt{\textbf{gzip}} antes de ser copiada al medio para backups.
+%	
+%	
+%
+%Desafortunadamente las copias de seguridad comprimidas pueden causar 
+%problemas. Debido a la naturaleza de como la compresión funciona, si un simple 
+%bit es incorrecto, todo el resto de los datos comprimidos son 
+%inutilizables. Algunos programas para backups pueden corregir algunos de 
+%estos errores, pero ningún método de los implementados 
+%pueden manejar un gran número de errores. Esto significa que si la copia de 
+%seguridad es comprimida en la manera en que GNU \texttt{\textbf{tar}} lo hace (la salida
+%de la copia comprimida es una única unidad), el backup completo puede 
+%ser inútil si tan solo existe un simple error.
+%Las copias deben ser 
+%confiables, y este método de compresión no es una buena idea.
+%	
+%	
+%
+%Una manera alternativa es comprimir cada uno de los archivos separadamente. 
+%El problema mencionado anteriormente aún persiste, pero si un archivo en el backup se 
+%encuentra dañado, al menos los demás no sufren los efectos colaterales.
+%El archivo perdido podría de cualquier forma tener algún otro tipo de error (en su versión original), por 
+%lo que esta situación no parece ser menos favorable para decidir no utilizar ningún tipo de compresión.
+%El programa \texttt{\textbf{afio}} (una variante del programa \texttt{\textbf{cpio}}) es capaz de trabajar de esta manera.
+%	
+%	
+%
+%La compresión lleva tiempo, por lo que el programa para backups puede 
+%no ser capaz de escribir lo suficientemente rápido a una unidad de cinta..
+%	
+%		\footnote{If a tape drive doesn't data fast enough,
+%		it has to stop; this makes backups even slower, and can
+%		be bad for the tape and the drive.}
+%		
+%
+%Puede evitar este problema si la
+%salida es mantenida en un buffer (implementado internamente si el programa es 
+%un poco inteligente, o utilizando algún otro programa), pero aún puede no llegar a 
+%trabajar lo suficientemente bien. Bajo este panorama es importante que controle
+%el estado de la finalización de las tareas de seguridad, y note que este último problema
+%solo puede suceder en computadoras lentas (o en computadoras muy fuertemente utilizadas,
+%en donde el programa de compresión no tenga muchas chances de utilizar la CPU a tiempo).
+
+
+\section*{Referencias}
+
+GNU/tar: http://www.gnu.org/software/tar/manual/
+``Trabajo final de carrera: Copias de seguridad - Estudio y metodología''.
+Rafael Santamaría Carmona. Universitat Oberta de Catalunya.
+
+\section*{Licencia}
+
+\end{document}
