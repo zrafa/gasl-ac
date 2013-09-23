@@ -110,7 +110,7 @@ irreparablemente.
 Cuando de copias de seguridad se trata, la paranoia está en la descripción 
 de la tarea.
 
-\section*{ Seleccionando el medio de backup}
+\section*{Seleccionando el medio de backup}
 
 La decisión mas importante al pensar en hacer copias de seguridad es la 
 selección del medio a utilizar. Necesita considerar el costo, 
@@ -272,7 +272,7 @@ modificados o creados desde la última copia total, o incremental. La
 diferencia fundamental respecto a las copias diferenciales, es que no son 
 redundantes (la información no se repite de una copia a la siguiente).
 
-\subsection{Un esquema sencillo}
+\subsection*{Un esquema sencillo}
 
 Un esquema simple de copias de seguridad es respaldar todo una única vez, 
 y luego, copiar solamente los archivos que fueron modificados después de 
@@ -312,8 +312,42 @@ completas de varias semanas previas, lo cual es útil en caso de que necesite
 encontrar un archivo que ha sido borrado, o desea recuperar una vieja 
 versión de algún otro.
 
-\subsection*{Realizando copias de seguridad con tar}
+\section*{Utilizando \texttt{tar}}
+GNU tar crea y manipula archivos que en realidad son colecciones de muchos 
+otros archivos, el programa proporciona a los usuarios un método organizado 
+y sistemático para controlar una gran cantidad de datos. El nombre de 
+``tar'' vino originalmente de la frase ``Tape ARchive'' (archivo en cinta),
+pero los archivos no necesitan (y en estos días, por lo general no lo hacen)residir en las cintas.
 
+
+Puede utilizar los archivos de tar de muchas maneras. Queremos destacar 
+algunos de ellos: el almacenamiento, copia de seguridad y transporte.
+
+{\bf Almacenamiento y transporte:}
+
+A menudo, los archivos tar se utilizan para almacenar los archivos 
+relacionados para una cómoda transferencia de archivos a través de una red.
+Por ejemplo, el proyecto GNU distribuye su software incluido con los 
+archivos tar, por lo que todos los archivos relacionados con un determinado 
+programa (o conjunto de programas relacionados) se pueden transferir como 
+una sola unidad.
+
+Una cinta magnética puede almacenar varios archivos en secuencia. Sin
+ embargo, la cinta no tiene nombres para estos archivos, sino que sólo 
+conoce su posición relativa en la cinta. Una forma de almacenar varios 
+archivos en una cinta y retener sus nombres es mediante la creación de un 
+archivo tar. 
+
+{\bf Copia de seguridad}
+
+Debido a que el archivo creado por el tar es capaz de conservar la 
+información del archivo y la estructura de directorios, tar se utiliza 
+habitualmente para realizar copias de seguridad completas e incrementales 
+de discos. GNU tar tiene características especiales que le permiten ser
+utilizado para hacer volcados incrementales y completos de todos los 
+archivos en un sistema de archivos.
+
+\subsection*{Realizando copias de seguridad}
 Una copia completa puede realizarse fácilmente con \texttt{\textbf{tar}}:
 
 \fcolorbox{black}{grey}{
@@ -377,19 +411,7 @@ El comando {\tt tar} posee muchas opciones para seleccionar un subconjunto
 de archivos, por ejemplo la opción ``{\tt --newer}'' o ``{\tt -N} nos 
 permite archivar sólo archivos creados luego de una cierta fecha.  
 
-El comportamiento predeterminado de \texttt{tar} es sólo de archivar, esto
-es crear un sólo archivo o salida que contenga todos los archivos a
-respaldar, no aplica ningún tipo de compresión en el proceso. Por tal motivo
-el tamaño resultante de la copia de seguridad será igual a la suma de los 
-tamaños de los archivos respaldados. El proceso de compresión lentifica el 
-proceso de copia de seguridad, pero en muchos casos se paga este precio en 
-pos de reducir el tamaño de las copias de seguridad. El comando {\tt tar} provee
-opciones de compresión, como ``{\tt -z}'' que permiten reducir el tamaño 
-resultante de la copia de seguridad (clásica extensión ``tar.gz'' utilizada
-para referenciar archivos producidos por tar y que además están comprimidos.
-Recuerde que las extensiones en UNIX son meramente informativas). 
-
-\subsection*{ Recuperando archivos con \texttt{\textbf{tar}}}
+\subsection*{Recuperando archivos }
 
 Para recuperar archivos desde una copia de seguridad creada con {\tt tar} se
 debe utilizar la opción ``{\tt --extract}'' o, su forma corta ``{\tt -x}''. 
@@ -451,6 +473,75 @@ Note que \texttt{\textbf{tar}} siempre lee el volumen de la copia de
 seguridad secuencialmente, lo que puede llegar a ser lento para grandes 
 volúmenes.  De cualquier manera, si utiliza medios secuenciales como 
 cintas, no es posible el acceso aleatorio.
+
+\subsection*{Copia completa}
+{\bf Las copias completas sólo deben realizarse cuando no hay personas o 
+programas que están modificando los archivos del sistema de archivos}. Si 
+los archivos se modifican mientras tar está haciendo la copia de seguridad,
+no pueden ser almacenados adecuadamente en el archivo tar de salida, en 
+cuyo caso no podrá restaurarlos si es necesario. (Los archivos que  no 
+están siendo modificados se escriben sin ningún problema, y no corrompen 
+todo el archivo.)
+
+A menos que el sistema de archivos que se está volcando quepa en un solo 
+volúmen, tendrá que utilizar la opción ``{\tt --multi-volume}'' 
+(``{\tt -D}'') para varios volúmenes.  Asegúrese de tener suficientes 
+cintas (u otro medio) a mano para completar la copia de seguridad.
+
+Considerando que pueden exisitr múltiples sistemas de archivos montado a lo
+largo de la jerarquía de directorios, si se desea crear copias de seguridad,
+de cada sistema de archivos por separado, se deberá utilizar la opción 
+``{\tt --one-file-system}'' para evitar que tar cruce los límites
+del sistema de archivos al guardar (sub) directorios.
+
+A menos que se esté apurado, y confíe en el programa tar (y sus cintas),
+es una buena idea utilizar la opción ``{\tt --verify}'' (``{\tt -W}''),
+para asegurarse de que sus archivos se encuentran efectivamente en la 
+copia de respaldo. Esto también ayuda a detectar los casos en que se 
+modificó el archivo mientras (o inmediatamente después) que estaba siendo
+archivado. No todos los medios de comunicación (en particular, las cintas 
+de cartucho) son capaces de ser verificado, por desgracia.
+
+\subsection*{Copia incremental}
+
+
+
+\section*{Copias de seguridad comprimidas}
+
+Las copias de seguridad ocupan una gran cantidad de espacio, por lo que
+puede ser costoso al momento de invertir en el medio a utilizar.
+Para reducir el espacio necesario la copias de seguridad pueden ser 
+comprimidas.  Existen varias formas de hacerlo, pero una de la mas práctica 
+es utilizar directamente programas con soporte para compresión.
+
+Por ejemplo GNU \texttt{\textbf{tar}}, cuya opción ``{\tt --gzip}'' o 
+``{-z}'' hace que la información resguardada sea procesada por el programa 
+de compresión \texttt{\textbf{gzip}} antes de ser copiada al medio para 
+backups.
+	
+Desafortunadamente las copias de seguridad comprimidas pueden causar 
+problemas. Debido a la naturaleza de como la compresión funciona, si un 
+simple bit es incorrecto, todo el resto de los datos comprimidos son 
+inutilizables. Algunos programas para backups pueden corregir algunos de 
+estos errores, pero ningún método de los implementados 
+pueden manejar un gran número de errores. Esto significa que si la copia de 
+seguridad es comprimida en la manera en que GNU \texttt{\textbf{tar}} lo 
+hace (la salida de la copia comprimida es una única unidad), el backup 
+completo puede ser inútil si tan solo existe un simple error.
+
+Las copias deben ser confiables, y este método de compresión no es una 
+buena idea. Una manera alternativa es comprimir cada uno de los archivos 
+separadamente. El problema mencionado anteriormente aún persiste, pero si 
+un archivo en el backup se encuentra dañado, al menos los demás no sufren 
+los efectos colaterales. También se debe tener en cuenta que no todos los 
+datos son suceptibles de ser comprimidos; mientras que un archivo de 
+texto reduce considerablemente su tamaño al ser comprimido por gzip, un
+archivo de imágen puede diferir en muy poco de su versión original a menos
+que se utilice software de compresión de imágenes especifico. 
+
+Por otro lado, la compresión lleva también lleva tiempo y alto consumo 
+de CPU, por ello y por lo expuesto en los párrafos anteriores, es importante
+hacer un análisis profundo de la necesidad o no de aplicar compresión.
 	
 \section*{Qué copiar}
 
@@ -505,64 +596,15 @@ y directorios que se encuentren dispersos en el sistema de archivos que,
 por ejemplo contengan información producida por el uso de las aplicaciones
 del sistema.
 
-\section{Copias de seguridad comprimidas}
-
-%Las copias de seguridad ocupan una gran cantidad de espacio, por lo que
-%puede ser costoso al momento de invertir en el medio a utilizar.
-%Para reducir el espacio necesario la copias de seguridad pueden ser comprimidas. Existen varias 
-%formas de hacerlo, pero una de la mas práctica es utilizar directamente programas con soporte para compresión.
-%Por ejemplo GNU \texttt{\textbf{tar}}, cuya opción <>--gzip</> (<>-z</>) 
-%hace que la información resguardada sea procesada por el programa de compresión 
-%\texttt{\textbf{gzip}} antes de ser copiada al medio para backups.
-%	
-%	
-%
-%Desafortunadamente las copias de seguridad comprimidas pueden causar 
-%problemas. Debido a la naturaleza de como la compresión funciona, si un simple 
-%bit es incorrecto, todo el resto de los datos comprimidos son 
-%inutilizables. Algunos programas para backups pueden corregir algunos de 
-%estos errores, pero ningún método de los implementados 
-%pueden manejar un gran número de errores. Esto significa que si la copia de 
-%seguridad es comprimida en la manera en que GNU \texttt{\textbf{tar}} lo hace (la salida
-%de la copia comprimida es una única unidad), el backup completo puede 
-%ser inútil si tan solo existe un simple error.
-%Las copias deben ser 
-%confiables, y este método de compresión no es una buena idea.
-%	
-%	
-%
-%Una manera alternativa es comprimir cada uno de los archivos separadamente. 
-%El problema mencionado anteriormente aún persiste, pero si un archivo en el backup se 
-%encuentra dañado, al menos los demás no sufren los efectos colaterales.
-%El archivo perdido podría de cualquier forma tener algún otro tipo de error (en su versión original), por 
-%lo que esta situación no parece ser menos favorable para decidir no utilizar ningún tipo de compresión.
-%El programa \texttt{\textbf{afio}} (una variante del programa \texttt{\textbf{cpio}}) es capaz de trabajar de esta manera.
-%	
-%	
-%
-%La compresión lleva tiempo, por lo que el programa para backups puede 
-%no ser capaz de escribir lo suficientemente rápido a una unidad de cinta..
-%	
-%		\footnote{If a tape drive doesn't data fast enough,
-%		it has to stop; this makes backups even slower, and can
-%		be bad for the tape and the drive.}
-%		
-%
-%Puede evitar este problema si la
-%salida es mantenida en un buffer (implementado internamente si el programa es 
-%un poco inteligente, o utilizando algún otro programa), pero aún puede no llegar a 
-%trabajar lo suficientemente bien. Bajo este panorama es importante que controle
-%el estado de la finalización de las tareas de seguridad, y note que este último problema
-%solo puede suceder en computadoras lentas (o en computadoras muy fuertemente utilizadas,
-%en donde el programa de compresión no tenga muchas chances de utilizar la CPU a tiempo).
 
 
 \section*{Referencias}
 
 GNU/tar: http://www.gnu.org/software/tar/manual/
+
 ``Trabajo final de carrera: Copias de seguridad - Estudio y metodología''.
 Rafael Santamaría Carmona. Universitat Oberta de Catalunya.
 
-\section*{Licencia}
+\include{licGASL}
 
 \end{document}
