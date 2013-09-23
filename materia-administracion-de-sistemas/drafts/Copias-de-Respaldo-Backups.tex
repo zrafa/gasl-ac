@@ -503,6 +503,68 @@ archivado. No todos los medios de comunicación (en particular, las cintas
 de cartucho) son capaces de ser verificado, por desgracia.
 
 \subsection*{Copia incremental}
+Una copia de seguridad incremental es una forma especial de archivo tar que 
+almacena metadatos adicionales para que el estado exacto del sistema de 
+archivos se pueden restaurar cuando se extrae el archivo.
+
+GNU tar actualmente ofrece dos opciones para el manejo de copias de 
+seguridad incrementales: ``{\tt --listed-incremental=snapshot-file}'' 
+(``{\tt -g snapshot-g-file}'') e ``{\tt --incremental (-G )}''.
+
+La opción ``{\tt --listed-incremental }'' indica a tar operar en un archivo 
+incremental con metadatos adicionales almacenados en un archivo 
+independiente, denominado \textit{archivo de instantánea} (en inglés, 
+snapshot file). La finalidad de este fichero es la de ayudar a determinar 
+qué archivos se han cambiado, añadido o eliminado desde la última copia 
+de seguridad, de modo que la siguiente copia de seguridad incremental 
+contendrá sólo los archivos modificados. El nombre del archivo de 
+instantánea se da como argumento para la opción:
+
+
+\colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} { 
+{\bf Ejemplo: usando --listed-incremental } \\
+{\tt
+\# tar --create \textbackslash \\
+           --file=archive.1.tar \textbackslash \\
+           --listed-incremental=/var/log/usr.snar \textbackslash \\
+           /usr \\
+}
+Esto creará en {\tt archive.1.tar} una copia de seguridad incremental del 
+sistema de archivos {\tt /usr}, y almacenará metadatos adicionales en el 
+archivo {\tt /var/log/usr.snar}. Si este archivo no existe, se creará.
+} \vspace*{0.5cm} } } 
+
+El archivo creado en el ejemplo será una copia de seguridad de nivel cero, 
+copia completa la primera vez que lo realizamos. Luego, si el archivo
+{\tt /var/log/usr.snar} existe, tar determinrá cuáles de los archivos 
+listados fueron modificados. En cuyo caso, sólo estos últimos serán 
+almacenados en el archivo. 
+
+Luego de creado esta primera copia, podemos hacer una copia de seguridad
+incremental de nivel uno utilizando el archivo instantánea: 
+
+
+\colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} { 
+{\bf Ejemplo: usando --listed-incremental para copia de nivel uno } \\
+Asumiendo que se han cambiado algunos archivos desde la copia de nivel 
+cero, creamos una copia de nivel uno incremental: \\
+{\tt
+\# cp /var/log/usr.snar /var/log/usr.snar-1 	\\
+\# tar --create \\\
+           --file=archive.2.tar \textbackslash \\
+           --listed-incremental=/var/log/usr.snar-1 \textbackslash \\
+           /usr\\
+tar: usr/local/db: Directory is new\\
+usr/local/db/\\
+usr/local/db/data\\
+usr/local/db/index\\
+}
+Notese que copiamos el archivo de instantanea antes de crear una nueva 
+copia de seguirdad, dado que podríamos querer crear más de una copia 
+de nivel uno a partir de la primera copia de nivel cero. Si utilizaramos 
+el mismo archivo, este se actualizaría a partir de la última copia 
+incremental. 
+} \vspace*{0.5cm} } } 
 
 
 
