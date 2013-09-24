@@ -223,8 +223,8 @@ de memoria pueden revelar un defecto de una aplicación.
 
 Por lo tanto, cuando esté supervisando el funcionamiento del sistema, no 
 es posible examinar una estadística de forma totalmente aislada; solamente
-mediante el exámen del cuadro completo es posible extraer información 
-significativa de cualquier estadística de rendimiento que reuna.
+mediante el examen del cuadro completo es posible extraer información 
+significativa de cualquier estadística de rendimiento que reúna.
 
 \subsection*{Ejemplo de monitoreo de la CPU}
 
@@ -241,8 +241,7 @@ tareas  por empleo  de CPU,  uso  de  memoria  y  tiempo  de  ejecución.
 \vspace*{0.4cm} } }
 
 \begin{center}
- \includegraphics{top1.png}
- % redireccionamiento.gif: 502x248 pixel, 72dpi, 17.71x8.75 cm, bb=0 0 502 248
+ \includegraphics{top.png}
 \end{center}
 
 \subsubsection*{Descripciones de algunos campos de top}
@@ -251,16 +250,16 @@ procesador. La pantalla se actualiza cada tres segundos de forma
 predeterminada, pero esto se puede cambiar con la opción en la línea de 
 comandos ``d'' o la orden interactiva ``d'' o ``s''.
 
-Top muestra una sección de resúmen, un encabezado con la enumeración de
+Top muestra una sección de resumen, un encabezado con la enumeración de
 campos por tarea y luego un listado de tareas. Dentro de la sección de
-resúmen encontramos la siguiente información:  
+resumen encontramos la siguiente información:  
 
 \begin{itemize}
 \item \texttt{uptime}: la primer línea muestra el tiempo
  que el sistema ha  estado  activo,  y  las  tres medias de carga para el 
 sistema. Las medias de carga son  el número medio de procesos listos  para
 ejecutarse  o en estado durmiendo ininterrumpible, durante  los  últimos
-1,  5  y  15  minutos.  La línea coinicide con la salida del comando 
+1,  5  y  15  minutos.  La línea coincide con la salida del comando 
 \texttt{uptime} y puede quitarse o agregarse con la orden interactiva 
 ``l'' (ele minúscula).
 \item  Tasks: el  número  total  de  procesos ejecutándose durante  la  
@@ -278,7 +277,7 @@ se contará en el tiempo de sistema y de usuario,  así que  el  total
 será  superior  al  100\%. Las líneas de procesos y estados y tiempos
  de CPU pueden quitarse o agregarse  con  la  orden interactiva ``t''.
 Si estamos en un sistema con más de una CPU, la orden interactiva ``1'' 
-uno, desgloza la misma información por cada una de las CPU del sistema.
+uno, desglosa la misma información por cada una de las CPU del sistema.
 \item Mem: datos sobre el empleo de memoria principal, incluyendo la 
 memoria disponible en total,  la  memoria  libre,  la  usada, y  la
 utilizada  para  búferes.  La  línea  de la información de memoria puede 
@@ -293,13 +292,13 @@ la siguiente información (puede ampliarse o modificarse a conveniencia del
 administrador, vea ``\texttt{man top}''):
 
 \begin{itemize}
-\item PID: autodescriptivo. 
+\item PID: auto-descriptivo. 
 \item USER: usuario dueño de la tarea.
 \item PR: indica la prioridad con la que se ejecuta el proceso. 
 \item NI: valor ``nice'', un valor negativo indica mayor prioridad mientras
 que un valor positivo indica menor prioridad. Un valor de cero significa
 que la prioridad no será ajustada basada en este campo. 
-\item VIRT: indica el monto total de memoria virtual (pricipal mas espacio
+\item VIRT: indica el monto total de memoria virtual (principal mas espacio
 de intercambio) utilizada por el proceso. Incluye su código, datos y 
 bibliotecas compartidas con otros procesos.  
 \item RES: Se muestra aquí la cantidad total de memoria principal (física)
@@ -313,10 +312,10 @@ o  T para detenidos o trazados (ver apunte anterior sobre Procesos).
 la última actualización de la pantalla, expresada como un  porcentaje del 
 tiempo de CPU total. De manera predeterminada el valor mostrado no esta
 normalizado por el número total de CPUs, esto es conocido como 
-``modo Irix''. Si necesitamos el valor normalizado por la canitdad de CPUs,
+``modo Irix''. Si necesitamos el valor normalizado por la cantidad de CPUs,
 es decir que se divida el porcentaje por el número de CPUs presentes, 
 entonces requerimos lo que se conoce como ``modo Solaris''. Puede alternarse
-entre modo Irix o Solaris mediante la órden interactiva ``I''. 
+entre modo Irix o Solaris mediante la orden interactiva ``I''. 
 \item TIME+: indica el tiempo total de CPU que la tarea ha usado desde que 
 empezó. Si el  modo  acumulativo está activado, también incluye el tiempo
 de  CPU empleado por los hijos del proceso que hayan muerto. Uno puede
@@ -324,28 +323,143 @@ establecer  el  modo  acumulativo  con la orden interactiva  S.
 \item \%MEM: indica el porcentaje de la memoria física ocupada por la tarea.
 \end{itemize}
 
+\fcolorbox{black}{grey}{
+\parbox[t]{1.0\linewidth}{ \vspace*{0.4cm}
+{\bf top} la orden interactiva ``h'' presenta ayuda básica acerca de cómo
+manipular la salida de top, campos mostrados, colores, etc. Recuerde mirar
+la página del manual de top para hacer una correcta interpretación de los 
+campos mostrados. 
+\vspace*{0.4cm} } }
 
-Los campos mas utilizados para analizar la CPU son los que indican los porcentajes de \textbf{utilizado},
-y el porcentaje de \textbf{ocioso}. Si los campos user+system están cercanos al 100\% puede indicar una falta de recurso de CPU.
+Los campos más utilizados para analizar la CPU son los que indican los 
+porcentajes de \textbf{utilizado}, y de \textbf{ocioso}. Si los campos 
+user+system están cercanos al 100\% puede indicar una falta de recurso de 
+CPU, o bien que hay un proceso descontrolado. Como se dijo anteriormente, 
+el análisis debe ser comprensivo, no aislado. 
 
-Para analizar qué procesos consumen mucha CPU puede leer 
-la sección de procesos, la cual está ordenada por \textbf{utilización de CPU}. De mayor a menor.
+La sección de procesos de top puede ser ordenada según diferentes campos, 
+de manera predeterminada se ordena por \%CPU, de mayor a menor. Este 
+ordenamiento nos permite observar los procesos que están consumiendo mayor
+cantidad de procesamiento en el último intervalo de tiempo (vea la página
+del manual de top para otros ordenamientos). 
+
+\section*{Monitorizar el almacenamiento}
+El monitoreo del almacenamiento normalmente tiene lugar en dos niveles 
+diferentes:
+
+\begin{itemize}
+\item Monitorizar insuficiente espacio en disco.
+\item Monitorizar problemas de rendimiento relacionados con el 
+almacenamiento.
+\end{itemize}
+
+La razón de esto es que es posible tener problemas calamitosos en un área 
+y ningún problema en otra. Por ejemplo, es posible causar que a la unidad 
+de disco se le acabe el espacio sin causar ningún tipo de problemas 
+relacionados al rendimiento. De la misma manera, es posible tener una 
+unidad de disco que tiene 99\% de espacio libre, pero que se ha puesto más 
+allá de sus límites en términos de rendimiento.
+
+Sin embargo, es más probable que el sistema promedio experimente diferentes
+ grados de escasez de recursos en ambas áreas. Debido a esto, es probable
+ que — hasta cierto punto — los problemas en un área impacten a la otra. 
+La mayoría de las veces este tipo de interacción toma la forma de 
+funcionamientos de E/S más y más pobres cuando el sistema se acerca al
+ 0\% de espacio libre, en casos de cargas de E/S extremas, es posible 
+reducir las salidas de E/S a tal nivel que las aplicaciones no se ejecutan 
+adecuadamente.
+
+En cualquier caso, las estadísticas siguientes son útiles para supervisar 
+el almacenamiento:
+
+\begin{itemize}
+\item Espacio libre: es probablemente el recurso que todos los 
+administradores de sistemas vigilan más de cerca; sería raro el 
+administrador que no verifica el espacio disponible (o que tiene una 
+forma de hacerlo automáticamente).
+
+\item Estadísticas relacionadas al sistema de archivos: estas estadísticas
+ (tales como el número de archivos/directorios, tamaño promedio de los 
+archivos, etc.) suministran detalles adicionales sobre un porcentaje de 
+espacio libre. Como tal, estas estadísticas hacen posible para los 
+administradores de sistemas configurar el sistema para que entregue el 
+mejor rendimiento, pues la carga de E/S impuesta por un sistema de 
+archivos lleno de muchos pequeños archivos no es la misma que la carga 
+impuesta por un sistema de archivos lleno con un único archivo enorme.
+
+\item Transferencias por segundo: esta estadística es una buena forma de 
+determinar si se están alcanzando las limitaciones de ancho de banda de 
+un dispositivo en particular.
+
+\item Lecturas/escrituras por segundo: con un desglose más detallado de 
+las transferencias por segundo, estas estadísticas permiten al 
+administrador de sistemas entender mejor la naturaleza de las cargas de 
+E/S que está experimentando un dispositivo de almacenamiento. Esto puede 
+ser crítico, ya que algunas tecnologías de almacenamiento tienen 
+características de funcionamiento muy diferentes para operaciones de 
+lecturas contra escrituras.
+\end{itemize}
+
+Los comandos \texttt{df} y \texttt{du} son útiles a la hora de encontrar 
+estadísticas y mediciones sobre la utilización de sistemas de archivos 
+montados. El primero obtiene porcentajes de utilización de los sistemas 
+de archivos montados mientras que el segundo du  informa  de  la cantidad 
+de espacio de disco usada por los archivos especificados, y por cada 
+directorio en  las  jerarquías  cuyas  raíces estén  en  los  archivos 
+especificados.  Aquí, ``espacio de disco usado'' significa espacio usado 
+por la jerarquía de  ficheros  por  debajo  del fichero especificado. 
+
+De este modo una secuencia clásica de uso de {\tt df} y {\tt du}, ante
+una alarma disparada por falta de espacio en un sistema de archivos, será:
+
+\begin{center}
+ \includegraphics{df.png}
+\end{center}
+
+Es importante tener en cuenta que un porcentaje de uso puede ser o no
+alarmante dependiendo del tamaño total. No es lo mismo un 90\% de uso en 
+un sistema de archivos cuyo tamaño disponible es de 1000Gb, a un 90\% en 
+uno de 10Gb. Los valores críticos serán definidos para cada file system 
+considerando su uso y tasa estimada de crecimiento. 
+
+Ahora bien, supongamos que el sistema de archivos a evaluar de la salida 
+anterior es {\tt /home} (si bien en este momento no se encuentra bajo 
+un límite crítico de uso)  y queremos saber cuáles son los directorios 
+que consumen mas espacio en disco para este sistema de archivos, entonces
+podemos averiguarlo haciendo: 
+
+\begin{center}
+ \includegraphics{du.png}
+\end{center}
+
+El comando {\tt du -sk |sort -n} indica a du realizar la suma (-s) de todos
+los archivos contenidos en el directorio, y devolver el valor en kilo bytes
+(-k). La salida se la enviamos al comando {sort} que ordena numéricamente 
+(-n) lo recibido por du. De este modo, en la parte inferior de la salida 
+vemos los archivos y directorios que consumen mas espacio dentro del 
+directorio home. 
 
 \section*{Monitorizar la memoria}
-Si existe un área en la que se puede encontrar gran cantidad de estadísticas de rendimiento, esta área es la utilización de la memoria. Debido a la complejidad inherente de los sistemas operativos con memoria virtual bajo demanda de hoy día, las estadísticas de utilización de memoria son muchas y variadas. Es aquí donde tiene lugar la mayoría del trabajo de un administrador de sistemas con la administración de recursos.
-
+Si existe un área en la que se puede encontrar gran cantidad de 
+estadísticas de rendimiento, esta área es la utilización de la memoria. 
+Debido a la complejidad inherente de los sistemas operativos con memoria 
+virtual bajo demanda de hoy día, las estadísticas de utilización de memoria
+ son muchas y variadas. 
 
 \subsection*{Ejemplo de monitoreo de la memoria}
 
-
-Usando free es posible obtener una vista general concisa (quizás hasta un poco simplistica) de la utilización de la memoria principal y de intercambio. He aquí un ejemplo:
+Usando el comando \texttt{free} es posible obtener una vista general 
+concisa (quizás hasta un poco simplista) de la utilización de la memoria
+principal y de intercambio. He aquí un ejemplo:
 
 \begin{center}
  \includegraphics{free1.png}
 \end{center}
 
-      
-Podemos ver que este sistema tiene 1.2GB de RAM, de los que solamente 350MB estan realmente en uso. Como se puede esperar para un sistema con esta cantidad de RAM disponible, no se utiliza nada de los 500MB de memoria de intercambio.
+Podemos ver que este sistema tiene 1.2GB de RAM, de los que solamente 
+350MB están realmente en uso. Como se puede esperar para un sistema con 
+esta cantidad de RAM disponible, no se utiliza nada de los 500MB de 
+memoria de intercambio.
 
 Compare ese ejemplo con el que sigue:
 
@@ -354,22 +468,57 @@ Compare ese ejemplo con el que sigue:
 \end{center}
 
       
-Este sistema tiena alrededor de 256MB de RAM, la mayoría de la cual está en uso, dejando solamente 8MB libres. Más de 100MB de los 512MB de swap estan en uso. Aún cuando el sistema está ciertamente más limitado en términos de memoria que el primer sistema, para determinar si esta limitación de memoria está causando problemas de rendimiento, tenemos que investigar un poco más.
+Este sistema tiene alrededor de 256MB de RAM, la mayoría de la cual está 
+en uso, dejando solamente 8MB libres. Más de 100MB de los 512MB de swap 
+están en uso. Aún cuando el sistema está ciertamente más limitado en 
+términos de memoria que el primer sistema, para determinar si esta 
+limitación de memoria está causando problemas de rendimiento, tenemos 
+que investigar un poco más.
 
-vmstat, aún cuando es más críptico que free, tiene el beneficio de que muestra más que simplemente las estadísticas de utilización de memoria. He aquí la salida de vmstat 1 10:
+El comando \texttt{vmstat} reporta estadísticas acerca del uso de la memoria
+virtual del sistema. Aún cuando su salida es más críptica que free, tiene 
+el beneficio mostrar más que simplemente las estadísticas de utilización de
+memoria. He aquí la salida de ``\texttt{vmstat 1 10}'':
 
 \begin{center}
  \includegraphics{vmstat2.png}
 \end{center}
 
-      
-Durante esta muestra de 10 segundos, la cantidad de memoria libre (el campo free) varía de alguna forma, y hay un poco de E/S relacionada con la memoria de intercambio (los campos si y so), pero en general, este sistema está funcionando bien. Sin embargo, se duda cuánta carga adicional de trabajo pueda manejar, dada la utilización actual de memoria.
+Durante esta muestra de 10 capturas de 1 segundos de duración cada una, la 
+cantidad de memoria libre (el campo free) varía de alguna forma, y hay un poco de E/S relacionada con la memoria de intercambio (los campos si y so), pero en general, este sistema está funcionando bien. 
 
+La primera línea de vmstat reporta las estadísticas desde el último reinicio
+de sistema. Mientras que las restantes líneas serán las estadísticas de 
+períodos de 1 segundo. 
 
+Las columnas bajo ``procs'' dan información sobre estado de los procesos.
+Las columnas bajo ``memory'' se refieren a memoria principal (física), las
+columnas bajo ``swap'' se refieren a estadísticas relacionadas al espacio 
+de intercambio, las columnas bi/bo bajo io se refieren a estadísticas de 
+bloques por segundos enviados o recibidos desde los discos, las columnas
+bajo ``system'' se refieren a estadísticas relacionadas a interrupciones y
+cambios de contexto, y finalmente las columnas bajo ``cpu'' indican 
+estadísticas de cómo se está utilizando el tiempo de cpu (sistema, usuario, 
+ocioso, etc). Para más información consulte la página de manual de vmstat. 
 
-La supervisión exitosa de la utilización de la memoria requiere una buena comprensión de cómo funciona la memoria virtual bajo demanda de un sistema operativo. 
+La supervisión exitosa de la utilización de la memoria requiere una buena 
+comprensión de cómo funciona la memoria virtual bajo demanda de un sistema 
+operativo.
 
+{\bf Identificando culpables}
 
+Volviendo al comando \texttt{top}, podemos ordenar la salida por VIRT o RES
+para analizar cuáles son los procesos que actualmente se encuentran 
+consumiendo mayor cantidad de memoria: 
+
+\begin{center}
+ \includegraphics{topmem.png}
+\end{center}
+
+Este análisis complementa lo anteriormente visto con free y vmstat a la
+hora de encontrar responsables ante un posible comportamiento anormal 
+de los procesos en ejecución, o bien para un simple análisis que pueda 
+disparar una posible una posible actualización de recursos del sistema. 
 
 \section*{Monitorizar el ancho de banda}
 Monitorizar el ancho de banda es más complicado que la supervisión de otros recursos descritos aquí. La razón de esto se debe al hecho de que las estadísticas de rendimiento tienden a estar basadas en dispositivos, mientras que la mayoría de los lugares en los que es importante el ancho de banda tienden a ser los buses que conectan dispositivos. En lo casos donde más de un dispositivo comparte un bus común, puede encontrar estadísticas razonables para cada dispositivo, pero la carga que esos dispositivos colocan en el bus es mucho mayor.
@@ -381,11 +530,11 @@ Otro reto al monitorizar el ancho de banda es que pueden existir circunstancias 
 Usando vmstat, es posible determinar si es excesiva la actividad general de los dispositivos examinando los campos bi y bo; además, revisando los campos si y so le dará un poco más de conocimiento sobre cuánta actividad de disco se debe a E/S relacionada a swap.
 
 \begin{center}
- \includegraphics{vmstat1.png}
+ \includegraphics{vmstat2.png}
 \end{center}
 
         
-En este ejemplo, el campo bi muestra dos bloques/segundos escritos a los dispositivos en bloque (principalmente unidades de disco), mientras que el campo bo muestra seis bloques/segundos leído desde los dispositivos de bloque. Podemos determinar que ninguna de esta actividad se debe a intercambio de memoria (swap), ya que los campos si y so ambos muestran una tasa de E/S relacionada a swap de cero kilobytes/segundo.
+En este ejemplo, el campo bi muestra dos bloques/segundos escritos a los dispositivos en bloque (principalmente unidades de disco), mientras que el campo bo muestra seis bloques/segundos leído desde los dispositivos de bloque. Podemos determinar que ninguna de esta actividad se debe a intercambio de memoria (swap), ya que los campos si y so ambos muestran una tasa de E/S relacionada a swap de cero kilo bytes/segundo.
 
 Usando iostat, es posible obtener un poco más de detalles sobre la actividad relacionada al disco:
 
@@ -411,39 +560,11 @@ En realidad, cada línea de salida de iostat -x es más larga y contiene más in
 \end{center}
 
         
-En este ejemplo, es interesante observar que /dev/sda2 es la partición swap del sistema; obviamente, a partir de los muchos campos de esta particiónque leen 0.00, el swapping no es un problema en el sistema.
+En este ejemplo, es interesante observar que /dev/sda2 es la partición swap del sistema; obviamente, a partir de los muchos campos de esta partición que leen 0.00, el swapping no es un problema en el sistema.
 
 Otro punto interesante a tomar en cuenta es /dev/sda1. Las estadísticas para esta partición son inusuales; la actividad general parece baja, pero por qué el tamaño promedio de peticiones de E/S (el campo avgrq-sz), el tiempo promedio de espera (el campo await) y el tiempo promedio de servicio (el campo svctm) son mucho más grandes que en las otras particiones? La respuesta es que esta partición contiene el directorio /boot/, el cual es donde el kernel y el disco inicial ramdisk son almacenados. Cuando el sistema arranca, las lecturas de E/S (observe que solamente los campos rsec/s y rkB/s son diferentes de cero; no se hace ninguna escritura aquí de forma regular) usadas durante el proceso de arranque son para grandes números de bloques, resultando en despliegues iostat de esperas relativamente largas y tiempos de servicios.
 
 
-\section*{Monitorizar el almacenamiento}
-El monitoreo del almacenamiento normalmente tiene lugar en dos niveles diferentes:
-
-\begin{itemize}
-\item Monitorizar insuficiente espacio en disco
-
-\item Monitorizar problemas de rendimiento relacionados con el almacenamiento
-\end{itemize}
-
-La razón de esto es que es posible tener problemas calamitosos en un área y ningún problema en otra. Por ejemplo, es posible causar que a la unidad de disco se le acabe el espacio sin causar ningún tipo de problemas relacionados al rendimiento. De la misma manera, es posible tener una unidad de disco que tiene 99% de espacio libre, pero que se ha puesto más allá de sus límites en términos de rendimiento.
-
-Sin embargo, es más probable que el sistema promedio experimente diferentes grados de escasez de recursos en ambas áreas. Debido a esto, es probable que — hasta cierto punto — los problemas en un área impacten a la otra. La mayoría de las veces este tipo de interacción toma la forma de funcionamientos de E/S más y más pobres cuando el sistema se acerca al 0% de espacio libre, en casos de cargas de E/S extremas, es posible reducir las salidas de E/S a tal nivel que las aplicaciones no se ejecutan adecuadamente.
-
-En cualquier caso, las estadísticas siguientes son útiles para supervisar el almacenamiento:
-
-\begin{itemize}
-\item Espacio libre
-El espacio libre es probablemente el recurso que todos los administradores de sistemas vigilan más de cerca; sería raro el administrador que no verifica el espacio disponible (o que tiene una forma de hacerlo automáticamente).
-
-\item Estadísticas relacionadas al sistema de archivos
-Estas estadísticas (tales como el número de archivos/directorios, tamaño promedio de los archivos, etc.) suministran detalles adicionales sobre un porcentaje de espacio libre. Como tal, estas estadísticas hacen posible para los administradores de sistemas configurar el sistema para que entregue el mejor rendimiento, pues la carga de E/S impuesta por un sistema de archivos lleno de muchos pequeños archivos no es la misma que la carga impuesta por un sistema de archivos lleno con un único archivo enorme.
-
-\item Transferencias por segundo
-Esta estadística es una buena forma de determinar si se están alcanzando las limitaciones de ancho de banda de un dispositivo en particular.
-
-\item Lecturas/escrituras por segundo
-Con un desglose más detallado de las transferencias por segundo, estas estadísticas permiten al administrador de sistemas entender mejor la naturaleza de las cargas de E/S que está experimentando un dispositivo de almacenamiento. Esto puede ser crítico, ya que algunas tecnologías de almacenamiento tienen características de funcionamiento muy diferentes para operaciones de lecturas contra escrituras.
-\end{itemize}
 
 
 
