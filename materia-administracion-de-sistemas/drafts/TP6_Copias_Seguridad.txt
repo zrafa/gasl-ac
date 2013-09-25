@@ -1,0 +1,34 @@
+
+******************************************************************
+        Administración de Sistemas
+        Departamento Ingeniería de Computadoras
+        Facultad de Informática - Universidad Nacional del Comahue
+******************************************************************
+
+TP N 6 - Copias de seguridad
+----------------------------------------------------
+
+
+ NOTA : Los siguientes ejercicios se realizan en su totalidad desde una
+        terminal en un sistema GNU/Linux .
+        Para cada pregunte indique el comando o los comandos que utilizó
+        para obtener la respuesta.
+
+Ejercicio 1
+***********
+
+
+Crear un tar -c 
+listar el contenido -t
+comparar -d 
+extraer -x 
+para cada uno de los comandos anteriores escribirlo en la forma corta y larga
+
+crear tar 
+explicar 
+tar cvf - .  | (cd /pepito && tar xvf - . )
+
+
+extraer selectivo  
+
+tar.gz vs gz por archivo y luego tar. 
