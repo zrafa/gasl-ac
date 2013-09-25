@@ -78,13 +78,13 @@ Ejercicio 4
 Existe una manera de copiar archivos muy utilizada en ambientes UNIX/Linux,
 utilizando tar.
 
-- En el directorio HOME de root crear un directorio llamado "paginas-man/"
-- Ejecute :
+a)- En el directorio HOME de root crear un directorio llamado "paginas-man/"
+b)- Ejecute :
 
 cd /usr/share/man/
 tar cvf - . | (cd $HOME/paginas-man/ && tar xvf - . )
 
-- Compare los directorios /usr/share/man y $HOME/paginas-man/.
+c)- Compare los directorios /usr/share/man y $HOME/paginas-man/.
   ¿ Cómo los comparó ?
   ¿ Coinciden ? 
   ¿ Podría explicar con sus palabras que fué lo que sucedió en el inciso b) ? 
@@ -94,8 +94,8 @@ tar cvf - . | (cd $HOME/paginas-man/ && tar xvf - . )
 Ejercicio 5
 ***********
 
-- En el directorio HOME de root crear un directorio llamado "practico6-ejercicio5/"
-- Copiar dentro del nuevo directorio los siguientes archivos : 
+a)- En el directorio HOME de root crear un directorio llamado "practico6-ejercicio5/"
+b)- Copiar dentro del nuevo directorio los siguientes archivos : 
 
          5187 dic 11  2012 /etc/fonts/conf.avail/40-nonlatin.conf
          5287 dic 11  2012 /etc/fonts/fonts.conf
@@ -106,15 +106,15 @@ Ejercicio 5
          9640 ago  2  2012 /etc/apache2/apache2.conf
          9880 dic 11  2012 /etc/fonts/conf.avail/65-fonts-persian.conf
 
-- Crear un backup con tar COMPRIMIDO con gzip, de todos los archivos en 
+c)- Crear un backup con tar COMPRIMIDO con gzip, de todos los archivos en 
 $HOME/practico6-ejercicio5/ , en un archivo llamado practico6.tar.gz
 
-- Comprima cada archivo en $HOME/practico6-ejercicio5/ con el programa gzip.
+d)- Comprima cada archivo en $HOME/practico6-ejercicio5/ con el programa gzip.
   Crear un backup con tar de todos los archivos gz del directorio $HOME/practico6-ejercicio5/,
   en un archivo llamado practico6.tar
 
-- ¿Qué ventajas o desventajas tiene el método empleado en c) comparado con el método empleado
-  en d) ?
+e)- ¿Qué ventajas o desventajas tiene el método empleado en c) comparado con el método
+    empleado en d) ?
 
 
 
