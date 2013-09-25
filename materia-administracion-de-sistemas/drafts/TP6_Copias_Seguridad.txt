@@ -94,19 +94,28 @@ tar cvf - . | (cd $HOME/paginas-man/ && tar xvf - . )
 Ejercicio 5
 ***********
 
+- En el directorio HOME de root crear un directorio llamado "practico6-ejercicio5/"
+- Copiar dentro del nuevo directorio los siguientes archivos : 
+
+         5187 dic 11  2012 /etc/fonts/conf.avail/40-nonlatin.conf
+         5287 dic 11  2012 /etc/fonts/fonts.conf
+         7305 jul 30  2012 /etc/dbus-1/system.d/ConsoleKit.conf
+         7439 ago  2  2012 /etc/apache2/mods-available/mime.conf
+         7792 sep 17  2012 /etc/sane.d/gt68xx.conf
+         8065 dic 11  2012 /etc/fonts/conf.avail/65-nonlatin.conf
+         9640 ago  2  2012 /etc/apache2/apache2.conf
+         9880 dic 11  2012 /etc/fonts/conf.avail/65-fonts-persian.conf
+
+- Crear un backup con tar COMPRIMIDO con gzip, de todos los archivos en 
+$HOME/practico6-ejercicio5/ , en un archivo llamado practico6.tar.gz
+
+- Comprima cada archivo en $HOME/practico6-ejercicio5/ con el programa gzip.
+  Crear un backup con tar de todos los archivos gz del directorio $HOME/practico6-ejercicio5/,
+  en un archivo llamado practico6.tar
+
+- ¿Qué ventajas o desventajas tiene el método empleado en c) comparado con el método empleado
+  en d) ?
 
 
 
-Crear un tar -c 
-listar el contenido -t
-comparar -d 
-extraer -x 
 
-crear tar 
-explicar 
-tar cvf - .  | (cd /pepito && tar xvf - . )
-
-
-extraer selectivo  
-
-tar.gz vs gz por archivo y luego tar. 
