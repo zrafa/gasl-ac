@@ -14,15 +14,93 @@ TP N 6 - Copias de seguridad
         Para cada pregunte indique el comando o los comandos que utilizó
         para obtener la respuesta.
 
+ NOTA 2: Para cada uno de los comandos tar que utilice en el práctico, mencione
+         escribiendo la forma corta y larga de los argumentos.
+
+
+
 Ejercicio 1
 ***********
+
+
+- En el directorio HOME de root crear un directorio llamado "copia-etc/"
+
+- Copiar todos los archivos del directorio /etc/* (recursivamente) en la carpeta
+creada "copia-etc/", de manera que al ejecutar :
+ls /etc
+y
+cd $HOME ; ls copia-etc/
+ambas salidas coincidan.
+
+- Realice un conteo de la cantidad de archivos existentes en /etc/ y en $HOME/copia-etc/
+y verifique que coincidan.
+
+
+Ejercicio 2
+***********
+
+- Realice un backup de /etc utilizando tar. El backup debe quedar almacenado en un archivo
+llamado backup-etc.tar en el directorio HOME del usuario root.
+
+- Realice un backup de $HOME/copia-etc/ utilizando tar. 
+El backup debe quedar almacenado en un archivo
+llamado backup-copia-etc.tar en el directorio HOME del usuario root.
+
+- Verifique el backup llamado backup-etc.tar comparándolo con /etc.
+
+- Seleccione y elimine 5 archivos del directorio $HOME/copia-etc/ (ATENCION: verifique
+que realmente está eliminando archivos de copia-etc/, y NO de /etc/.
+  Luego compare el backup llamado backup-copia-etc.tar comparándolo con $HOME/copia-etc/.
+  ¿Coinciden?
+
+
+Ejercicio 3
+***********
+
+- En el directorio HOME de root crear un directorio llamado "etc-nuevo/"
+  
+- Realice una recuperación de archivos del backup llamado backup-copia-etc.tar 
+  dentro de la carpeta creada $HOME/etc-nuevo/
+  ¿Cuantos archivos se recuperaron?
+  ¿Cuantos archivos contiene el directorio $HOME/copia-etc/ ?
+  ¿Coincide la cantidad de archivos en ambos directorios? ¿Por qué?
+
+- Verifique el contenido del backup llamado backup-etc.tar,
+  Seleccione 5 archivos, y
+  Recupere esos archivos en el HOME del usuario root.
+  Listar aquí debajo el directorio HOME de root con los archivos recuperados.
+
+
+
+Ejercicio 4
+***********
+
+Existe una manera de copiar archivos muy utilizada en ambientes UNIX/Linux,
+utilizando tar.
+
+- En el directorio HOME de root crear un directorio llamado "paginas-man/"
+- Ejecute :
+
+cd /usr/share/man/
+tar cvf - . | (cd $HOME/paginas-man/ && tar xvf - . )
+
+- Compare los directorios /usr/share/man y $HOME/paginas-man/.
+  ¿ Cómo los comparó ?
+  ¿ Coinciden ? 
+  ¿ Podría explicar con sus palabras que fué lo que sucedió en el inciso b) ? 
+
+  
+
+Ejercicio 5
+***********
+
+
 
 
 Crear un tar -c 
 listar el contenido -t
 comparar -d 
 extraer -x 
-para cada uno de los comandos anteriores escribirlo en la forma corta y larga
 
 crear tar 
 explicar 
