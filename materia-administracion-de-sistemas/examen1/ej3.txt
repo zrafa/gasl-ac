@@ -1,0 +1,57 @@
+Primer examen parcial - Administración de sistemas - 2013
+---------------------------------------------------------
+
+TEMA: Discos, particiones y sistemas de archivos
+
+Nombre: 
+Apellido: 
+IP de la VM de trabajo: 
+
+
+***************************************************************
+*    EN TODOS LOS CASOS QUE CORRESPONDA INDIQUE QUÉ 	      *
+*   COMANDO/S Y PASOS REALIZÓ PARA COMPLETAR EL EJERCICIO     *
+*          SI MODIFICA ARCHIVOS INDIQUE CUÁLES                *
+***************************************************************
+
+
+Ejercicio 1
+Indique: 
+	a) ¿ Cuáles son los discos presentes en el sistema?. 
+	Indique justo debajo de esta línea la tabla de particiones de 
+	los mismos y los archivos de dispositivo relacionados (con sus 
+	permisos). 
+
+
+	b) ¿ Qué tipo de partición (primaria, extendida, lógica) contiene 
+	el/los discos en a) ?
+
+
+	c) ¿Qué tipo de sistema de archivos contiene cada partición en b? 
+	¿ Con qué comando podría crear dicho sistema de archivos? 
+
+
+Ejercicio 2 
+Liste todos los dispositivos montados en el sistema. Coloque la salida 
+justo debajo de esta línea. 
+
+
+Ejercicio 3 
+	a) Monte el directorio /mnt/compartido exportado por NFS por la máquina 
+	10.0.15.7 en /arch7. 
+	
+	b) Liste justo debajo de esta línea los archivos contenidos en /arch7
+
+	c) Liste todos los dispositivos montados en el sistema. Coloque la 
+	salida justo debajo de esta línea. 
+
+
+
+Ejercicio 4
+	a) Defina con sus palabras los siguientes conceptos :
+	- Disco
+	- Particion
+	- Archivo de dispositivo que referencia un diso o particion
+	- Sistema de archivos. ext2, ext3, ext4, xfs, vfat
+	- Particion primaria, extendida y logica
+	- Tabla de particiones

@@ -1,0 +1,38 @@
+Primer examen parcial - Administración de sistemas - 2013
+---------------------------------------------------------
+
+TEMA: Recursos del Sistema
+
+Nombre: 
+Apellido: 
+IP de la VM de trabajo: 
+
+
+***************************************************************
+*    EN TODOS LOS CASOS QUE CORRESPONDA INDIQUE QUÉ 	      *
+*   COMANDO/S Y PASOS REALIZÓ PARA COMPLETAR EL EJERCICIO     *
+*          SI MODIFICA ARCHIVOS INDIQUE CUÁLES                *
+***************************************************************
+
+
+Ejercicio 1 
+Identifique en los mensajes del kernel información referente al CPU. 
+¿Cuándo se produjo esa información? ¿Qué diferencia existe entre
+lo guardado en messages y lo mostrado por el comando dmesg?
+
+
+Ejercicio 2
+¿Qué comandos podría utilizar para obtener información acerca del CPU? De
+un ejemplo de la información obtenida. 
+
+
+Ejercicio 3
+Muestre la información acerca del tamaño de la memoria principal (RAM), tal
+que incluya el tamaño y número de bancos (bank) de memoria presentes.  
+
+
+Ejercicio 4
+Obtenga información de la memoria usada y libre del sistema operativo.
+Presente la información en KB y MB.
+
+

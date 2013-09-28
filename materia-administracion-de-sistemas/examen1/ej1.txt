@@ -1,0 +1,66 @@
+Primer examen parcial - Administración de sistemas - 2013
+---------------------------------------------------------
+
+TEMA: Manteniendo la hora
+
+Nombre: 
+Apellido: 
+IP de la VM de trabajo: 
+
+
+***************************************************************
+*    EN TODOS LOS CASOS QUE CORRESPONDA INDIQUE QUÉ 	      *
+*   COMANDO/S Y PASOS REALIZÓ PARA COMPLETAR EL EJERCICIO     *
+*          SI MODIFICA ARCHIVOS INDIQUE CUÁLES                *
+***************************************************************
+
+
+Ejercicio 1
+¿Qué es y para qué sirve una zona horaria? ¿Cuál es la zona horaria 
+Argentina, cuántas horas difiere de UTC?  
+
+Ejercicio 2
+¿Cuál es la fecha y hora UTC configurada en en el reloj de sistema? 
+¿Es correcta?  (indique además la hora real actual, recuerde especificar 
+la zona horaria).
+
+Ejercicio 3
+¿Cuál es la zona horaria configurada en el sistema? ¿Cómo lo sabe? 
+¿Es correcta para nuestra ubicación geográfica? En caso de ser incorrecta, 
+modifique  la configuración del sistema (solo la zona horaria). 
+
+Ejercicio 4
+El usuario Bladimir Kasparov (username bladi) vive en República Checa, y 
+es usuario de la máquina virtual. Bladimir ha reportado que el sistema le 
+muestra una hora incorrecta. Configure la zona horaria para Bladimir de 
+modo que vea el horario de República Checa cada vez que inicie sesión en 
+el sistema. 
+
+Ejercicio 4 
+Indique los archivos que contienen la definición de las zonas horarias 
+utilizadas en el ejercicio 3 y 4.  
+
+Ejercicio 5
+¿Para qué sirve el servicio de NTP? ¿Se encuentra corriendo en este momento?
+
+Ejercicio 6
+Indique la hora actual del sistema justo debajo de este renglón. 
+
+Utilice el comando ntpdate y el servidor 0.debian.pool.ntp.org para 
+sincronizar la hora del sistema (recuerde incluir la salida del comando 
+que utilizó). ¿Se modificó la hora del sistema?
+
+ 
+Ejercicio 7
+Configure el servicio de ntp (/etc/ntp.conf) utilizando  la siguiente 
+información: 
+
+server 0.debian.pool.ntp.org 
+server 1.debian.pool.ntp.org
+server 2.debian.pool.ntp.org
+server 3.debian.pool.ntp.org
+
+Inicie el servicio (comando service) y verifique la sincronización con el 
+comando ntpq. Indique la salida de ntpq y cómo sabe que esta sincronizando. 
+
+
