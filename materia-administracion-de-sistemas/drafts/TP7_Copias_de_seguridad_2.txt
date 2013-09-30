@@ -1,0 +1,70 @@
+******************************************************************
+        Administración de Sistemas
+        Departamento Ingeniería de Computadoras
+        Facultad de Informática - Universidad Nacional del Comahue
+******************************************************************
+
+TP N 6 - Copias de seguridad
+----------------------------------------------------
+
+
+ NOTA : Los siguientes ejercicios se realizan en su totalidad desde una
+        terminal en un sistema GNU/Linux .
+        Para cada pregunte indique el comando o los comandos que utilizó
+        para obtener la respuesta.
+
+ NOTA 2: Para cada uno de los comandos tar que utilice en el práctico, mencione
+         escribiendo la forma corta y larga de los argumentos.
+
+Modelos de copias: 
+------------------
+Para los siguentes ejercicios utilice la opción --listed-incremental del 
+comando tar. 
+
+Todas las copias de seguridad deberán quedar guardadas _desde el momento de 
+su creación_ en el directorio NFS /mnt/compartido proveniente de la 
+computadora 10.0.15.7
+
+1) Copia total o completa: 
+
+Hacer una _copia total o completa_ del directorio "importante" que se encuentra
+dentro de el HOME de root. El archivo de backup debe llamarse 
+full_importante_`hostname`.tar .Explique el uso del las comillas invertidas "`". 
+
+2) Modifique archivos en el directorio importante, tal que al menos: 
+	* elimine un archivo 
+	* modifique el contenido de un archivo 
+	* agregue un archivo nuevo. 
+
+3) Cree una copia diferencial con respecto a la total creada en 1). La copia 
+deberá llamarse dif1_importante_`hostname`.tar
+
+4) Modifique archivos en el directorio importante, tal que al menos: 
+	* elimine un archivo 
+	* modifique el contenido de un archivo 
+	* agregue un archivo nuevo. 
+
+5) Cree una nueva copia diferencial con respecto a 1) llamada 
+dif2_importante_`hostname`.tar y una incremental con respecto a 3) llamada 
+inc1_importante_`hostname`.tar
+
+6) Responda: 
+	a) Liste todos los archivos de copia (exclusivamente de su máquina) 	
+	creados durante los incisos anteriores con permisos y tamaño en 
+	kilobytes. 
+	b) ¿Cuánto ocupa cada una de las copias realizadas en los ejercicio?
+	¿Cuál es la mayor? ¿Cuál la menor? ¿Tiene sentido lo que observa?
+	
+
+7) Explique cuáles son los pasos que debería realizar para recuperar el
+directorio importante  a partir de las copias realizadas en el ejercicio 5). 
+¿Cuál toma mayor cantida de tiempo?  
+
+8) Borre el directorio importante y recupérelo a partir de la copia diferencial
+creada en el ejercicio 3). ¿Es este el estado más reciente del directorio?  
+
+9) Borre el directorio importante y recupérelo a partir de la copia incremental
+creada en el ejercicio 5). ¿Es este el estado más reciente del directorio? 
+
+10) ¿Dónde se encuentra guardado el binario tar? ¿Por qué puede ejecutarlo sin 
+tener que escribir la ruta completa? 
