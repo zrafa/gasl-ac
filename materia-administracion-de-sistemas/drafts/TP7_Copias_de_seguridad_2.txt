@@ -21,15 +21,24 @@ Modelos de copias:
 Para los siguentes ejercicios utilice la opción --listed-incremental del 
 comando tar. 
 
-Todas las copias de seguridad deberán quedar guardadas _desde el momento de 
-su creación_ en el directorio NFS /mnt/compartido proveniente de la 
-computadora 10.0.15.7
+Todas las copias de seguridad y los correspondientes metadatos, deberán quedar 
+guardadas _desde el momento de su creación_ en el directorio NFS 
+/mnt/compartido proveniente de la computadora 10.0.15.7, para ello: 
+	* cree un usuario con uid 1009, username backadmin
+        * móntelo en el directorio /backup (verifique que no se encuentra ya montado, en 
+ese caso desmóntelo y vuelva a montarlo en el lugar correcto).
 
+
+0) Listado de contenido
+   0.a) Liste el contenido del directorio $HOME/importante incluyendo los 
+   permisos.
+   0.b) ¿Qué tipo de archivos son? 
+   
 1) Copia total o completa: 
-
 Hacer una _copia total o completa_ del directorio "importante" que se encuentra
 dentro de el HOME de root. El archivo de backup debe llamarse 
-full_importante_`hostname`.tar .Explique el uso del las comillas invertidas "`". 
+full_importante_`hostname`.tar .Explique el uso del las comillas invertidas "`".
+El archivo de metadatos deberá llamarse full_`hostname`.snar 
 
 2) Modifique archivos en el directorio importante, tal que al menos: 
 	* elimine un archivo 
@@ -38,6 +47,7 @@ full_importante_`hostname`.tar .Explique el uso del las comillas invertidas "`".
 
 3) Cree una copia diferencial con respecto a la total creada en 1). La copia 
 deberá llamarse dif1_importante_`hostname`.tar
+El archivo de metadatos deberá llamarse dif1_`hostname`.snar 
 
 4) Modifique archivos en el directorio importante, tal que al menos: 
 	* elimine un archivo 
@@ -45,8 +55,9 @@ deberá llamarse dif1_importante_`hostname`.tar
 	* agregue un archivo nuevo. 
 
 5) Cree una nueva copia diferencial con respecto a 1) llamada 
-dif2_importante_`hostname`.tar y una incremental con respecto a 3) llamada 
-inc1_importante_`hostname`.tar
+dif2_importante_`hostname`.tar  con metadatos dif2_`hostname`.snar y una 
+incremental con respecto a 3) llamada inc1_importante_`hostname`.tar con 
+metadatos inc1_`hostname`.snar
 
 6) Responda: 
 	a) Liste todos los archivos de copia (exclusivamente de su máquina) 	
@@ -54,6 +65,7 @@ inc1_importante_`hostname`.tar
 	kilobytes. 
 	b) ¿Cuánto ocupa cada una de las copias realizadas en los ejercicio?
 	¿Cuál es la mayor? ¿Cuál la menor? ¿Tiene sentido lo que observa?
+	c) ¿Qué tipo de archivos creo para realizar las copias de seguridad?
 	
 
 7) Explique cuáles son los pasos que debería realizar para recuperar el
