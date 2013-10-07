@@ -56,6 +56,16 @@ En particular en los sistemas de tipo UNIX como GNU/Linux el ecosistema
 de aplicaciones es delicado, y para nada anárquico. Dicho ecosistema tiene 
 una estructura y una forma particular de manipularlo. 
 
+UNIX y variantes de sistemas GNU/Linux utilizan, generalmente, algún
+sistema de empaquetado para facilitar la tarea de la administración de software.
+Los \bf{paquetes} se han utilizado tradicionalmente para distribuir programas,
+pero pueden ser también utilizados para contener archivos de configuración
+o datos compartidos utilizados por varios paquetes. Su objetivo principal
+es tratar de lograr un proceso de instalación tan atómico como sea posible,
+de manera que si ocurre un error en el proceso, el administrador
+sólo debe pausar la operación en curso (instalación, desistalación, etc)
+y el sistema no quede en algún estado inconsistente.
+
 Existen una serie de conceptos que la 
 mayoría de las distribuciones implementan y que un administrador de 
 sistemas debe conocer con certeza aún cuando no conozca la implementación
@@ -63,6 +73,18 @@ particular de cada distribución.  Durante este apunte de desarrollan
  conceptos como paquete de software, 
 repositorios, gestores de paquetes, entre otros que hacen a la 
 administración de software dentro de las distribuciones GNU/Linux.
+
+Existen diversas maneras de gestionar el software en una distribución 
+GNU/Linux. La forma más común y recomendada para un administrador es a través de paquetes
+provistos por la organización que desarrolla la distribución GNU/Linux.
+Pero también existen otros mecanismos
+para la instalación de software en sistemas GNU/Linux :
+
+- En forma de código fuente, en donde se debe compilar e instalar mediante herramientas de desarrollo
+- En forma binaria provista por terceras partes
+- En forma de paquetes provisto por terceras partes
+
+Estos mecanismos y otros no listados quedan fuera del alcance de este artículo.
 
 \section*{Conceptos}
 
