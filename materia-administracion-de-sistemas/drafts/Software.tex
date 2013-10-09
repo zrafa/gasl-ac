@@ -16,7 +16,7 @@
  \makeatletter
  {\color{bl} \centering \huge \sc \textbf{
   Instalación, configuración y actualización de software.\\ 
-\large \vspace*{-8pt} \color{black} Guía básica de administración de procesos. 
+\large \vspace*{-8pt} \color{black} Guía básica de administración de paquetes de software. 
  \vspace*{8pt} }\par}
  \makeatother
 
@@ -99,7 +99,8 @@ particular de cada distribución.
 
 Un paquete de software es una serie de programas que se distribuyen conjuntamente. Algunas de las razones suelen ser que el funcionamiento de cada uno complementa a o requiere de otros. Un paquete es un único archivo.
 
-Los paquetes incluyen información importante, además del software mismo, como pueden ser el nombre completo, una descripción de su funcionalidad, el número de versión, el distribuidor del software, la suma de verificación y una lista de otros paquetes requeridos para el correcto funcionamiento del software. Esta metainformación se introduce normalmente en una base de datos de paquetes local.
+
+Cada paquete es un archivo comprimido que contiene información del producto, archivos de programa, iconos, documentación y scripts de administración. Las aplicaciones de administración utilizan estos archivos para ubicar, instalar, actualizar y remover software de una forma segura. 
 
 Existen diferentes formatos de paquetes utilizados, pero 
 dos formatos de paquetes binarios ampliamente difundidos son los formatos DEB y RPM.
@@ -109,6 +110,7 @@ dos formatos de paquetes binarios ampliamente difundidos son los formatos DEB y 
 
 
 \subsection*{Repositorio de Paquetes de software}
+
 
 
 Un repositorio es un directorio o sitio web que contiene paquetes de software y archivos de índices. 
@@ -139,6 +141,305 @@ fue desarrollado por Red Hat.
 Ambos sistemas se utilizan en las principales distribuciones GNU/Linux. dpkg y el formato
 deb se utilizan en Debian, Ubuntu, Tuquito, Mint, y muchas otras. RPM es utilizado por
 las distribuciones Fedora, CentOS, Red Hat, Suse Linux, y varias mas.
+
+
+\section*{Tareas en la Administración de Paquetes de Software}
+
+La función básica de la administración de paquetes la realizan los programas del sistema
+de gestión de paquetes de software. 
+
+RPM y YUM (para sistemas Red Hat), y dpkg y APT (para los sistemas Debian) poseen muchas similitudes. 
+Ambos permiten instalar y quitar paquetes. La información sobre los paquetes instalados se guarda en una base de datos en el sistema local. Ambos tienen la funcionalidad básica desde la línea de comando, además de herramientas adicionales que pueden proporcionar al usuario interfaces de uso más sencillo. Ambos pueden también recuperar paquetes de Internet.
+
+Al instalar un sistema GNU/Linux, por lo general, se instalan una gran variedad de paquetes. 
+El set puede personalizarse según el uso que se quiera dar al sistema, como servidor, escritorio, o terminal de trabajo del desarrollador. 
+Y en algún momento probablemente sea necesario instalar paquetes nuevos para obtener alguna otra funcionalidad, actualizar el paquete que posee, o incluso borrar paquetes que ya no se necesitan o son obsoleto debido a la aparición de nuevos paquetes. 
+
+Las siguientes secciones explican en ejemplos, las acciones básicas utilizadas en la administración
+de paquetes.
+
+\subsection*{Actualizar la lista de paquetes disponibles}
+
+En un sistema Debian se puede definir el listado de repositorios oficial a utilizar  editando el archivo /etc/apt/sources.list
+
+Ejemplo :
+cat /etc/apt/sources.list
+
+deb http://ftp.us.debian.org/debian/ testing main
+
+Con esta línea individual se le indica al sistema que utilice el repositorio oficial de Debian, versión testing.
+
+Para que el sistema Debian conozca ''cuál'' es el listado de paquetes disponibles se debe ejecutar apt-get update
+
+El comando apt-get update sincroniza el índice de paquetes desde sus
+           fuentes. Los índices de paquetes disponibles se obtienen de los
+           lugares especificados en /etc/apt/sources.list. Por ejemplo, cuando
+           se usa un archivo de Debian, esta orden descarga y analiza los
+           ficheros Packages.gz, de tal forma que la información acerca de los
+           nuevos paquetes pasa a estar disponible. Siempre se debe realizar
+           un update antes de un upgrade o un dist-upgrade. Tenga en cuenta
+           que el indicador de progreso será incorrecto, ya que se desconoce
+           de antemano el tamaño de los archivos de paquete.
+
+Poner dentro de un recuadro gris:
+Es una buena costumbre ejecutar este archivo regularmente para mantenerse informado acerca de las posibilidades de actualización para el sistema, particularmente las actualizaciones de seguridad.
+
+En redhat el comando es :
+
+\subsection*{Instalar un Paquete de Software}
+
+Con el archivo /etc/apt/sources.list definido correctamente, y la lista de paquetes local al día, todo lo
+que se necesita es ejecutar apt-get install para instalar un nuevo programa.
+
+Ejemplo :
+
+     # apt-get install xchat
+
+APT buscará en su base de datos para encontrar la versión más reciente del paquete y lo descargará del servidor correspondiente especificado en sources.list. 
+Si este paquete necesitara otro para funcionar -- como en este caso -- APT resolverá las dependencias e instalará los paquetes necesarios. Observe este ejemplo:
+
+     # apt-get install nautilus
+     Reading Package Lists... Done
+     Building Dependency Tree... Done
+     The following extra packages will be installed:
+       bonobo libmedusa0 libnautilus0
+     The following NEW packages will be installed:
+       bonobo libmedusa0 libnautilus0 nautilus
+     0 packages upgraded, 4 newly installed, 0 to remove and 1 not upgraded.
+     Need to get 8329kB of archives. After unpacking 17.2MB will be used.
+     Do you want to continue? [Y/n]
+
+El paquete nautilus necesita las librerías compartidas mencionadas, así pues APT las descargará del servidor. Si se especifican antes los nombres de esas librerías con el comando apt-get APT no pregunta, si desea continuar o no; supone automáticamente que se desean instalar esos paquetes.
+
+Esto significa que APT sólo pregunta por confirmación cuando se van a instalar paquetes que no fueron especificados en la línea de comando.
+
+Pueden seleccionarse varios paquetes para instalar en una sola línea. Los archivos descargados son almacenados en el directorio /var/cache/apt/archives para su instalación posterior.
+
+Puede especificar también que paquetes serán eliminados en la misma línea. Sólo agregue un "-" inmediatamente después del nombre del paquete que quiere eliminar, por ejemplo:
+
+     # apt-get install nautilus gnome-panel-
+     Reading Package Lists... Done
+     Building Dependency Tree... Done
+     The following extra packages will be installed:
+       bonobo libmedusa0 libnautilus0
+     The following packages will be REMOVED:
+       gnome-applets gnome-panel gnome-panel-data gnome-session
+     The following NEW packages will be installed:
+       bonobo libmedusa0 libnautilus0 nautilus
+     0 packages upgraded, 4 newly installed, 4 to remove and 1 not upgraded.
+     Need to get 8329kB of archives. After unpacking 2594kB will be used.
+     Do you want to continue? [Y/n]
+
+\subsubsection*{Reinstalar un Paquete}
+
+Si de alguna forma daña un paquete instalado, o simplemente desea reinstalar la versión más nueva disponible del paquete, puede utilizar la opción --reinstall como se muestra:
+
+     # apt-get --reinstall install gdm
+     Reading Package Lists... Done
+     Building Dependency Tree... Done
+     0 packages upgraded, 0 newly installed, 1 reinstalled, 0 to remove and 1 not
+      upgraded.
+     Need to get 0B/182kB of archives. After unpacking 0B will be used.
+     Do you want to continue? [Y/n]
+
+
+
+\subsection*{Quitar un Paquete de Software del Sistema}
+
+Si ya no necesita utilizar cierto paquete, puede eliminarlo de su sistema utilizando APT. Para realizar esta tarea sólo escriba: apt-get remove paquete. por ejemplo:
+
+     # apt-get remove gnome-panel
+     Reading Package Lists... Done
+     Building Dependency Tree... Done
+     The following packages will be REMOVED:
+       gnome-applets gnome-panel gnome-panel-data gnome-session
+     0 packages upgraded, 0 newly installed, 4 to remove and 1 not upgraded.
+     Need to get 0B of archives. After unpacking 14.6MB will be freed.
+     Do you want to continue? [Y/n]
+
+Como se puede apreciar en el ejemplo anterior, APT se hace cargo de eliminar los paquetes dependientes del paquete eliminado. No hay manera de eliminar un paquete utilizando APT sin eliminar los paquetes que éste necesitaba.
+
+Ejecutando apt-get como en el ejemplo causará que los paquetes sean eliminados, pero sus archivos de configuración, si existían, permanecerán intactos en el sistema. Para una eliminación completa del paquete, ejecute:
+
+     # apt-get --purge remove gnome-panel
+     Reading Package Lists... Done
+     Building Dependency Tree... Done
+     The following packages will be REMOVED:
+       gnome-applets* gnome-panel* gnome-panel-data* gnome-session*
+     0 packages upgraded, 0 newly installed, 4 to remove and 1 not upgraded.
+     Need to get 0B of archives. After unpacking 14.6MB will be freed.
+     Do you want to continue? [Y/n]
+
+Observe el "*" después de los nombres. Esto indica que los archivos de configuración de cada paquete serán eliminados también.
+
+Al igual que en el caso de la instalación, puede utilizar un símbolo con la opción de "remove" para invertir el significado de un paquete en especial. En el caso de la eliminación, si agrega un "+" después del nombre del paquete, el paquete será instalado en vez de eliminarlo.
+
+     # apt-get --purge remove gnome-panel nautilus+
+     Reading Package Lists... Done
+     Building Dependency Tree... Done
+     The following extra packages will be installed:
+       bonobo libmedusa0 libnautilus0 nautilus
+     The following packages will be REMOVED:
+       gnome-applets* gnome-panel* gnome-panel-data* gnome-session*
+     The following NEW packages will be installed:
+       bonobo libmedusa0 libnautilus0 nautilus
+     0 packages upgraded, 4 newly installed, 4 to remove and 1 not upgraded.
+     Need to get 8329kB of archives. After unpacking 2594kB will be used.
+     Do you want to continue? [Y/n]
+
+Observe que apt-get enlista los paquetes que serán instalados aparte de los seleccionados (esto es, aquellos que su instalación es necesaria para el funcionamiento de aquellos que son seleccionados), aquellos que serán eliminados, y aquellos que serán instalados (incluyendo los paquetes adicionales otra vez).
+
+\subsection*{Actualizar el Sistema}
+
+Actualizar el Sistema es traer desde los repositorios las versiones mas recientes de los paquetes instalados,
+e instalarlas. Se debe utilizar la opción dist-upgrade de apt-get.
+
+Es muy importante realizar un apt-get update antes de actualizar el sistema con dist-upgrade.
+
+     # apt-get update
+     # apt-get dist-upgrade
+     Reading Package Lists... Done
+     Building Dependency Tree... Done
+     Calculating Upgrade... Done
+     The following NEW packages will be installed:
+       cpp-2.95 cron exim gcc-2.95 libident libopenldap-runtime libopenldap1
+       libpcre2 logrotate mailx
+     The following packages have been kept back
+       lilo
+     The following packages will be upgraded
+       adduser ae apt autoconf cpp debhelper dpkg-dev esound esound-common ftp gcc
+       indent ipchains isapnptools libaudiofile-dev libaudiofile0 libesd0
+       libesd0-dev libgtk1.2 libgtk1.2-dev liblockfile1 libnewt0 liborbit-dev
+       liborbit0 libstdc++2.10-glibc2.2 libtiff3g libtiff3g-dev modconf orbit
+       procps psmisc
+     31 packages upgraded, 10 newly installed, 0 to remove and 1 not upgraded.
+     Need to get 0B/7098kB of archives. After unpacking 3118kB will be used.
+
+
+\subsection*{Eliminando archivos de paquete no utilizados: apt-get clean y autoclean}
+
+Cuando APT instala un paquete, descarga los archivos necesarios de los servidores enlistados en /etc/apt/sources, estos a su vez son guardados en un depósito local (/var/cache/apt/archives/), y de ahí se procede con la instalación.
+
+Con el tiempo el depósito puede crecer y ocupar mucho espacio en disco. Afortunadamente, APT provee de herramientas para manejar su depósito local: apt-get, clean y autoclean.
+
+apt-get clean elimina todo excepto los archivos "lock" de /var/cache/apt/archives/ y /var/cache/apt/archives/partial/. Así, si necesita reinstalar un paquete APT, lo descargará de nueva cuenta.
+
+apt-get autoclean elimina sólo los archivos que no pueden ser descargados de nuevo.
+
+\subsection*{Acciones Útiles para conocer sobre los Paquetes}
+\subsubsection*{Obtener Información de un Paquete}
+
+ ¿cómo podría saber el nombre de un paquete que quiere instalar?
+
+Tenemos numerosos recursos para realizar esa tarea. Empezaremos con apt-cache. Este programa es utilizado por APT para mantener su base de datos. Nosotros sólo veremos un poco de sus aplicaciones.
+
+5.1 Descubriendo nombres de paquetes
+
+Por ejemplo, supongamos que usted quiere revivir la gloria de la época dorada del Atari 2600. Quiere utilizar APT para instalar un emulador de Atari, y después bajar algunos juegos, puede hacer lo siguiente:
+
+     # apt-cache search atari
+     atari-fdisk-cross - Partition editor for Atari (running on non-Atari)
+     circuslinux - The clowns are trying to pop balloons to score points!
+     madbomber - A Kaboom! clone
+     tcs - Character set translator.
+     atari800 - Atari emulator for svgalib/X/curses
+     stella - Atari 2600 Emulator for X windows
+     xmess-x - X binaries for Multi-Emulator Super System
+Hemos encontrado muchos paquetes relacionados con lo que estamos buscando. Para obtener mayor información de un paquete específico, hacemos lo siguiente:
+
+     # apt-cache show stella
+     Package: stella
+     Priority: extra
+     Section: non-free/otherosfs
+     Installed-Size: 830
+     Maintainer: Tom Lear <tom@trap.mtview.ca.us>
+     Architecture: i386
+     version: 1.1-2
+     Depends: libc6 (>= 2.1), libstdc++2.10, xlib6g (>= 3.3.5-1)
+     Filename: dists/potato/non-free/binary-i386/otherosfs/stella_1.1-2.deb
+     Size: 483430
+     MD5sum: 11b3e86a41a60fa1c4b334dd96c1d4b5
+     Description: Atari 2600 Emulator for X windows
+      Stella is a portable emulator of the old Atari 2600 video-game console
+      written in C++. You can play most Atari 2600 games with it. The latest
+      news, code and binaries for Stella can be found at:
+      http://www4.ncsu.edu/~bwmott/2600
+En este desplegado tiene muchos detalles sobre paquete seleccionado así como su descripcion. Si el paquete estuviera instalado y hubiera una versión más reciente, vería la información de las dos versiones, por ejemplo:
+
+     # apt-cache show lilo
+     Package: lilo
+     Priority: important
+     Section: base
+     Installed-Size: 271
+     Maintainer: Russell Coker <russell@coker.com.au>
+     Architecture: i386
+     version: 1:21.7-3
+     Depends: libc6 (>= 2.2.1-2), debconf (>=0.2.26), logrotate
+     Suggests: lilo-doc
+     Conflicts: manpages (<<1.29-3)
+     Filename: pool/main/l/lilo/lilo_21.7-3_i386.deb
+     Size: 143052
+     MD5sum: 63fe29b5317fe34ed8ec3ae955f8270e
+     Description: LInux LOader - The Classic OS loader can load Linux and others
+      This Package contains lilo (the installer) and boot-record-images to
+      install Linux, OS/2, DOS and generic Boot Sectors of other OSes.
+      .
+      You can use Lilo to manage your Master Boot Record (with a simple text screen)
+      or call Lilo from other Boot-Loaders to jump-start the Linux kernel.
+     
+     Package: lilo
+     Status: install ok installed
+     Priority: important
+     Section: base
+     Installed-Size: 190
+     Maintainer: Vincent Renardias <vincent@debian.org>
+     version: 1:21.4.3-2
+     Depends: libc6 (>= 2.1.2)
+     Recommends: mbr
+     Suggests: lilo-doc
+     Description: LInux LOader - The Classic OS loader can load Linux and others
+      This Package contains lilo (the installer) and boot-record-images to
+      install Linux, OS/2, DOS and generic Boot Sectors of other OSes.
+      .
+      You can use Lilo to manage your Master Boot Record (with a simple text screen)
+      or call Lilo from other Boot-Loaders to jump-start the Linux kernel.
+Observe que el primero en la lista es el paquete disponible y el segundo es el instalado. Para mayor información sobre un paquete puede utilizar:
+
+     # apt-cache showpkg penguin-command
+     Package: penguin-command
+     versions:
+     1.4.5-1(/var/lib/apt/lists/download.sourceforge.net_debian_dists_unstable_main_b
+     inary-i386_Packages)(/var/lib/dpkg/status)
+     
+     Reverse Depends:
+     Dependencies:
+     1.4.5-1 - libc6 (2 2.2.1-2) libpng2 (0 (null)) libsdl-mixer1.1 (2 1.1.0)
+      libsdl1.1 (0 (null)) zlib1g (2 1:1.1.3)
+     Provides:
+     1.4.5-1 -
+     Reverse Provides:
+Y sólo para saber de que paquetes depende:
+
+     [root]@[/] # apt-cache depends penguin-command
+     penguin-command
+       Depends: libc6
+       Depends: libpng2
+       Depends: libsdl-mixer1.1
+       Depends: libsdl1.1
+       Depends: zlib1g
+En resumen, tenemos una gran variedad de armas que podemos utilizar para averiguar el nombre del paquete que queramos.
+
+
+
+
+\subsubsection*{Conocer el nombre de un paquete}
+	si está instalado
+	si no está instalado
+\subsection*{Conocer el Listado de Archivos que Contiene un Paquete}
+	si está instalado
+	si no está instalado
+
+
 
 
 
