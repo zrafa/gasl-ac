@@ -24,7 +24,7 @@ Utilice el comando time para medir cuánto tiempo tarda el comando apt-get
 en descargar el índice de paquetes. 
 
 -----------------------------------------------------------------------------
-NOTA: todos los ejercicios a continuación deben realizarce para para cada uno 
+NOTA: todos los ejercicios a continuación deben realizarse para para cada uno 
 de los siguientes paquetes de sofware: 
 	* lynx-cur 
 	* irssi 
@@ -36,8 +36,68 @@ Utilizando el comando apt-cache obtenga información de los paquetes de
 software y responda:
 	3.a) ¿Qué funcionalidad provee cada uno de los paquetes?
 	3.b) ¿Cuál es el tamaño que ocuparán en disco una vez instalados?
-	3.c) ¿Quién es el mantenedor del paquete? ¿Es este necesariamente el 
+	3.c) ¿Qué versión del software se instalará? 
+	3.d) ¿El paquete posee dependencias? 
+	3.e) ¿Quién es el mantenedor del paquete? ¿Es este necesariamente el 
 	     desarrollador principal del sofware? 
-	3.d) ¿Existe alguna referencia a la fuente del desarrollo original?
+	3.f) ¿Existe alguna referencia a la fuente del desarrollo original?
 
+
+Ejercicio 4
+Instale los paquetes utilizando apt-get. Responda:
+	4.a) ¿Se instalaron otros paquetes además del requerido? 
+	4.b) Se se instalaron paquetes adicionales, liste los mismos. 
+	4.c) ¿A qué se debe la instalación de paquetes de software adicionales?
+	4.d) ¿Coinciden los paquetes adicionales instalados con la información 
+	de dependencias mostrada en el ejercicio anterior?  
+
+Ejercicio 5
+Utilizando el comando dpkg (gestor de paquetes de bajo nivel de Debian y 
+derivados) verifique que efectivamente se instalaron los paquetes. 
+
+Ejercicio 6 
+Utilizando el comando dpkg liste los archivos  contenidos en los paquetes 
+recientemente instalados. ¿Qué tipo de archivos instaló? 
+
+Ejercicio 9 
+Un usuario ha indicado que necesita el binario /usr/games/sl, utilice el 
+comando apt-file para ubicar el paquete que contiene dicho comando. Instale el 
+paquete, y ejecute sl. 
+
+Ejercicio 10
+Observe la página man de apt-get y explique qué diferencia hay entre la opción 
+remove y purge. 
+
+Ejercicio 11
+Utilice la opción remove de apt-get para eliminar el paquete apt-file. 
+	11.a) Verifique en qué estado de instalación quedo el paquete con el 
+	comando dpkg. 
+	11.b) Utilice el comando dpkg para obtener el listado de archivos que 
+	pertenecen a apt-file y que aún permanecen en el sistema. Compare el 
+	listado con lo obtenido en el ejercicio 6. 
+	11.c) ¿Qué tipo de archivos aún permanecen en el sistema? 
+	11.d) Utilice la opción purge de apt-get para completar la eliminación 
+	del paquete apt-file del sistema. 
+	11.e) Verifique el estado de instalación del paquete con el comando 
+	dpkg. 
+
+Ejercicio 12
+Vuelva a instalar el paquete apt-file. Responda:
+	12.a) ¿Cambió el tamaño total y número de dependencias descargadas 
+	con respecto a la primera vez que lo instaló? 
+	12.b) ¿Por qué cree que sucede esto? ¿Qué conclusión puede sacar con 
+	respecto a la remoción de paquetes y sus dependencias? 
+
+
+Ejercicio 14 (opcional) 
+En otra terminal conectada a la VM utilice lynx para revisar el contenido del 
+repositorio configurado para ser utilizado por apt. Revíselo a través de un 
+navegador web gráfico en la PC local. ¿En qué caso podría Lynx serle útil? 
+
+Ejercicio 15 (opcional)
+Desde una terminal conectado a la VM utilice el sofware irssi, conéctese al 
+servidor de chat utilizando el comando de irssi /connect irc.freenode.net, 
+únase al chat admins2013 mediante el comando de irssi /join admins2013 y 
+deje su mensaje :) (puede cambiar su nick utilizando el comando 
+/nick <nombre_nick> ). 
 
