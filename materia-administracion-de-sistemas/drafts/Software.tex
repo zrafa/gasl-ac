@@ -163,7 +163,7 @@ de paquetes.
 En un sistema Debian se puede definir el listado de repositorios oficial a utilizar  editando el archivo /etc/apt/sources.list
 
 Ejemplo :
-cat /etc/apt/sources.list
+{\tt cat /etc/apt/sources.list}
 
 deb http://ftp.us.debian.org/debian/ testing main
 
@@ -193,7 +193,7 @@ que se necesita es ejecutar apt-get install para instalar un nuevo programa.
 
 Ejemplo :
 
-     \# apt-get install xchat
+{\tt     \# apt-get install xchat}
 
 APT buscará en su base de datos para encontrar la versión más reciente del paquete y lo descargará del servidor correspondiente especificado en sources.list. 
 Si este paquete necesitara otro para funcionar -- como en este caso -- APT resolverá las dependencias e instalará los paquetes necesarios. Observe este ejemplo:
@@ -439,17 +439,17 @@ O la descripción del paquete, o parte de ella para encontrar el nombre completo
 
 Si se necesita instalar un paquete, y no puede saber como se llama al buscarlo con apt-cache, pero se sabe el nombre de un archivo que pertenece al paquete, entonces se puede utilizar apt-file para encontrar el nombre del paquete que se busca. Esto se hace de la siguiente manera:
 
-     \$ apt-file search filename
+{\tt     \$ apt-file search filename}
 
 Trabaja de manera similar a dpkg -S, pero tambien muestra paquetes sin instalar que contengan ese archivo. Puede también ser utilizado para saber que paquetes contiene archivos de inclusión para la compilación de ciertos programas.
 
 También puede enlistar el contenido de un paquete ejecutando:
 
-     \$ apt-file list packagename
+   {\tt  \$ apt-file list packagename}
 
 apt-file mantiene una base de datos sobre que archivos tiene cada paquete, tal como auto-apt lo hace y necesita estar al día. Esto se hace asi:
 
-     \# apt-file update
+     {\tt\# apt-file update}
 
 
 \subsection*{Conocer el Listado de Archivos que Contiene un Paquete}
