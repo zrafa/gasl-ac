@@ -1,0 +1,43 @@
+******************************************************************
+        Administración de Sistemas
+        Departamento Ingeniería de Computadoras
+        Facultad de Informática - Universidad Nacional del Comahue
+******************************************************************
+
+TP N 8 - Administración de software
+----------------------------------------------------
+
+
+ NOTA : Los siguientes ejercicios se realizan en su totalidad desde una
+        terminal en un sistema GNU/Linux .
+        Para cada pregunte indique el comando o los comandos que utilizó
+        para obtener la respuesta.
+
+Ejercicio 1 
+Indique cuáles son los repositorios actualmente configurados para ser utilizado
+por el conjunto de comandos apt. ¿Puede acceder a los repositorios desde un 
+navegador web? 
+
+Ejercicio 2
+
+Utilice el comando time para medir cuánto tiempo tarda el comando apt-get 
+en descargar el índice de paquetes. 
+
+-----------------------------------------------------------------------------
+NOTA: todos los ejercicios a continuación deben realizarce para para cada uno 
+de los siguientes paquetes de sofware: 
+	* lynx-cur 
+	* irssi 
+	* apt-file 
+-----------------------------------------------------------------------------
+
+Ejercicio 3
+Utilizando el comando apt-cache obtenga información de los paquetes de 
+software y responda:
+	3.a) ¿Qué funcionalidad provee cada uno de los paquetes?
+	3.b) ¿Cuál es el tamaño que ocuparán en disco una vez instalados?
+	3.c) ¿Quién es el mantenedor del paquete? ¿Es este necesariamente el 
+	     desarrollador principal del sofware? 
+	3.d) ¿Existe alguna referencia a la fuente del desarrollo original?
+
+
