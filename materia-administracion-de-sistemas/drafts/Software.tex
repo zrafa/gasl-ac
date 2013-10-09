@@ -122,11 +122,14 @@ Generalmente, las distribuciones GNU/Linux proporcionan una red de servidores qu
 el servicio de repositorios de software a los usuarios, de modo que siempre
 esté disponible el servicio para la instalación de programas en estos sistemas.
 
-ATENCION: Los desarrolladores de software de terceros también proporcionan repositorios
+\fcolorbox{black}{grey}{
+\parbox[t]{1.0\linewidth}{ \vspace*{0.4cm}
+Los desarrolladores de software de terceros también proporcionan repositorios
 para sus paquetes compatibles con distintas distribuciones GNU/Linux. Pero,
 es importante recordar que {\bf no es recomendado instalar software que no se encuentre en los 
 repositorios oficiales}. Además, es frecuente que al instalar software de terceras 
 partes el administrador deba utilizar métodos manuales.
+\vspace*{0.4cm} } }
 
 \subsection*{Sistema de Gestión de Paquetes de Software}
 
@@ -163,13 +166,15 @@ de paquetes.
 En un sistema Debian se puede definir el listado de repositorios oficial a utilizar  editando el archivo /etc/apt/sources.list
 
 Ejemplo :
-{\tt cat /etc/apt/sources.list}
-
-deb http://ftp.us.debian.org/debian/ testing main
+\colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} {\tt
+cat /etc/apt/sources.list \\
+ \\
+deb http://ftp.us.debian.org/debian/ testing main \\
+ } \vspace*{0.5cm} } } 
 
 Con esta línea individual se le indica al sistema que utilice el repositorio oficial de Debian, versión testing.
 
-Para que el sistema Debian conozca ''cuál'' es el listado de paquetes disponibles se debe ejecutar apt-get update
+Para que el sistema Debian conozca ``cuál'' es el listado de paquetes disponibles se debe ejecutar apt-get update
 
 El comando apt-get update sincroniza el índice de paquetes desde sus
            fuentes. Los índices de paquetes disponibles se obtienen de los
@@ -181,8 +186,13 @@ El comando apt-get update sincroniza el índice de paquetes desde sus
            que el indicador de progreso será incorrecto, ya que se desconoce
            de antemano el tamaño de los archivos de paquete.
 
-Poner dentro de un recuadro gris:
+\fcolorbox{black}{grey}{
+\parbox[t]{1.0\linewidth}{ \vspace*{0.4cm}
+{\bf Lo importante:} 
 Es una buena costumbre ejecutar este archivo regularmente para mantenerse informado acerca de las posibilidades de actualización para el sistema, particularmente las actualizaciones de seguridad.
+\vspace*{0.4cm} } }
+
+
 
 En redhat el comando es :
 
@@ -212,7 +222,7 @@ Si este paquete necesitara otro para funcionar -- como en este caso -- APT resol
      Do you want to continue? [Y/n]\\
  } \vspace*{0.5cm} } } 
 
-El paquete nautilus necesita las librerías compartidas mencionadas, así pues APT las descargará del servidor. Si se especifican antes los nombres de esas librerías con el comando apt-get APT no pregunta, si desea continuar o no; supone automáticamente que se desean instalar esos paquetes.
+El paquete nautilus necesita las biblotecas compartidas mencionadas, así pues APT las descargará del servidor. Si se especifican antes los nombres de esas biblotecas con el comando apt-get APT no pregunta, si desea continuar o no; supone automáticamente que se desean instalar esos paquetes.
 
 Esto significa que APT sólo pregunta por confirmación cuando se van a instalar paquetes que no fueron especificados en la línea de comando.
 
@@ -378,7 +388,7 @@ Hemos encontrado muchos paquetes relacionados con lo que se esta buscando. Para 
      Architecture: i386\\
      version: 1.1-2\\
      Depends: libc6 (>= 2.1), libstdc++2.10, xlib6g (>= 3.3.5-1)\\
-     Filename: dists/potato/non-free/binary-i386/otherosfs/stella_1.1-2.deb\\
+     Filename: dists/potato/non-free/binary-i386/otherosfs/stella\_1.1-2.deb\\
      Size: 483430\\
      MD5sum: 11b3e86a41a60fa1c4b334dd96c1d4b5\\
      Description: Atari 2600 Emulator for X windows\\
@@ -391,7 +401,7 @@ Hemos encontrado muchos paquetes relacionados con lo que se esta buscando. Para 
 Observe varias cosas.
 
 Existe un campo que le indica el tamaño del paquete una vez instalado (Installed-Size).
-Existe un campo descripción, que le indica ''qué contiene el paquete'' (campo Description).
+Existe un campo descripción, que le indica ``qué contiene el paquete'' (campo Description).
 Exsite un campo que le indica el nombre del archivo del paquete (Filename).
 
 
@@ -421,7 +431,7 @@ Para averiguar los nombres de paquetes instalados en su sistema, lo cual es úti
      ii  mozilla-browse 0.9.6-7        Mozilla Web Browser \\
  } \vspace*{0.5cm} } } 
 
-El problema con este comando radica en que puede "truncar" el nombre del programa. En el ejemplo anterior, el nombre completo del paquete es mozilla-browser. Para arreglar esto, puede utilizar las variables de ambiente COLUMNS de este modo:
+El problema con este comando radica en que puede ``truncar'' el nombre del programa. En el ejemplo anterior, el nombre completo del paquete es mozilla-browser. Para arreglar esto, puede utilizar las variables de ambiente COLUMNS de este modo:
 
 \colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} {\tt
      \$ COLUMNS=132 dpkg -l | grep mozilla \\
@@ -458,6 +468,28 @@ apt-file mantiene una base de datos sobre que archivos tiene cada paquete, tal c
 Para conocer el listado de archivos que un paquete provee, utilice el comando dpkg -L nombre-de-paquete.
 
 
+Ejemplo :
+
+\colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} {\tt
+\# dpkg -L xtrlock \\
+/. \\
+/usr \\
+/usr/bin \\
+/usr/bin/xtrlock \\
+/usr/share \\
+/usr/share/man \\
+/usr/share/man/man1 \\
+/usr/share/man/man1/xtrlock.1x.gz \\
+/usr/share/doc \\
+/usr/share/doc/xtrlock \\
+/usr/share/doc/xtrlock/copyright \\
+/usr/share/doc/xtrlock/changelog.gz \\
+/usr/share/doc/xtrlock/README.Debian.gz \\
+/usr/lib \\
+/usr/lib/menu \\
+/usr/lib/menu/xtrlock \\
+/usr/share/doc/xtrlock/changelog.Debian.gz \\
+ } \vspace*{0.5cm} } } 
 
 
 
