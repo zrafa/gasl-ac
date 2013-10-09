@@ -315,6 +315,13 @@ Es muy importante realizar un apt-get update antes de actualizar el sistema con 
      31 packages upgraded, 10 newly installed, 0 to remove and 1 not upgraded.
      Need to get 0B/7098kB of archives. After unpacking 3118kB will be used.
 
+           dist-upgrade, además de realizar las acciones de upgrade, trata
+           inteligentemente los cambios de dependencias debidos a las nuevas
+           versiones de paquetes.  apt-get tiene un sistema «inteligente» de
+           resolución de conflictos, y si es necesario tratará de actualizar
+           los paquetes más importantes a costa de los menos importantes. El
+           fichero /etc/apt/sources.list contiene la lista de sitios desde los
+           que descargar los ficheros de paquetes. 
 
 \subsection*{Eliminando archivos de paquete no utilizados: apt-get clean y autoclean}
 
@@ -329,13 +336,9 @@ apt-get autoclean elimina sólo los archivos que no pueden ser descargados de nu
 \subsection*{Acciones Útiles para conocer sobre los Paquetes}
 \subsubsection*{Obtener Información de un Paquete}
 
- ¿cómo podría saber el nombre de un paquete que quiere instalar?
+ ¿Cómo se puede saber el nombre de un paquete que se quiere instalar?
 
-Tenemos numerosos recursos para realizar esa tarea. Empezaremos con apt-cache. Este programa es utilizado por APT para mantener su base de datos. Nosotros sólo veremos un poco de sus aplicaciones.
-
-5.1 Descubriendo nombres de paquetes
-
-Por ejemplo, supongamos que usted quiere revivir la gloria de la época dorada del Atari 2600. Quiere utilizar APT para instalar un emulador de Atari, y después bajar algunos juegos, puede hacer lo siguiente:
+Por ejemplo, suponga que quiere revivir la gloria de la época dorada del Atari 2600. Quiere utilizar APT para instalar un emulador de Atari, y después bajar algunos juegos, puede hacer lo siguiente:
 
      # apt-cache search atari
      atari-fdisk-cross - Partition editor for Atari (running on non-Atari)
@@ -345,7 +348,8 @@ Por ejemplo, supongamos que usted quiere revivir la gloria de la época dorada d
      atari800 - Atari emulator for svgalib/X/curses
      stella - Atari 2600 Emulator for X windows
      xmess-x - X binaries for Multi-Emulator Super System
-Hemos encontrado muchos paquetes relacionados con lo que estamos buscando. Para obtener mayor información de un paquete específico, hacemos lo siguiente:
+
+Hemos encontrado muchos paquetes relacionados con lo que se esta buscando. Para obtener mayor información de un paquete específico, puede hacer lo siguiente:
 
      # apt-cache show stella
      Package: stella
@@ -364,80 +368,65 @@ Hemos encontrado muchos paquetes relacionados con lo que estamos buscando. Para 
       written in C++. You can play most Atari 2600 games with it. The latest
       news, code and binaries for Stella can be found at:
       http://www4.ncsu.edu/~bwmott/2600
-En este desplegado tiene muchos detalles sobre paquete seleccionado así como su descripcion. Si el paquete estuviera instalado y hubiera una versión más reciente, vería la información de las dos versiones, por ejemplo:
 
-     # apt-cache show lilo
-     Package: lilo
-     Priority: important
-     Section: base
-     Installed-Size: 271
-     Maintainer: Russell Coker <russell@coker.com.au>
-     Architecture: i386
-     version: 1:21.7-3
-     Depends: libc6 (>= 2.2.1-2), debconf (>=0.2.26), logrotate
-     Suggests: lilo-doc
-     Conflicts: manpages (<<1.29-3)
-     Filename: pool/main/l/lilo/lilo_21.7-3_i386.deb
-     Size: 143052
-     MD5sum: 63fe29b5317fe34ed8ec3ae955f8270e
-     Description: LInux LOader - The Classic OS loader can load Linux and others
-      This Package contains lilo (the installer) and boot-record-images to
-      install Linux, OS/2, DOS and generic Boot Sectors of other OSes.
-      .
-      You can use Lilo to manage your Master Boot Record (with a simple text screen)
-      or call Lilo from other Boot-Loaders to jump-start the Linux kernel.
-     
-     Package: lilo
-     Status: install ok installed
-     Priority: important
-     Section: base
-     Installed-Size: 190
-     Maintainer: Vincent Renardias <vincent@debian.org>
-     version: 1:21.4.3-2
-     Depends: libc6 (>= 2.1.2)
-     Recommends: mbr
-     Suggests: lilo-doc
-     Description: LInux LOader - The Classic OS loader can load Linux and others
-      This Package contains lilo (the installer) and boot-record-images to
-      install Linux, OS/2, DOS and generic Boot Sectors of other OSes.
-      .
-      You can use Lilo to manage your Master Boot Record (with a simple text screen)
-      or call Lilo from other Boot-Loaders to jump-start the Linux kernel.
-Observe que el primero en la lista es el paquete disponible y el segundo es el instalado. Para mayor información sobre un paquete puede utilizar:
+Observe varias cosas.
 
-     # apt-cache showpkg penguin-command
-     Package: penguin-command
-     versions:
-     1.4.5-1(/var/lib/apt/lists/download.sourceforge.net_debian_dists_unstable_main_b
-     inary-i386_Packages)(/var/lib/dpkg/status)
-     
-     Reverse Depends:
-     Dependencies:
-     1.4.5-1 - libc6 (2 2.2.1-2) libpng2 (0 (null)) libsdl-mixer1.1 (2 1.1.0)
-      libsdl1.1 (0 (null)) zlib1g (2 1:1.1.3)
-     Provides:
-     1.4.5-1 -
-     Reverse Provides:
-Y sólo para saber de que paquetes depende:
-
-     [root]@[/] # apt-cache depends penguin-command
-     penguin-command
-       Depends: libc6
-       Depends: libpng2
-       Depends: libsdl-mixer1.1
-       Depends: libsdl1.1
-       Depends: zlib1g
-En resumen, tenemos una gran variedad de armas que podemos utilizar para averiguar el nombre del paquete que queramos.
+Existe un campo que le indica el tamaño del paquete una vez instalado (Installed-Size).
+Existe un campo descripción, que le indica ''qué contiene el paquete'' (campo Description).
+Exsite un campo que le indica el nombre del archivo del paquete (Filename).
 
 
 
+\subsubsection*{Utilizando dpkg para conocer los nombres de paquetes}
 
-\subsubsection*{Conocer el nombre de un paquete}
-	si está instalado
-	si no está instalado
+Uno de los caminos para conocer el nombre de un paquete es saber el nombre de un archivo importante que sea contenido por ese paquete. Por ejemplo, para conocer el paquete que ofrece ciertos archivos ".h" puede ejecutar:
+
+     # dpkg -S stdio.h
+     libc6-dev: /usr/include/stdio.h
+     libc6-dev: /usr/include/bits/stdio.h
+     perl: /usr/lib/perl/5.6.0/CORE/nostdio.h
+
+o:
+
+     # dpkg -S /usr/include/stdio.h
+     libc6-dev: /usr/include/stdio.h
+
+Para averiguar los nombres de paquetes instalados en su sistema, lo cual es útil por ejemplo, si planea limpiar su disco duro, ejecuta:
+
+     # dpkg -l | grep mozilla
+     ii  mozilla-browse 0.9.6-7        Mozilla Web Browser
+
+El problema con este comando radica en que puede "truncar" el nombre del programa. En el ejemplo anterior, el nombre completo del paquete es mozilla-browser. Para arreglar esto, puede utilizar las variables de ambiente COLUMNS de este modo:
+
+     [kov]@[couve] $ COLUMNS=132 dpkg -l | grep mozilla
+     ii  mozilla-browser             0.9.6-7                     Mozilla Web Browser - core and browser
+
+O la descripción del paquete, o parte de ella para encontrar el nombre completo. Como se muestra a continuación:
+
+     # apt-cache search "Mozilla Web Browser"
+     mozilla-browser - Mozilla Web BrowserConocer el nombre de un paquete}
+
+
+
+Si se necesita instalar un paquete, y no puede saber como se llama al buscarlo con apt-cache, pero se sabe el nombre de un archivo que pertenece al paquete, entonces se puede utilizar apt-file para encontrar el nombre del paquete que se busca. Esto se hace de la siguiente manera:
+
+     $ apt-file search filename
+
+Trabaja de manera similar a dpkg -S, pero tambien muestra paquetes sin instalar que contengan ese archivo. Puede también ser utilizado para saber que paquetes contiene archivos de inclusión para la compilación de ciertos programas.
+
+También puede enlistar el contenido de un paquete ejecutando:
+
+     $ apt-file list packagename
+
+apt-file mantiene una base de datos sobre que archivos tiene cada paquete, tal como auto-apt lo hace y necesita estar al día. Esto se hace asi:
+
+     # apt-file update
+
+
 \subsection*{Conocer el Listado de Archivos que Contiene un Paquete}
-	si está instalado
-	si no está instalado
+
+
+Para conocer el listado de archivos que un paquete provee, utilice el comando dpkg -L nombre-de-paquete.
 
 
 
