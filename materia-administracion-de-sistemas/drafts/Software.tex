@@ -102,7 +102,7 @@ Un paquete de software es una serie de programas que se distribuyen conjuntament
 Los paquetes incluyen información importante, además del software mismo, como pueden ser el nombre completo, una descripción de su funcionalidad, el número de versión, el distribuidor del software, la suma de verificación y una lista de otros paquetes requeridos para el correcto funcionamiento del software. Esta metainformación se introduce normalmente en una base de datos de paquetes local.
 
 Existen diferentes formatos de paquetes utilizados, pero 
-dos formatos de paquetes binarios ampliamente utilizados son los formatos DEB y RPM.
+dos formatos de paquetes binarios ampliamente difundidos son los formatos DEB y RPM.
 
 {\bf deb} es el formato y la extensión del nombre de los archivos de paquetes de software de la distribución de Linux Debian y derivadas (e.j.Ubuntu), y, el nombre más usado para dichos paquetes. 
 {\bf rpm} es el formato y extensión del nombre de los archivos de paquetes de la distribucion Red Hat y muchas otras.
@@ -112,20 +112,21 @@ dos formatos de paquetes binarios ampliamente utilizados son los formatos DEB y 
 
 
 Un repositorio es un directorio o sitio web que contiene paquetes de software y archivos de índices. 
-Las utilidades de administración de software como yum o apt automáticamente ubican y obtienen 
+Las utilidades de administración de software como yum o apt (definiremos yum y apt mas adelante)
+automáticamente ubican y obtienen 
 los paquetes desde esos repositorios. Este método libera al administrador de tener que buscar e instalar las nuevas aplicaciones o actualizaciones de forma manual. 
 
-Generalmente, las distribuciones GNU/Linux proporcionan Una red de servidores que proveen 
+Generalmente, las distribuciones GNU/Linux proporcionan una red de servidores que proveen 
 el servicio de repositorios de software a los usuarios, de modo que siempre
 esté disponible el servicio para la instalación de programas en estos sistemas.
 
 ATENCION: Los desarrolladores de software de terceros también proporcionan repositorios
-para sus paquetes compatibles 
-con distintas distribuciones GNU/Linux, aunque instalar software que no se encuentre en los 
-repositorios oficiales no es recomendado. Además, es frecuente que el administrador
-de sistemas deba gestioner el software de terceros utilizando métodos manuales.
+para sus paquetes compatibles con distintas distribuciones GNU/Linux. Pero,
+es importante recordar que {\bf no es recomendado instalar software que no se encuentre en los 
+repositorios oficiales}. Además, es frecuente que al instalar software de terceras 
+partes el administrador deba utilizar métodos manuales.
 
-\subsection*{Sistema de Gestión de Paquetes de software}
+\subsection*{Sistema de Gestión de Paquetes de Software}
 
 Un sistema de gestión de paquetes, también conocido como gestor de paquetes, es una colección de herramientas que sirven para automatizar el proceso de instalación, actualización, configuración y eliminación de paquetes de software.
 
@@ -133,19 +134,12 @@ Existen decenas de sistemas de gestión de paquetes. Cada distribución GNU/Linu
 por un sistema oficialmente. Dos de los sistemas mas utilizados en distribuciones
 que utilizan paquetes binarios son dpkg y rpm.
 
-dpkg es la base del sistema de gestión de paquetes creado por el proyecto Debian GNU/Linux, mientras que rpm
+{\bf dpkg} es la base del sistema de gestión de paquetes creado por el proyecto Debian GNU/Linux, mientras que {\bf rpm}
 fue desarrollado por Red Hat.
 Ambos sistemas se utilizan en las principales distribuciones GNU/Linux. dpkg y el formato
 deb se utilizan en Debian, Ubuntu, Tuquito, Mint, y muchas otras. RPM es utilizado por
-las distribuciones Fedora, CentOS, Red Hat, Suse Linux, y varias otras.
+las distribuciones Fedora, CentOS, Red Hat, Suse Linux, y varias mas.
 
-\begin{itemize}
-\item \texttt{tar.gz} Puede contener casi cualquier cosa, pero cuando hablamos
-de paquetes de software en general se utilizan para distribuir \textit{archivos
-fuente}, que deberán ser posteriormente \textit{compilados} como paso previo 
-a ser efectivamente ejecutados. 
-\item \texttt{.deb o .rpm} En general se usa
-\end{itemize}
 
 
 \section*{Licencia}
