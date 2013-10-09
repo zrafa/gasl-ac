@@ -140,7 +140,7 @@ por un sistema oficialmente. Dos de los sistemas mas utilizados en distribucione
 que utilizan paquetes binarios son dpkg y rpm.
 
 {\bf dpkg} es la base del sistema de gestión de paquetes creado por el proyecto Debian GNU/Linux, mientras que {\bf rpm}
-fue desarrollado por Red Hat.
+fue adoptado por Red Hat.
 Ambos sistemas se utilizan en las principales distribuciones GNU/Linux. dpkg y el formato
 deb se utilizan en Debian, Ubuntu, Tuquito, Mint, y muchas otras. RPM es utilizado por
 las distribuciones Fedora, CentOS, Red Hat, Suse Linux, y varias mas.
@@ -163,22 +163,23 @@ de paquetes.
 
 \subsection*{Actualizar la lista de paquetes disponibles}
 
-En un sistema Debian se puede definir el listado de repositorios oficial a utilizar  editando el archivo /etc/apt/sources.list
+En un sistema Debian se puede definir el listado de repositorios oficial a utilizar  editando el archivo {\tt /etc/apt/sources.list}
 
 Ejemplo :
+
 \colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} {\tt
-cat /etc/apt/sources.list \\
+\# cat /etc/apt/sources.list \\
  \\
 deb http://ftp.us.debian.org/debian/ testing main \\
  } \vspace*{0.5cm} } } 
 
 Con esta línea individual se le indica al sistema que utilice el repositorio oficial de Debian, versión testing.
 
-Para que el sistema Debian conozca ``cuál'' es el listado de paquetes disponibles se debe ejecutar apt-get update
+Para que el sistema Debian conozca ``cuál'' es el listado de paquetes disponibles se debe ejecutar \texttt{apt-get update}
 
-El comando apt-get update sincroniza el índice de paquetes desde sus
+El comando \texttt{apt-get update} sincroniza el índice de paquetes desde sus
            fuentes. Los índices de paquetes disponibles se obtienen de los
-           lugares especificados en /etc/apt/sources.list. Por ejemplo, cuando
+           lugares especificados en \texttt{/etc/apt/sources.list}. Por ejemplo, cuando
            se usa un archivo de Debian, esta orden descarga y analiza los
            ficheros Packages.gz, de tal forma que la información acerca de los
            nuevos paquetes pasa a estar disponible. Siempre se debe realizar
@@ -198,8 +199,8 @@ En redhat el comando es :
 
 \subsection*{Instalar un Paquete de Software}
 
-Con el archivo /etc/apt/sources.list definido correctamente, y la lista de paquetes local al día, todo lo
-que se necesita es ejecutar apt-get install para instalar un nuevo programa.
+Con el archivo \texttt{/etc/apt/sources.list} definido correctamente, y la lista de paquetes local al día, todo lo
+que se necesita es ejecutar \texttt{apt-get install} para instalar un nuevo programa.
 
 Ejemplo :
 
@@ -226,7 +227,7 @@ El paquete nautilus necesita las biblotecas compartidas mencionadas, así pues A
 
 Esto significa que APT sólo pregunta por confirmación cuando se van a instalar paquetes que no fueron especificados en la línea de comando.
 
-Pueden seleccionarse varios paquetes para instalar en una sola línea. Los archivos descargados son almacenados en el directorio /var/cache/apt/archives para su instalación posterior.
+Pueden seleccionarse varios paquetes para instalar en una sola línea. Los archivos descargados son almacenados en el directorio \texttt{/var/cache/apt/archives} para su instalación posterior.
 
 Puede especificar también que paquetes serán eliminados en la misma línea. Sólo agregue un "-" inmediatamente después del nombre del paquete que quiere eliminar, por ejemplo:
 
@@ -263,7 +264,7 @@ Si de alguna forma daña un paquete instalado, o simplemente desea reinstalar la
 
 \subsection*{Quitar un Paquete de Software del Sistema}
 
-Si ya no necesita utilizar cierto paquete, puede eliminarlo de su sistema utilizando APT. Para realizar esta tarea sólo escriba: apt-get remove paquete. por ejemplo:
+Si ya no necesita utilizar cierto paquete, puede eliminarlo de su sistema utilizando APT. Para realizar esta tarea sólo escriba: \texttt{apt-get remove paquete}. por ejemplo:
 
 \colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} {\tt
      \# apt-get remove gnome-panel\\
@@ -293,7 +294,7 @@ Ejecutando apt-get como en el ejemplo causará que los paquetes sean eliminados,
 
 Observe el "*" después de los nombres. Esto indica que los archivos de configuración de cada paquete serán eliminados también.
 
-Al igual que en el caso de la instalación, puede utilizar un símbolo con la opción de "remove" para invertir el significado de un paquete en especial. En el caso de la eliminación, si agrega un "+" después del nombre del paquete, el paquete será instalado en vez de eliminarlo.
+Al igual que en el caso de la instalación, puede utilizar un símbolo con la opción de "remove" para invertir el significado de un paquete en especial. En el caso de la eliminación, si agrega un ``+'' después del nombre del paquete, el paquete será instalado en vez de eliminarlo.
 
 \colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} {\tt
      \# apt-get --purge remove gnome-panel nautilus+\\
@@ -317,7 +318,7 @@ Observe que apt-get enlista los paquetes que serán instalados aparte de los sel
 Actualizar el Sistema es traer desde los repositorios las versiones mas recientes de los paquetes instalados,
 e instalarlas. Se debe utilizar la opción dist-upgrade de apt-get.
 
-Es muy importante realizar un apt-get update antes de actualizar el sistema con dist-upgrade.
+Es muy importante realizar un \texttt{apt-get update} antes de actualizar el sistema con dist-upgrade.
 
 \colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} {\tt
      \# apt-get update\\
@@ -335,7 +336,6 @@ Es muy importante realizar un apt-get update antes de actualizar el sistema con 
        indent ipchains isapnptools libaudiofile-dev libaudiofile0 libesd0\\
        libesd0-dev libgtk1.2 libgtk1.2-dev liblockfile1 libnewt0 liborbit-dev\\
        liborbit0 libstdc++2.10-glibc2.2 libtiff3g libtiff3g-dev modconf orbit\\
-       procps psmisc\\
      31 packages upgraded, 10 newly installed, 0 to remove and 1 not upgraded.\\
      Need to get 0B/7098kB of archives. After unpacking 3118kB will be used.\\
  } \vspace*{0.5cm} } } 
@@ -345,18 +345,18 @@ Es muy importante realizar un apt-get update antes de actualizar el sistema con 
            versiones de paquetes.  apt-get tiene un sistema «inteligente» de
            resolución de conflictos, y si es necesario tratará de actualizar
            los paquetes más importantes a costa de los menos importantes. El
-           fichero /etc/apt/sources.list contiene la lista de sitios desde los
+           fichero \texttt{/etc/apt/sources.list} contiene la lista de sitios desde los
            que descargar los ficheros de paquetes. 
 
 \subsection*{Eliminando archivos de paquete no utilizados: apt-get clean y autoclean}
 
-Cuando APT instala un paquete, descarga los archivos necesarios de los servidores enlistados en /etc/apt/sources, estos a su vez son guardados en un depósito local (/var/cache/apt/archives/), y de ahí se procede con la instalación.
+Cuando APT instala un paquete, descarga los archivos necesarios de los servidores enlistados en \texttt{/etc/apt/sources}, estos a su vez son guardados en un depósito local (\texttt{/var/cache/apt/archives/}), y de ahí se procede con la instalación.
 
 Con el tiempo el depósito puede crecer y ocupar mucho espacio en disco. Afortunadamente, APT provee de herramientas para manejar su depósito local: apt-get, clean y autoclean.
 
-apt-get clean elimina todo excepto los archivos "lock" de /var/cache/apt/archives/ y /var/cache/apt/archives/partial/. Así, si necesita reinstalar un paquete APT, lo descargará de nueva cuenta.
+\texttt{apt-get clean} elimina todo excepto los archivos "lock" de \texttt{/var/cache/apt/archives/} y \texttt{/var/cache/apt/archives/partial/}. Así, si necesita reinstalar un paquete APT, lo descargará de nueva cuenta.
 
-apt-get autoclean elimina sólo los archivos que no pueden ser descargados de nuevo.
+\texttt{apt-get autoclean} elimina sólo los archivos que no pueden ser descargados de nuevo.
 
 \subsection*{Acciones Útiles para conocer sobre los Paquetes}
 \subsubsection*{Obtener Información de un Paquete}
@@ -447,17 +447,17 @@ O la descripción del paquete, o parte de ella para encontrar el nombre completo
 
 
 
-Si se necesita instalar un paquete, y no puede saber como se llama al buscarlo con apt-cache, pero se sabe el nombre de un archivo que pertenece al paquete, entonces se puede utilizar apt-file para encontrar el nombre del paquete que se busca. Esto se hace de la siguiente manera:
+Si se necesita instalar un paquete, y no puede saber como se llama al buscarlo con apt-cache, pero se sabe el nombre de un archivo que pertenece al paquete, entonces se puede utilizar \texttt{apt-file} para encontrar el nombre del paquete que se busca. Esto se hace de la siguiente manera:
 
 {\tt     \$ apt-file search filename}
 
-Trabaja de manera similar a dpkg -S, pero tambien muestra paquetes sin instalar que contengan ese archivo. Puede también ser utilizado para saber que paquetes contiene archivos de inclusión para la compilación de ciertos programas.
+Trabaja de manera similar a \texttt{dpkg -S}, pero tambien muestra paquetes sin instalar que contengan ese archivo. Puede también ser utilizado para saber que paquetes contiene archivos de inclusión para la compilación de ciertos programas.
 
 También puede enlistar el contenido de un paquete ejecutando:
 
    {\tt  \$ apt-file list packagename}
 
-apt-file mantiene una base de datos sobre que archivos tiene cada paquete, tal como auto-apt lo hace y necesita estar al día. Esto se hace asi:
+\texttt{apt-file} mantiene una base de datos sobre que archivos tiene cada paquete, tal como auto-apt lo hace y necesita estar al día. Esto se hace asi:
 
      {\tt\# apt-file update}
 
@@ -465,7 +465,7 @@ apt-file mantiene una base de datos sobre que archivos tiene cada paquete, tal c
 \subsection*{Conocer el Listado de Archivos que Contiene un Paquete}
 
 
-Para conocer el listado de archivos que un paquete provee, utilice el comando dpkg -L nombre-de-paquete.
+Para conocer el listado de archivos que un paquete provee, utilice el comando \texttt{dpkg -L nombre-de-paquete}.
 
 
 Ejemplo :
