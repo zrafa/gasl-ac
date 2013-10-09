@@ -193,21 +193,24 @@ que se necesita es ejecutar apt-get install para instalar un nuevo programa.
 
 Ejemplo :
 
-     # apt-get install xchat
+     \# apt-get install xchat
 
 APT buscará en su base de datos para encontrar la versión más reciente del paquete y lo descargará del servidor correspondiente especificado en sources.list. 
 Si este paquete necesitara otro para funcionar -- como en este caso -- APT resolverá las dependencias e instalará los paquetes necesarios. Observe este ejemplo:
 
-     # apt-get install nautilus
-     Reading Package Lists... Done
-     Building Dependency Tree... Done
-     The following extra packages will be installed:
-       bonobo libmedusa0 libnautilus0
-     The following NEW packages will be installed:
-       bonobo libmedusa0 libnautilus0 nautilus
-     0 packages upgraded, 4 newly installed, 0 to remove and 1 not upgraded.
-     Need to get 8329kB of archives. After unpacking 17.2MB will be used.
-     Do you want to continue? [Y/n]
+
+\colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} {\tt
+     \# apt-get install nautilus \\ 
+     Reading Package Lists... Done \\
+     Building Dependency Tree... Done\\
+     The following extra packages will be installed:\\
+       bonobo libmedusa0 libnautilus0\\
+     The following NEW packages will be installed:\\
+       bonobo libmedusa0 libnautilus0 nautilus\\
+     0 packages upgraded, 4 newly installed, 0 to remove and 1 not upgraded.\\
+     Need to get 8329kB of archives. After unpacking 17.2MB will be used.\\
+     Do you want to continue? [Y/n]\\
+ } \vspace*{0.5cm} } } 
 
 El paquete nautilus necesita las librerías compartidas mencionadas, así pues APT las descargará del servidor. Si se especifican antes los nombres de esas librerías con el comando apt-get APT no pregunta, si desea continuar o no; supone automáticamente que se desean instalar esos paquetes.
 
@@ -217,30 +220,34 @@ Pueden seleccionarse varios paquetes para instalar en una sola línea. Los archi
 
 Puede especificar también que paquetes serán eliminados en la misma línea. Sólo agregue un "-" inmediatamente después del nombre del paquete que quiere eliminar, por ejemplo:
 
-     # apt-get install nautilus gnome-panel-
-     Reading Package Lists... Done
-     Building Dependency Tree... Done
-     The following extra packages will be installed:
-       bonobo libmedusa0 libnautilus0
-     The following packages will be REMOVED:
-       gnome-applets gnome-panel gnome-panel-data gnome-session
-     The following NEW packages will be installed:
-       bonobo libmedusa0 libnautilus0 nautilus
-     0 packages upgraded, 4 newly installed, 4 to remove and 1 not upgraded.
-     Need to get 8329kB of archives. After unpacking 2594kB will be used.
-     Do you want to continue? [Y/n]
+\colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} {\tt
+     \# apt-get install nautilus gnome-panel-\\
+     Reading Package Lists... Done\\
+     Building Dependency Tree... Done\\
+     The following extra packages will be installed:\\
+       bonobo libmedusa0 libnautilus0\\
+     The following packages will be REMOVED:\\
+       gnome-applets gnome-panel gnome-panel-data gnome-session\\
+     The following NEW packages will be installed:\\
+       bonobo libmedusa0 libnautilus0 nautilus\\
+     0 packages upgraded, 4 newly installed, 4 to remove and 1 not upgraded.\\
+     Need to get 8329kB of archives. After unpacking 2594kB will be used.\\
+     Do you want to continue? [Y/n]\\
+ } \vspace*{0.5cm} } } 
 
 \subsubsection*{Reinstalar un Paquete}
 
 Si de alguna forma daña un paquete instalado, o simplemente desea reinstalar la versión más nueva disponible del paquete, puede utilizar la opción --reinstall como se muestra:
 
-     # apt-get --reinstall install gdm
-     Reading Package Lists... Done
-     Building Dependency Tree... Done
-     0 packages upgraded, 0 newly installed, 1 reinstalled, 0 to remove and 1 not
-      upgraded.
-     Need to get 0B/182kB of archives. After unpacking 0B will be used.
-     Do you want to continue? [Y/n]
+\colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} {\tt
+     \# apt-get --reinstall install gdm\\
+     Reading Package Lists... Done\\
+     Building Dependency Tree... Done\\
+     0 packages upgraded, 0 newly installed, 1 reinstalled, 0 to remove and 1 not\\
+      upgraded.\\
+     Need to get 0B/182kB of archives. After unpacking 0B will be used.\\
+     Do you want to continue? [Y/n]\\
+ } \vspace*{0.5cm} } } 
 
 
 
@@ -248,44 +255,50 @@ Si de alguna forma daña un paquete instalado, o simplemente desea reinstalar la
 
 Si ya no necesita utilizar cierto paquete, puede eliminarlo de su sistema utilizando APT. Para realizar esta tarea sólo escriba: apt-get remove paquete. por ejemplo:
 
-     # apt-get remove gnome-panel
-     Reading Package Lists... Done
-     Building Dependency Tree... Done
-     The following packages will be REMOVED:
-       gnome-applets gnome-panel gnome-panel-data gnome-session
-     0 packages upgraded, 0 newly installed, 4 to remove and 1 not upgraded.
-     Need to get 0B of archives. After unpacking 14.6MB will be freed.
-     Do you want to continue? [Y/n]
+\colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} {\tt
+     \# apt-get remove gnome-panel\\
+     Reading Package Lists... Done\\
+     Building Dependency Tree... Done\\
+     The following packages will be REMOVED:\\
+       gnome-applets gnome-panel gnome-panel-data gnome-session\\
+     0 packages upgraded, 0 newly installed, 4 to remove and 1 not upgraded.\\
+     Need to get 0B of archives. After unpacking 14.6MB will be freed.\\
+     Do you want to continue? [Y/n]\\
+ } \vspace*{0.5cm} } } 
 
 Como se puede apreciar en el ejemplo anterior, APT se hace cargo de eliminar los paquetes dependientes del paquete eliminado. No hay manera de eliminar un paquete utilizando APT sin eliminar los paquetes que éste necesitaba.
 
 Ejecutando apt-get como en el ejemplo causará que los paquetes sean eliminados, pero sus archivos de configuración, si existían, permanecerán intactos en el sistema. Para una eliminación completa del paquete, ejecute:
 
-     # apt-get --purge remove gnome-panel
-     Reading Package Lists... Done
-     Building Dependency Tree... Done
-     The following packages will be REMOVED:
-       gnome-applets* gnome-panel* gnome-panel-data* gnome-session*
-     0 packages upgraded, 0 newly installed, 4 to remove and 1 not upgraded.
-     Need to get 0B of archives. After unpacking 14.6MB will be freed.
-     Do you want to continue? [Y/n]
+\colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} {\tt
+     \# apt-get --purge remove gnome-panel\\
+     Reading Package Lists... Done\\
+     Building Dependency Tree... Done\\
+     The following packages will be REMOVED:\\
+       gnome-applets* gnome-panel* gnome-panel-data* gnome-session*\\
+     0 packages upgraded, 0 newly installed, 4 to remove and 1 not upgraded.\\
+     Need to get 0B of archives. After unpacking 14.6MB will be freed.\\
+     Do you want to continue? [Y/n]\\
+ } \vspace*{0.5cm} } } 
 
 Observe el "*" después de los nombres. Esto indica que los archivos de configuración de cada paquete serán eliminados también.
 
 Al igual que en el caso de la instalación, puede utilizar un símbolo con la opción de "remove" para invertir el significado de un paquete en especial. En el caso de la eliminación, si agrega un "+" después del nombre del paquete, el paquete será instalado en vez de eliminarlo.
 
-     # apt-get --purge remove gnome-panel nautilus+
-     Reading Package Lists... Done
-     Building Dependency Tree... Done
-     The following extra packages will be installed:
-       bonobo libmedusa0 libnautilus0 nautilus
-     The following packages will be REMOVED:
-       gnome-applets* gnome-panel* gnome-panel-data* gnome-session*
-     The following NEW packages will be installed:
-       bonobo libmedusa0 libnautilus0 nautilus
-     0 packages upgraded, 4 newly installed, 4 to remove and 1 not upgraded.
-     Need to get 8329kB of archives. After unpacking 2594kB will be used.
-     Do you want to continue? [Y/n]
+\colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} {\tt
+     \# apt-get --purge remove gnome-panel nautilus+\\
+     Reading Package Lists... Done\\
+     Building Dependency Tree... Done\\
+     The following extra packages will be installed:\\
+       bonobo libmedusa0 libnautilus0 nautilus\\
+     The following packages will be REMOVED:\\
+       gnome-applets* gnome-panel* gnome-panel-data* gnome-session*\\
+     The following NEW packages will be installed:\\
+       bonobo libmedusa0 libnautilus0 nautilus\\
+     0 packages upgraded, 4 newly installed, 4 to remove and 1 not upgraded.\\
+     Need to get 8329kB of archives. After unpacking 2594kB will be used.\\
+     Do you want to continue? [Y/n]\\
+ } \vspace*{0.5cm} } } 
 
 Observe que apt-get enlista los paquetes que serán instalados aparte de los seleccionados (esto es, aquellos que su instalación es necesaria para el funcionamiento de aquellos que son seleccionados), aquellos que serán eliminados, y aquellos que serán instalados (incluyendo los paquetes adicionales otra vez).
 
@@ -296,24 +309,26 @@ e instalarlas. Se debe utilizar la opción dist-upgrade de apt-get.
 
 Es muy importante realizar un apt-get update antes de actualizar el sistema con dist-upgrade.
 
-     # apt-get update
-     # apt-get dist-upgrade
-     Reading Package Lists... Done
-     Building Dependency Tree... Done
-     Calculating Upgrade... Done
-     The following NEW packages will be installed:
-       cpp-2.95 cron exim gcc-2.95 libident libopenldap-runtime libopenldap1
-       libpcre2 logrotate mailx
-     The following packages have been kept back
-       lilo
-     The following packages will be upgraded
-       adduser ae apt autoconf cpp debhelper dpkg-dev esound esound-common ftp gcc
-       indent ipchains isapnptools libaudiofile-dev libaudiofile0 libesd0
-       libesd0-dev libgtk1.2 libgtk1.2-dev liblockfile1 libnewt0 liborbit-dev
-       liborbit0 libstdc++2.10-glibc2.2 libtiff3g libtiff3g-dev modconf orbit
-       procps psmisc
-     31 packages upgraded, 10 newly installed, 0 to remove and 1 not upgraded.
-     Need to get 0B/7098kB of archives. After unpacking 3118kB will be used.
+\colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} {\tt
+     \# apt-get update\\
+     \# apt-get dist-upgrade\\
+     Reading Package Lists... Done\\
+     Building Dependency Tree... Done\\
+     Calculating Upgrade... Done\\
+     The following NEW packages will be installed:\\
+       cpp-2.95 cron exim gcc-2.95 libident libopenldap-runtime libopenldap1\\
+       libpcre2 logrotate mailx\\
+     The following packages have been kept back\\
+       lilo\\
+     The following packages will be upgraded\\
+       adduser ae apt autoconf cpp debhelper dpkg-dev esound esound-common ftp gcc\\
+       indent ipchains isapnptools libaudiofile-dev libaudiofile0 libesd0\\
+       libesd0-dev libgtk1.2 libgtk1.2-dev liblockfile1 libnewt0 liborbit-dev\\
+       liborbit0 libstdc++2.10-glibc2.2 libtiff3g libtiff3g-dev modconf orbit\\
+       procps psmisc\\
+     31 packages upgraded, 10 newly installed, 0 to remove and 1 not upgraded.\\
+     Need to get 0B/7098kB of archives. After unpacking 3118kB will be used.\\
+ } \vspace*{0.5cm} } } 
 
            dist-upgrade, además de realizar las acciones de upgrade, trata
            inteligentemente los cambios de dependencias debidos a las nuevas
@@ -340,34 +355,38 @@ apt-get autoclean elimina sólo los archivos que no pueden ser descargados de nu
 
 Por ejemplo, suponga que quiere revivir la gloria de la época dorada del Atari 2600. Quiere utilizar APT para instalar un emulador de Atari, y después bajar algunos juegos, puede hacer lo siguiente:
 
-     # apt-cache search atari
-     atari-fdisk-cross - Partition editor for Atari (running on non-Atari)
-     circuslinux - The clowns are trying to pop balloons to score points!
-     madbomber - A Kaboom! clone
-     tcs - Character set translator.
-     atari800 - Atari emulator for svgalib/X/curses
-     stella - Atari 2600 Emulator for X windows
-     xmess-x - X binaries for Multi-Emulator Super System
+\colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} {\tt
+     \# apt-cache search atari\\
+     atari-fdisk-cross - Partition editor for Atari (running on non-Atari)\\
+     circuslinux - The clowns are trying to pop balloons to score points!\\
+     madbomber - A Kaboom! clone\\
+     tcs - Character set translator.\\
+     atari800 - Atari emulator for svgalib/X/curses\\
+     stella - Atari 2600 Emulator for X windows\\
+     xmess-x - X binaries for Multi-Emulator Super System\\
+ } \vspace*{0.5cm} } } 
 
 Hemos encontrado muchos paquetes relacionados con lo que se esta buscando. Para obtener mayor información de un paquete específico, puede hacer lo siguiente:
 
-     # apt-cache show stella
-     Package: stella
-     Priority: extra
-     Section: non-free/otherosfs
-     Installed-Size: 830
-     Maintainer: Tom Lear <tom@trap.mtview.ca.us>
-     Architecture: i386
-     version: 1.1-2
-     Depends: libc6 (>= 2.1), libstdc++2.10, xlib6g (>= 3.3.5-1)
-     Filename: dists/potato/non-free/binary-i386/otherosfs/stella_1.1-2.deb
-     Size: 483430
-     MD5sum: 11b3e86a41a60fa1c4b334dd96c1d4b5
-     Description: Atari 2600 Emulator for X windows
-      Stella is a portable emulator of the old Atari 2600 video-game console
-      written in C++. You can play most Atari 2600 games with it. The latest
-      news, code and binaries for Stella can be found at:
-      http://www4.ncsu.edu/~bwmott/2600
+\colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} {\tt
+     \# apt-cache show stella\\
+     Package: stella\\
+     Priority: extra\\
+     Section: non-free/otherosfs\\
+     Installed-Size: 830\\
+     Maintainer: Tom Lear <tom@trap.mtview.ca.us>\\
+     Architecture: i386\\
+     version: 1.1-2\\
+     Depends: libc6 (>= 2.1), libstdc++2.10, xlib6g (>= 3.3.5-1)\\
+     Filename: dists/potato/non-free/binary-i386/otherosfs/stella_1.1-2.deb\\
+     Size: 483430\\
+     MD5sum: 11b3e86a41a60fa1c4b334dd96c1d4b5\\
+     Description: Atari 2600 Emulator for X windows\\
+      Stella is a portable emulator of the old Atari 2600 video-game console\\
+      written in C++. You can play most Atari 2600 games with it. The latest\\
+      news, code and binaries for Stella can be found at:\\
+      http://www4.ncsu.edu/~bwmott/2600\\
+ } \vspace*{0.5cm} } } 
 
 Observe varias cosas.
 
@@ -381,46 +400,56 @@ Exsite un campo que le indica el nombre del archivo del paquete (Filename).
 
 Uno de los caminos para conocer el nombre de un paquete es saber el nombre de un archivo importante que sea contenido por ese paquete. Por ejemplo, para conocer el paquete que ofrece ciertos archivos ".h" puede ejecutar:
 
-     # dpkg -S stdio.h
-     libc6-dev: /usr/include/stdio.h
-     libc6-dev: /usr/include/bits/stdio.h
-     perl: /usr/lib/perl/5.6.0/CORE/nostdio.h
+\colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} {\tt
+     \# dpkg -S stdio.h\\
+     libc6-dev: /usr/include/stdio.h\\
+     libc6-dev: /usr/include/bits/stdio.h\\
+     perl: /usr/lib/perl/5.6.0/CORE/nostdio.h\\
+ } \vspace*{0.5cm} } } 
 
 o:
 
-     # dpkg -S /usr/include/stdio.h
-     libc6-dev: /usr/include/stdio.h
+\colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} {\tt
+     \# dpkg -S /usr/include/stdio.h \\
+     libc6-dev: /usr/include/stdio.h \\
+ } \vspace*{0.5cm} } } 
 
 Para averiguar los nombres de paquetes instalados en su sistema, lo cual es útil por ejemplo, si planea limpiar su disco duro, ejecuta:
 
-     # dpkg -l | grep mozilla
-     ii  mozilla-browse 0.9.6-7        Mozilla Web Browser
+\colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} {\tt
+     \# dpkg -l | grep mozilla \\
+     ii  mozilla-browse 0.9.6-7        Mozilla Web Browser \\
+ } \vspace*{0.5cm} } } 
 
 El problema con este comando radica en que puede "truncar" el nombre del programa. En el ejemplo anterior, el nombre completo del paquete es mozilla-browser. Para arreglar esto, puede utilizar las variables de ambiente COLUMNS de este modo:
 
-     [kov]@[couve] $ COLUMNS=132 dpkg -l | grep mozilla
-     ii  mozilla-browser             0.9.6-7                     Mozilla Web Browser - core and browser
+\colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} {\tt
+     \$ COLUMNS=132 dpkg -l | grep mozilla \\
+     ii  mozilla-browser             0.9.6-7                     Mozilla Web Browser - core and browser \\
+ } \vspace*{0.5cm} } } 
 
 O la descripción del paquete, o parte de ella para encontrar el nombre completo. Como se muestra a continuación:
 
-     # apt-cache search "Mozilla Web Browser"
-     mozilla-browser - Mozilla Web BrowserConocer el nombre de un paquete}
+\colorbox{grey}{\parbox[t]{0.95\linewidth}{ \vspace*{0.5cm} {\tt
+     \# apt-cache search "Mozilla Web Browser" \\
+     mozilla-browser - Mozilla Web Browser \\
+ } \vspace*{0.5cm} } } 
 
 
 
 Si se necesita instalar un paquete, y no puede saber como se llama al buscarlo con apt-cache, pero se sabe el nombre de un archivo que pertenece al paquete, entonces se puede utilizar apt-file para encontrar el nombre del paquete que se busca. Esto se hace de la siguiente manera:
 
-     $ apt-file search filename
+     \$ apt-file search filename
 
 Trabaja de manera similar a dpkg -S, pero tambien muestra paquetes sin instalar que contengan ese archivo. Puede también ser utilizado para saber que paquetes contiene archivos de inclusión para la compilación de ciertos programas.
 
 También puede enlistar el contenido de un paquete ejecutando:
 
-     $ apt-file list packagename
+     \$ apt-file list packagename
 
 apt-file mantiene una base de datos sobre que archivos tiene cada paquete, tal como auto-apt lo hace y necesita estar al día. Esto se hace asi:
 
-     # apt-file update
+     \# apt-file update
 
 
 \subsection*{Conocer el Listado de Archivos que Contiene un Paquete}
