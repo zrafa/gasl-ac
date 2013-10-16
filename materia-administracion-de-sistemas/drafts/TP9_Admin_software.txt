@@ -1,0 +1,125 @@
+******************************************************************
+        Administración de Sistemas
+        Departamento Ingeniería de Computadoras
+        Facultad de Informática - Universidad Nacional del Comahue
+******************************************************************
+
+TP N 9 - Administración de software (segunda parte)
+----------------------------------------------------
+
+
+ NOTA : Los siguientes ejercicios se realizan en su totalidad desde una
+        terminal en un sistema GNU/Linux .
+        Para cada pregunte indique el comando o los comandos que utilizó
+        para obtener la respuesta.
+
+Buenas prácticas en la administración de software:
+---------------------------------------------------
+---------------------------------------------------
+
+Evitaremos por todos los medios, instalar software por fuera de los 
+repositorios oficiales de la distribución particular que estemos usando.  
+
+Si necesitamos instalar software  por fuera de los repositorios oficiales, 
+descargaremos el software del sitio de desarrollo principal y no de 
+cualquier otro sitio. 
+
+Dentro de lo posible utilizaremos gestores de paquetes de software que 
+resuelvan dependencias y el acceso a los repositorios, como apt o yum. 
+
+Evitaremos incluir repositorios no verificados en la configuración de los 
+gestores de paquetes de software, evitando así la potencial instalación de 
+software dañino. 
+
+Si administramos un paquete con un gestor de software particular, dentro 
+de lo posible trataremos de administrar todo su ciclo de vida con la misma 
+herramienta.  Por ejemplo, si instalamos con apt-get, entonces removemos 
+con apt-get y no con dpkg. 
+
+---------------------------------------------------
+---------------------------------------------------
+
+
+Ejercicio 1 
+Utilizando apt-cache obtenga información del paquete fdupes
+	1.a) ¿Qué funcionalidad provee el  paquetes?
+	1.b) ¿Cuál es el tamaño que ocupará en disco una vez instalado?
+	1.c) ¿Qué versión del software se instalará? 
+	1.d) ¿El paquete posee dependencias? ¿Se encuentra la dependencia 
+	instalada? 
+	1.e) ¿Existe alguna referencia a la fuente del desarrollo original?
+
+Ejercicio 2
+Utilizando el comando apt-get instale el software fdupes. Utilizando dpkg 
+liste todos los archivos instalados por el paquete. ¿Qué tipo de archivos 
+instaló?. Muestre el estado de instalación del software con el comando dpkg. 
+
+Ejercicio 3
+Utilizando el comando apt-get remueva el software fdupes. Verifique con 
+dpkg que efectivamente el software no se encuentra instalado y que no han 
+quedado archivos instalados. 
+
+Ejercicio 4
+Los gestores de paquetes como apt, resuelven el acceso a los repositorios.
+El proceso de instalación se compone de dos grandes fases: descargar el 
+software e instalar el software. Durante la fase de descarga apt guarda los
+archivos de paquete a instalar en el directorio /var/cache/apt/archives. 
+
+Liste el contenido del directorio /var/cache/apt/archives. ¿Qué puede decir
+sobre la remoción del software fdupes? 
+
+Ejercicio 5
+Utilizando el paquete .deb correspondiente a fdupes que se encuentra en 
+/var/cache/apt/archives, instálelo nuevamente utilizando el comando dpkg. 
+
+Ejercicio 6 
+Remueva (des-instale) el software fdupes. ¿Qué herramienta utilizó? 
+¿Por qué? 
+
+Ejercicio 7 
+Dentro del directorio /mnt/compartido de la máquina 10.0.15.7, se 
+encuentra un backup de paquetes que un usuario a requerido se instalen 
+en la máquina virtual. El archivo se llama paquetes.tar.gz :
+	7.a) Liste el contenido del archivo sin efectivamente  extraer su 
+	contenido. 
+	7.b) Extraiga el contenido del archivo DIRECTAMENTE en el directorio
+	/tmp local a su máquina virtual. 
+	7.c) Liste recursivamente el contenido del directorio creado luego
+	de la extracción. 
+	7.d) ¿Qué clase de archivos contiene el directorio? 
+
+Ejercicio 8 
+Utilizando los paquetes provistos por el usuario en el ejercicio 7, instale
+utilizando el gestor de paquetes dpkg, los paquetes dos2unix y pacman4console. 
+Responda: 
+	8.a) ¿Qué dependencias poseen los paquetes mencionados? (puede utilizar
+	apt-cache para responder) 
+	8.b) ¿Qué archivos instaló cada paquete? ¿Qué tipo de archivos son? 
+	8.c) Ejecute el binario de pacman4console ¿Dónde se encuentra guardado
+	dicho binario? 
+
+Ejercicio 9 
+Utilizando los paquetes provistos por el usuario en el ejercicio 7: 
+	9.a) Utilizando dpkg -c, liste el contenido del paquete dnsutils. 
+	Observar que solo esta listando, no efectivamente instalando. 
+	9.b) Verifique si el comando nslookup que nos permite resolver nombres
+	de dominio (DNS) esta disponible dentro del paquete dnsutils. 
+	9.c) Verifique si dnsutils se encuentra instalado en su máquina. 
+	9.d) Instale el paquete dnsutils utilizando dpkg. 
+	9.e) La instalación de dnsutils: ¿Requirió la instalación de 
+	dependencias? ¿Cuáles? ¿De dónde las obtuvo? 
+	9.f) Verifique que nslookup funciona correctamente. 
+	9.g) Intente remover el paquete libbind9-80 ¿Qué sucede? ¿Por qué? 
+
+Ejercicio 10)
+Observando lo hecho en el ejercicio 7, 8 y 9, y las "buenas prácticas" 
+mencionadas: ¿Considera que los hecho en dichos ejercicios se corresponde con 
+las buenas prácticas? ¿Qué otro método sugiere para lograr los mismos 
+resultados? ¿Que potenciales problemas podrían surgir de proceder como en los
+ejercicios 7,8 y 9? 
+
+Ejercicio 11)
+Remueva el software instalado en 8 y 9, incluidas dependencias. Vuelva a 
+instalarlos utilizando el mejor método disponible. 
+
+
