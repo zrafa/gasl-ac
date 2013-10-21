@@ -1,0 +1,27 @@
+Ejercicio 1 
+   Explique para que sirve las señales: SIGKILL, SIGSTOP, SIGTERM, SIGCONT. 
+   ¿Cuál de ellas es la predeterminada cuando ejecuta el comando kill? 
+
+Ejercicio 2
+   ¿Cuáles son los estados de procesos que podemos encontrar en un sistema 
+GNU/Linux? 
+
+Ejercicio 3
+   Realice dos conexiones a la máquina virtual. Identifique el PID de ambas 
+conexiones. Termine ambas conexiones con el comando kill. 
+
+Ejercicio 4 
+   Edite un archivo con vi. 
+   Utilizando atajos (shortcuts), detenga el programa vi. 
+   En la misma terminal donde ejecuto vi, observe el estado del proceso vi. ¿En 
+qué estado se encuentra? ¿Qué significa que se encuentre en ese estado? 
+   Observe la salida del comando jobs. Continue la ejecución en primer plano del
+programa vi detenido. 
+   Salga del programa. 
+
+Ejercicio 5
+Explique para qué sirven los comandos: bg, fg y jobs. De un ejemplo de uso de 
+cada uno de ellos. 
+
+   
+ 
