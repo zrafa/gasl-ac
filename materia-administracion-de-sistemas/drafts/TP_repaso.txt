@@ -1,14 +1,19 @@
+
+
 Ejercicio 1 
    Explique para que sirve las señales: SIGKILL, SIGSTOP, SIGTERM, SIGCONT. 
    ¿Cuál de ellas es la predeterminada cuando ejecuta el comando kill? 
+
 
 Ejercicio 2
    ¿Cuáles son los estados de procesos que podemos encontrar en un sistema 
 GNU/Linux? 
 
+
 Ejercicio 3
    Realice dos conexiones a la máquina virtual. Identifique el PID de ambas 
 conexiones. Termine ambas conexiones con el comando kill. 
+
 
 Ejercicio 4 
    Edite un archivo con vi. 
@@ -19,9 +24,36 @@ qué estado se encuentra? ¿Qué significa que se encuentre en ese estado?
 programa vi detenido. 
    Salga del programa. 
 
+
 Ejercicio 5
 Explique para qué sirven los comandos: bg, fg y jobs. De un ejemplo de uso de 
 cada uno de ellos. 
 
    
- 
+Ejercicio 6
+Indique qué proceso en la máquina virtual : 
+- Consume mayor cantidad de memoria RAM;
+- Consume mayor cantidad de CPU;
+- Es el mas antiguo en tiempo de ejecución.
+
+
+Ejercicio 7
+- Realice un backup con tar (comprimido gz) del directorio /var/log/.
+  Importante: no utilice rutas completas para realizar el backup
+  del contenido del directorio especificado.
+
+- Recupere en /tmp/ los archivos "messages" y "daemon.log" del backup.
+
+- ¿Cuáles son las primeras 10 líneas de cada archivo? ¿Qué comandos
+  utiliza para obtener las diez lineas?
+
+
+Ejercicio 8
+- ¿Qué cantidad de paquetes se encuentran instalados en el sistema?
+- ¿Cuáles son los archivos ejecutables que el paquete "util-linux"
+  instala en el sistema?
+- Explique para qué se utilizan al menos tres de los programas 
+  que vienen en el paquete "util-linux" y dé un ejemplo de utilización
+  de cada uno.
+
+
