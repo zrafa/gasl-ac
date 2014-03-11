@@ -53,31 +53,32 @@ Introducción a la Administración de Sistemas GNU/Linux \\
 
 \section{Introducción}
 
-En este conjunto de tutoriales, y apuntes de cátedra,
-se describen los aspectos del uso de GNU/Linux relativos a la administración del
+En este conjunto de apuntes de cátedra, se describen los aspectos del uso 
+de GNU/Linux relativos a la administración del
 sistema. Está destinado a personas con pocos conocimientos en la
-administración del sistema (aquellos que se preguntan \textit{¿Qué es esto?}), pero que ya dominan
-al menos los conceptos básicos sobre la utilización normal del mismo. Este
-manual tampoco explica cómo instalar GNU/Linux; dicho tema está desarrollado en
-en el apunte de cátedra de la materia ``Taller de hardware y software''. En futuras secciones encontrará información
-adicional sobre los manuales existentes para sistemas GNU/Linux.  
+administración del sistema (aquellos que se preguntan \textit{¿Qué es 
+esto?}), pero que ya dominan al menos los conceptos básicos sobre la 
+utilización normal del mismo. Este apunte tampoco explica cómo instalar 
+GNU/Linux; dicho tema está desarrollado en
+en el apunte de cátedra de la materia ``Taller de hardware y software''. 
 
 La administración de sistemas es el conjunto de tareas necesarias para
-mantener un computador en buenas condiciones de uso (\textit{utilizable} para el resto
-de los usuarios). Esto incluye actividades
-tales como realizar copias de seguridad (y restaurarlas en caso necesario),
-instalar nuevos programas, crear cuentas para los usuarios,
-verificar la integridad de los sistemas de archivos, etc. Si un ordenador
-fuese, por ejemplo, una casa, la administración del sistema podría ser comparada
-con el 
-mantenimiento hogareño, e incluiría la limpieza, la reparación de ventanas rotas, y otras
+mantener una computadora en buenas condiciones de uso 
+(\textit{utilizable} para el resto de los usuarios). Esto incluye 
+actividades tales como realizar copias de seguridad (y restaurarlas 
+en caso necesario), instalar nuevos programas, crear cuentas para 
+los usuarios, verificar la integridad de los sistemas de archivos, etc. 
+Si una computadora fuese, por ejemplo, una casa, la administración 
+del sistema podría ser comparada con el mantenimiento hogareño, e 
+incluiría la limpieza, la reparación de ventanas rotas, y otras
 tareas similares.  
 
 \fcolorbox{black}{grey}{
 \parbox[t]{1.0\linewidth}{ \vspace*{0.4cm}
 {\bf
-Un administrador de sistemas GNU/Linux, generalmente, realiza alguna
-o varias de las siguientes tareas esenciales : 
+Un administrador de sistemas, no es otra cosa que un usuario
+con privilegios y obligaciones especiales que generalmente, realiza 
+alguna o varias de las siguientes tareas esenciales : 
 
 \begin{itemize}
 	\item administrar cuentas de usuarios,
@@ -93,117 +94,110 @@ o varias de las siguientes tareas esenciales :
 }
 \vspace*{0.4cm} } }
 
-La estructura de estos documentos permite utilizar muchos de los tutoriales y apuntes
-de manera independiente, por lo que si necesita información relacionada, por ejemplo,
-con backups, 
-puede leer sólo el apunte que hace referencia a este tema. 
-Sin embargo, estos apuntes son principalmente tutoriales,
-y pueden ser leído secuencialmente, como un todo.
-
-Además, es importante recalcar que estos apuntes no fueron
-pensados para ser utilizado de forma aislada. También
-es importante, para los administradores, el resto de la documentación
-para sistemas GNU/Linux. Después de todo, un administrador de sistemas es sólo
-un usuario con privilegios y obligaciones especiales. Un recurso muy útil son
+Sobre este apunte y subsiguientes, es importante recalcar que no fueron
+pensados para ser utilizado de forma aislada. No son exaustivos ni 
+completos, sino más bien una guía de temas a completar con 
+documentación adicional. En este sentido un recurso muy útil son
 las páginas de manual (también llamadas páginas man), las cuales deben ser
-consultadas \textbf{siempre} que un comando no le sea familiar.  
+consultadas \textbf{siempre}. En particular el comando \texttt{man}, es
+ uno de los primeros y más importantes comandos que un administrador de 
+sistemas debe aprender.   
 
-Si bien estos documentos están centrados en GNU/Linux, un principio general de la
-misma es el de procurar que también se puedan utilizar con otros sistemas
-operativos basados en UNIX. Desafortunadamente, existen en
-general versiones de UNIX diferentes, y en
+Si bien estos apuntes están centrados en GNU/Linux, un principio 
+general de los misma es el de procurar que también se puedan utilizar 
+con otros sistemas operativos basados en UNIX. Desafortunadamente, 
+existen en general versiones de UNIX diferentes, y en
 particular existen diferencias en cuanto a la administración del sistema. 
-Por lo que existen pocas esperanzas de que
-cubra todas las variantes. Incluso cubrir todas las posibilidades para GNU/Linux
-es difícil debido a la naturaleza de su desarrollo.  
+Por lo que existen pocas esperanzas de que cubra todas las variantes.
+Incluso cubrir todas las posibilidades para GNU/Linux es difícil debido 
+a la naturaleza de su desarrollo. 
 
 No existe una distribución oficial de GNU/Linux, por lo que diferentes
-personas tienen diferentes configuraciones, y muchas tienen una configuración
-que ellos mismos realizaron. Esta documentación no está orientada a una distribución de
-GNU/Linux en particular, ya que las distintas distribuciones varían
-considerablemente entre sí. Por ello, siempre que sea posible se intenta hacer
-notar las diferencias y desarrollar alternativas.
-
-Se ha procurado describir cómo funciona cada aspecto del sistema, en vez
-de limitarse a listar \textit{cinco pasos fáciles} para cada tarea. Esto significa que
-existe
-mucha información en estos documentos que puede no ser necesaria para todos, por lo
-que dichas partes están marcadas especialmente y pueden ser
-ignoradas si se está utilizando un sistema pre-configurado. Leyendo toda la documentacion
-aumentará, naturalmente, la comprensión del funcionamiento del sistema, y se
-podrá lograr que la utilización y la administración del sistema sea más
-productiva (y agradable).
+personas tienen diferentes configuraciones, y muchas tienen una 
+configuración que ellos mismos realizaron. Esta documentación no está 
+orientada a una distribución de GNU/Linux en particular, ya que las 
+distintas distribuciones varían considerablemente entre sí. Más bien 
+bien están orientados a desarrollar ciertas habilidades y lógica de 
+administración que aplica a todas las distribuciones en general. 
 
 %mkfs actualmente no se usa en este texto, habría que cambiarlo
 Un punto particular que debe aclararse es que no se han desarrollado en
-profundidad muchos temas que se encuentran bien documentados en otros manuales
-de libre distribución. Esto es aplicable especialmente a documentación de
-programas concretos, como por ejemplo, todos los detalles de utilización del
-comando \texttt{\textbf{mkfs}}. Tan sólo se describe el propósito del programa,
-y como mucho, su utilización en la medida en que sea necesario para lograr el
-propósito de estos documentos. Puede encontrar información adicional en otros
-manuales libres. Normalmente, toda la documentación a la que se hace referencia
-es parte del conjunto completo de documentación de GNU/Linux.  
-
+profundidad muchos temas que se encuentran bien documentados en otros 
+manuales de libre distribución. Esto es aplicable especialmente a 
+documentación de programas concretos, como por ejemplo, todos los 
+detalles de utilización del comando \texttt{\textbf{mount}}. Tan sólo se 
+describe el propósito del programa, y como mucho, su utilización en la
+ medida en que sea necesario para lograr el propósito de estos documentos.
 
 
 \section{Visión general de un sistema GNU/Linux}
 
 En esta sección se proporciona una visión
-general de un sistema GNU/Linux. En primer lugar se describen los principales
-servicios que ofrece el sistema operativo. A continuación, se explican con una
-considerable falta de detalle los programas que implementan dichos servicios. El
-propósito de este capítulo es hacer posible la comprensión del sistema en su
-conjunto, por lo cual cada parte en concreto se encuentra descrita en
-profundidad en capítulos posteriores.  
+general de un sistema GNU/Linux. En primer lugar se describen los 
+principales servicios que ofrece el sistema operativo. A continuación, 
+se explican con una considerable falta de detalle los programas que 
+implementan dichos servicios. El propósito de este capítulo es hacer 
+posible la comprensión del sistema en su conjunto, y no los detalles 
+de los componentes individuales, los cuales serán ampliados a su debido 
+tiempo. 
 
 
 \subsection{Las diferentes partes de un sistema operativo}
 
-Un sistema operativo tipo UNIX consiste en un
-\textit{núcleo} (o Kernel) y algunos programas de sistema. Existen
-también diversos \textit{programas de aplicación} con los que
-podemos trabajar.  El núcleo es el corazón del sistema operativo: mantiene el
-control de los archivos sobre el disco, inicia los programas y los ejecuta de
-forma concurrente, asigna memoria y otros recursos a los distintos procesos,
-recibe y envía paquetes desde y hacia la red, etc. El núcleo hace muy poco por
-si solo, pero proporciona las herramientas básicas con las que se pueden
-construir los demás servicios.
-\footnote{De hecho, a menudo es considerado erróneamente como el sistema
-operativo en sí, aunque no lo es. Un sistema operativo proporciona muchos más
-servicios que el núcleo	por sí mismo.}
-Además, evita que se pueda acceder al hardware
-directamente, forzando a todos a utilizar las herramientas provistas para ese fin. Esta
-manera de trabajar del núcleo otorga cierta protección a los usuarios entre sí.
-Las herramientas del núcleo se utilizan a través de las \textit{llamadas al sistema}. 
+Un sistema operativo tipo UNIX consiste en un \textit{núcleo (o Kernel)} 
+y \textit{programas de sistema}. Existen también diversos 
+\textit{programas de aplicación} con los que podemos trabajar.  El núcleo 
+es el corazón del sistema operativo: inicia los programas y los ejecuta 
+de forma concurrente, asigna memoria y otros recursos a los distintos 
+procesos, recibe y envía paquetes desde y hacia la red, etc. El núcleo 
+hace muy poco por si solo, pero proporciona las herramientas necesarias 
+con las que se pueden construir los demás servicios.\footnote{De hecho, a 
+menudo es considerado erróneamente como el sistema operativo en sí, 
+aunque no lo es. Un sistema operativo proporciona muchos más
+servicios que los provistos por el núcleo}.  
+Además, evita que se pueda acceder al hardware directamente, forzando 
+a todos a utilizar las herramientas provistas para ese fin. Esta
+manera de trabajar del núcleo otorga cierta protección a los usuarios 
+entre sí. Las herramientas del núcleo se utilizan a través de las 
+\textit{llamadas al sistema}; estas son utilizadas por los programadores 
+para crear nuevos servicios y aplicaciones.  
 
- Los programas de sistema utilizan las herramientas provistas por el
-núcleo para implementar varios servicios requeridos en un sistema operativo. Los
-programas de sistema (y todos los demás programas), se ejecutan 'por encima del
-núcleo', en lo que se denomina \textit{modo usuario}. La diferencia entre los programas
-de aplicación y los de sistema es su finalidad: las aplicaciones tienen el
-propósito de realizar tareas útiles a los usuarios (o de jugar, si se tratara de
-un juego), mientras que los programas de sistema son necesarios para que el
-sistema funcione. Un procesador de textos es una aplicación;
-\texttt{\textbf{mount}}
-\footnote{
-Todos los archivos accesible en un sistema UNIX están organizados en un gran 
-árbol, la jerarquía de archivos cuya raíz es /. Estos sistemas de archivos 
-pueden residir en varios dispositivos. El comando mount sirve para unir un 
-sistema de archivos ubicado en algún dispositivo al árol de directorios principal. 
-}
-es un programa de sistema. La diferencia a menudo es
-confusa, y de cualquier manera, es solo importante para los categorizadores
-compulsivos.  
+El diagrama a continuación indica la distribución en capas generales, 
+que conforman un sistema operativo GNU/Linux: 
 
- Un sistema operativo también puede contener compiladores y sus
+\begin{center}
+\includegraphics{./img/esquemaOS_s.jpg}
+\end{center}
+
+Si un programa es considerado programa de sistema o aplicación 
+(A o B en el diagrama), dependerá de su funcionalidad. En apariencia al 
+usuario ambos son programas, sin embargo los programas de sistemas son 
+útiles a los fines del sistema en si mismo, mientras que las aplicaciones
+son útiles a los usuarios. Por ejemplo el programa \texttt{mount} 
+\footnote{ Todos los archivos accesible en un sistema UNIX están 
+organizados en 
+un gran árbol, la jerarquía de archivos cuya raíz es /. Estos 
+sistemas de archivos pueden residir en varios dispositivos. El 
+comando mount sirve para unir un sistema de archivos ubicado en algún 
+dispositivo al árol de directorios principal.Véase \texttt{man mount}}
+es un programa de sistema, que puede ser 
+utilizado por usuarios administradores, pero que es necesario para el
+correcto funcionamiento del sistema. Mientras que un navegador web como 
+firefox es una aplicación de usuario. La línea entre uno y otro tipo de 
+programas es confusa, sólo nos interesa a fines de comenzar a distinguir
+lo que es vital para nuestro sistema de lo que no lo es.  
+
+Los programas de sistema utilizan las herramientas provistas por el
+núcleo para implementar varios servicios requeridos en un sistema 
+operativo. Los programas de sistema (y todos los demás programas), se 
+ejecutan ``por encima del núcleo'', en lo que se denomina 
+\textit{modo usuario}. 
+
+Un sistema operativo también puede contener compiladores y sus
 correspondientes bibliotecas (GCC y la biblioteca de C en particular para
 GNU/Linux), aunque no todos los compiladores de todos los lenguajes de
-programación son necesariamente parte del sistema operativo. También puede haber
-documentación, y en algunas ocasiones juegos. Tradicionalmente, el sistema
-operativo está definido por el contenido de los medios de instalación;
-con GNU/Linux esta definición no puede aplicarse, debido a que se encuentra
-repartido sobre distintos sitios FTP del mundo.  
+programación son necesariamente parte del sistema operativo. También 
+puede haber documentación, y en algunas ocasiones juegos. 
 
 \subsection{Partes importantes del núcleo}
 
