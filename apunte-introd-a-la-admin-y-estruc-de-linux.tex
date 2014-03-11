@@ -149,8 +149,9 @@ y \textit{programas de sistema}. Existen también diversos
 \textit{programas de aplicación} con los que podemos trabajar.  El núcleo 
 es el corazón del sistema operativo: inicia los programas y los ejecuta 
 de forma concurrente, asigna memoria y otros recursos a los distintos 
-procesos, recibe y envía paquetes desde y hacia la red, etc. El núcleo 
-hace muy poco por si solo, pero proporciona las herramientas necesarias 
+procesos (programa en ejecución), recibe y envía paquetes desde y hacia 
+la red, etc. El núcleo hace muy poco por si solo, pero proporciona las 
+herramientas necesarias 
 con las que se pueden construir los demás servicios.\footnote{De hecho, a 
 menudo es considerado erróneamente como el sistema operativo en sí, 
 aunque no lo es. Un sistema operativo proporciona muchos más
@@ -202,38 +203,43 @@ puede haber documentación, y en algunas ocasiones juegos.
 \subsection{Partes importantes del núcleo}
 
 El núcleo de un sistema GNU/Linux consta de varias partes importantes:
-gestión de procesos, gestión de memoria,  controladores para dispositivos de
-hardware, controladores para sistemas de archivos, gestión de la red, y otras
-partes varias. 
+gestión de procesos, gestión de memoria,  controladores para 
+dispositivos de hardware, controladores para sistemas de archivos, 
+gestión de la red, y otras partes varias. 
 
  Probablemente las partes más importantes del núcleo (nada funcionaría sin
-ellas) son la gestión de memoria y la gestión de procesos. El gestor de memoria
-se encarga de asignar áreas de memoria y de espacio de intercambio a los
-procesos, partes del núcleo, y también al buffer caché. El gestor de
-procesos crea nuevos procesos e implementa la multitarea (intercambiando
-los procesos activos en el procesador).
+ellas) son la gestión de memoria y la gestión de procesos. El gestor de 
+memoria se encarga de asignar áreas de memoria y de espacio de 
+intercambio\footnote{Área de disco utilizada para implementar la memoria 
+virtual} a los procesos, partes del núcleo, y también al buffer caché\footnote{http://www.tldp.org/pub/Linux/docs/ldp-archived/system-admin-guide/translations/es/html/ch07s06.html}. El gestor de procesos crea nuevos 
+procesos e implementa la multitarea (intercambiando los procesos activos 
+en el o los procesadores).
 
 A más bajo nivel, el núcleo contiene un controlador de dispositivo de
-hardware para cada tipo de hardware que soporta. Debido a que el mundo se
-encuentra lleno de diferentes tipos de hardware, el número de controladores es
-grande. Existen frecuentemente, muchas piezas similares de hardware que difieren
-en cómo son controladas por el software. Esta singularidad hace posible tener
-clases generales de controladores que soportan operaciones similares; cada
-miembro de la clase tiene la misma interfaz de cara al resto del núcleo pero
-difiere de los demás miembros en la forma de implementar las operaciones. Por
+hardware para cada tipo de hardware que soporta. Un controlador no es otra
+cosa que una pieza de software que sabe cómo ``hablarle'' al dispoitivo en
+cuestión, para qué este lleve a cabo su tarea. Debido a que el mundo se
+encuentra lleno de diferentes tipos de hardware, el número de 
+controladores es grande. Existen frecuentemente, muchas piezas similares 
+de hardware que difieren en cómo son controladas por el software. Esta 
+singularidad hace posible tener clases generales de controladores que 
+soportan operaciones similares; cada miembro de la clase tiene la misma 
+interfaz de cara al resto del núcleo pero difiere de los demás miembros 
+en la forma de implementar las operaciones. Por
 ejemplo, todos los controladores de disco son parecidos para el resto del
-núcleo, Por ej., todos tienen operaciones como \textit{iniciar la unidad}, 
+núcleo, Por ej., todos tienen operaciones como \textit{iniciar la unidad},
 \textit{leer el sector n}, y \textit{escribir en el sector n}.
 
- Algunos servicios de software provistos por el núcleo tienen propiedades
-similares, y pueden de esta manera englobarse dentro de clases. Por ejemplo, los
-diferentes protocolos de red fueron englobados dentro de una interfaz de
-programación, la biblioteca de socket BSD. Otro ejemplo es la capa del
-\textit{sistema de archivos virtual} (VFS) que abstrae las
-operaciones de los sistemas de archivos de sus implementaciones. Cada tipo de
-sistema de archivos provee una implementación de cada operación. Cuando alguna
-entidad intenta utilizar un sistema de archivos, la petición se realiza a través
-del VFS, el cual la encamina al controlador del sistema de archivos correcto.
+Algunos servicios de software provistos por el núcleo tienen propiedades
+similares, y pueden de esta manera englobarse dentro de clases. Por 
+ejemplo, los diferentes protocolos de red fueron englobados dentro de 
+una interfaz de programación, la biblioteca de socket BSD. Otro ejemplo 
+es la capa del \textit{sistema de archivos virtual} (VFS) que abstrae 
+las operaciones de los sistemas de archivos de sus implementaciones. 
+Cada tipo de sistema de archivos provee una implementación de cada 
+operación. Cuando alguna entidad intenta utilizar un sistema de archivos,
+la petición se realiza a través del VFS, el cual la encamina al 
+controlador del sistema de archivos correcto.
 
 
 \subsection{Servicios principales en un sistema UNIX}
