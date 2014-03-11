@@ -244,46 +244,59 @@ controlador del sistema de archivos correcto.
 
 \subsection{Servicios principales en un sistema UNIX}
 
- En esta sección se describen algunos de los servicios más importantes en
-UNIX, pero sin mucho detalle. Se describirán más profundamente en apuntes 
-o materias posteriores. 
+ En esta sección se describen brevemente algunos de los servicios más
+importantes en un sistema de tipo UNIX.  
 
 \subsubsection{\texttt{\textbf{init}}}
 
  El servicio individual más importante en un sistema UNIX es provisto por
 \texttt{\textbf{init}}. \texttt{\textbf{init}} es el primer proceso que se
-inicia en todo sistema UNIX, siendo la última acción que el núcleo realiza al
-arrancar.  Cuando init comienza su ejecución, continúa con el proceso de
-arranque del sistema, realizando varias tareas de inicio (chequear y montar
-sistemas de archivos, iniciar demonios, etc.).  
+inicia en todo sistema UNIX, siendo la última acción que el núcleo 
+realiza al arrancar.  Cuando init comienza su ejecución, continúa con el 
+proceso de arranque del sistema, realizando varias tareas de inicio 
+(chequear y montar sistemas de archivos, iniciar demonios, etc.).  
 
- La lista exacta de cosas que \texttt{\textbf{init}} realiza depende del sistema tipo UNIX
-con el que estemos trabajando; existen varios para elegir. \texttt{\textbf{init}} normalmente
-proporciona el concepto de \textit{modo de usuario individual (single user mode)}, en el cual nadie puede
-iniciar una sesión y root utiliza un intérprete de comandos en la consola; el
-modo usual es llamado \textit{modo multiusuario (multiuser mode)}.
-Algunos sistemas UNIX generalizan esto
-como \textit{niveles de ejecución (run levels)}. Así, los modos individual y
-multiusuario son considerados dos niveles de ejecución, y pueden existir otros
-niveles adicionales para, por ejemplo, ejecutar X-Windows en la consola.
+La lista exacta de cosas que \texttt{\textbf{init}} realiza depende del 
+sistema tipo UNIX con el que estemos trabajando. Podemos pensar que init
+es quien se encarga de iniciar los programas necesarios para dar 
+un determinado grado de funcionalidad al sistema. En este sentidoa, en
+principio 
+\texttt{\textbf{init}} iniciará un subconjunto de procesos que 
+proporciona el concepto de \textit{modo de usuario individual
+ (single user mode)}, en el cual nadie, excepto root, puede iniciar una 
+sesión; y root utiliza un intérprete de comandos en la consola; este 
+modo tiene una funcionalidad reducida y es principalmente utilizado 
+para tareas de mantenimiento. Luego, init puede iniciar otro subconjunto 
+de funciones adicionales (red, entorno gráfico, etc.) que es conocido 
+como \textit{modo multiusuario (multiuser mode)}. En el que múltiples 
+usuarios pueden ingresar al sistema simultáneamente.
+
+En general estos modos y otros similares intermedios que puedan exisitr, 
+se conocen como \textit{niveles de ejecución (run levels)}. Así, los 
+modos individual y multiusuario son considerados dos niveles de ejecución,
+y pueden existir otros que identifican un determinado subconjunto de 
+funciones. Por ejemplo, podríamos necesitar definir un nivel de ejecución
+multiusuario que no inicie el entorno gráfico. 
 
 
- GNU/Linux permite tener hasta 10 \textit{niveles de ejecución (runlevels)} distintos, 0-9,
-pero normalmente solo algunos de estos niveles están definidos de manera predeterminada. El
-nivel de ejecución 0 se define como \textit{sistema detenido (system halt)}. El nivel
-de ejecución 1 se define como \textit{modo de usuario individual (single user mode)}.
-El nivel de ejecución 6 se define como \textit{reinicio del sistema (system reboot)}.
-Los niveles de ejecución restantes dependen de cómo la distribución particular
+ GNU/Linux permite tener hasta 10 \textit{niveles de ejecución 
+(runlevels)} distintos, numerados de 0-9, pero normalmente solo algunos 
+de estos  niveles están definidos de manera predeterminada. El nivel de 
+ejecución 0 se define como \textit{sistema detenido (system halt)}. 
+El nivel de  ejecución 1 se define como \textit{modo de usuario individual
+ (single user mode)}. El nivel de ejecución 6 se define como 
+\textit{reinicio del sistema (system reboot)}. Los niveles de ejecución 
+restantes dependen de cómo la distribución particular
 de GNU/Linux los haya definido, y varían significativamente entre
 distribuciones. Observando el contenido del archivo
 \texttt{/etc/inittab} podemos hacernos una idea de los niveles de
-ejecución preestablecidos en nuestro sistema y de como se encuentran definidos.
+ejecución preestablecidos en nuestro sistema y de como se encuentran
+definidos.
 
-
- En el funcionamiento normal, \texttt{\textbf{init}} se asegura de que
-\texttt{\textbf{getty}} se encuentre trabajando para permitir que los usuarios puedan iniciar una
-sesión, y también se encarga de adoptar procesos huérfanos (aquellos cuyo
-proceso padre murió; en UNIX \textit{todos} los procesos \textit{deben} estar
+En el funcionamiento normal, \texttt{\textbf{init}} se asegura de que
+\texttt{\textbf{getty}} se encuentre trabajando para permitir que los 
+usuarios puedan iniciar una sesión, y también se encarga de adoptar 
+procesos huérfanos (aquellos cuyo proceso padre murió; en UNIX \textit{todos} los procesos \textit{deben} estar
 en un árbol individual, y por esta razón los procesos huérfanos deben ser
 adoptados).  
 
