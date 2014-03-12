@@ -85,8 +85,8 @@ alguna o varias de las siguientes tareas esenciales :
 	\item agregar, configurar o quitar hardware,
 	\item realizar copias de respaldo,
 	\item instalar y configurar programas, 
-	\item monitorear el sistema en busca de anomalias o mejora de performance,
-	\item mantener la documentacion
+	\item monitorizar el sistema en busca de anomalías o mejora de performance,
+	\item mantener la documentación
 	\item realizar tareas de seguridad informática,
 	\item asistir a los usuarios,
 	\item automatizar tareas, etc.
@@ -95,7 +95,7 @@ alguna o varias de las siguientes tareas esenciales :
 \vspace*{0.4cm} } }
 
 Sobre este apunte y subsiguientes, es importante recalcar que no fueron
-pensados para ser utilizado de forma aislada. No son exaustivos ni 
+pensados para ser utilizado de forma aislada. No son exhaustivos ni 
 completos, sino más bien una guía de temas a completar con 
 documentación adicional. En este sentido un recurso muy útil son
 las páginas de manual (también llamadas páginas man), las cuales deben ser
@@ -180,7 +180,7 @@ organizados en
 un gran árbol, la jerarquía de archivos cuya raíz es /. Estos 
 sistemas de archivos pueden residir en varios dispositivos. El 
 comando mount sirve para unir un sistema de archivos ubicado en algún 
-dispositivo al árol de directorios principal.Véase \texttt{man mount}}
+dispositivo al árbol de directorios principal.Véase \texttt{man mount}}
 es un programa de sistema, que puede ser 
 utilizado por usuarios administradores, pero que es necesario para el
 correcto funcionamiento del sistema. Mientras que un navegador web como 
@@ -217,8 +217,8 @@ en el o los procesadores).
 
 A más bajo nivel, el núcleo contiene un controlador de dispositivo de
 hardware para cada tipo de hardware que soporta. Un controlador no es otra
-cosa que una pieza de software que sabe cómo ``hablarle'' al dispoitivo en
-cuestión, para qué este lleve a cabo su tarea. Debido a que el mundo se
+cosa que una pieza de software que sabe cómo ``hablarle'' al dispositivo en
+cuestión, para que este lleve a cabo su tarea. Debido a que el mundo se
 encuentra lleno de diferentes tipos de hardware, el número de 
 controladores es grande. Existen frecuentemente, muchas piezas similares 
 de hardware que difieren en cómo son controladas por el software. Esta 
@@ -259,7 +259,7 @@ proceso de arranque del sistema, realizando varias tareas de inicio
 La lista exacta de cosas que \texttt{\textbf{init}} realiza depende del 
 sistema tipo UNIX con el que estemos trabajando. Podemos pensar que init
 es quien se encarga de iniciar los programas necesarios para dar 
-un determinado grado de funcionalidad al sistema. En este sentidoa, en
+un determinado grado de funcionalidad al sistema. En este sentido, en
 principio 
 \texttt{\textbf{init}} iniciará un subconjunto de procesos que 
 proporciona el concepto de \textit{modo de usuario individual
@@ -271,7 +271,7 @@ de funciones adicionales (red, entorno gráfico, etc.) que es conocido
 como \textit{modo multiusuario (multiuser mode)}. En el que múltiples 
 usuarios pueden ingresar al sistema simultáneamente.
 
-En general estos modos y otros similares intermedios que puedan exisitr, 
+En general estos modos y otros similares intermedios que puedan existir, 
 se conocen como \textit{niveles de ejecución (run levels)}. Así, los 
 modos individual y multiusuario son considerados dos niveles de ejecución,
 y pueden existir otros que identifican un determinado subconjunto de 
@@ -289,104 +289,83 @@ El nivel de  ejecución 1 se define como \textit{modo de usuario individual
 restantes dependen de cómo la distribución particular
 de GNU/Linux los haya definido, y varían significativamente entre
 distribuciones. Observando el contenido del archivo
-\texttt{/etc/inittab} podemos hacernos una idea de los niveles de
+\texttt{/etc/inittab}\footnote{Véase \texttt{man inittab}} 
+podemos hacernos una idea de los niveles de
 ejecución preestablecidos en nuestro sistema y de como se encuentran
 definidos.
 
-En el funcionamiento normal, \texttt{\textbf{init}} se asegura de que
-\texttt{\textbf{getty}} se encuentre trabajando para permitir que los 
-usuarios puedan iniciar una sesión, y también se encarga de adoptar 
-procesos huérfanos (aquellos cuyo proceso padre murió; en UNIX \textit{todos} los procesos \textit{deben} estar
-en un árbol individual, y por esta razón los procesos huérfanos deben ser
-adoptados).  
-
  Al cerrar el sistema, es \texttt{\textbf{init}} quien se encarga de
-matar todos los procesos restantes, desmontar todos los sistemas de archivos, y
-por último detener el procesador, además de cualquier otra cosa que haya sido
-configurado para hacer.  
+finalizar todos los procesos restantes, desmontar todos los sistemas de 
+archivos, y por último detener el procesador, además de cualquier otra cosa 
+que haya sido configurado para hacer.  
 
+Es importante mencionar aquí, que en los últimos años se han venido 
+desarrollando métodos alternativos al arranque a través del
+proceso \texttt{init} y sus scripts asociados. Tales como upstart\footnote{
+http://upstart.ubuntu.com/} y systemd
+\footnote{http://www.freedesktop.org/wiki/Software/systemd/}.
+Estos métodos alternativos están comenzando gradualmente a reemplazar  
+a \texttt{init} y serán analizados en módulos posteriores. 
 
 
 \subsubsection{Inicio de sesiones desde terminales}
 
+Desde el punto de vista de un administrador, es importante preguntarnos 
+y reconocer los métodos que disponemos para lograr acceso al sistema a
+administrar. Un usuario promedio usualmente se sienta localmente frente
+a una computadora y hace uso de ella a través de un entorno gráfico. Este
+escenario dista ampliamente de los métodos utilizados por los 
+administradores. Un administrador utilizará con mucha frecuencia el
+acceso a través de terminales de texto, carentes de todo concepto gráfico
+(más allá del ASCII art). 
+
  El inicio de sesiones desde terminales (a través de líneas serie) y la
-consola (cuando no se está ejecutando X-Windows) es suministrado por el programa
-\texttt{\textbf{getty}}. \texttt{\textbf{init}} inicia una instancia
-independiente de \texttt{\textbf{getty}} por cada terminal en el que está permitido iniciar
-sesiones. \texttt{\textbf{Getty}} lee el nombre de usuario y ejecuta el
-programa login, el cual se encarga de leer la password. Si el nombre de usuario
-y la password son correctas, \texttt{\textbf{login}} ejecuta el intérprete de
-comandos.  Al finalizar el intérprete de comandos (en el caso en que, por
-ejemplo, el usuario finaliza su sesión; o cuando \texttt{\textbf{login}} finaliza debido a que no
-concuerdan el nombre de usuario y la password), \texttt{\textbf{init}} se
-entera de este suceso e inicia una nueva instancia de \texttt{\textbf{getty}}.
+consola (cuando no se está ejecutando X-Windows) es suministrado por el 
+programa \texttt{\textbf{getty}}. \texttt{\textbf{init}} inicia una 
+instancia independiente de \texttt{\textbf{getty}} por cada terminal en 
+el que está permitido iniciar sesiones. \texttt{\textbf{getty}} lee el
+nombre de usuario y ejecuta el programa \texttt{login}, el cual se 
+encarga de leer la password. Si el nombre de usuario y la password 
+son correctas, \texttt{\textbf{login}} ejecuta el intérprete de comandos 
+(shell).  Al finalizar el intérprete de comandos (en el caso en que, por 
+ejemplo, el usuario finaliza su sesión; o cuando \texttt{\textbf{login}} 
+finaliza debido a que no concuerdan el nombre de usuario y la password), 
+\texttt{\textbf{init}} se entera de este suceso e inicia una nueva 
+instancia de \texttt{\textbf{getty}}.
 El núcleo no tiene noción sobre los inicios de sesiones, esto es gestionado
 totalmente por los \textit{programas del sistema}.  
 
+\subsubsection{Interfaz gráfica de usuario (GUI)}
 
-\subsubsection{Syslog}
+ UNIX y GNU/Linux no incorporan la interfaz gráfica de usuario dentro 
+del núcleo; en su lugar, es implementada por programas a nivel de usuario. 
+Como ya mencionamos, esto se aplica tanto a entornos gráficos como al 
+modo texto.  
 
- El núcleo y muchos \textit{programas de sistema} producen
-mensajes de error, de advertencia y de otros tipos. La mayoría de las veces, es
-importante que puedan ser visualizados mas tarde, o tal vez mucho después, por
-lo que tales mensajes deben guardarse en un archivo. El programa que realiza
-esta tarea es \texttt{\textbf{syslog}}. Syslog puede ser configurado para
-ordenar los mensajes en diferentes archivos, de acuerdo a quien lo emite o al
-grado de importancia.  Por ejemplo, los mensajes del núcleo son frecuentemente
-dirigidos a un archivo separado de los demás, debido a que son más importantes,
-y necesitan ser leídos regularmente para detectar problemas.  
-
-\subsubsection{Ejecución periódica de comandos: \texttt{\textbf{cron}} y
-\texttt{\textbf{at}}}
-
- Los administradores de sistemas y los usuarios, a menudo necesitan
-ejecutar comandos periódicamente. Como ejemplo, supongamos que el administrador
-del sistema desea ejecutar un comando que elimine los archivos más antiguos de
-los directorios con archivos temporales (\texttt{/tmp} y
-\texttt{/var/tmp}) para evitar así que el disco se llene, debido a
-que no todos los programas eliminan correctamente los archivos temporales que
-ellos mismos generan.  
-
- El servicio \texttt{\textbf{cron}} se configura para que realice la
-tarea anterior. Cada usuario tiene un archivo \texttt{crontab}, en
-el cual se listan los comandos que se desea ejecutar y la fecha y hora de
-ejecución. El servicio \texttt{\textbf{cron}} se encarga con precisión de
-iniciar cada comando, a la fecha y hora adecuada de acuerdo a lo especificado en
-cada archivo crontab.  
-
- El servicio \texttt{\textbf{at}} es similar a \texttt{\textbf{cron}},
-pero este se inicia únicamente una vez: el comando es ejecutado a la hora
-especificada, pero esta ejecución no vuelve a repetirse.  
-
- Se puede encontrar información adicional sobre cron(1), crontab(5), at(1)
-y atd(8) en las páginas de manual.  
-
-\subsubsection{ Interfaz gráfica de usuario (GUI)}
-
- UNIX y GNU/Linux no incorporan la interfaz gráfica de usuario dentro del
-núcleo; en su lugar, es implementada por programas a nivel de usuario. Esto se
-aplica tanto a entornos gráficos como al modo texto.  
-
- Esta disposición hace que el sistema sea más flexible, pero tiene la
-desventaja de que, al ser simple implementar una interfaz de usuario diferente
-para cada programa, dificulta el aprendizaje del sistema.  
+Esta disposición hace que el sistema sea más flexible, pero tiene la
+desventaja de que, al ser simple implementar una interfaz de usuario 
+diferente para cada programa, dificulta el aprendizaje del sistema. 
 
  El entorno gráfico principalmente utilizado con GNU/Linux se llama
 Sistema X-Windows (X para abreviar). X tampoco implementa por sí mismo una
 interfaz de usuario, sino solo un sistema de ventanas. Es decir, las
 herramientas base con las cuales se puede construir una interfaz gráfica de
 usuario. Algunos administradores de ventanas populares son: fvwm, icewm,
-blackbox y metacity. Existen también dos populares administradores de
-escritorios: KDE y Gnome.  
+blackbox y metacity. Existen también múltipleas populares administradores 
+de escritorios: KDE, Gnome, Mate, Xfce, Unity, etc.  
 
+Es importante comprender que en los sistemas UNIX, el sistema gráfico es 
+un componente independiente y no vital para el correcto funcionamiento. 
+Los componentes de un entorno gráfico son muchos y muy complejos, con
+gran consumo de recursos de sistema (como memoria). Estos entornos sólo 
+deben estar instalados cuando sean necesarios. Por ejemplo en un servidor
+de páginas web, la instalación de un entorno gráfico podría ser obviada. 
 
-\subsubsection{ Redes}
+\subsubsection{Redes}
 
  Una red se construye al conectar dos o más computadoras para que puedan
-comunicarse entre sí. Los métodos actuales de conexión y comunicación son
-ligeramente complicados, pero el resultado final es muy útil.  
-
- Los sistemas operativos UNIX tienen un diseño orientado hacia el uso 
+comunicarse entre sí.  Los sistemas operativos UNIX tienen un diseño orientado 
+hacia el uso 
 de red. La mayoría de los servicios básicos (sistemas de archivos, impresión, 
 copias de seguridad, etc) pueden utilizarse a través de la red. Aprovechar estas
 características puede ayudar a que la administración del sistema sea más fácil. 
@@ -395,14 +374,21 @@ de logs, sistemas de copia de respaldo, evitar la duplicación
 de archivos mediante sistemas de archivos en red (véase NFS), etc.
 
  Este apunte de cátedra sólo aborda superficialmente la teoría de
-redes. Información adicional sobre esteos tema será desarrollada en la materia 
+redes. Información adicional sobre estos tema será desarrollada en la materia 
 ``Redes'', dedicada a tal fin. Adicionalmente puede consultar ``La Guía De Administración 
 De Redes con Linux'' (\textit{Linux Network Administrators' Guide} 
-\footnote{	http://www.tldp.org/LDP/nag2/index.html}
+\footnote{http://www.tldp.org/LDP/nag2/index.html}
 incluyendo una descripción básica de como
 operan las redes.  
 
-\subsubsection{ Inicio de sesiones a través de la red}
+\subsubsection{Inicio de sesiones a través de la red}
+Nuevamente volvemos al interrogante de cómo logramos acceder a una computadora. 
+Y qué necesitamos para cada tipo de acceso. 
+Hasta el momento hemos hablado de métodos que requieren ``acceso físico'' al 
+sistema en cuestión, básicamente debemos estar frente a la computadora. Este
+prerrequisito no es menor, ya que en muchos casos, el acceso físico esta 
+restringido por cuestiones de seguridad entre otras. Esto sucede, por ejemplo
+en los centros de datos.
 
  Los inicios de sesión a través de la red funcionan de un modo un poco
 diferente al inicio de sesiones normales. En cuyo caso existe una línea serie 
@@ -421,9 +407,9 @@ principales en redes TCP/IP son \texttt{\textbf{telnet}} y \texttt{\textbf{ssh}}
 \footnote{El programa \texttt{\textbf{telnet}} implementa toda la comunicación basado en
 texto plano (sin cifrar), exponiendo así nombre de usuarios, contraseñas y otro tipo de 
 información sensible, a potenciales intrusos que se encuentren observando el tráfico en la red. 
-En su lugar, y siempre que sea posible, es recomendable utilizar el programa \texttt{\textbf{ssh }}, 
+En su lugar, y siempre que sea posible, es recomendable utilizar el programa \texttt{\textbf{ssh}}, 
 \textit{intérprete de comandos seguro} que cifra el tráfico en la red, haciendo
-así bastante menos probable el robo de información}
+así bastante menos probable el robo de información}.
 
 
  Los inicios de sesión a través de la red tienen, en vez de una cantidad
@@ -433,7 +419,54 @@ tienen servicios separados) que \textit{escucha} todos los intentos de inicio de
 sesión entrantes. Cuando el servicio advierte un intento de inicio de sesión,
 inicia una nueva instancia de si mismo para atender la petición individual; la
 instancia original continúa atenta a otros posibles intentos. La nueva instancia
-trabaja de manera similar a \texttt{\textbf{getty}}.  
+trabaja de manera similar a \texttt{\textbf{getty}}.
+
+Es importante que el administrador tome conciencia de los requisitos de cada tipo 
+de conexión. En el caso de los accesos a través de la red, aunque obvio, necesitamos
+una red y los servicios requeridos ``escuchando'' dentro de la computadora. Esta
+clase de análisis y reconocimiento es una de las actividades mentales que debe
+llevar a cabo todo administrador. Debemos comprender correctamente cada uno de los 
+caminos que nos conducen a acceder a un sistema.   
+
+\subsubsection{Syslog}
+
+ El núcleo y muchos \textit{programas de sistema} producen mensajes de 
+error, de advertencia o meramente informativos, estos mensajes son enviados
+normalmente a la consola del sistema. En general, será importante que 
+dichos mensajes puedan ser visualizados mas tarde, o tal vez mucho 
+después, por lo que deben guardarse en un archivo. El programa que realiza
+esta tarea es \texttt{\textbf{syslog}}. Syslog puede ser configurado para
+ordenar los mensajes en diferentes archivos, de acuerdo a quien lo emite o 
+al grado de importancia.  Por ejemplo, los mensajes del núcleo son 
+frecuentemente dirigidos a un archivo separado de los demás, debido a que
+son más importantes, y necesitan ser leídos regularmente para detectar 
+problemas.  
+
+\subsubsection{Ejecución periódica de comandos: \texttt{\textbf{cron}} y
+\texttt{\textbf{at}}}
+
+ Los administradores de sistemas y los usuarios, a menudo necesitan
+ejecutar comandos periódicamente. Como ejemplo, supongamos que el 
+administrador del sistema desea ejecutar un comando que elimine los 
+archivos más antiguos de los directorios con archivos temporales 
+(\texttt{/tmp} y \texttt{/var/tmp}) para evitar así que el disco se 
+llene, debido a que no todos los programas eliminan correctamente los 
+archivos temporales que ellos mismos generan.  
+
+ El servicio \texttt{\textbf{cron}} se configura para que realice la
+tarea anterior. Determinados usuarios (habilitados por el administrador)
+tiene un archivo \texttt{crontab}, en el cual se listan los comandos que
+se desea ejecutar y la fecha y hora de ejecución. El servicio
+ \texttt{\textbf{cron}} se encarga con precisión de iniciar cada comando,
+a la fecha y hora adecuada de acuerdo a lo especificado en
+cada archivo crontab.  
+
+ El servicio \texttt{\textbf{at}} es similar a \texttt{\textbf{cron}},
+pero este se inicia únicamente una vez: el comando es ejecutado a la hora
+especificada, pero esta ejecución no vuelve a repetirse.  
+
+ Se puede encontrar información adicional sobre cron(1), crontab(5), at(1)
+y atd(8) en las páginas de manual.  
 
 
 \subsubsection{ Sistemas de archivos de red (NFS)}  
@@ -454,7 +487,7 @@ extremadamente simple, ya que no se requieren modificaciones en el programa.
 
  Otra manera muy popular de compartir archivos es a través de Samba
 (http://www.samba.org). Este protocolo
-(llamado SMB) permite compartir archivos con máquinas con sistema oeprativo
+(llamado SMB) permite compartir archivos con máquinas con sistema operativo
 Windows(c) a través del Entorno de Red. También permite compartir impresoras.  
 
 
@@ -482,7 +515,6 @@ como agentes de usuario de correo }o \textit{MUA},
 (\texttt{\textbf{mailx}} y \texttt{\textbf{Thunderbird}} son ejemplos de esto). Los
 archivos de buzones de correo están usualmente ubicados en
 \texttt{/var/spool/mail}.  
-
 
 
 \subsubsection{Impresión}
