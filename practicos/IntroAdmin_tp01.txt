@@ -14,7 +14,9 @@ Repaso
 	a) ¿Cómo saber cuáles son las opciones soportadas por un comando sin recurrir a Internet?
 	b) Obtenga ayuda acerca del comando de ayuda.
 
-3- Qué comandos utiliza para:
+3- Qué comandos utiliza para: 
+NOTA: en cada caso indique en qué directorio se encuentra guardado el programa que utiliza,
+las opciones de uso y los argumentos en caso que existan. 
 
 	a) Listar todos los procesos en ejecución.
 	b) Listar el contenido del directorio actual con los detalles de cada archivo.
