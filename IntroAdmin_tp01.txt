@@ -1,0 +1,93 @@
+
+				TRABAJO PRÁCTICO I : Editor de Textos VI/VIM
+				---------------------------------------------
+
+Los siguientes ejercicios se realizan en su totalidad desde una terminal en un sistema GNU/Linux.
+
+Repaso
+------
+
+1- ¿Qué comando utiliza para saber en cuál directorio se encuentra usted trabajando?
+
+2- ¿Cómo saber cuáles son las opciones soportadas por un comando sin recurrir a Internet?
+
+3- Qué comandos utiliza para:
+
+	a) Listar todos los procesos en ejecución.
+	b) Listar el contenido del directorio actual con los detalles de cada archivo.
+	c) Cambiar el directorio de trabajo a otro.
+	d) Observar la jerarquía de procesos en ejecución (mencione al menos dos formas de hacerlo)
+	e) Eliminar un archivo
+	f) Eliminar un directorio
+	g) Observar el contenido de un archivo de texto
+	h) Observar el contenido de un archivo de texto largo, paginando la salida en la terminal 		(mencione al menos dos maneras de hacerlo). 
+
+VIM
+---
+
+1- Ejecute la siguiente secuencia:
+	
+	- vim ej1.txt
+	- Pasar a modo de inserción presionando "i"
+	- Escribir tres líneas a elección
+	- Volver al modo normal presionando "ESC"
+	- :wq 
+	- Observar el contenido del archivo ej1.txt con el comando "cat"
+
+2- Ejecute la siguiente secuencia:
+
+	- vim ej1.txt
+ 	- Moverse con los cursores a la línea del medio
+	- Ejecutar dd
+	- :wq
+	- Observar el contenido del archivo ej1.txt con el comando cat
+	- Explicar qué sucedió
+
+3- Instale el plugin de Vim HJKL (copie el archivo hjkl.vim en ~/.vim/plugin/). (*) 
+   Abra una terminal, ejecute vim y posteriormente el comando :HJKL en modo normal.
+   Juegue hasta sentirse cómodo con las teclas hjkl.
+
+4- Ejecute la siguiente secuencia
+
+	- vimtutor
+	- Guarde el contenido de vimtutor en un archivo en su home, ejecutando en modo normal:
+	  :saveas tutor.<hostname> (reemplazando <hostname> por el nombre de la máquina que
+	  Ud. está utilizando)
+	- Agregue su nombre y apellido al comienzo del archivo
+	- Complete las lecciones ofrecidas por el tutor
+	- Guarde sus cambios a medida que avanza:
+         :w (verifique el archivo donde esta guardando sus cambios)
+
+
+
+
+
+------------------------------------------------------------
+(*) http://www.vim.org/scripts/script.php?script_id=3409
+
+
+
+
+
+
+
+
+
+
+
+	
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
