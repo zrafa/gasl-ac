@@ -13,7 +13,7 @@ el comando que ejecuta.
 NOTA: PARA CADA COMANDO EJECUTADO REALICE EL EJERCICIO DE PREGUNTARSE:
 	¿Cual es el comando?
 	¿Cuales son las opciones?
-	¿Cuáles son argumentos?
+	¿Cuáles y de que tipo son los argumentos? 
 	¿Estoy utilizando metacaracteres? ¿Cual?
 
 !!!!!!!!!!
@@ -133,14 +133,16 @@ Comodines
 	los archivos cuyo nombre contenga cualquiera de los siguientes números:
 	03, 04, 05, 23, 24 y 25
 
-	7- Utilice comodines tal que el comando rm elimine todos los archivos
-	del directorio test a excepción de creador.sh
-
-	8- Utilice comodines tal que se muestre el contenido de todos los 
+	7- Utilice comodines tal que se muestre el contenido de todos los 
 	archivos que comiencen con "cap" o "Cap" seguidos de un dígito y solo 
 	uno, y finalicen en "2.txt"
 
-	8- ¿Qué tipo de archivos son los finalizados en "pdf"? 
+	8- ¿Qué tipo de archivos son los finalizados en "pdf"? ¿Que conclusion
+	puede sacar acerca de las extensiones en los sistemas GNU/Linux? 
+	(ayuda comando file)
+
+	9- Utilice comodines tal que el comando rm elimine todos los archivos
+	del directorio test a excepción de creador.sh
 
 
 Redirección y filtros
@@ -149,30 +151,28 @@ Redirección y filtros
 	1- Ejecute el comando "who". ¿Qué información obtiene? Confirme 
 	revisando el man del comando. 
 	
-	2- El comando wc (del inglés "word count") permite con la opción -l (vea man wc) contar líneas en un archivo. Utilice este comando y | para obtener el número de usuarios que iniciaron sesión en el sistema
+	2- El comando wc (del inglés "word count") permite con la opción -l 
+	(vea man wc) contar líneas en un archivo. Utilice este comando y | 
+	para obtener el número de usuarios que iniciaron sesión en el sistema
 	
-	3- Ingrese el directorio test creado en la sección "comodines" y vuelva a ejecutar el script creador.sh
+	3- Ingrese el directorio test creado en la sección "comodines" y 
+	vuelva a ejecutar el script creador.sh
 	
-	4- Utilizando el comando cat muestre el contenido de los archivos finalizados en txt o pdf
+	4- Utilizando el comando cat muestre el contenido de los archivos 
+	finalizados en txt o pdf
 
-	5- Ídem anterior pero esta vez redireccione la salida a un archivo llamado capítulos.txt
+	5- Ídem anterior pero esta vez redireccione la salida a un archivo 
+	llamado capitulos.txt
 
-	6- Utilizando el comando grep obtenga del archivo capítulos.txt las líneas que contengan el dígito 3
+	6- Utilizando el comando grep obtenga del archivo capitulos.txt las 
+	líneas que contengan el dígito 3
 	
-	7- Utilizando el comando grep obtenga directamente de la salida de cat (esto es sin usar un archivo intermedio) las líneas que contengan la palabra archivo (ya sea en minúsculas o mayúsculas). Ayuda: en inglés si algo es sensible a la diferencia entre mayúsculas y minúsculas se dice "case sensitive", por otro lado si no lo es se dice "case insensitive" man grep.
+	7- Utilizando el comando grep obtenga directamente de la salida de 
+	cat (esto es sin usar un archivo intermedio) las líneas que contengan
+	la palabra archivo (ya sea en minúsculas o mayúsculas). Ayuda: en 
+	inglés si algo es sensible a la diferencia entre mayúsculas y 
+	minúsculas se dice "case sensitive", por otro lado si no lo es se 
+	dice "case insensitive" man grep.
 
-	8- Utilizando el comando grep obtenga la lista de procesos que corresponden solamente al usuario root
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	8- Utilizando el comando grep obtenga la lista de procesos que 
+	corresponden solamente al usuario root
