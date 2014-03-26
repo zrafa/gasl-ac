@@ -1,7 +1,3 @@
-%%% LaTeX Template: Article/Thesis/etc. with colored headings and special fonts
-%%%
-%%% Source: http://www.howtotex.com/
-
 \documentclass[12pt]{article}
 
 
@@ -107,11 +103,18 @@ imprimir el número de línea además del contenido del archivo. (\texttt{man ca
 }
 \vspace*{0.4cm} } }
 
-En ocasiones, cuando la línea del comando se torna demasiado extensa, es conveniente dividirla
-en dos o mas líneas. Para ello e separa cada línea con el carácter barra invertida (\textbackslash), 
-el cuál le indica al intérprete que no hemos finalizado nuestro comando y que lo continuaremos 
-en la próxima línea. Así al presionar ``\texttt{ENTER}'' luego de una barra invertida, el comando 
-no será ejecutado inmediatamente, sino que el intérprete quedará esperando el resto de la invocación. 
+En ocasiones, cuando la línea del comando se torna demasiado extensa, es 
+conveniente dividirla en dos o mas líneas. Para ello e separa cada línea 
+con el carácter barra invertida (\textbackslash), el cuál le indica al 
+intérprete que no hemos finalizado nuestro comando y que lo continuaremos 
+en la próxima línea. Así al presionar ``\texttt{ENTER}'' luego de una 
+barra invertida, el comando no será ejecutado inmediatamente, sino que el 
+intérprete quedará esperando el resto de la invocación. 
+
+De modo más general, la barra invertida, \textbackslash, es un caracter que
+permite quitar el significado especial que tienen para el intérprete, 
+algunos caracteres. En el caso anterior quitamos el significado que el 
+intérprete asigna al caracter de nueva linea (ENTER).
 
 También es posible ejecutar más de un comando en la misma línea separándolos con punto y coma (;). 
 
@@ -125,42 +128,37 @@ esto es una prueba con barra invertida \\
 \#}
 \vspace*{0.4cm} } }
 
-\subsection{Variables de entorno}
+Así como los mencionados anteriormente existen varios caracteres con 
+significado especial, conocidos como metacaracteres. En las secciones 
+siguientes describiremos algunos de ellos brevemente con el fin de 
+comenzar a comprender la potencia del intérprete de comandos y su 
+lógica de uso.  
 
-Una variable de entorno es un nombre asociado a una cadena de caracteres. Dependiendo de la variable, su utilidad puede ser distinta. 
-Algunas son útiles para no tener que escribir muchas opciones al ejecutar un programa, otras las utiliza el propio shell (PATH, PS1,...). 
+\subsection{Comillas}
 
-La tabla muestra la lista de variables más comunes:
+Los distintos pares de comillas cumplen funciones diferentes para el shell.
+En la tabla a continuación se detalla su uso. 
 
-\begin{center}
+%\begin{center}
 \begin{tabular}{|l|l|}\hline
 \rowcolor{tcA}
-Variable & Descripción \\\hline
-DISPLAY & Donde aparecen la salida de X-Windows (sistema gráfico)\\\hline
-HOME & Nombre del directorio personal del usuario\\\hline
-HOSTNAME & Nombre de la máquina\\\hline
-PATH & Lista de directorios de búsqueda de programas\\\hline
-PS1 & Formato del \texttt{prompt}\\\hline
-SHELL & Intérprete de comandos predeterminado\\\hline
-TERM & Tipo de terminal\\\hline
-EDITOR & Editor invocado de manera predeterminada\\\hline
-USER & Nombre del usuario\\\hline
-PAGER & Paginador utilizado de manera predeterminada\\\hline
+Comillas & Descripción \\\hline
+\verb+"..."+ & Aquello en ... se interpreta literalmente luego
+de interpretar \textdollar, \verb+` `+ y \textbackslash \\\hline
+\verb+'...'+ & Aquello en ... se interpreta literalmente.\\\hline
+\verb+`...`+ & Aquello en ... se asume un comando, y se 
+reemplaza con el resultado del mismo.\\\hline
 \end{tabular}
+%\end{center}
+
+Veamos los siguientes ejemplos: 
+
+\begin{center}
+ \includegraphics{./img/comillas.jpg}
+ % redireccionamiento.gif: 502x248 pixel, 72dpi, 17.71x8.75 cm, bb=0 0 502 248
 \end{center}
 
-El nombre y la forma de definir una variable de entorno cambia con el interprete de comandos.
-Por ejemplo en el shell \texttt{bash} se definen ejecutando el siguiente comando: \texttt{export \textless NOMBRE\_DE\_VARIABLE\textgreater=\textless valor\_de\_la\_variable\textgreater}.
 
-Para conocer el valor de las variables de entorno ejecute el comando \texttt{env} o bien imprima su valor
-a través del comando \texttt{echo \$\textless NOMBRE\_DE\_VARIABLE\textgreater}
-
-
-\fcolorbox{black}{grey}{
-\parbox[t]{1.0\linewidth}{ \vspace*{0.4cm}
-{\bf Ejemplo:}
-Si la variable de entorno \texttt{LANG} se encuentra definida con el valor \texttt{es\_AR.UTF-8}, algunos programas, como por ejemplo \texttt{man}, interpretarán que el lenguaje en que el usuario actual está trabajando es español, y modificará su comportamiento de acuerdo a ello. En el caso del programa \texttt{man}, de estar disponibles, mostrará las páginas del manual requeridas en idioma español. Mientras que, si definimos la variable de entorno \texttt{LANG=en\_US.UTF-8}, man mostrará las páginas del manual en inglés.
-\vspace*{0.4cm} } }
 
 \subsection{Comodines}
 Los comodines son caracteres que cuentan con un significado especial para el shell (subconjunto de un conjunto 
@@ -212,6 +210,43 @@ archivo se llama ``capítulo[1-2].txt''. En este caso es necesario ``escapar'' e
 anteponiendo una contra barra ``\textbackslash'' al mismo. Por ejemplo: \texttt{cat 
 capítulo\textbackslash[1-2\textbackslash].txt} mostraría el contenido del archivo, de otro modo 
 intentaría mostrar el contenido de archivos con nombre capítulo1.txt y captítulo2.txt.
+\vspace*{0.4cm} } }
+
+\subsection{Variables de entorno}
+
+Una variable de entorno es un nombre asociado a una cadena de caracteres. Dependiendo de la variable, su utilidad puede ser distinta. 
+Algunas son útiles para no tener que escribir muchas opciones al ejecutar un programa, otras las utiliza el propio shell (PATH, PS1,...). 
+
+La tabla muestra la lista de variables más comunes:
+
+\begin{center}
+\begin{tabular}{|l|l|}\hline
+\rowcolor{tcA}
+Variable & Descripción \\\hline
+DISPLAY & Donde aparecen la salida de X-Windows (sistema gráfico)\\\hline
+HOME & Nombre del directorio personal del usuario\\\hline
+HOSTNAME & Nombre de la máquina\\\hline
+PATH & Lista de directorios de búsqueda de programas\\\hline
+PS1 & Formato del \texttt{prompt}\\\hline
+SHELL & Intérprete de comandos predeterminado\\\hline
+TERM & Tipo de terminal\\\hline
+EDITOR & Editor invocado de manera predeterminada\\\hline
+USER & Nombre del usuario\\\hline
+PAGER & Paginador utilizado de manera predeterminada\\\hline
+\end{tabular}
+\end{center}
+
+El nombre y la forma de definir una variable de entorno cambia con el interprete de comandos.
+Por ejemplo en el shell \texttt{bash} se definen ejecutando el siguiente comando: \texttt{export \textless NOMBRE\_DE\_VARIABLE\textgreater=\textless valor\_de\_la\_variable\textgreater}.
+
+Para conocer el valor de las variables de entorno ejecute el comando \texttt{env} o bien imprima su valor
+a través del comando \texttt{echo \$\textless NOMBRE\_DE\_VARIABLE\textgreater}
+
+
+\fcolorbox{black}{grey}{
+\parbox[t]{1.0\linewidth}{ \vspace*{0.4cm}
+{\bf Ejemplo:}
+Si la variable de entorno \texttt{LANG} se encuentra definida con el valor \texttt{es\_AR.UTF-8}, algunos programas, como por ejemplo \texttt{man}, interpretarán que el lenguaje en que el usuario actual está trabajando es español, y modificará su comportamiento de acuerdo a ello. En el caso del programa \texttt{man}, de estar disponibles, mostrará las páginas del manual requeridas en idioma español. Mientras que, si definimos la variable de entorno \texttt{LANG=en\_US.UTF-8}, man mostrará las páginas del manual en inglés.
 \vspace*{0.4cm} } }
 
 
