@@ -1,0 +1,178 @@
+------------------------------------------------
+Introducción a la administración de sistemas
+FAI - UNCOMA - 2014
+TRABAJO PRÁCTICO II : Reconocimiento del Sistema
+------------------------------------------------
+
+Los siguientes ejercicios se realizan en su totalidad en el equipo asignado 
+al grupo. Utilice redirección y el editor vi para guardar las salidas y editar 
+los resultados de este práctico. En el archivo de resolución indique su nombre 
+y apellido, y el número de ejercicio a resolver, junto a la salida incluyendo 
+el comando que ejecuta.
+
+NOTA: PARA CADA COMANDO EJECUTADO REALICE EL EJERCICIO DE PREGUNTARSE:
+	¿Cual es el comando?
+	¿Cuales son las opciones?
+	¿Cuáles son argumentos?
+	¿Estoy utilizando metacaracteres? ¿Cual?
+
+!!!!!!!!!!
+¡¡¡TIPS!!!
+¡¡¡¡¡¡¡¡¡¡
+
+TIP1: en modo normal los comandos :vsplit y :split permiten trabajar con 
+dos (o mas) archivos en simultáneo. Con Ctrl+w cambiamos el foco de un archivo
+al otro. Esto nos permite copiar textos entre ambos archivos. 
+
+TIP2: en modo normal, el comando :set number / :set nonumber muestra o esconde 
+el número de líneas. Note que es sólo para referencia, el número de línea no 
+pertenece al texto. 
+
+TIP3: en modo normal, el comando !! permite ejecutar un comando e insertar su
+resultado directamente en el texto. 
+
+TIP4: en modo normal, el comando :! permite ejecutar un comando en el shell y 
+volver a la edición de texto sin insertar ningún resultado. 
+
+
+Procesos
+--------
+
+Un proceso es un programa en ejecución. En un momento dado, un sistema operativo
+manipula decenas e incluso centenas de procesos para cumplir con las demandas
+de los usuarios. 
+
+Ayuda: ps ; man ps
+
+	1- Obtenga la lista de todos los programas en ejecución, incluyendo al 
+menos la siguiente información: dueño del proceso, identificador de proceso 
+(PID), identificador del padre (PPID), comando que inició el proceso. Guarde 
+esta salida en un archivo llamado tp02-1.txt
+
+	2- De la lista anterior identifique cuál es el primer proceso del 
+sistema.
+
+Usando el editor vi:
+--------------------
+
+	3- De la lista obtenida en el ejercicio 1, obtenga exclusivamente 
+aquellos que son hijo directos del primer proceso del sistema. ¿Cómo obtuvo el 
+listado? (recuerde n1,n2y en modo normal copia las líneas n1 a n2).
+
+Entorno del shell
+-----------------
+
+Ayuda: env
+
+	1- De la lista de variables de entorno de su shell, obtenga únicamente 
+el valor de la variable LANG y redirija la salida a un archivo llamado 
+tp02-2.txt. ¿Qué valor tiene la variable? 
+
+	2- Obtenga solamente el valor de la variable LANG ejecutando:
+echo $LANG. ¿Qué función cumple esta variable, por ejemplo cuando ejecutamos 
+el comando man? ¿Qué metacaracter utilizó en el comando anterior? 
+
+	3- Cambiar el valor de la variable PS1 ejecutando: 
+PS1='Ingrese el comando a ejecutar: '. Ejecutar algunos comandos al azar. ¿Qué 
+observa?. Redefinir la variable	ejecutando PS1='\u@\H:\w\$'. En la página de 
+manual de bash busque y lea la sección INDICADORES para entender cómo funciona 
+esta última asignación.
+
+	4- Ejecutar la siguiente secuencia:
+		
+		$ echo $HOME
+		$ cd
+		$ pwd
+		$ HOME=/tmp
+		$ cd
+		$ pwd
+		$ ¿Qué observa? ¿Qué función cumple la variable $HOME?
+
+Comodines
+---------
+
+	1- Crear un directorio llamado test/ e ingresar al mismo. Los 
+	incisos siguientes se deberán realizar dentro de dicho directorio.
+
+	2- En un shell bash ejecute los siguientes comandos:
+
+	Crear un archivo llamado creador.sh con el siguiente texto:
+	
+	#-------------------------------------
+	#!/bin/bash
+
+	for ((i=0;i<4;i++));do
+	   for((j=0;j<10;j++));do
+
+		if [ $i -lt 2 ];then
+		    echo "Archivo $i$j" > Cap$i$j.txt
+		elif [ $i -lt 3 ] ; then
+		    echo "Otro archivo $i$j" > cap$i$j.txt
+	        else
+		    echo "Esto NO es un PDF $i$j" > Cap$j.pdf
+		fi
+	   done
+         done
+	#-------------------------------------
+
+		- Asigne permisos de ejecución al archivo: 
+		chmod u+x creador.sh (observe los permisos con el comando ls -l)
+		- Liste el contenido del directorio test.
+		- Ejecute el script recién creado: ./creador.sh
+		- Liste el contenido del directorio test. ¿cuál es la función 
+		del script creador.sh?
+
+	3- Utilice comodines tal que el comando ls liste todos los archivos 		finalizados en ".txt"
+
+	4- Utilice comodines tal que el comando ls liste todos los archivos 		que comienzan con "cap" y  finalizan en ".txt"
+
+	5- Utilice comodines tal que el comando cat muestre el contenido de 
+	los archivos Cap10.txt a Cap19.txt
+	
+	6- Utilice comodines tal que el comando cat muestre el contenido de 
+	los archivos cuyo nombre contenga cualquiera de los siguientes números:
+	03, 04, 05, 23, 24 y 25
+
+	7- Utilice comodines tal que el comando rm elimine todos los archivos
+	del directorio test a excepción de creador.sh
+
+	8- Utilice comodines tal que se muestre el contenido de todos los 
+	archivos que comiencen con "cap" o "Cap" seguidos de un dígito y solo 
+	uno, y finalicen en "2.txt"
+
+	8- ¿Qué tipo de archivos son los finalizados en "pdf"? 
+
+
+Redirección y filtros
+---------------------
+
+	1- Ejecute el comando "who". ¿Qué información obtiene? Confirme 
+	revisando el man del comando. 
+	
+	2- El comando wc (del inglés "word count") permite con la opción -l (vea man wc) contar líneas en un archivo. Utilice este comando y | para obtener el número de usuarios que iniciaron sesión en el sistema
+	
+	3- Ingrese el directorio test creado en la sección "comodines" y vuelva a ejecutar el script creador.sh
+	
+	4- Utilizando el comando cat muestre el contenido de los archivos finalizados en txt o pdf
+
+	5- Ídem anterior pero esta vez redireccione la salida a un archivo llamado capítulos.txt
+
+	6- Utilizando el comando grep obtenga del archivo capítulos.txt las líneas que contengan el dígito 3
+	
+	7- Utilizando el comando grep obtenga directamente de la salida de cat (esto es sin usar un archivo intermedio) las líneas que contengan la palabra archivo (ya sea en minúsculas o mayúsculas). Ayuda: en inglés si algo es sensible a la diferencia entre mayúsculas y minúsculas se dice "case sensitive", por otro lado si no lo es se dice "case insensitive" man grep.
+
+	8- Utilizando el comando grep obtenga la lista de procesos que corresponden solamente al usuario root
+
+
+
+
+
+
+
+
+
+
+
+
+
+
