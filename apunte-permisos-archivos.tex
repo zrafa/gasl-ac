@@ -1,0 +1,628 @@
+%%% LaTeX Template: Article/Thesis/etc. with colored headings and special fonts
+%%%
+%%% Source: http://www.howtotex.com/
+
+\documentclass[12pt]{article}
+
+
+\usepackage{apuntes-estilo}
+\usepackage{fancyhdr,lastpage}
+
+
+
+\def\maketitle{
+
+% Titulo 
+ \makeatletter
+ {\color{bl} \centering \huge \sc \textbf{
+Visión General del Árbol de Directorios \\
+\large \vspace*{-8pt} \color{black} Una introducción al Sistema de Archivos GNU/Linux
+ \vspace*{8pt} }\par}
+ \makeatother
+
+
+% Autor
+ \makeatletter
+ {\centering \small 
+ 	Departamento de Ingeniería de Computadoras \\
+ 	Facultad de Informática - Universidad Nacional del Comahue \\
+ 	\vspace{20pt} }
+ \makeatother
+
+}
+
+% Custom headers and footers
+\fancyhf{} % clear all header and footer fields
+\fancypagestyle{plain}{\fancyhf{}}
+  	\pagestyle{fancy}
+ 	\lhead{\footnotesize Visión General del Árbol de Directorios - Departamento de Ingeniería de Computadoras}
+ 	\rhead{\footnotesize \thepage\ }	% "Page 1 of 2"
+
+\def\ti#1#2{\texttt{#1} & #2 \\ }
+
+
+
+\begin{document}
+
+\thispagestyle{empty}
+\maketitle
+\setlength{\parindent}{0pt}
+
+
+\section{ Introducción}
+Este documento describe los conceptos básicos sobre propiedades de archivos, 
+incluyendo tipos y permisos de archivos, propietarios y grupos. 
+
+\section*{Tipos de archivos}
+
+Un archivo es una secuencia de bytes (un byte es un pequeño trozo de 
+información, normalmente compuesto por ocho bits. Para nuestros propósitos
+durante este texto, un byte es equivalente a un caracter). El sistema no impone 
+estructura alguna a los archivos, ni asigna significado a su contenido; el 
+significado de los bytes depende únicamente de los programas que 
+interpretan el archivo. 
+
+Vimos en apuntes anteriores que los archivos se organizan dentro de sistemas de 
+archivos (ext3, ext4,NTFS, etc). Estos sistemas de archivos son el modo de 
+ordenar los archivos dentro de los distintos medios de almacenamiento (discos
+rígidos, de estado sólido, memorias flash, etc). 
+
+En general, la mayoría de los sistemas de archivos de sistemas de tipo UNIX
+definen seis tipo de archivos:
+
+\begin{itemize}
+\item Archivos regulares (Ej. un archivo de texto, un pdf son archivos regulares)
+\item Directorios
+\item Links simbólicos
+\item Dispositivos (de bloque y caracter) 
+\item UNIX Sockets  
+\item Pipes 
+\end{itemize}
+
+Limitaremos nuestro estudio a los tres primeros tipos de archivos. 
+
+
+\subsection*{Archivos regulares}
+No son otra cosa que una bolsa de bytes: UNIX no impone ninguna estructura a
+su contenid. Los archivos de texto, de datos, programas ejecutables, bibliotecas
+compartidas, son todos archivos regulares.
+
+La creación de archivos regulares sucede a través de distintos programas de 
+aplicación, por ejemplo cuando utilizamos un sofware de ofimática, cuando 
+descargamos archivos del mail, a través de un editor de texto, etc. El formato 
+inerno de archivos regulares dependerá entonces de la aplicación que lo creó. 
+
+La eliminación de archivos regulares sucede a través del comando \texttt{rm}. 
+
+\begin{verbatim}
+-rw-r--r--  1 lechnerm lechnerm     46887 mar 28 16:19 tivoli.png
+-rw-r--r--  1 lechnerm lechnerm   6682574 abr  1 18:38 tmp.79167916.bmp
+-rw-r--r--  1 lechnerm lechnerm    126463 sep 21  2013 todosej2.txt.pdf
+-rw-r--r--  1 lechnerm lechnerm     95766 dic 17 10:55 vclab .odt
+\end{verbatim}
+
+\subsection*{Directorios}
+Los directorios son archivos que contienen referencias a otros archivos. 
+Podemos crear directorios a través del comando \texttt{mkdir}, y eliminarlos
+a tevés del comando \texttt{rmdir} si está vacío, o \texttt{rm -r} si tiene 
+contenido. 
+
+La estructura de un archivo de tipo directorio dependerá del sistema de 
+archivos que usemos en particular. En general las entradas ``.'' y ``..''
+se refieren al directorio actual o su padre respectivamente.  
+
+Los nombres de archivos contenidos dentro de un directorio, se encuentran 
+almacenados en el directorio y no en el archivo. Esto permite entre otras
+cosas que un archivo exista en varios directorios simultáneamente. 
+
+\section{ El sistema de archivos raíz}
+
+ El sistema de archivos raíz debería ser pequeño, ya que residen archivos
+muy críticos. Si el sistema de archivos es pequeño y rara vez es modificado,
+tiene menos posibilidades de sufrir daños. Un sistema de archivos raíz dañado,
+generalmente significa que el sistema no podrá arrancar a no ser que se tomen
+medidas especiales (P.Ej., tal vez pueda arrancar desde un CD-ROM o pendrive de
+emergencia), por lo que no se desea correr el riesgo.  
+
+ El directorio\footnote{Nótese que se está hablando del directorio y no del 
+sistema de archivos en su totalidad como en el párrafo anterior.} raíz no 
+contiene generalmente archivos, exceptuando quizás
+la imagen del núcleo estándar, normalmente llamada
+\texttt{/vmlinuz}. Todos los demás archivos se encuentran en
+subdirectorios bajo el sistema de archivos raíz:
+
+\begin{itemize} 
+
+	\item \textbf{\texttt{/bin}}
+	 Comandos necesarios durante el inicio del sistema que
+	pueden ser utilizados por usuarios normales (probablemente después de
+	que el sistema haya arrancado).  
+
+	\item \textbf{\texttt{/sbin}}
+	 Igual que \texttt{/bin}, pero aquí los
+	comandos no están destinados a los usuarios normales, aunque
+	pueden utilizarse en caso de que sea necesario y el sistema lo permita.
+	\texttt{/sbin} no se encuentra en las rutas de acceso (PATH) de manera 
+	predeterminada de los usuarios normales. Por el contrario, sí se 
+	encuentra definido en la ruta predeterminada para el usuario root.
+	
+	\item \textbf{\texttt{/etc}}
+	 Archivos de configuración específicos de la máquina (P.Ej., la base
+	de datos de usuarios locales \texttt{/etc/passwd}.
+	
+	\item \textbf{\texttt{/root}}
+	 El directorio local o \texttt{home} para el usuario root.  Normalmente
+	los demás usuarios del sistema no pueden acceder a él.
+	
+	\item \textbf{\texttt{/lib}}
+	 Bibliotecas compartidas necesarias para los programas que
+	se encuentran en el sistema de archivos raíz.
+	
+	\item \textbf{\texttt{/lib/modules}}
+	 Módulos cargables del núcleo, especialmente
+	aquellos que se necesitan para arrancar el sistema tras recuperarse
+	de algún incidente (P.Ej., controladores de red y sistemas de
+	archivos).
+
+	\item \textbf{\texttt{/dev}}
+	 Archivos de dispositivos (P.Ej., /dev/sda puede representar al primer
+	disco local del sistema, estos nombres pueden variar de una distribución
+	a otra).
+
+	\item \textbf{\texttt{/tmp}}
+	 Archivos temporales. Los programas que se ejecuten
+	después de que el sistema se haya iniciado deben utilizar
+	\texttt{/var/tmp}, no \texttt{/tmp},
+	debido a que \texttt{/var/tmp} probablemente resida en una
+	partición o disco con más espacio. Frecuentemente /tmp es un enlace
+	simbólico para /var/tmp.  
+
+	
+	\item \textbf{\texttt{/boot}}
+	 Archivos utilizados por el gestor de arranque, por
+	ejemplo, GRUB o LILO. Las imágenes del núcleo o kernel se guardan con
+	frecuencia en este directorio, en vez de en el directorio raíz. Si
+	existen	muchas imágenes del núcleo, el directorio puede
+	llegar a crecer mucho, por lo que es mejor mantener este
+	directorio en un sistema de archivos separado. 
+	
+	\item \textbf{\texttt{/mnt}}
+	 Punto de montaje temporal para los sistemas de archivos
+	montados manualmente por el administrador del sistema. Se supone que los programas
+	no deben montar en \texttt{/mnt} automáticamente. Es posible
+	que \texttt{/mnt} se encuentre dividido en subdirectorios
+	(P.Ej.,\texttt{/mnt/usb0} puede ser
+	el punto de montaje para los pendrive con sistema de archivos
+	FAT, y \texttt{/mnt/cdrom} puede llegar a serlo para CD-ROM con sistemas
+	de archivo ISO9669).  
+	
+	\item \textbf{\texttt{/proc}
+	\texttt{/usr} \texttt{/var}
+	\texttt{/home} } Son puntos de
+	montaje para otros sistemas de archivos.
+ \end{itemize}  
+
+
+
+
+\section{ El directorio /etc}
+
+ El directorio \texttt{/etc} contiene gran cantidad de
+archivos de configuración del sistema. Algunos de ellos se describen aquí. 
+Para otros archivos, se
+debe determinar a qué programa pertenecen y leer la página de manual
+correspondiente.  
+
+\begin{itemize} 
+
+\item \textbf{\texttt{/etc/rc} o
+\texttt{/etc/rc.d} o \texttt{/etc/rc?.d}}
+Scripts\footnote{Programas escritos en el lenguaje de programación definido por 
+un shell, por ejemplo, Bash} o 
+directorios de scripts que se ejecutan durante el
+arranque del sistema o al cambiar el nivel de ejecución. Se puede
+encontrar información adicional en la documentación dedicada a Init (\texttt{man init} y 
+\texttt{man inittab}).
+
+\item \textbf{\texttt{/etc/passwd}}
+ Es la base de datos de los usuarios locales, que incluye campos como el
+nombre de usuario, nombre real, identificador de usuario (UID), directorio home, y otra
+información acerca de cada usuario.  El formato de este archivo se encuentra
+documentado en la página del manual \texttt{\textbf{passwd}} dentro
+de la sección cinco\footnote{\texttt{man passwd} hará referencia a la sección uno
+del manual, mostrando el manual para el comando utilizado para cambiar una contraseña} 
+(\texttt{man 5 passwd}). 
+
+\item  \textbf{\texttt{/etc/shadow}}
+ En este archivo se encuentra la información de las contraseñas de usuarios locales, junto 
+a información relativa a dichas contraseñas, como por ejemplo fecha del último cambio
+de contraseña (\texttt{man shadow}). No debe poder ser leído por nadie a excepción 
+del usuario root. De esta manera se dificulta el proceso de descifrado de las contraseñas 
+de los usuarios (si fuera accesible por cualquier usuario un ataque por fuerza bruta podría
+revelar una o más contraseñas de usuarios).
+
+\item \textbf{\texttt{/etc/group}}
+ Este archivo es similar a \texttt{/etc/passwd} , pero describe grupos locales
+de usuarios. Se puede encontrar información adicional en la página de manual 
+\texttt{\textbf{group}} (\texttt{man shadow}).  
+
+\item \textbf{\texttt{/etc/fstab}}
+   Lista los sistemas de archivos montados automáticamente
+durante el arranque del sistema por el comando \texttt{\textbf{mount
+-a}} (en \texttt{/etc/rc} o archivo de inicio
+equivalente). En Linux, este archivo también
+contiene información acerca de áreas de swap utilizadas
+automáticamente por \texttt{\textbf{swapon -a}} (\texttt{man fstab}).  
+
+\item \textbf{\texttt{/etc/mtab}}
+Contiene un listado de los sistemas de archivos
+actualmente montados. Se establece Inicialmente por los scripts del
+arranque del sistema, y se actualiza automáticamente por el comando
+\texttt{\textbf{mount}}. Se utiliza cuando se necesita un listado de
+los sistemas de archivos que estén actualmente montados (por ejemplo por
+el comando \texttt{df}).  
+
+\item \textbf{\texttt{/etc/inittab}}
+Archivo de configuración para el proceso init \texttt{man inittab}).
+	
+\item \textbf{\texttt{/etc/issue}}
+ Archivo de texto que utiliza \texttt{\textbf{getty}} como
+salida antes de que el sistema pida el nombre de usuario. Usualmente
+contiene una descripción corta o mensaje de bienvenida al sistema.  El
+contenido es establecido por el administrador del sistema. También suele
+utilizarce en la configuración de otros programas que permiten inicios 
+de sessión como el servidor Open-SSH (vea \texttt{man sshd\_config}, 
+opción ``Banner''). 
+	
+\item \textbf{\texttt{/etc/motd}}
+ Contiene el mensaje del día, que se emite
+automáticamente tras iniciar una sesión con éxito. El
+contenido es definido por el administrador del
+sistema. Con frecuencia se utiliza para dar información a todos
+los usuarios, como por ejemplo, mensajes de advertencias acerca de la
+hora en que está planeada una parada técnica del servidor.
+
+\item \textbf{\texttt{/etc/magic}}
+El archivo de configuración para el programa
+\texttt{\textbf{file}}. Contiene las descripciones de varios formatos
+de archivos que utiliza file para determinar el tipo de archivo. Se
+puede encontrar información adicional en las páginas de manual
+para \texttt{magic} y \texttt{\textbf{file}}.
+	
+
+	
+\item \textbf{\texttt{/etc/profile},
+\texttt{/etc/csh.login},
+\texttt{/etc/csh.cshrc}}  Archivos
+que se ejecutan en el momento de iniciar los intérpretes de comandos C o
+Bourne. Permite al administrador del sistema establecer parámetros
+globales de manera predeterminada para todos los usuarios. Se puede encontrar
+información adicional en las páginas de manual para los respectivos
+intérpretes de comandos.  
+
+
+\item \textbf{\texttt{/etc/securetty}}
+ Identifica las terminales seguras, esto es, las
+terminales por las cuales el usuario root tiene permitido iniciar una
+sesión. Típicamente sólo las consolas virtuales se encuentran listadas
+en este archivo, con lo que se hace imposible (o al menos mas difícil)
+obtener privilegios de superusuario accediendo a través de un módem o la
+red. No se debe permitir iniciar una sesión como usuario root desde la
+red. Es preferible iniciar una sesión con un usuario sin privilegios y
+utilizar después \texttt{\textbf{su}} o \texttt{\textbf{sudo}} para
+obtener privilegios de superusuario.  
+
+\item \textbf{\texttt{/etc/shells}}
+ Listado de intérpretes de comandos admitidos.  El
+comando \texttt{\textbf{chsh}} permite a los usuarios cambiar su
+intérprete de comandos predeterminado a otro que se encuentre listado en
+este archivo. Relacionado a este archivo, \texttt{\textbf{ftpd}}, el 
+proceso servidor que brinda servicios de transferencias de archivos (FTP), 
+comprueba que los intérpretes de comandos de los usuarios estén listados
+en \texttt{/etc/shells}, caso contrario el servicio es denegado.  
+
+\end{itemize} 
+    
+
+
+\section{ El directorio /dev}
+
+El directorio \texttt{/dev} contiene los archivos de
+dispositivos especiales para muchos dispositivos de hardware. Los archivos de
+dispositivos se nombran utilizando convenciones especiales.  Algunos de estos
+archivos se crean durante la instalación del sistema, otros son creados 
+dinámicamente por el sistema udev (\texttt{man udev}) y, en casos extraordinarios,
+pueden ser creados manualmente por el administrador de sistemas.
+
+El sistema udev (y su correspondiente demonio \texttt{udevd}) crean archivos de
+dispositivos basados en eventos que recibe del kernel, a medida que se agregan 
+o remueven dispositivos del sistema. 
+
+\fcolorbox{black}{grey}{
+\parbox[t]{1.0\linewidth}{ \vspace*{0.4cm}
+{\bf Algunos ejemplos de archivos de dispositivo:}
+\begin{itemize}
+\item \texttt{/dev/sda} primer disco SCSI del sistema. Mientras que \texttt{/dev/sda1} 
+es el archivo que representa a la primer partición del disco. 
+\item \texttt{/dev/tty?} (de 0 a 63) son los archivos que representan a las terminales 
+del sistema. 
+\end{itemize}
+\vspace*{0.4cm} } }
+
+\section{ El sistema de archivos /usr}
+El sistema de archivos \texttt{/usr} es con frecuencia grande,
+debido a que todos los programas están instalados allí. Normalmente, todos los
+archivos en \texttt{/usr} provienen de la distribución Linux que
+hayamos instalado; los programas instalados localmente y algunas otras cosas
+se encuentran bajo \texttt{/usr/local}. De esta manera es posible
+actualizar el sistema desde una nueva versión de la distribución, o incluso
+desde una distribución completamente nueva, sin tener que instalar todos los
+programas nuevamente. Algunos de los directorios de \texttt{/usr}
+están explicados aquí debajo (algunos de los menos importantes se han omitido,
+se puede encontrar información adicional en el Estándar del Sistema de
+Ficheros).  
+
+
+\begin{itemize} 
+	
+	\item \textbf{\texttt{/usr/X11R6}}
+	 Se encuentran aquí todos los archivos del Sistema
+	X-Windows. Para simplificar el desarrollo y la instalación de X,  sus
+	archivos no fueron integrados dentro del resto del sistema. Existe un
+	árbol de directorios bajo /usr/X11R6 similar al que está bajo /usr.
+	
+
+
+	\item \textbf{\texttt{/usr/bin}}
+	 En este directorio se encuentran la gran mayoría de los
+	comandos para los usuarios. Algunos otros comandos pueden encontrarse en
+	\texttt{/bin} o en 	\texttt{/usr/local/bin}.
+	
+
+	\item \textbf{\texttt{/usr/sbin}}
+	 Comandos para la administración del sistema que no son
+	necesarios en el sistema de archivos raíz, como por ejemplo la mayoría
+	de los programas que proveen servicios.  
+
+	\item \textbf{\texttt{/usr/share/man},
+	\texttt{/usr/share/info},
+	\texttt{/usr/share/doc}}  Páginas
+	de manual, documentos de información GNU, y 		archivos de
+	documentación de los programas instalados.
+	
+
+	\item \textbf{\texttt{/usr/include}}
+	 Archivos cabecera para el lenguaje de programación C.
+	Estos deberían estar de hecho debajo de \texttt{/usr/lib}
+	por coherencia, pero tradicionalmente se ha apoyado de forma mayoritaria
+	esta ubicación.  
+
+	\item \textbf{\texttt{/usr/lib}}
+	 Archivos de datos de programas y subsistemas que no
+	sufren cambios, incluyendo algunos archivos de configuración globales.
+	El nombre lib viene de biblioteca (library); originariamente las
+	biblotecas de las subrutinas de programación se
+	almacenaban en \texttt{/usr/lib}.
+	
+
+	\item \textbf{\texttt{/usr/local}}
+	 Es la ubicación para el software construído e instalado localmente, y
+	para algunos otros archivos.  Las distribuciones no deben colocar
+	archivos bajo este directorio. Se 			reserva para ser
+	utilizado únicamente por el administrador local del
+	sistema. De esta manera, aquel se asegura totalmente de que ninguna
+	actualización de su distribución sobreescribirá  el software que él
+	mismo haya instalado localmente.
+
+
+ \end{itemize} 
+
+
+
+
+\section{ El sistema de archivos /var}
+    
+    El sistema de archivos \texttt{/var} contiene datos que
+    cambian cuando el sistema se ejecuta normalmente. Es específico para cada
+    sistema y por lo tanto no es compartido a través de la red con otras
+    computadoras. 
+
+	\begin{itemize}  
+	\item 
+	\textbf{\texttt{/var/log}} 
+
+	  Archivos de log (en español bitácora) de diferentes
+	 programas, especialmente de \texttt{\textbf{login}}
+	 (\texttt{/var/log/wtmp}, el cual registra todos los inicios
+	 y cierres de sesión en el sistema) y de \texttt{\textbf{syslog}}
+	 (\texttt{/var/log/messages}, en donde se almacenan todos
+	 los mensajes del núcleo y de los programas del sistema). Los Archivos
+	 dentro del directorio \texttt{/var/log} pueden crecer
+	 indefinidamente, por lo que se requiere una limpieza a intervalos
+	 regulares.   
+
+	\item 
+        
+	\textbf{\texttt{/var/cache/man}} 
+        
+	 Actúa como una caché para las páginas de manual que son
+	formateadas bajo demanda. Las fuentes de las páginas de manual se
+	encuentran almacenadas normalmente en \texttt{/usr/man/man?}
+	(donde ? es la sección de las páginas de manual que corresponda. Se
+	puede 	encontrar información adicional en la página de manual para
+	\texttt{\textbf{man}}); algunas páginas de manual
+	pueden 	llegar a venir con una versión pre-formateada, la cual estaría
+	almacenada 	en \texttt{/usr/share/man/cat*}. Otras
+	páginas de manual necesitan ser formateadas al ser visualizadas por
+	primera vez; la versión formateada es almacenada entonces en
+	\texttt{var/cache/man} para que la próxima vez que un
+	usuario necesite ver la misma página no tenga que esperar a que se le de
+	formato.  
+
+	\item 
+        
+	\textbf{\texttt{/var/games}} 
+        
+	 Cualquier información variable perteneciente a juegos
+	existente en \texttt{/usr} debería colocarse aquí. Esto es
+	así por si se da el caso de que \texttt{/usr} esté montado
+	como 		solo lectura 
+
+	\item 
+
+	\textbf{\texttt{/var/lib}} 
+    
+	 Contiene archivos que cambian mientras el sistema se
+	ejecuta normalmente. 
+
+	\item 
+        
+
+	\textbf{\texttt{/var/local}} 
+        
+	 Datos variables de los programas que se encuentran
+	instalados en \texttt{/usr/local}(aquellos que fueron
+	instalados localmente por el administrador del sistema). Conviene
+	reseñar  		que aunque los programas se encuentren
+	instalados localmente, deben 			utilizar los otros
+	directorios \texttt{/var} en caso de ser
+	apropiado, como por ejemplo:
+	\texttt{/var/lock}.  
+
+	\item 
+	\textbf{\texttt{/var/lock}} 
+        
+	 Archivos de bloqueo. Muchos programas siguen una
+	convención para crear un archivo de bloqueo en /var/lock que indique que
+	están utilizando un dispositivo particular o un archivo de forma
+	exclusiva. Así, Los demás programas se encontrarán con el archivo de
+	bloqueo y no intentarán acceder al dispositivo o archivo.
+	  
+
+
+	\item 
+        
+	\textbf{\texttt{/var/mail}} 
+        
+	 Esta es la ubicación definida por el FHS (Estándar de la
+	jerarquía del sistema de archivos) para almacenar los archivos de buzón
+	de correos de los usuarios. Dependiendo de en qué 		grado su
+	distribución cumpla con el FHS, estos archivos pueden 	llegar a
+	estar ubicados en \texttt{/var/spool/mail}.
+	  
+
+	\item 
+
+	\textbf{\texttt{/var/run}} 
+        
+	 Directorio que contiene archivos con información acerca
+	del sistema, la cual es válida hasta el próximo inicio del mismo. Por
+	ejemplo: \texttt{/var/run/utmp} contiene información de las
+	personas que actualmente tienen sesiones iniciadas.  
+	 
+
+	\item 
+        
+	\textbf{\texttt{/var/spool}} 
+	 Contiene directorios para las noticias, el correo, colas
+	de impresión, y otros programas que necesiten trabajar con colas.
+	Cada spool diferente tiene su propio directorio debajo de
+	\texttt{/var/spool}, por ejemplo: el spool de noticias se
+	encuentra en \texttt{/var/spool/news}. Cabe destacar que si
+	alguna instalación no cumple totalmente con la última versión del
+	FHS, los buzones de correo entrante de los usuarios pueden encontrarse
+	en /var/spool/mail.   
+
+	\item 
+        
+	\textbf{\texttt{/var/tmp}} 
+	 Archivos temporales grandes o que necesitan existir por
+	un tiempo más amplio de lo permitido en \texttt{/tmp}.  (De
+	todas formas, el administrador del sistema puede no permitir muchos
+	archivos antiguos en /var/tmp si así lo desea).  
+	  \end{itemize}  
+
+
+\section{ El sistema de archivos /proc}
+
+El sistema de archivos \texttt{/proc} contiene un sistema de
+archivos imaginario o virtual. Este no existe físicamente en disco, sino que el
+núcleo lo crea en memoria. Se utiliza para ofrecer información relacionada con
+el sistema (originalmente acerca de procesos, de aquí su nombre). Algunos de los
+archivos más importantes se encuentran explicados mas abajo. El sistema de
+archivos \texttt{/proc} se encuentra descrito con más detalle en la
+página de manual de proc.
+
+	\begin{itemize} 
+	
+	\item
+	\textbf{\texttt{/proc/1}}
+	 Un directorio con información acerca del proceso con identificador
+	número uno, init. Cada proceso tiene un directorio debajo de /proc 
+        cuyo nombre es el número de identificación del proceso (PID).  
+	
+	
+	\item
+	\textbf{\texttt{/proc/cpuinfo}}
+	 Información acerca del procesador: su tipo, marca,
+	modelo,	rendimiento, etc.  
+	
+	\item \textbf{\texttt{/proc/meminfo}}
+	 Información acerca de la memoria
+	física y su utilización. 
+	
+	\item
+	\textbf{\texttt{/proc/devices}}
+	 Lista de controladores de dispositivos configurados
+	dentro 	del núcleo que está en ejecución.
+	
+	\item
+	\textbf{\texttt{/proc/filesystems}}
+	 Lista los sistemas de archivos que están soportados por
+	el kernel.  
+	
+	
+	\item \textbf{\texttt{/proc/loadavg}}
+	 El nivel medio de carga del sistema; tres indicadores
+	significativos sobre la carga de trabajo del sistema en cada
+	momento. Dichos valores son utilizados por varios comandos, como por 
+	ejemplo \texttt{uptime} y \texttt{top}. 
+	
+	
+	\item
+	\textbf{\texttt{/proc/modules}}
+	 Indica los módulos del núcleo que han sido cargados
+	hasta el momento.
+	
+
+	\item \textbf{\texttt{/proc/net}}         
+	 Información acerca del estado de los protocolos de
+	red.
+	
+	\item \textbf{\texttt{/proc/stat}}
+	 Varias estadísticas acerca del sistema, tales como el
+	número de fallos de página que han tenido lugar desde el arranque del
+	sistema.
+	
+	\item \textbf{\texttt{/proc/uptime}}
+	 Indica el tiempo en segundos que el sistema lleva
+	funcionando.
+	
+	\item \textbf{\texttt{/proc/version}}
+	 Indica la versión del núcleo
+	
+	
+	 \end{itemize} 
+
+    Conviene aclarar que aunque los archivos anteriores tienden a ser
+    archivos de texto fáciles de leer, algunas veces pueden tener un formato
+    que no sea fácil de interpretar. Por ello existen muchos comandos que
+    solamente leen los archivos anteriores y les dan un formato distinto para
+    que la información sea fácil de entender. Por ejemplo, el comando
+    \texttt{\textbf{free}}, lee el archivo \texttt{/proc/meminfo}
+    y convierte las cantidades dadas en bytes a kilobytes (además de agregar 
+    información extra). 
+\include{licGASL}
+
+\end{document}
+
