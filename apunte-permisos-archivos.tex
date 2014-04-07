@@ -193,6 +193,12 @@ en la salida del comando \texttt{ls -l}.
 \$ cat martes.txt  \\
 Hoy es lunes \\
 Hoy es martes \\
+}
+\vspace*{0.4cm} } }
+
+\fcolorbox{black}{grey}{
+\parbox[t]{1.0\linewidth}{ \vspace*{0.4cm}
+\texttt{
 \$ stat martes.txt  \\
   Fichero: «martes.txt» \\
   Tamaño: 27        	Bloques: 8          Bloque E/S: 4096   fichero regular \\
@@ -231,7 +237,7 @@ Acceso: (0644/-rw-r--r--)  Uid: ( 1000/lechnerm)   Gid: ( 1000/lechnerm) \\
 Modificación: 2014-04-05 15:21:12.881692767 -0300 \\
       Cambio: 2014-04-05 16:04:09.702640844 -0300 \\
     Creación: - \\
-\$  \\
+\$ 
 }
 \vspace*{0.4cm} } }
 
@@ -279,6 +285,13 @@ Modificación: 2014-04-05 18:55:01.679118415 -0300 \\
 \textbf{lrwxrwxrwx 1 lechnerm lechnerm 10 abr  5 18:55 viernes.txt -\textgreater jueves.txt} \\
 \$ cat viernes.txt  \\
 Hoy es jueves \\
+}
+\vspace*{0.4cm} } }
+
+\fcolorbox{black}{grey}{
+\parbox[t]{1.0\linewidth}{ \vspace*{0.4cm}
+{\bf Ejemplo} \\
+\texttt{ 
 \$ stat jueves.txt viernes.txt  \\
   Fichero: «jueves.txt» \\
   Tamaño: 14        	Bloques: 8          Bloque E/S: 4096   fichero regular \\
@@ -301,9 +314,8 @@ Modificación: 2014-04-05 18:55:34.710297555 -0300 \\
 Hoy es jueves \\
 Hoy es viernes \\
 \$ rm viernes.txt  \\
-\$  \\
+\$  
 }
-
 \vspace*{0.4cm} } }
 
 Al almacenar nombres de archivos los links simbólicos, a diferencia de los ``hard 
@@ -355,7 +367,7 @@ brw-rw---- 1 root disk 8, 0 abr  4 10:34 /dev/sda \\
 crw-rw-rw- 1 root root 5, 0 abr  5 16:16 /dev/tty \\
 \$ ls -l /var/run/dbus/system\_bus\_socket \\
 srwxrwxrwx 1 root root 0 abr  4 10:37 /var/run/dbus/system\_bus\_socket\\
-\$ \\
+\$ 
 }
 \vspace*{0.4cm} } }
 
@@ -384,7 +396,7 @@ drwxr-xr-x 89 lechnerm lechnerm 16384 abr  5 19:34 .. \\
 -rw-r--r--  1 rafa     sudo       833 abr  5 20:52 practico.pdf \\
 -rwxr-x---  1 lechnerm lechnerm     5 abr  5 20:54 script.sh \\
 drwxr-xr-x  2 lechnerm lechnerm  4096 abr  5 18:56 test3 \\
-\$  \\
+\$ \\
 }
 Nota: la opción -a del comando \texttt{ls} muestra todos los archivos 
 incluidos los ocultos, que son aquellos que comienzan con ``.''.  
@@ -419,7 +431,7 @@ uid=1000(lechnerm) gid=1000(lechnerm) grupos=1000(lechnerm),24(cdrom), \\
 \$ cp /home/rafa/usars.py /tmp/ \\
 \$ ls -l /tmp/usars.py  \\
 -rw-r--r-- 1 lechnerm lechnerm 205 abr  6 23:34 /tmp/usars.py \\
-\$  \\
+\$  
 }
 \vspace*{0.4cm} } }
 
@@ -452,7 +464,7 @@ chown: cambiando el propietario de «/tmp/usars.py»: Operación no permitida \\
 \# chown rafa.rafa /tmp/usars.py  \\
 \# ls -l /tmp/usars.py  \\
 -rw-r--r-- 1 rafa rafa 205 abr  6 23:34 /tmp/usars.py \\
-\#  \\
+\# 
 }
 \vspace*{0.4cm} } }
 
@@ -485,7 +497,7 @@ Modificación: 2013-10-01 16:02:30.002920012 -0300 \\
     Creación: - \\
 \$ ls -l vcninja \\
 -rw-r--r-- 1 lechnerm sudo 24802 oct  1  2013 vcninja \\
-\$  \\
+\$ 
 }
 \vspace*{0.4cm} } }
 
@@ -500,7 +512,7 @@ un archivo puede tener. Estos permisos son:
 Si asumimos que cada uno de estos tres permisos esta representado 
 por un bit, tal que si el bit esta en 0 el permiso en cuestión es denegado
 mientras que si esta en 1 el permiso es otorgado. Entonces necesitamos 
-tres bits para representar las posibles combinaciónes de esos tres permisos 
+tres bits para representar las posibles combinaciones de esos tres permisos 
 y por ende la elección de un número octal (dos al cubo es ocho). 
 
 La siguiente tabla intenta aclarar lo explicado: 
@@ -545,7 +557,7 @@ El caso más sencillo es el de {\it archivos regulares}. Para ellos, la interpre
 de {\tt rwx} es la intuitiva. Si {\tt r} se encuentra presente, entonces el contenido del archivo
 puede ser leído (por ejemplo si es de texto a través del comando cat). Si {\tt w}
 se encuentra presente entonces, el archivo en cuestión puede ser modificado 
-(sigiendo con un texto, por ejemplo a través del editor vi). Si {\tt x} se encuentra
+(siguiendo con un texto, por ejemplo a través del editor vi). Si {\tt x} se encuentra
 presente, entonces el archivo puede ser ejecutado. Este permiso deberá estar 
 presente para archivos binarios ejecutables (por ejemplo los que están en /bin) y
 cualquier otro archivo que pretendamos ejecutar, por ejemplo un script. 
@@ -562,7 +574,7 @@ borra archivos es este directorio, ya que para eso se requiere modificar y,
 por tanto, escribir sobe el archivo de tipo directorio.
 
 En realidad, no es posible escribir simplemente en un archivo de tipo 
-directorio (ni aún root puede hacerlo). Intentemoslo: 
+directorio (ni aún root puede hacerlo). Intentémoslo: 
 
 \texttt{
 \$ echo hola > .  \\
@@ -570,25 +582,78 @@ bash: .: Es un directorio \\
 \$ mkdir test \\
 \$ echo hola > test \\
 bash: test: Es un directorio \\
-\$  \\
+\$  
 }
 
 Para modificar el contenido de un archivo de tipo directorio existen 
-llamadas al sistema que crean y borran archivos, y sólo a trvés de 
+llamadas al sistema que crean y borran archivos, y sólo a través de 
 ellas es posible cambiar el contenido de un directorio. Sin embargo, 
 la idea de los permisos aún se aplica: cuando {\tt w} está presente 
 es posible usar las aplicaciones del sistema para modificar el directorio, 
 aplicaciones que terminarán invocando a las llamadas a sistema apropiadas. 
 
-Los permisos para borrar archivos son ondependientes del archivo mismo. 
+Los permisos para borrar archivos son independientes del archivo mismo. 
 Si el usuario tiene permiso de escritura en un directorio, puede borrar 
 archivos de él, aún los que estén protegidos contra escritura. Sin 
 embargo, el comando rm pide al usuario confirmar antes de borrar
 un archivo protegido para asegurar que eso es lo 
 que en realidad desea hacer, siendo una de las raras ocasiones en las que 
 un programa en UNIX verifica las intenciones del usuario. (La opción {\tt -f} de
-{\tt rm }) 
+{\tt rm } fuerza al comando a borrar archivos sin necesidad de confirmar.)
 
+El permiso {\tt x} es quizá el menos intuitivo en cuanto a directorios. Este no 
+significa ejecución; significa ``búsqueda''. El permiso de ejecución de 
+un directorio determina si puede buscarse o no un archivo en él. Por lo tanto, 
+es posible crear un directorio con modo {\tt --x} para otros usuarios, lo cual 
+significa que puedan acceder cualquier archivo que conozcan 
+previamente en ese directorio, pero no pueden ejecutar ls sobre él ni leerlo 
+para ver qué archivos tiene. En forma similar, con permisos {\tt r--} los 
+usuarios pueden ver ({\tt ls}) pero no usar el contenido de un directorio. 
+Algunas instalaciones usan esto para desactivar /usr/games durante las horas de trabajo. 
+
+
+\subsection*{Modificando permisos}
+El comando {\tt chmod} (del inglés {\tt ch}ange {\tt mod}e), cambia los 
+permisos de los archivos: 
+
+{\tt chmod {\it permisos archivos..}}
+
+Los permisos podrán especificarse de dos maneras, ya sea como números octales
+(según la tabla vista previamente) o por descripción simbólica. 
+
+\fcolorbox{black}{grey}{
+\parbox[t]{1.0\linewidth}{ \vspace*{0.4cm}
+{\bf Ejemplo} \\
+Sólo el propietario del archivo y root podrán modificar los permisos de un archivo. 
+\texttt{
+\$ ls -l usars.py  \\
+-rw-r--r-- 1 rafa rafa 205 abr  6 23:34 usars.py \\
+\$chmod 755 usars.py  \\
+\$ls -l usars.py  \\
+-rwxr-xr-x 1 rafa rafa 205 abr  6 23:34 usars.py \\
+\$ \# Al grupo le quitamos el permiso de ejecución \\
+\$chmod g-x usars.py  \\
+\$ls -l usars.py  \\
+-rwxr--r-x 1 rafa rafa 205 abr  6 23:34 usars.py \\
+\$ \# Al otros le quitamos el permiso de ejecución \\
+\$chmod o-x  usars.py  \\
+\$ls -l usars.py  \\
+-rwxr--r-- 1 rafa rafa 205 abr  6 23:34 usars.py \\
+\$ \# Agregamos permiso de ejecución para todos (all) \\
+\$chmod a+x usars.py  \\
+\$ls -l usars.py  \\
+-rwxr-xr-x 1 rafa rafa 205 abr  6 23:34 usars.py \\
+\$chmod 644 usars.py  \\
+\$ls -l usars.py  \\
+-rw-r--r-- 1 rafa rafa 205 abr  6 23:34 usars.py \\
+\$ 
+}
+\vspace*{0.4cm} } }
+
+\section*{Licencia}
+Esta obra está licenciada bajo una Licencia Creative Commons Atribución-CompartirDerivadasIgual 3.0 Unported. 
+
+http://creativecommons.org/licenses/by-sa/3.0/
 
 
 \end{document}
