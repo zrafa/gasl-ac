@@ -425,10 +425,11 @@ uid=1000(lechnerm) gid=1000(lechnerm) grupos=1000(lechnerm),24(cdrom), \\
 
 
 Tanto el usuario como el grupo deben existir previamente. El comando 
-que permite la modificación explícita de la propiedad de un archivo es \textbf{\texttt{chown}}.
+que permite la modificación explícita de la propiedad de un archivo es \textbf{\texttt{chown}}
+(del inglés ``\textbf{ch}ange \textbf{own}ership'').
 Por cuestiones de seguridad, un usuario sin privilegios especiales (no root), 
-no podrá cambiar la propiedad de archivos, sólo podrá cambiar el grupo 
-al que pertenece el archivo, siempre y cuando el usuario pertenezca a dicho grupo.  
+no podrá cambiar el dueño de un archivo (aún cuando el archivo le pertenezca). 
+Sólo podrá cambiar el grupo al que pertenece el archivo, siempre y cuando el usuario pertenezca a dicho grupo.  
 Por otro lado, el administrador del sistema, root, podrá cambiar el dueño
 y grupo sin restricciones. Siguiendo con el ejemplo anterior: 
 
