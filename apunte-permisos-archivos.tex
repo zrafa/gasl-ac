@@ -456,8 +456,140 @@ chown: cambiando el propietario de «/tmp/usars.py»: Operación no permitida \\
 }
 \vspace*{0.4cm} } }
 
-
-
 \subsection*{Permisos}
+Cada archivo tiene un conjunto de permisos asociados a él, los cuales 
+determinan qué puede hacerse con el archivo y quién puede hacerlo. 
+
+De manera simplificada podemos decir que los permisos de archivos 
+están representados por tres números octales.
+El primer número octal representa lo que puede hacer el dueño del 
+archivo con el mismo; el segundo indica lo que puede hacer el grupo 
+al que pertenece el archivo con el mismo; y el tercer conjunto indica 
+lo que puede hacer cualquier otro usuario que 
+no sea ni el dueño ni pertenezca al grupo (otros).
+
+\fcolorbox{black}{grey}{
+\parbox[t]{1.0\linewidth}{ \vspace*{0.4cm}
+{\bf Ejemplo} \\
+El archivo ``vcninja'' tiene permisos 644. Por ende el dueño, en este
+caso lechnerm, tiene permiso 6, el grupo 4 y el resto del universo 4. \\
+\texttt{
+\$ stat vcninja \\
+  Fichero: «vcninja» \\
+  Tamaño: 24802     	Bloques: 56         Bloque E/S: 4096   fichero regular \\
+Dispositivo: fe01h/65025d	Nodo-i: 5505447     Enlaces: 1 \\
+\textbf{Acceso: (0644/-rw-r--r--)}  Uid: ( 1000/lechnerm)   Gid: ( 501/sudo) \\
+      Acceso: 2013-10-16 14:40:00.076912329 -0300 \\
+Modificación: 2013-10-01 16:02:30.002920012 -0300 \\
+      Cambio: 2013-10-01 16:02:30.030919108 -0300 \\
+    Creación: - \\
+\$ ls -l vcninja \\
+-rw-r--r-- 1 lechnerm sudo 24802 oct  1  2013 vcninja \\
+\$  \\
+}
+\vspace*{0.4cm} } }
+
+La elección del sistema octal esta dada por los tres posibles permisos que 
+un archivo puede tener. Estos permisos son:
+\begin{itemize}
+\item Lectura, simbolizado por la letra \textbf{r}
+\item Escritura, simbolizado por la letra \textbf{w}
+\item Ejecución, simbolizado por la letra \textbf{x}
+\end{itemize}
+
+Si asumimos que cada uno de estos tres permisos esta representado 
+por un bit, tal que si el bit esta en 0 el permiso en cuestión es denegado
+mientras que si esta en 1 el permiso es otorgado. Entonces necesitamos 
+tres bits para representar las posibles combinaciónes de esos tres permisos 
+y por ende la elección de un número octal (dos al cubo es ocho). 
+
+La siguiente tabla intenta aclarar lo explicado: 
+
+\texttt{
+\begin{center}
+\begin{tabular}{lll}
+\rowcolor{tcA}
+Número octal & Representación binaria & Mapeo a letras\\
+0 & 000  & ---\\
+1 & 001 & --x\\
+2 & 010 & -w-\\
+3 & 011 & -wx\\
+4 & 100 & r--\\
+5 & 101 & r-x\\
+6 & 110 & rw-\\
+7 & 111 & rwx
+\end{tabular}
+\end{center}
+}
+
+Es así que en el ejemplo anterior: 
+
+\texttt{
+\$ ls -l vcninja \\
+-rw-r--r-- 1 lechnerm sudo 24802 oct  1  2013 vcninja \\
+}
+Como vimos en la sección anterior, el primer bit representa el tipo de archivo, en este caso regular. Los 
+siguientes tres bits representan los permisos para el dueño (lechnerm), en este 
+caso \texttt{rw-}, equivalente al número octal 6. Los siguientes tres
+bits representan los permisos para el grupo (sudo), en este caso {\tt r--}, 
+equivalente al número 4 en octal. Los últimos tres bits son los 
+permisos para otros, en este caso también {\tt r--}. 
+
+\subsection*{Archivos regulares frente a directorios}
+
+La interpretación de como funcionan los tres permisos, rwx, depende del 
+tipo de archivo con el que estemos tratando. En particular nos interesa
+lo que sucede con archivos regulares y directorios. 
+
+El caso más sencillo es el de {\it archivos regulares}. Para ellos, la interpretación 
+de {\tt rwx} es la intuitiva. Si {\tt r} se encuentra presente, entonces el contenido del archivo
+puede ser leído (por ejemplo si es de texto a través del comando cat). Si {\tt w}
+se encuentra presente entonces, el archivo en cuestión puede ser modificado 
+(sigiendo con un texto, por ejemplo a través del editor vi). Si {\tt x} se encuentra
+presente, entonces el archivo puede ser ejecutado. Este permiso deberá estar 
+presente para archivos binarios ejecutables (por ejemplo los que están en /bin) y
+cualquier otro archivo que pretendamos ejecutar, por ejemplo un script. 
+
+En el ejemplo de la sección anterior, el archivo vcninja puede ser leído y 
+modificado únicamente por lechnerm; y tanto el grupo como el resto de los 
+usuarios del sistema sólo podrán leerlo. 
+
+En el caso de {\it directorios}, si el permiso {\tt r} está presente
+significa que el usuario puede leer el directorio, por lo que puede 
+conocer qué archivos hay en él por medio del comando {\tt ls}. Si 
+el permiso {\tt w} está presente significa que el usuario puede crear y 
+borra archivos es este directorio, ya que para eso se requiere modificar y, 
+por tanto, escribir sobe el archivo de tipo directorio.
+
+En realidad, no es posible escribir simplemente en un archivo de tipo 
+directorio (ni aún root puede hacerlo). Intentemoslo: 
+
+\texttt{
+\$ echo hola > .  \\
+bash: .: Es un directorio \\
+\$ mkdir test \\
+\$ echo hola > test \\
+bash: test: Es un directorio \\
+\$  \\
+}
+
+Para modificar el contenido de un archivo de tipo directorio existen 
+llamadas al sistema que crean y borran archivos, y sólo a trvés de 
+ellas es posible cambiar el contenido de un directorio. Sin embargo, 
+la idea de los permisos aún se aplica: cuando {\tt w} está presente 
+es posible usar las aplicaciones del sistema para modificar el directorio, 
+aplicaciones que terminarán invocando a las llamadas a sistema apropiadas. 
+
+Los permisos para borrar archivos son ondependientes del archivo mismo. 
+Si el usuario tiene permiso de escritura en un directorio, puede borrar 
+archivos de él, aún los que estén protegidos contra escritura. Sin 
+embargo, el comando rm pide al usuario confirmar antes de borrar
+un archivo protegido para asegurar que eso es lo 
+que en realidad desea hacer, siendo una de las raras ocasiones en las que 
+un programa en UNIX verifica las intenciones del usuario. (La opción {\tt -f} de
+{\tt rm }) 
+
+
+
 \end{document}
 
