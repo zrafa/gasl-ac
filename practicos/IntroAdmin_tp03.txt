@@ -1,0 +1,140 @@
+
+				TRABAJO PRÁCTICO III : Arbol de directorios
+				-------------------------------------------
+
+Los siguientes ejercicios se realizan en su totalidad en el equipo asignado al grupo. Utilice redirección y el editor vi para guardar las salidas y editar los resultados en un archivo llamado trabajo-practico-3.txt. En el archivo de resolución indique su nombre y apellido, y el número de ejercicio a resolver, junto a la salida incluyendo el comando que ejecuta.
+
+EJERCICIO I
+-----------
+
+1- Sobre el directorio /etc
+
+	- ¿Qué tipo de archivos hay en ese directorio?
+
+2- El archivo /etc/passwd contiene el listado de usuarios del sistema. Cada línea de texto en ese archivo define los detalles de un único usuario.
+
+	- Utilice cat para visualizar el contenido de /etc/passwd, en la pantalla
+	- Utilice cat y redirija la salida al archivo en donde coloca los resultados del práctico
+	- ¿Cuántos usuarios hay definidos en el sistema? Ayuda: Utilice el comando cat redirigiendo la salida a wc (word count) para contar cuantas líneas existen en el archivo
+
+3- El archivo /etc/shadow contiene las passwords de los usuarios de manera encriptada.
+
+	- ¿Que permisos tiene ese archivo? Utilice el comando ls y redirija la salida a trabajo-practico-3.txt
+	
+	- ¿Quien puede leer y modificar ese archivo?
+	
+	- ¿Puede un usuario común modificar /etc/shadow? ¿Explique porqué?
+
+4- El archivo /etc/debian_version contiene en texto plano el nombre de la versión de Debian Linux instalada
+
+
+EJERCICIO II
+------------
+
+Sobre el directorio /usr/bin
+
+	- ¿Qué tipo de archivos hay en ese directorio?
+
+	- ¿Quién puede modificar el contenido de ese directorio?
+
+	- ¿Por qué el directorio debe tener esos permisos, y no otros?
+
+EJERCICIO III
+-------------
+
+El comando du se puede utilizar para ver el espacio utilizado por archivos y directorios. Si ejecuta du -h /etc el sistema muestra de manera legible (el argumento -h significa "legible para las personas") el espacio utilizado en el directorio /etc (suma los tamaños de todos los archivos y directorios que estén dentro de /etc).
+
+	- ¿Cuanto espacio utiliza el directorio /usr?
+
+	- ¿Porqué el directorio /usr ocupa más espacio que /etc?
+
+	- ¿Cuanto espacio utiliza el directorio raíz /?
+
+
+Ejercicio IV
+------------
+
+1- El comando hostname se utiliza para conocer el nombre del sistema (o para definirlo)
+
+	- ¿Que nombre tiene su sistema?
+
+2- El programa hostname viene empaquetado en un paquete de nombre homónimo. El comando dpkg -L hostname lista los archivos que el paquete hostname instaló en el sistema.
+
+	- Indique que son cada uno de los archivos listados (por ejemplo: si son binarios ejecutables, archivos de configuiración, archivos de log, etc).
+
+
+Ejercicio V
+-----------
+
+El archivo /proc/meminfo contiene información de la memoria utilizada en kilobytes
+
+	- Utilice cat para ver la información
+	
+	- ¿Cuanta memoria total en MegaBytes tiene el sistema?
+
+	- ¿Cuanta memoria se está utilizando del total? (en MegaBytes). Ayuda: utilice el dato MemFree
+
+
+Ejervicio VI
+------------
+
+En el directorio /proc existen directorios con nombres "numéricos", que corresponden con el PID de los procesos del sistema. Estos directorios contienen información de los procesos (de los programas en ejecución).
+
+	- Liste los directorios en /proc, en el cual, su nombre, comience con un número (liste solo los nombres de los directorios, no su contenido). Ayuda: opción -d de ls.
+
+	- Cuente con wc -l el listado anterior. ¿Cuántos procesos tiene en ejecución el sistema?.
+
+	- Ejecute ps -ef, y ps -ef | wc -l. ¿Qué reporta ps -ef?
+	
+	- ¿Coincide la cantidad de procesos reportados con ps -ef con el obtenido en el primer inciso de este ejercicio?
+
+
+Ejercicio VII
+-------------
+
+El comando find /var lista todos los archivos y directorios que existen debajo de /var.
+
+	- ¿Cuantos archivos y directorios contiene el /var de su sistema?. Ayuda: wc.
+
+	- ¿Cuanto espacio utiliza en disco todo el /var?. Ayuda: du.
+
+	- ¿Cuál es el directorio en donde el sistema guarda los mensajes de log?
+
+	- Mencione  archivos de log de su sistema.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
