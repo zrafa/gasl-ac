@@ -122,9 +122,11 @@ Comodines
 		- Liste el contenido del directorio test. ¿cuál es la función 
 		del script creador.sh?
 
-	3- Utilice comodines tal que el comando ls liste todos los archivos 		finalizados en ".txt"
+	3- Utilice comodines tal que el comando ls liste todos los archivos 		
+	finalizados en ".txt"
 
-	4- Utilice comodines tal que el comando ls liste todos los archivos 		que comienzan con "cap" y  finalizan en ".txt"
+	4- Utilice comodines tal que el comando ls liste todos los archivos 		
+	que comienzan con "cap" y  finalizan en ".txt"
 
 	5- Utilice comodines tal que el comando cat muestre el contenido de 
 	los archivos Cap10.txt a Cap19.txt
@@ -176,3 +178,4 @@ Redirección y filtros
 
 	8- Utilizando el comando grep obtenga la lista de procesos que 
 	corresponden solamente al usuario root
+
