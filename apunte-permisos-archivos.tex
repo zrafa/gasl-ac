@@ -650,6 +650,22 @@ Sólo el propietario del archivo y root podrán modificar los permisos de un arc
 }
 \vspace*{0.4cm} } }
 
+Cada orden de cambio de modo  simbólico  empieza
+       con  cero  o  más  letras  del  conjunto `ugoa': éstas controlan a qué
+       usuarios se referirán los nuevos permisos del fichero  cuyos  permisos
+       se van a cambiar: el usuario propietario (u), otros usuarios distintos
+       del propietario pero del mismo grupo que el  del  fichero  (g),  otros
+       usuarios  que ni son el propietario ni pertenecen al grupo del fichero
+       (o), o todos los usuarios (a). De forma que `a' equivale aquí a `ugo'.
+
+
+ El operador `+' hace que los permisos seleccionados se añadan a los ya
+       existentes en cada fichero; `-' hace que  se  quiten  de  los  que  ya
+       había; y `=' hace que sean los únicos que el fichero va a tener
+(para más información {\tt man chmod}).
+
+
+
 \section*{Licencia}
 Esta obra está licenciada bajo una Licencia Creative Commons Atribución-CompartirDerivadasIgual 3.0 Unported. 
 
