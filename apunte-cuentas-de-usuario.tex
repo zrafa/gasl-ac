@@ -279,7 +279,7 @@ Para crear una nueva cuenta manualmente, se necesita seguir los siguientes pasos
         
 	\item Cree el directorio de inicio (``home'') del
 	usuario con el comando \texttt{\textbf{mkdir}}. Usualmente el nombre del directorio
-	de inicio del usuario coinidirá con el nombre alfanumérico del mismo, sin embargo 
+	de inicio del usuario coincidirá con el nombre alfanumérico del mismo, sin embargo 
 	esto es sólo una convención. 
 
 	\item Copie los archivos de \texttt{/etc/skel} al nuevo directorio creado. 
@@ -287,7 +287,7 @@ Para crear una nueva cuenta manualmente, se necesita seguir los siguientes pasos
 
 	\item Modifique la pertenencia del dueño y permisos con los comandos
 	\texttt{\textbf{chown}} y \texttt{\textbf{chmod}} (Ver páginas de
-	manual de los respectivos comandos y apunte de cátdra de permisos). 
+	manual de los respectivos comandos y apunte de cátedra de permisos). 
 	La opción \texttt{-R} es muy útil para aplicar los cambios sobre todos 
 	los archivos del directorio y subdirectorios en un sólo paso (recursivo).
 	Recuerde hacer esta operación con cuidado y utilizando los argumentos 
@@ -340,7 +340,7 @@ La secuencia anterior realiza lo siguientes pasos:
 	\item Verificar la entrada que creamos en /etc/passwd y /etc/shadow. 
 	\item Verificar la existencia del grupo primario.  En este caso jgonzalez tiene 
 	      asignado como grupo primario el grupo security (gid 1003). 
-	\item Verificar grupos secundarios. En este caso jgonzalez pertence al grupo cdrom (gid 1000).  
+	\item Verificar grupos secundarios. En este caso jgonzalez pertenece al grupo cdrom (gid 1000).  
 	\item Crear el directorio de inicio (home). 
 	\item Copiar archivos predeterminados desde /etc/skel (opcional). 
 	\item Modificar la pertenencia del nuevo directorio y su contenido, tal que este pertenezca al 
@@ -354,9 +354,15 @@ La secuencia anterior realiza lo siguientes pasos:
 	sentencia más arriba. 
 \end{enumerate}
 
+Como se observa, la creación manual de usuarios consiste de una serie de 
+pasos sencillos. Sin embargo, el olvido de uno de estos pasos puede dar 
+lugar a inconsistencias y fallas de seguridad. Es por ello que se sugiere
+el uso de herramientas como adduser/useradd, usermod, passwd para 
+realizar actualizaciones y creación de usuarios consistente. 
 
-	
-A veces es necesario crear cuentas que no corresponden 
+{\bf Usuarios especiales:} 
+
+En ciertas ocasiones es necesario crear cuentas que no corresponden 
 a personas físicas. Muchas de ellas, de hecho son creadas durante la 
 instalación del sistema, o bien de una nueva aplicación. Por ejemplo esto 
 sucede al instalar los motores de base de datos postgres o mysql. También 
@@ -374,7 +380,6 @@ casos que corresponda, consiste en no asignar un shell predeterminado, y en su l
 utilizar \texttt{/bin/false} en el campo correspondiente en \texttt{/etc/passwd}.  
 
 \subsection*{Ambiente inicial: \texttt{/etc/skel}}
-
 Cuando se crea un directorio Inicio para un nuevo usuario, este es
 inicializado por medio del directorio \texttt{/etc/skel}. 
 \footnote{Apócope de la palabra inglesa ``skeleton'', que en castellano 
@@ -385,7 +390,6 @@ para los usuarios. Por ejemplo, podría crear un archivo
 \texttt{/etc/skel/.profile} que configura las variable de entorno
 de algún editor mas amigable para los usuarios nuevos, ó el lenguaje 
 de preferencia, etc. 
-
 
 En general es una buena política conservar dicho directorio lo mas pequeño
 posible, ya que, en el futuro será imposible actualizar los archivos de
@@ -409,7 +413,7 @@ predeterminado distinto al que posee actualmente. Los siguientes comandos
 permiten cambiar dichas propiedades: 
 
 \begin{itemize}
-\item 	\texttt{chfn}:  cambia el campo del nombre completo.
+\item 	\texttt{chfn}: cambia el campo del nombre completo.
 \item 	\texttt{chsh}:  cambia el campo del interprete de comandos (shell).
 \item 	\texttt{passwd}: cambia la contraseña. 
 \item 	\texttt{usermod}: Los tres comandos anteriores pueden ser utilizados 
