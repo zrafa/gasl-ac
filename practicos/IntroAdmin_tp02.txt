@@ -179,3 +179,153 @@ Redirección y filtros
 	8- Utilizando el comando grep obtenga la lista de procesos que 
 	corresponden solamente al usuario root
 
+UID        PID  PPID  C STIME TTY          TIME CMD
+root         1     0  0 18:12 ?        00:00:00 init [2]  
+root         2     0  0 18:12 ?        00:00:00 [kthreadd]
+root         3     2  0 18:12 ?        00:00:00 [ksoftirqd/0]
+root         4     2  0 18:12 ?        00:00:01 [kworker/0:0]
+root         6     2  0 18:12 ?        00:00:00 [migration/0]
+root         7     2  0 18:12 ?        00:00:00 [watchdog/0]
+root         8     2  0 18:12 ?        00:00:00 [cpuset]
+root         9     2  0 18:12 ?        00:00:00 [khelper]
+root        10     2  0 18:12 ?        00:00:00 [kdevtmpfs]
+root        11     2  0 18:12 ?        00:00:00 [netns]
+root        12     2  0 18:12 ?        00:00:00 [sync_supers]
+root        13     2  0 18:12 ?        00:00:00 [bdi-default]
+root        14     2  0 18:12 ?        00:00:00 [kintegrityd]
+root        15     2  0 18:12 ?        00:00:00 [kblockd]
+root        17     2  0 18:12 ?        00:00:00 [khungtaskd]
+root        18     2  0 18:12 ?        00:00:00 [kswapd0]
+root        19     2  0 18:12 ?        00:00:00 [ksmd]
+root        20     2  0 18:12 ?        00:00:00 [khugepaged]
+root        21     2  0 18:12 ?        00:00:00 [fsnotify_mark]
+root        22     2  0 18:12 ?        00:00:00 [crypto]
+root        99     2  0 18:12 ?        00:00:00 [khubd]
+root       133     2  0 18:12 ?        00:00:00 [firewire]
+root       177     2  0 18:12 ?        00:00:00 [ata_sff]
+root       184     2  0 18:12 ?        00:00:00 [scsi_eh_0]
+root       185     2  0 18:12 ?        00:00:00 [scsi_eh_1]
+root       186     2  0 18:12 ?        00:00:00 [scsi_eh_2]
+root       187     2  0 18:12 ?        00:00:00 [scsi_eh_3]
+root       188     2  0 18:12 ?        00:00:00 [scsi_eh_4]
+root       189     2  0 18:12 ?        00:00:00 [scsi_eh_5]
+root       192     2  0 18:12 ?        00:00:00 [kworker/u:4]
+root       193     2  0 18:12 ?        00:00:00 [kworker/u:5]
+root       194     2  0 18:12 ?        00:00:00 [kworker/u:6]
+root       222     2  0 18:12 ?        00:00:00 [md]
+root       238     2  0 18:12 ?        00:00:00 [jbd2/sda2-8]
+root       239     2  0 18:12 ?        00:00:00 [ext4-dio-unwrit]
+root       381     1  0 18:12 ?        00:00:00 udevd --daemon
+root       608   381  0 18:12 ?        00:00:00 udevd --daemon
+root       609   381  0 18:12 ?        00:00:00 udevd --daemon
+root       644     2  0 18:12 ?        00:00:00 [cfg80211]
+root       655     2  0 18:12 ?        00:00:00 [iwlwifi]
+root       663     2  0 18:13 ?        00:00:00 [hci0]
+root       666     2  0 18:13 ?        00:00:00 [kpsmoused]
+root       668     2  0 18:13 ?        00:00:00 [hd-audio0]
+root       700     2  0 18:13 ?        00:00:00 [flush-8:0]
+root       909     2  0 18:13 ?        00:00:00 [kvm-irqfd-clean]
+root      1731     2  0 18:13 ?        00:00:00 [jbd2/sda5-8]
+root      1732     2  0 18:13 ?        00:00:00 [ext4-dio-unwrit]
+root      2318     1  0 18:13 ?        00:00:00 /sbin/rpcbind -w
+statd     2347     1  0 18:13 ?        00:00:00 /sbin/rpc.statd
+root      2352     2  0 18:13 ?        00:00:00 [rpciod]
+root      2354     2  0 18:13 ?        00:00:00 [nfsiod]
+root      2360     1  0 18:13 ?        00:00:00 /usr/sbin/rpc.idmapd
+root      2649     1  0 18:13 ?        00:00:00 /usr/sbin/rsyslogd
+root      2684     1  0 18:13 ?        00:00:00 /usr/sbin/acpi_fakekeyd
+message+  2697     1  0 18:13 ?        00:00:00 /usr/bin/dbus-daemon --system
+root      2720     1  0 18:13 ?        00:00:00 /usr/sbin/NetworkManager
+root      2742     1  0 18:13 ?        00:00:00 /usr/lib/policykit-1/polkitd --no-debug
+root      2747     1  0 18:13 ?        00:00:00 /usr/sbin/acpid
+root      3002     1  0 18:13 ?        00:00:00 /usr/sbin/modem-manager
+root      3004     1  0 18:13 ?        00:00:00 /sbin/wpa_supplicant -u -s -O /var/run/wpa_supplicant
+root      3010     1  0 18:13 ?        00:00:00 /usr/sbin/apache2 -k start
+www-data  3014  3010  0 18:13 ?        00:00:00 /usr/sbin/apache2 -k start
+www-data  3015  3010  0 18:13 ?        00:00:00 /usr/sbin/apache2 -k start
+www-data  3016  3010  0 18:13 ?        00:00:00 /usr/sbin/apache2 -k start
+www-data  3017  3010  0 18:13 ?        00:00:00 /usr/sbin/apache2 -k start
+www-data  3018  3010  0 18:13 ?        00:00:00 /usr/sbin/apache2 -k start
+www-data  3019  3010  0 18:13 ?        00:00:00 /usr/sbin/apache2 -k start
+daemon    3049     1  0 18:13 ?        00:00:00 /usr/sbin/atd
+avahi     3074     1  0 18:13 ?        00:00:00 avahi-daemon: running [acerino.local]
+avahi     3075  3074  0 18:13 ?        00:00:00 avahi-daemon: chroot helper
+root      3098     1  0 18:13 ?        00:00:00 /usr/sbin/bluetoothd
+root      3104     2  0 18:13 ?        00:00:00 [krfcommd]
+root      3167     1  0 18:13 ?        00:00:00 /usr/sbin/cron
+root      3197     1  0 18:13 ?        00:00:00 /usr/sbin/cupsd -C /etc/cups/cupsd.conf
+root      3227     1  0 18:13 ?        00:00:00 /usr/sbin/libvirtd -d
+root      3281     1  0 18:13 ?        00:00:00 /usr/sbin/lightdm
+root      3309  3281  0 18:13 tty7     00:00:29 /usr/bin/X :10 -auth /var/run/lightdm/root/:10 -nolisten tcp vt7 -novtswitch
+root      3432     1  0 18:13 ?        00:00:00 /sbin/mdadm --monitor --pid-file /run/mdadm/monitor.pid --daemonise --scan --syslog
+root      3886     1  0 18:13 ?        00:00:00 /usr/lib/accountsservice/accounts-daemon
+root      3893     1  0 18:13 ?        00:00:00 /usr/sbin/console-kit-daemon --no-daemon
+root      4009     1  0 18:13 ?        00:00:00 /usr/lib/upower/upowerd
+root      4556  3281  0 18:14 ?        00:00:00 lightdm --session-child 12 23
+lechnerm  4567     1  0 18:14 ?        00:00:00 /usr/bin/gnome-keyring-daemon --daemonize --login
+lechnerm  4578  4556  0 18:14 ?        00:00:00 gnome-session --session gnome-fallback
+lechnerm  4607  4578  0 18:14 ?        00:00:00 /usr/bin/ssh-agent /usr/bin/dbus-launch --exit-with-session gnome-session-fallback
+lechnerm  4610     1  0 18:14 ?        00:00:00 /usr/bin/dbus-launch --exit-with-session gnome-session-fallback
+lechnerm  4611     1  0 18:14 ?        00:00:00 /usr/bin/dbus-daemon --fork --print-pid 6 --print-address 8 --session
+lechnerm  4620  4578  0 18:14 ?        00:00:01 /usr/lib/gnome-settings-daemon/gnome-settings-daemon
+lechnerm  4629     1  0 18:14 ?        00:00:00 /usr/lib/gvfs/gvfsd
+lechnerm  4635     1  0 18:14 ?        00:00:00 /usr/bin/pulseaudio --start --log-target=syslog
+rtkit     4637     1  0 18:14 ?        00:00:00 /usr/lib/rtkit/rtkit-daemon
+lechnerm  4644     1  0 18:14 ?        00:00:00 /usr/lib/gvfs/gvfs-gdu-volume-monitor
+root      4646     1  0 18:14 ?        00:00:00 /usr/lib/udisks/udisks-daemon
+root      4647  4646  0 18:14 ?        00:00:00 udisks-daemon: polling /dev/sr0
+lechnerm  4653     1  0 18:14 ?        00:00:00 /usr/lib/gvfs/gvfs-gphoto2-volume-monitor
+lechnerm  4655     1  0 18:14 ?        00:00:00 /usr/lib/gvfs/gvfsd-burn --spawner :1.6 /org/gtk/gvfs/exec_spaw/1
+lechnerm  4659     1  0 18:14 ?        00:00:00 /usr/lib/gvfs/gvfs-afc-volume-monitor
+colord    4662     1  0 18:14 ?        00:00:00 /usr/lib/i386-linux-gnu/colord/colord
+lechnerm  4663  4578  0 18:14 ?        00:00:02 /usr/bin/metacity
+lechnerm  4673     1  0 18:14 ?        00:00:00 /usr/lib/gnome-settings-daemon/gsd-printer
+lechnerm  4676  4578  0 18:14 ?        00:00:02 gnome-panel
+lechnerm  4696     1  0 18:14 ?        00:00:00 /usr/lib/i386-linux-gnu/gconf/gconfd-2
+lechnerm  4727     1  0 18:14 ?        00:00:00 /usr/lib/dconf/dconf-service
+lechnerm  4741  4578  0 18:14 ?        00:00:00 /usr/lib/gnome-settings-daemon/gnome-fallback-mount-helper
+lechnerm  4742  4578  0 18:14 ?        00:00:00 /usr/lib/gnome-disk-utility/gdu-notification-daemon
+lechnerm  4748  4578  0 18:14 ?        00:00:00 gnome-sound-applet
+lechnerm  4749  4578  0 18:14 ?        00:00:00 /usr/bin/python /usr/share/system-config-printer/applet.py
+lechnerm  4750  4578  0 18:14 ?        00:00:00 /usr/lib/policykit-1-gnome/polkit-gnome-authentication-agent-1
+lechnerm  4755  4578  0 18:14 ?        00:00:00 /usr/lib/tracker/tracker-store
+lechnerm  4760  4578  0 18:14 ?        00:00:00 /usr/lib/tracker/tracker-miner-fs
+lechnerm  4764  4578  0 18:14 ?        00:00:00 /usr/lib/notification-daemon/notification-daemon
+lechnerm  4765  4578  0 18:14 ?        00:00:01 nm-applet
+lechnerm  4774  4578  0 18:14 ?        00:00:00 gnome-screensaver
+lechnerm  4792     1  0 18:14 ?        00:00:08 /usr/bin/gnome-terminal
+lechnerm  4796  4792  0 18:14 ?        00:00:00 gnome-pty-helper
+lechnerm  4797  4792  0 18:14 pts/3    00:00:00 bash
+lechnerm  4807     1  0 18:14 ?        00:00:00 /usr/lib/telepathy/mission-control-5
+lechnerm  4848     1  0 18:14 ?        00:00:00 /usr/lib/gnome-online-accounts/goa-daemon
+Debian-+  4920     1  0 18:14 ?        00:00:00 /usr/sbin/exim4 -bd -q30m
+root      5074     1  0 18:15 ?        00:00:00 /usr/sbin/pptpd
+root      5158     2  0 18:15 ?        00:00:00 [lockd]
+root      5159     2  0 18:15 ?        00:00:00 [nfsd4]
+root      5160     2  0 18:15 ?        00:00:00 [nfsd4_callbacks]
+root      5161     2  0 18:15 ?        00:00:00 [nfsd]
+root      5162     2  0 18:15 ?        00:00:00 [nfsd]
+root      5163     2  0 18:15 ?        00:00:00 [nfsd]
+root      5164     2  0 18:15 ?        00:00:00 [nfsd]
+root      5165     2  0 18:15 ?        00:00:00 [nfsd]
+root      5166     2  0 18:15 ?        00:00:00 [nfsd]
+root      5167     2  0 18:15 ?        00:00:00 [nfsd]
+root      5168     2  0 18:15 ?        00:00:00 [nfsd]
+root      5172     1  0 18:15 ?        00:00:00 /usr/sbin/rpc.mountd --manage-gids
+root      5210     1  0 18:15 ?        00:00:00 /usr/sbin/sshd
+root      5249     2  0 18:15 ?        00:00:00 [iprt]
+ntp       5284     1  0 18:15 ?        00:00:00 /usr/sbin/ntpd -p /var/run/ntpd.pid -g -u 115:123
+root      5334     1  0 18:15 tty1     00:00:00 /sbin/getty 38400 tty1
+root      5335     1  0 18:15 tty2     00:00:00 /sbin/getty 38400 tty2
+root      5336     1  0 18:15 tty3     00:00:00 /sbin/getty 38400 tty3
+root      5337     1  0 18:15 tty4     00:00:00 /sbin/getty 38400 tty4
+root      5338     1  0 18:15 tty5     00:00:00 /sbin/getty 38400 tty5
+root      5339     1  0 18:15 tty6     00:00:00 /sbin/getty 38400 tty6
+lechnerm  5345  4676  0 18:16 ?        00:00:26 iceweasel
+lechnerm  5360     1  0 18:16 ?        00:00:00 /usr/lib/at-spi2-core/at-spi-bus-launcher
+root      5450     2  0 18:32 ?        00:00:00 [kworker/0:3]
+lechnerm  5624  4797  0 18:48 pts/3    00:00:01 gedit IntroAdmin_tp02.txt
+root      5674     2  0 18:53 ?        00:00:00 [kworker/0:1]
+lechnerm  5699  4792  0 18:55 pts/0    00:00:00 bash
+root      5804     2  0 18:59 ?        00:00:00 [kworker/0:2]
+lechnerm  5923  4797  0 19:04 pts/3    00:00:00 ps -ef
