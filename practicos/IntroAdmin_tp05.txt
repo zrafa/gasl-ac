@@ -1,0 +1,185 @@
+
+				TRABAJO PRÁCTICO V : Inicio y Apagado. Repaso
+				---------------------------------------------
+
+Los siguientes ejercicios se realizan en su totalidad en el equipo asignado al grupo. Utilice redirección y el edito vi para guardar las salidas y editar los resultados en un archivo llamado trabajo-practico-5.txt. En el archivo de resolución indique su nombre y apellido, y el número de ejercicio a resolver, junto a la salida incluyendo el comando que ejecuta.
+
+EJERCICIO I
+-----------
+
+	1- El gestor de arranque utilizado por las máquinas del laboratorio se llama GRUB. Investigue dónde se encuentran los archivos de configuración del mismo dentro del sistema.
+
+	2- Explique con sus palabras cuál es la función de dicho software.
+
+
+Ejercicio II
+------------
+
+	1- El archivo /etc/inittab contiene la configuración del proceso init. Utilizando el manual de dicho archivo, determine cuál es el nivel de ejecución predeterminado del sistema. Copie en su resolución la línea correspondiente a dicha configuración.
+
+	2- Obtenga el nivel de ejecución actual. ¿Se encuentra el sisteam en el nivel de ejecución predeterminado?. ¿Qué comando utilizó?
+
+	3- Utilizando el comando telinit camie el nivel de ejecución al de usuario individual.
+
+		- ¿Con qué argumentos ejecutó el comando telinit?
+
+		- ¿Qué sucedió y por qué cree que sucedió?
+
+		- ¿Se encuentra la máquina apagada? (intente un ping)
+
+		- ¿Qué pasos deben llevarse a cabo para volver al estado de multiusuario? (solicite asistencia a la cátedra para resolver este punto)
+
+	4- Utilizando el comando shutdown cambie a nivel de ejecución seis, pero con un tiempo de postergación de diez segundos, y tal como se envíe el mensaje "Estaremos de vuelta en unos instantes" en todas las terminales del sistema. ¿Qué comando ejecutó? ¿Qué sucedió?
+
+	5- Vea el siguiente video: http://youtu.be/JzzsFVMEU6I; y trate de identificar:
+
+		- ¿En qué momento está en ejecución el gestor de arranque? ¿Cual es el gestor de arranque?
+		- ¿En qué momento comienza la carga del kernel de linux?
+
+		- ¿En qué momento comienza la ejecución del proceso init?
+
+		- Observe algunos de los servicios iniciados por init.
+
+
+Ejercicio III: Sistema de archivos
+-------------
+
+Sobre los directorios /bin/ y /usr/bin/
+
+	1- ¿Qué tipo de archivos hay en esos directorios?
+
+	2- ¿Qué diferencia existe entre los dos directorios?
+
+	3- ¿Cuáles son los permisos del directorio /usr/bin?
+
+	4- ¿Quien puede modificar el contenido de ese directorio?
+
+	5- ¿Por qué el directorio debe tener esos permisos, y no otros?
+
+	6- ¿Qué tipo de archivos hay en el directorio /etc/?
+
+	7- ¿Qué tipo de archivos hay en el directorio /tmp/? 
+
+	8- ¿Qué tipo de archivos hay en el directorio /var/?
+
+
+Ejercicio IV: Sistema de archivos -2da parte
+------------
+
+El programa ssh viene empaquetado en un paquete llamado openssh-client. El comando dpkg -L openssh-client lista los archivos que el paquete instaló en el sistema.
+
+Indique con sus palabras que tipo de archivos el paquete ha instalado en el sistema (por ejemplo: si son binarios ejecutables, archivos de configuración, archivos de log, etc) y en qué ubicaciones (directorios).
+
+
+Ejercicio V: Procesos
+-----------
+
+Ayuda: ps; man ps
+
+	1- Obtenga la lista de todos los programas en ejecución, incluyendo al menos la siguiente información: dueño del proceso, identificador de porceso (PID), identificador del padre (PPID), comando que inició el proceso.
+
+	2- De la lista anterior, ¿Cuál es el primer proceso del sistema? ¿Cuál es su PID?
+
+	3- ¿Cuántos procesos hay en ejecución? Ayuda: wc
+
+Ejercicio VI: Entorno del shell
+------------
+
+Ayuda: env
+
+	1- Obtenga la lista de variables de entorno del usuario
+
+	2- ¿Cuántas variables hay definidas? Ayuda: wc
+
+	3- Obtenga únicamente el valor de las variables HOME. ¿Qué comando utilizó para obtener la respuesta?
+
+	4- Obtenga únicamente el valor de las variables PATH. ¿Qué comando utilizó para obtener la respuesta?
+
+
+Ejercicio VII: Una sesión de trabajo
+-------------
+
+Realice las siguientes acciones (especifique en el archivo de resolución del trabajo práctico todos los comandos que utiliza):
+
+	1- ¿Qué comando utiliza para saber en qué directorio se encuentra trabajando?
+
+	2- ¿Cómo saber cuáles son las opciones soportadas por un comando sin recurrir a Internet?
+
+	3- Listar el contenido del directorio actual con los detalles de cada archivo.
+
+	4- Crear un directorio llamado backups en su directorio HOME.
+
+	5- Crear un directorio llamado vacio en su directorio HOME.
+
+	6- Copiar todos los archivos de su directorio HOME al directorio creado backups/
+
+	7- Copiar el archivo /etc/passwd al directorio vacio/
+
+	8- Eliminar un archivo en su directorio HOME
+
+	9- Eliminar el directorio vacio/
+
+	10- Observar el contenido del archivo /etc/services, paginando la salida en la terminal (mencione al menos dos maneras de hacerlo). ¿Qué dice la última línea de ese archivo?
+
+	11- El comando hostname se utiliza para conocer el nombre del sistema (o para definirlo)
+
+		- ¿Qué nombre tiene su sistema?
+
+
+Ejercicio VIII: Una sesión de trabajo - 2da parte
+--------------
+
+El comando du se puede utilizar para ver el espacio utilizado por los archivos y directorios. Si ejecuta du -sh /etc el sistema muestra de manera legible (el argumento -h significa "legible para las personas") el espacio utilizado en el directorio /etc (suma los tamaños de todos los archivos y directorios que estén dentro de /etc).
+
+	- ¿Cuanto espacio utiliza el directorio /etc?
+
+	- ¿Cuanto espacio utiliza el directorio /usr?
+
+	- ¿Por qué el directorio /usr ocupa más espacio que /etc?
+
+	- ¿Cuanto espacio utiliza el directorio raíz /?
+
+
+Ejercicio IX: Usuarios y grupos
+------------
+
+	1- Utilizando el comando adduser agregue dos usuarios nuevos al sistema.
+
+	2- Utilice cat para visualizar el contenido de /etc/passwd, redirija la salida al archivo de resolución del práctico.
+
+	3- ¿Cuántos usuarios hay definidos en el sistema?
+
+	4- Obtenga, del archivo /etc/passwd, sólo información del usuario root. Ayuda: grep
+
+	5- Utilizando el comando addgroup agregue al sistema el grupo socios
+
+	6- Edite con vigr el archivo /etc/groups y agregue los usuarios creados en el primer inciso al grupo socios
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

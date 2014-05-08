@@ -1,0 +1,156 @@
+
+				TRABAJO PRÁCTICO IV : Administrando Cuentas de Usuario
+				------------------------------------------------------
+
+Los siguientes ejercicios se realizan en su totalidad en el equipo asignado al grupo. Utilice redirección y el edito vi para guardar las salidas y editar los resultados en un archivo llamado trabajo-practico-4.txt. En el archivo de resolución indique su nombre y apellido, y el número de ejercicio a resolver, junto a la salida incluyendo el comando que ejecuta.
+
+Ejercicio I
+
+El comando adduser se utiliza para crear nuevas cuentas de usuario de manera interactiva. Su utilización es sencilla. Sólo es necesario, como mínimo, especificar el nombre de usuario.
+
+Ej: adduser jgonzalez
+
+El sistema luego, le pedirá, de manera interactiva, información extra de la nueva cuenta a crear (el nombre completo real, la clave inicial, etc).
+
+Utilizando el comando adduser agregue al sistema estos cinco usuarios nuevos:
+
+	Nombre de usuario: director
+	Nombre real: Juan Jose Gonzalez
+	clave inicial: director01
+
+	Nombre de usuario: secretaria
+	Nombre real: Susana Gimenez
+	clave inicial: secretaria02
+
+	Nombre de usuario: contaduria
+	Nombre real: Contador Esteban Gonzalez
+	clave inicial: contador03
+
+	Nombre de usuario: legales
+	Nombre real: Abogado Mirko Garcia
+	clave inicial: legales04
+
+	Nombre de usuario: buffet
+	Nombre real: Mirta Legrant de Gonzalez
+	clave inicial: buffet01
+
+
+Ejercicio II
+------------
+
+	- Utilice cat para visualizar el contenido de /etc/passwd, en la pantalla
+	
+	- Utilice cat y redirija la salida al archivo en donde coloca los resultados del practico
+
+	- ¿Cuántos usuarios hay definidos en el sistema? Ayuda: Utilice el comando cat redirigiendo la salida a wc (word count) para contar cuantas líneas existen en el archivo
+
+
+Ejercicio III
+-------------
+
+Otra manera muy útil de verificar usuarios es a través de sesiones de login al sistema.
+Verifique los cinco usuarios creados realizando conexiones secure shell (ssh) al equipo asignado al grupo. Utilice el nombre de usuario y su clave inicial para corroborar que puede ingresar al sistema.
+
+¿Cuál es el directorio HOME de cada usuario?
+
+
+Ejercicio IV
+------------	
+
+Realice una conexión al sistema con el usuario director. Y responda:
+
+	- ¿Cuál es el directorio HOME del usuario director? ¿Que variable de ambiente del usuario reporta esa información?
+
+	- Con qué comando verifica todas las variables de ambiente del usuario director?
+
+	- Intente crear un nuevo usuario utilizando el usuario director. ¿Es posile crear un nuevo usuario director? Justifique porqué.
+
+Ejercicio V
+-----------
+
+El comando addgroup funciona de manera similar a adduser pero se utiliza para crear nuevos grupos de usuario. Ejemplo de uso: addgroup empleados (crea en el sistema un grupo llamado empleados).
+
+Utilice addgroup para crear tres nuevos grupos en el sistema:
+
+	- directorio
+	- empleados
+	- todos
+
+
+Ejercicio VI
+------------
+
+El comando usermod puede ser útil para agregar usuarios a grupos, o modificar algunas opciones del usuario. Por ejemplo, para agregar el usuario "director" al grupo "todos", puede ejecutar usermod -G todos -a director.
+Verifique con el manual que hacen las opciones -G -a para el comando usermod.
+Modifique los grupos utilizando usermod para agregar usuarios a los grupos. De la siguiente manera:
+
+	- El grupo directorio debería estar compuesto por los usuarios director, legales y contaduría.
+
+	- El grupo empleados debería estar compuesto por secretaria, contaduría, legales y buffet.
+
+	- El grupo todos debería estar compuesto por director, legales y contaduría
+
+
+Ejercicio VII
+-------------
+
+Los comandos vipw y vigr permiten editar la base de datos de usuarios y grupos manualmente con vi.
+
+Utilice el comando vigr para editar los grupos con vi. Agregue manualmente los usuarios buffet y secretaria al grupo "todos".
+
+
+Ejercicio VIII
+--------------
+
+	- Utilice el comando deluser para quitar del sistema a los usuarios buffet y legales.
+
+	- Observe el archivo /etc/passwd para verificar ue los usuarios han sido eliminados.
+
+	- Listar los usuarios utilizando cat y el archivo /etc/passwd
+
+	- Utilice los comandos cat y wc para obtener la cantidad de usuarios del sistema
+
+	- Utilice los comandos cat y sort para generar el mismo listado, pero en orden alfabetico.
+
+	- Utilice el comando passwd para cambiar las claves iniciales del usuario director y secretaria. Verifique que la clave cambió realizando conexiones remotas con esos usuarios.
+
+
+Ejercicio IX
+------------
+
+Repaso sistema de archivos
+
+	- Listar los directorios /bin y /usr/bin por pantalla. ¿Qué tipo de archivos existen en esos directorios? (Ejemplo: Binarios, ejecutables, de texto plano, de configuración, variables, temporarios, de documentación. Un directorio puede tener mas de un tipo mencionado, por ejemplo "de texto de configuración").
+
+	- Listar los directorios /etc por pantalla. Visualizar con cat de algún archivo a elección. ¿Qué tipo de archivos existen en esos directorios?
+
+	- Listar el directorio /home. ¿Qué tipo de información se guarda en ese directorio?
+
+	- Listar el directorio /tmp. ¿Para qué sirve ese directorio?
+
+	- Ejecutar find /var, y utilizar en conjunción con wc para conocer la cantidad de archivos que existen en el directorio /var
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
