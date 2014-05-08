@@ -12,7 +12,6 @@ salida incluyendo el comando que ejecuta.
 
 Ejercicio 1
 -----------
-
 El comando adduser se utiliza para crear nuevas cuentas de usuario de manera 
 interactiva (también permite hacerlo de manera no interactiva a través de 
 opciones). Su utilización es sencilla. Sólo es necesario, como mínimo, 
@@ -46,7 +45,6 @@ Responda:
 
 Ejercicio 2
 -----------
-
 El comando useradd se utiliza para crear nuevas cuentas de usuario de manera
 no interactiva. 
 
@@ -61,12 +59,17 @@ no interactiva.
 	grupo primario: users
 
 2.a Verifique las entradas creadas observando el contenido de los archivos
-passwd, shadow y group. 
+    passwd, shadow y group. 
+2.c ¿Qué permisos tiene cada uno de los siguientes archivos: passwd, shadow y 
+    group ubicados en el directorio /etc? ¿A quién pertenecen (propietario y 
+    grupo)? 
+2.b ¿En qué archivo y campo se encuentran guardadas las contraseñas? ¿Son 
+    legibles al ser humano? ¿Por qué se almacenan en ese formato, si sólo 
+    root puede verlas? 
 
 
 Ejercicio 3
 -----------
-
 	- Utilice cat para visualizar el contenido de /etc/passwd, en la 
 	pantalla
 	- Utilice cat y redirija la salida al archivo en donde coloca los 
@@ -78,14 +81,18 @@ Ejercicio 3
 
 Ejercicio 4
 -----------
+Verificar usuarios es a través de sesiones de login al sistema: Verifique los 
+cinco usuarios creados realizando conexiones secure shell (ssh) al equipo 
+asignado al grupo. Utilice el nombre de usuario y su clave inicial para 
+corroborar que puede ingresar al sistema.
 
-Otra manera muy útil de verificar usuarios es a través de sesiones de login 
-al sistema.
-Verifique los cinco usuarios creados realizando conexiones secure shell (ssh) 
-al equipo asignado al grupo. Utilice el nombre de usuario y su clave inicial 
-para corroborar que puede ingresar al sistema.
-
-¿Cuál es el directorio HOME de cada usuario?
+4.a ¿Cuál es el directorio HOME de cada usuario? ¿Qué comando utiliza para ver
+    el directorio de trabajo actual? 
+4.b Verifique los grupos al que pertenece el usuario con los comandos groups y 
+    id. 
+4.c Utilice el comando passwd para obligar al usuario a cambiar la contraseña
+    inicial. ¿Qué cambio haría manualmente para logar este mismo efecto? 
+    Verifique el correcto funcionamiento ingresando nuevamente. 
 
 
 Ejercicio 5
@@ -93,60 +100,75 @@ Ejercicio 5
 
 Realice una conexión al sistema con el usuario director. Y responda:
 
-	- ¿Cuál es el directorio HOME del usuario director? ¿Que variable de ambiente del usuario reporta esa información?
+	- ¿Cuál es el directorio HOME del usuario director? ¿Que variable de 
+	ambiente del usuario reporta esa información?
+	- Con qué comando verifica todas las variables de ambiente del usuario 
+	director?
+	- Intente crear un nuevo usuario utilizando el usuario director. ¿Es 
+	posile crear un nuevo usuario director? Justifique por qué.
 
-	- Con qué comando verifica todas las variables de ambiente del usuario director?
-
-	- Intente crear un nuevo usuario utilizando el usuario director. ¿Es posile crear un nuevo usuario director? Justifique porqué.
-
-Ejercicio V
+Ejercicio 6
 -----------
-
-El comando addgroup funciona de manera similar a adduser pero se utiliza para crear nuevos grupos de usuario. Ejemplo de uso: addgroup empleados (crea en el sistema un grupo llamado empleados).
+El comando addgroup funciona de manera similar a adduser pero se utiliza para 
+crear nuevos grupos de usuario. Ejemplo de uso: addgroup empleados (crea en el 
+sistema un grupo llamado empleados).
 
 Utilice addgroup para crear tres nuevos grupos en el sistema:
 
 	- directorio
 	- empleados
-	- todos
+	- todos 
+
+6.a Verifique los datos de los nuevos grupos en el archivo correspondiente. 
+6.b ¿Cuál es el gid asignado a cada grupo? 
 
 
-Ejercicio VI
+Ejercicio 7
 ------------
 
-El comando usermod puede ser útil para agregar usuarios a grupos, o modificar algunas opciones del usuario. Por ejemplo, para agregar el usuario "director" al grupo "todos", puede ejecutar usermod -G todos -a director.
+El comando usermod puede ser útil para agregar usuarios a grupos, o modificar 
+algunas propiedades del usuario. Por ejemplo, para agregar el usuario 
+"director" al grupo "todos", puede ejecutar usermod -G todos -a director.
 Verifique con el manual que hacen las opciones -G -a para el comando usermod.
-Modifique los grupos utilizando usermod para agregar usuarios a los grupos. De la siguiente manera:
+Modifique los grupos utilizando usermod para agregar usuarios a los grupos. De 
+la siguiente manera:
 
-	- El grupo directorio debería estar compuesto por los usuarios director, legales y contaduría.
+	- El grupo directorio debería estar compuesto por los usuarios director,
+	  legales y contaduría.
 
-	- El grupo empleados debería estar compuesto por secretaria, contaduría, legales y buffet.
+	- El grupo empleados debería estar compuesto por secretaria, contaduría,	  legales y buffet.
 
-	- El grupo todos debería estar compuesto por director, legales y contaduría
-
-
-Ejercicio VII
--------------
-
-Los comandos vipw y vigr permiten editar la base de datos de usuarios y grupos manualmente con vi.
-
-Utilice el comando vigr para editar los grupos con vi. Agregue manualmente los usuarios buffet y secretaria al grupo "todos".
+	- El grupo todos debería estar compuesto por los usuarios director,
+	  legales y contaduría (sí sólo esos).
 
 
-Ejercicio VIII
---------------
+7.a Verifique los datos de los nuevos grupos en el archivo correspondiente. 
+7.b ¿Cuál es el caracter separador de usuarios dentro de un mismo grupo?
 
-	- Utilice el comando deluser para quitar del sistema a los usuarios buffet y legales.
+Ejercicio 8
+-----------
 
-	- Observe el archivo /etc/passwd para verificar ue los usuarios han sido eliminados.
+Los comandos vipw y vigr permiten editar la base de datos de usuarios y grupos
+manualmente con vi (u otro editor si se define la variable de entorno EDITOR).
 
-	- Listar los usuarios utilizando cat y el archivo /etc/passwd
+Utilice el comando vigr para editar los grupos con vi. Agregue manualmente los 
+usuarios buffet y secretaria al grupo "todos".
 
-	- Utilice los comandos cat y wc para obtener la cantidad de usuarios del sistema
 
-	- Utilice los comandos cat y sort para generar el mismo listado, pero en orden alfabetico.
+Ejercicio 9
+-----------
 
-	- Utilice el comando passwd para cambiar las claves iniciales del usuario director y secretaria. Verifique que la clave cambió realizando conexiones remotas con esos usuarios.
+	- Utilice el comando deluser para quitar del sistema a los usuarios 
+	buffet y legales.
+
+	- Observe el archivo passwd y shadow para verificar que los usuarios 
+	han sido eliminados.
+
+	- Utilice el comando wc (solamente) para obtener la cantidad de usuarios
+	del sistema. ¿Cuál es la diferencia con usar cat+pipe+wc? 
+
+	- Utilice los comandos cat y sort para generar el listado de usuarios en
+	passwd, pero en orden alfabetico.
 
 
 Ejercicio IX
