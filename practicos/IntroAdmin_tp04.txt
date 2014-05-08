@@ -1,16 +1,27 @@
+-------------------------------------------------------
+Introducción a la administración de sistemas
+FAI - UNCOMA - 2014
+TRABAJO PRÁCTICO IV : Administrando Cuentas de Usuario
+-------------------------------------------------------
 
-				TRABAJO PRÁCTICO IV : Administrando Cuentas de Usuario
-				------------------------------------------------------
+Los siguientes ejercicios se realizan en su totalidad en el equipo asignado al 
+grupo. Utilice redirección y el edito vi para guardar las salidas y editar los 
+resultados en un archivo llamado IntroAdmin_tp04.txt En el archivo de resolución 
+indique su nombre y apellido, y el número de ejercicio a resolver, junto a la 
+salida incluyendo el comando que ejecuta.
 
-Los siguientes ejercicios se realizan en su totalidad en el equipo asignado al grupo. Utilice redirección y el edito vi para guardar las salidas y editar los resultados en un archivo llamado trabajo-practico-4.txt. En el archivo de resolución indique su nombre y apellido, y el número de ejercicio a resolver, junto a la salida incluyendo el comando que ejecuta.
+Ejercicio 1
+-----------
 
-Ejercicio I
-
-El comando adduser se utiliza para crear nuevas cuentas de usuario de manera interactiva. Su utilización es sencilla. Sólo es necesario, como mínimo, especificar el nombre de usuario.
+El comando adduser se utiliza para crear nuevas cuentas de usuario de manera 
+interactiva (también permite hacerlo de manera no interactiva a través de 
+opciones). Su utilización es sencilla. Sólo es necesario, como mínimo, 
+especificar el nombre de usuario.
 
 Ej: adduser jgonzalez
 
-El sistema luego, le pedirá, de manera interactiva, información extra de la nueva cuenta a crear (el nombre completo real, la clave inicial, etc).
+El sistema luego, le pedirá, de manera interactiva, información extra de la 
+nueva cuenta a crear (el nombre completo real, la clave inicial, etc).
 
 Utilizando el comando adduser agregue al sistema estos cinco usuarios nuevos:
 
@@ -26,36 +37,59 @@ Utilizando el comando adduser agregue al sistema estos cinco usuarios nuevos:
 	Nombre real: Contador Esteban Gonzalez
 	clave inicial: contador03
 
+Observe las últimas tres lineas de los archivos passwd y shadow, utilice el 
+comando 'tail -3' para ello. 
+Responda:  
+	1.a ¿A qué grupo primario pertenece cada usuario? 
+	1.b ¿Cuál es el uid de cada usuario?
+	1.c ¿Qué número de campo contiene el nombre real?
+
+Ejercicio 2
+-----------
+
+El comando useradd se utiliza para crear nuevas cuentas de usuario de manera
+no interactiva. 
+
 	Nombre de usuario: legales
 	Nombre real: Abogado Mirko Garcia
 	clave inicial: legales04
+	grupo primario: users
 
 	Nombre de usuario: buffet
 	Nombre real: Mirta Legrant de Gonzalez
 	clave inicial: buffet01
+	grupo primario: users
+
+2.a Verifique las entradas creadas observando el contenido de los archivos
+passwd, shadow y group. 
 
 
-Ejercicio II
-------------
+Ejercicio 3
+-----------
 
-	- Utilice cat para visualizar el contenido de /etc/passwd, en la pantalla
-	
-	- Utilice cat y redirija la salida al archivo en donde coloca los resultados del practico
+	- Utilice cat para visualizar el contenido de /etc/passwd, en la 
+	pantalla
+	- Utilice cat y redirija la salida al archivo en donde coloca los 
+	resultados del practico
+	- ¿Cuántos usuarios hay definidos en el sistema? Ayuda: Utilice
+	redirección y el comando wc (word count) para contar cuantas líneas 
+	existen en el archivo.
 
-	- ¿Cuántos usuarios hay definidos en el sistema? Ayuda: Utilice el comando cat redirigiendo la salida a wc (word count) para contar cuantas líneas existen en el archivo
 
+Ejercicio 4
+-----------
 
-Ejercicio III
--------------
-
-Otra manera muy útil de verificar usuarios es a través de sesiones de login al sistema.
-Verifique los cinco usuarios creados realizando conexiones secure shell (ssh) al equipo asignado al grupo. Utilice el nombre de usuario y su clave inicial para corroborar que puede ingresar al sistema.
+Otra manera muy útil de verificar usuarios es a través de sesiones de login 
+al sistema.
+Verifique los cinco usuarios creados realizando conexiones secure shell (ssh) 
+al equipo asignado al grupo. Utilice el nombre de usuario y su clave inicial 
+para corroborar que puede ingresar al sistema.
 
 ¿Cuál es el directorio HOME de cada usuario?
 
 
-Ejercicio IV
-------------	
+Ejercicio 5
+-----------	
 
 Realice una conexión al sistema con el usuario director. Y responda:
 
