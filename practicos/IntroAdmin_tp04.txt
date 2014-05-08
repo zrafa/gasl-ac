@@ -91,7 +91,7 @@ corroborar que puede ingresar al sistema.
 4.b Verifique los grupos al que pertenece el usuario con los comandos groups y 
     id. 
 4.c Utilice el comando passwd para obligar al usuario a cambiar la contraseña
-    inicial. ¿Qué cambio haría manualmente para logar este mismo efecto? 
+    inicial. ¿Qué cambio haría manualmente para lograr este mismo efecto? 
     Verifique el correcto funcionamiento ingresando nuevamente. 
 
 
@@ -105,7 +105,7 @@ Realice una conexión al sistema con el usuario director. Y responda:
 	- Con qué comando verifica todas las variables de ambiente del usuario 
 	director?
 	- Intente crear un nuevo usuario utilizando el usuario director. ¿Es 
-	posile crear un nuevo usuario director? Justifique por qué.
+	posible crear un nuevo usuario director? Justifique por qué.
 
 Ejercicio 6
 -----------
@@ -154,6 +154,8 @@ manualmente con vi (u otro editor si se define la variable de entorno EDITOR).
 Utilice el comando vigr para editar los grupos con vi. Agregue manualmente los 
 usuarios buffet y secretaria al grupo "todos".
 
+Verifique los grupos de pertenencia de cada usuario a través del comando groups.
+
 
 Ejercicio 9
 -----------
@@ -168,45 +170,43 @@ Ejercicio 9
 	del sistema. ¿Cuál es la diferencia con usar cat+pipe+wc? 
 
 	- Utilice los comandos cat y sort para generar el listado de usuarios en
-	passwd, pero en orden alfabetico.
+	passwd, pero en orden alfabético.
 
 
-Ejercicio IX
+Ejercicio 10
 ------------
-
 Repaso sistema de archivos
 
-	- Listar los directorios /bin y /usr/bin por pantalla. ¿Qué tipo de archivos existen en esos directorios? (Ejemplo: Binarios, ejecutables, de texto plano, de configuración, variables, temporarios, de documentación. Un directorio puede tener mas de un tipo mencionado, por ejemplo "de texto de configuración").
+	- Listar los directorios /bin y /usr/bin por pantalla. ¿Qué tipo de 
+	archivos existen en esos directorios? (Ejemplo: Binarios, ejecutables, 
+	de texto plano, de configuración, variables, temporarios, de 
+	documentación. Un directorio puede tener mas de un tipo mencionado, 
+	por ejemplo "de texto de configuración").
 
-	- Listar los directorios /etc por pantalla. Visualizar con cat de algún archivo a elección. ¿Qué tipo de archivos existen en esos directorios?
+	- Listar los directorios /etc por pantalla. Visualizar con cat de algún 	archivo a elección. ¿Qué tipo de archivos existen en esos directorios?
 
-	- Listar el directorio /home. ¿Qué tipo de información se guarda en ese directorio?
+	- Listar el directorio /home. ¿Qué tipo de información se guarda en 
+	ese directorio?
 
 	- Listar el directorio /tmp. ¿Para qué sirve ese directorio?
 
-	- Ejecutar find /var, y utilizar en conjunción con wc para conocer la cantidad de archivos que existen en el directorio /var
+	- Ejecutar find /var, y utilizar en conjunción con wc para conocer la 
+	cantidad de archivos que existen en el directorio /var
 
+Ejercicio 11
+------------
+Propiedad y Permisos 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Ingrese con cualquiera de los usuarios creados en los ejercicios 1/2. Cree un 
+directorio y un archivo regular cualquiera en su directorio de inicio. 
+	11.a ¿ A quién pertenecen los archivos y directorios recién creados? 
+	(mencione propietario y grupo). 	
+	11.b ¿ Qué sucede si intenta cambiar la propiedad del archivo o 
+	directorio a cualquier otro usuario del sistema? ¿Por qué sucede esto
+	si los archivos pertenecen al usuario?
+	11.b Intente cambiar el grupo al cual pertenecen el archivo y 
+	directorio a un grupo al cual el usuario _no_ pertenezca. ¿Qué sucede?
+	11.c Intente cambiar el grupo al cual pertenecen el archivo y 
+	directorio a un grupo al cual el usuario _pertenezca_. ¿Qué sucede?
+	11.d ¿Cuáles son los permisos del archivo y directorio? Interprételos. 
 
