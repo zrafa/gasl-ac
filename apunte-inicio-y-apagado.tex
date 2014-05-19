@@ -63,7 +63,8 @@ del proceso varían dependiendo del hardware que estemos contemplando, hay ciert
 fases generales que aplican cualquiera sea este. 
 
 Cuando se enciende una computadora, esta ejecuta un código fijo almacenado en una 
-memoria no volátil en la placa base. Este código intentará deducir dónde se encuentra
+memoria no volátil (que no pierde su contenido cuando el hardware no está energizado) en la 
+placa base. Este código intentará deducir dónde se encuentra
 la siguiente porción de software a ejecutar, que permitirá en última instancia 
 cargar el sistema operativo y comenzar a ejecutarlo. Este código inicial es muy pequeño 
 y sencillo por lo 
@@ -77,7 +78,8 @@ durante esta etapa.
  Al finalizar un sistema Linux (shutdown), se le ordena a cada proceso
 terminar. Esto causa que los archivos sean cerrados y que se realicen otras
 tareas que sirven para mantener el sistema en orden. A continuación se desmontan
-los sistemas de archivos y las áreas de swap. Finalmente, se muestra un mensaje
+los sistemas de archivos y las áreas de intercambio\footnote{Sección de disco utilizada 
+para implementar la memoria virtual del sistema}. Finalmente, se muestra un mensaje
 en la consola indicando que el equipo puede apagarse o bien se apaga automáticamente. 
 Si no se sigue el procedimiento anterior pueden y sucederán cosas terribles. Uno de los problemas 
 que puede ocurrir por ejemplo, es que el buffer caché
@@ -102,8 +104,9 @@ para su funcionamiento están presentes y disponibles (la memoria RAM, por
 ejemplo). Dados los escasos recursos con los que cuenta un ordenador
 al que pudieran fallarle partes muy básicas, los fallos suelen ser notificados al
 usuario por medio de indicaciones sonoras a través de un pequeño altavoz que
-suele llevar toda placa base, usando secuencias de pitidos predeterminadas para
-cada tipo de fallo.
+suele llevar la placa base, usando secuencias de pitidos predeterminadas para
+cada tipo de fallo; en otros casos serán el parpadeo de ciertas luces indicadoras
+lo que indiquen el tipo de fallo. 
 
 Si la prueba POST se pasa con éxito, se ejecuta a continuación un programa
 denominado ``bootstrap loader'' (cargador de inicio) que reside en la memoria de la
@@ -116,7 +119,7 @@ montarse como disco, o incluso desde una red local).
 Un \textit{sector de arranque} es el primer sector de un disco y contiene un pequeño
 programa  que es capaz de cargar un Sistema Operativo. Al \textit{sector de arranque} 
 se lo conoce  en inglés como \textit{boot sector} o
-\textit{master boot sector} (MBR o sector de arranque maestro). Si
+\textit{master boot record} (MBR o sector de arranque maestro). Si
 el disco contiene varias particiones, cada una de ellas tiene su propio sector
 de arranque (primer sector de cada partición).  
 
@@ -145,14 +148,14 @@ Esta información está incluida dentro del cargador de inicio
 y, para introducirla, se usa el comando \texttt{lilo} que a su vez usa el contenido del
 archivo \texttt{/etc/lilo.conf}. Todo ello sucede, por supuesto, con el ordenador ya en marcha.
 
-Una vez LILO ha cargado el ``kernel'' (núcleo) Linux, le transfiere el control a éste.
+Una vez que LILO ha cargado el ``kernel'' (núcleo) Linux, le transfiere el control a éste.
 El kernel Linux luego de que ha sido cargado en memoria y comienza a
 ejecutarse, inicializa el hardware y los controladores de los dispositivos. 
 Adicionalmente el kernel recibe algunos parámetros durante su carga. De éstos, 
 uno de los más importantes es el que le dice al núcleo qué dispositivo usar 
 como sistema de ficheros raíz, es decir, lo
 que en UNIX se denomina ``/''. En una computadora personal típica, la raíz sería
-típicamente una partición de un disco duro. 
+una partición de un disco rígido. 
 
 Si el núcleo ha conseguido montar el sistema de ficheros raíz, lo siguiente a
 ejecutar es el programa ``\texttt{init}'' (para más detalle \texttt{man 8 init}). 
@@ -174,7 +177,7 @@ estamos delante de una consola de texto en la que el ordenador nos pide que nos
 identifiquemos, o bien estamos ante una consola gráfica que nos pide lo mismo, o
 bien estamos ante una pantalla llena de opciones sobre qué ejecutar (escuchar
 música, ver películas, por ejemplo) si el sistema arranca bajo un usuario
-predeterminado y no nos pide registrarnos.
+predeterminado y no nos pide iniciar sesión explícitamente.
 
 La siguiente es la salida por pantalla de una secuencia de arranque, en 
 la que se observa el gestor de arranque LILO y algunas comprobaciones de 
@@ -292,14 +295,14 @@ caso es esperar que ningún daño severo ocurra y entonces desconectar la máqui
 \section{ Reinicio (Rebooting)}
 
  Rebooting significa iniciar el sistema nuevamente. Se puede realizar
-finalizando el sistema, apagando la máquina y entonces encendiendo de vuelta. Un
+finalizando el sistema, apagando la máquina y entonces encendiendo nuevamente. Un
 método más práctico para tener el mismo efecto consiste en indicarle al comando
 \texttt{\textbf{shutdown}} que reinicie el sistema, en vez de que lo detenga.
 La opción \texttt{-r} del comando \texttt{\textbf{shutdown}} puede
 realizar la acción anterior, y puede utilizarse inmediatamente, por ejemplo:
 \texttt{\textbf{shutdown -r now}}.  
 
- La mayoría de los sistemas Linux ejecutan el comando \texttt{\textbf{shutdown -r
+ La mayoría de los sistemas GNU/Linux ejecutan el comando \texttt{\textbf{shutdown -r
 now}} cuando se oprime la combinación de teclas \texttt{ctrl-alt-del} (y
 reinician el equipo). La manera de operar de \texttt{ctrl-alt-del} se puede configurar y
 es una buena idea postergar la acción durante algún tiempo antes de reiniciar
@@ -311,15 +314,16 @@ En algunos Linux también logramos el mismo efecto con el comando reboot.
 
 \section {Niveles de ejecución}
 
+
 Luego de que de que el proceso \texttt{init} es ejecutado por el kernel, comienza 
 la ejecución de servicios y procesos que resultarán finalmente en un sistema 
 completamente funcional. Este proceso también involucra una serie de etapas bien 
-definidas. Por ejemplo para que un servicio de página web 
+definidas, es un proceso escalonado, no inmediato. Por ejemplo para que un servicio de página web 
 este disponible para su uso, es necesario que previamente 
 se haya configurado la red. Lo mismo sucede durante el apagado, antes de 
 eliminar el servicio de red, es conveniente que las aplicaciones que 
 utilizan dicho servicio finalicen. Estas etapas definen lo que se conoce como 
-\textit{\textbf{niveles de ejecución}}
+\textit{\textbf{niveles de ejecución}}.
 
 Un nivel de ejecución es una configuración de software del sistema que permite 
 existir sólo a un grupo de procesos seleccionado. Los procesos levantados por 
@@ -328,8 +332,8 @@ existir sólo a un grupo de procesos seleccionado. Los procesos levantados por
 correspondiente a inittab (\texttt{man inittab}).
  
 Un nivel de ejecución es un estado de \texttt{init} y de la totalidad del 
-sistema, y define qué servicios están operando. Los niveles de ejecución 
-son identificados por números (observe la tabla a continuación). 
+sistema, y define qué servicios están operando en un momento particular. Los 
+niveles de ejecución son identificados por números (observe la tabla a continuación). 
 
 \definecolor{tcA}{rgb}{1,0.92549,0.678431}
 \begin{center}
@@ -367,7 +371,16 @@ un conjunto de scripts asociados a cada nivel de ejecución, que se ejecutan
 en un orden particular cada vez que el sistema inicia una transición 
 hacia ese nivel de ejecución (por ejemplo al invocar el comando shutdown 
 o al encender la computadora). También existen otros esquemas como 
-\textit{\textbf{Upstart}} utilizado y desarrollado por Ubuntu. 
+\textit{\textbf{Systemd}} desarrollado por freedesktop.org y utilizado por
+muchas distribuciones en sus versiones más recientes, como ser Debian, Ubuntu, 
+Suse y Fedora entre otras. 
+
+En particular \textit{Systemd} reemplaza el concepto de ``nivel de ejecución'' por 
+``target unit''. Nace debido a la necesidad de agilizar el arranque del sistema (en 
+cierta medida por la explosión de equipos móviles que corren bajo Linux); la 
+especificación de dependencias más complejas entre servicios, entre otras razones.  
+Esta fuera del alance de este curso un análisis completo de Systemd, para más 
+información referirse a freedesktop.org. 
 
 \subsection{ Modo usuario individual (single user mode)}
 
@@ -377,6 +390,13 @@ cambio al nivel de modo de usuario individual
 (single user), en el cual nadie puede iniciar una sesión de usuario, pero root
 puede utilizar la consola. Es útil para efectuar tareas de administración del
 sistema que no se pueden realizar cuando el sistema se ejecuta normalmente.
+
+ El monousuario o usuario individual garantiza al administrador la existencia 
+de un conjunto de servicios mínimos para realizar tareas administrativas sin 
+la interferencia de servicios no esenciales. Por ejemplo, podría definirse que 
+en este nivel de ejecución, los servicios de red (y por ende todos los servicios
+que lo utilizan) se encuentren apagados, de modo que la única forma de 
+acceso sea a través de la consola. 
 
 \include{licGASL}
 
