@@ -47,13 +47,18 @@ usuario individual.
 	envíe el mensaje "Estaremos de vuelta en unos instantes" en todas las 
 	terminales del sistema. ¿Qué comando ejecutó? ¿Qué sucedió?
 
-	5- Vea el siguiente video: http://youtu.be/JzzsFVMEU6I; y trate de 
+	5- Vea el siguiente video: https://vimeo.com/96112597 y trate de 
 	identificar:
 
+		- ¿En dónde se encuentra almacenado el software que muestra la
+		palabra "GIGABYTE"? ¿Qué tipo de almacenamiento es? 
 		- ¿En qué momento está en ejecución el gestor de arranque? 
-		¿Cual es el gestor de arranque?
+		¿Cual es el gestor de arranque? ¿Qué versión?
+		- ¿Dónde se encuentra almacenado el gestor de arranque? 
 		- ¿En qué momento comienza la carga del kernel de Linux?
-		- ¿En qué momento comienza la ejecución del proceso init?
+		- ¿En qué momento comienza la ejecución del proceso init? 
+		- ¿En qué directorio se encuentra guardado el programa init? ¿
+		  ¿Qué permisos tiene? 
 		- Observe algunos de los servicios iniciados por init.
 
 Ejercicio 3:
